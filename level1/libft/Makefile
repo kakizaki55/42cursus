@@ -1,5 +1,5 @@
 
-SRC			= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c
+SRC			= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c
 SRCS		= ${addprefix ${PRE}, ${SRC}}
 OBJS		= ${SRCS:.c=.o}
 PRE			=	./
@@ -8,7 +8,7 @@ NAME		=	libft.a
 AR			=	ar rc
 LIB			=	ranlib
 CC			=	cc
-RM			=	rm
+RM			=	rm -rf
 CFLAGS		=	-Wall -Wextra -Werror
 all:		${NAME}
 .c.o:

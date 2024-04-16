@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alelievr <alelievr@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created  2015/04/04 19:22:36 by alelievr          #+#    #+#              #
-#    Updated: 2022/10/28 14:06:58 by ladloff          ###   ########.fr        #
+#    Created: 2015/04/04 19:22:36 by alelievr          #+#    #+#              #
+#    Updated: 2024/04/16 18:54:46 by mkakizak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ FRAMEWORK	=
 CFLAGS		=	-Werror -Wall -Wextra# -g3 -fsanitize=address
 CSOFLAGS	=	-shared -fPIC
 CSOFLAGS2	=	
-CC			=	clang
+CC			=	cc
 CC_SO		=	$(CC)
 
 #	Optimization
@@ -152,7 +152,7 @@ all: $(ASSETDIR)/$(ANAME) $(SONAME) $(ASSETDIR)/$(NAME) $(ASSETDIR)/$(LIBMALLOC)
 ifneq ($(OS),Linux)
 $(SONAME):
 	@rm -rf $(TMPLIB) || echo -n
-	@mkdir -p $(TMPLIB)
+	@mkdir -p $(TMPLIB) 
 	@cd $(TMPLIB) && ar -xv ../libft.a 1>/dev/null
 	@$(call exec_color, "\033[38;5;$(LINK_COLOR_T)m➤ \033[38;5;$(LINK_COLOR)m",\
 		$(CC_SO), $(CSOFLAGS), $(TMPLIB)/*.o, -o, $(SONAME))
