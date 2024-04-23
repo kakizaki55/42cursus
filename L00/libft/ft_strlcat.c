@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/17 20:48:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:50:25 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 	
 	if (dstsize == dst_length + 1) {
         dst[dst_length] = '\0';
-		puts("here i am ");
+		// puts("here i am ");
         return (src_length);
     }
 	
@@ -64,24 +64,24 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (src_length + dstsize);
 }
 
-#include <stdio.h>
-int main(void)
-{
-	// char *str = "the cake is a lie !\0I'm hidden lol\r\n";
-	char buff1[0xF00] = "there is no stars in the sky";
-	char buff2[0xF00] = "there is no stars in the sky";
-	// size_t max = strlen("the cake is a lie !\0I'm hidden lol\r\n") + 4;
+// #include <stdio.h>
+// int main(void)
+// {
+// 	// char *str = "the cake is a lie !\0I'm hidden lol\r\n";
+// 	char buff1[0xF00] = "there is no stars in the sky";
+// 	char buff2[0xF00] = "there is no stars in the sky";
+// 	// size_t max = strlen("the cake is a lie !\0I'm hidden lol\r\n") + 4;
 
-	char s1[4] = "";
-	char s2[4] = "";
+// 	char s1[4] = "";
+// 	char s2[4] = "";
 	
-	printf("mac: %d\n",4);
-	// strlcat(s1, str, max);
-	printf("%lu\n", strlcat(s1, "thx to ntoniolo for this test !", 4));
-	printf("strlcat: %s\n",buff1);
+// 	printf("mac: %d\n",4);
+// 	// strlcat(s1, str, max);
+// 	printf("%lu\n", strlcat(s1, "thx to ntoniolo for this test !", 4));
+// 	printf("strlcat: %s\n",buff1);
 	
-	// ft_strlcat(s2, str, max);
-	printf("%lu \n", ft_strlcat(s2, "thx to ntoniolo for this test !", 4));
-	printf("ft_strlcat: %s\n", buff2);
+// 	// ft_strlcat(s2, str, max);
+// 	printf("%lu \n", ft_strlcat(s2, "thx to ntoniolo for this test !", 4));
+// 	printf("ft_strlcat: %s\n", buff2);
 	
-}
+// }
