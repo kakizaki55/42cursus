@@ -1,0 +1,48 @@
+
+
+
+#include <stddef.h>
+#include <stdlib.h>
+
+static size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+static size_t	ft_strcpy(char *dst, const char *src)
+{
+	size_t i;
+	size_t src_length;
+
+	src_length = ft_strlen(src);
+	i = 0;
+	while(src[i] != '\0')
+	{
+		dst[i] = src[i];	
+		i++;
+	}
+	
+	dst[i] = '\0';
+	return (src_length);
+}
+
+char *ft_strdup(const char *s)
+{
+	size_t	length;
+	char	*cpy;
+
+	length = ft_strlen(s);
+	cpy = (char *)malloc(sizeof(char) * (length + 1));
+	if (cpy == NULL)
+		return (NULL);
+
+	ft_strcpy(cpy, s);
+	return (cpy);
+}

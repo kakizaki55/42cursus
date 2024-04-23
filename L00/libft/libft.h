@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/23 15:23:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:51:22 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef FT_H
 # define FT_H
@@ -33,5 +33,8 @@ char * ft_strrchr(const char *s, int c);
 int ft_strncmp(const char *s1, const char *s2, size_t n);
 char * ft_strnstr(const char *haystack, const char *needle, size_t len);
 int ft_atoi(const char *str);
+
+void *ft_calloc(size_t nmemb, size_t size);
+char *ft_strdup(const char *s);
 
 #endif
