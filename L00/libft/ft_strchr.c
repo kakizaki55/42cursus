@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:12:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/23 13:52:19 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/23 16:11:05 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ static size_t	ft_strlen(const char *str)
 		}
 		i++;
 	}
-	return NULL;
+	return (NULL);
  }
+
+#include <stdio.h>
+#include <string.h>
+int    main(void)
+{
+    char str[] = "tripouille";
+
+    printf("%s\n", ft_strchr(str, 0));
+    printf("%s\n", strchr(str, 0));
+    return (0);
+}
  
