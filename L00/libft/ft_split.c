@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 17:50:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:55:20 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char **ft_split(char const *s, char c)
 
 	split_count = count_sub_strings((char *)s, c);
 
-	results = malloc(sizeof(char *) * (split_count + 1));
+	results = malloc(sizeof(char *) * (split_count));
 	if (results == NULL)
 		return (NULL);
 	if(c == '\0')
@@ -100,7 +100,6 @@ char **ft_split(char const *s, char c)
 		start = j;
 		while(s[j] != '\0' && !check_chars(s[j], c))
 			j++;
-		printf("start is: %d :\n j is: %d :\n", start, j);
 		results[i] = ft_strndup((char *)&s[start], j - start);
 		i++;	
 	}
@@ -108,29 +107,29 @@ char **ft_split(char const *s, char c)
 	return (results);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int main() {
-   char str[] = "      split       this for   me  !       ";
-    char c = ' ';
-    char **result;
+// int main() {
+//    char str[] = "      split       this for   me  !       ";
+//     char c = ' ';
+//     char **result;
 
-	int split_count = count_sub_strings(str, c);
+// 	int split_count = count_sub_strings(str, c);
 
 
-    printf("length is %d\n", split_count);
+//     printf("length is %d\n", split_count);
 
-    result = ft_split(str, c);
+//     result = ft_split(str, c);
 
-    for (int i = 0; i < split_count; i++) {
-        printf("%s\n", result[i]);
-    }
+//     for (int i = 0; i < split_count; i++) {
+//         printf("%s\n", result[i]);
+//     }
 
-    // Free the dynamically allocated memory
-    for (int i = 0; i < split_count ; i++) {
-        free(result[i]);
-    }
-    free(result);
+//     // Free the dynamically allocated memory
+//     for (int i = 0; i < split_count ; i++) {
+//         free(result[i]);
+//     }
+//     free(result);
 
-    return 0;
-}
+//     return 0;
+// }

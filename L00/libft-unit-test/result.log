@@ -57,24 +57,7 @@ ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK]
 ft_substr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}[OK] 
 ft_strjoin:    [OK] [OK] [OK] [OK] [OK] {protected}
 ft_strtrim:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
-ft_split:      [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [CRASH] {protected}
-[crash]: your split does not work with basic input
-Test code:
-	char *s = "      split       this for   me  !       ";
-
-	char **result = ft_split(s, ' ');
-	while (*result)
-	{
-		if (strcmp(*result, *expected))
-		{
-			exit(TEST_FAILED);
-		}
-		result++;
-		expected++;
-	}
-	exit(TEST_SUCCESS);
-
-
+ft_split:      [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] {protected}
 ft_itoa:       [MISSING]
 ft_strmapi:    [MISSING]
 ft_putchar_fd: [MISSING]
