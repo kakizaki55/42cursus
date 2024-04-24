@@ -24,7 +24,8 @@ SRC			= 	ft_isalpha.c \
 				ft_strjoin.c \
 				ft_strtrim.c \
 				ft_split.c \
-				ft_strndup.c
+				ft_strndup.c \
+				ft_itoa.c
 # SRC			= *.c
 # SRCS		= $(./*.c)
 SRCS		= ${addprefix ${PRE}, ${SRC}}

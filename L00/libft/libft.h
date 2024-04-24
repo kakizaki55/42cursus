@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 14:58:40 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:46:41 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char 	*ft_substr(char const *s, unsigned int start, size_t len);
 char 	*ft_strjoin(int size, char **strs, char *sep);
 char 	*ft_strtrim(char const *s1, char const *set);
 char 	**ft_split(char const *s, char c);
-
+char 	*ft_itoa(int n);
 
 //bonnus part
 
