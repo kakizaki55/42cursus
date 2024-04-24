@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 12:05:47 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 12:05:48 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/24 12:51:14 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/04/24 13:07:37 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-
-#include <stddef.h>
 #include <stdlib.h>
 
-static size_t	ft_strlen(const char *str)
+static int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -28,33 +24,31 @@ static size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-static size_t	ft_strcpy(char *dst, const char *src)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	size_t i;
-	size_t src_length;
+	if(s1 == NULL || s2 == NULL)
+		return (NULL);
+	char * res;
+	int i;
+	int j;
 
-	src_length = ft_strlen(src);
 	i = 0;
-	while(src[i] != '\0')
+	j = 0;
+	res = malloc((ft_strlen((char *)s2) + ft_strlen((char *)s1) + 1) * sizeof(char));
+	if(res == NULL)
+		return(res);
+
+	while(s1[i] != '\0')
 	{
-		dst[i] = src[i];	
+		res[i] = s1[i];
 		i++;
 	}
+	while(s2[j] != '\0')
+	{
+		res[i + j] = s2[j];
+		j++;
+	}
+	res[i + j] = '\0';
+	return(res);
 	
-	dst[i] = '\0';
-	return (src_length);
-}
-
-char *ft_strdup(const char *s)
-{
-	size_t	length;
-	char	*cpy;
-
-	length = ft_strlen(s);
-	cpy = (char *)malloc(sizeof(char) * (length + 1));
-	if (cpy == NULL)
-		return (NULL);
-
-	ft_strcpy(cpy, s);
-	return (cpy);
 }
