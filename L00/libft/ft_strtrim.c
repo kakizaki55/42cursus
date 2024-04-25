@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:28:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 14:49:45 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:18:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static char *ft_substr(char const *s, unsigned int start, size_t len)
 char *ft_strtrim(char const *s1, char const *set)
 {
 	int i;
+	char * res;
 	if(s1 == NULL || set == NULL)
 		return (NULL);
 	
@@ -97,8 +98,8 @@ char *ft_strtrim(char const *s1, char const *set)
 	i = ft_strlen(s1);
 	while (i && ft_strchr(set, s1[i]))
 		i--;
-	return (ft_substr(s1, 0, i + 1));
-	
+	res = ft_substr(s1, 0, i + 1);
+	return (res);
 }
 
 // int mian(void)

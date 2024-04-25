@@ -26,8 +26,6 @@ SRC			= 	ft_isalpha.c \
 				ft_split.c \
 				ft_strndup.c \
 				ft_itoa.c
-# SRC			= *.c
-# SRCS		= $(./*.c)
 SRCS		= ${addprefix ${PRE}, ${SRC}}
 OBJS		= ${SRCS:.c=.o}
 PRE			=	./

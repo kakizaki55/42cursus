@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 17:55:20 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:22:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static char	*ft_strndup(char *src, int n)
 	int		i;
 
 	length = n;
+	//  need to clean up all memmro if allocation fails
 	dest = (char *)malloc((length +1) * sizeof(char));
 	if (dest == NULL)
 		return (NULL);
@@ -85,6 +86,7 @@ char **ft_split(char const *s, char c)
 	results = malloc(sizeof(char *) * (split_count));
 	if (results == NULL)
 		return (NULL);
+	// need to add a NULL to end of double pointer
 	if(c == '\0')
 	{
 		results[0] = NULL;
@@ -103,6 +105,7 @@ char **ft_split(char const *s, char c)
 		results[i] = ft_strndup((char *)&s[start], j - start);
 		i++;	
 	}
+
 
 	return (results);
 }
