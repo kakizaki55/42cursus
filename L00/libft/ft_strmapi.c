@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 14:57:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 10:37:13 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/26 10:40:09 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/04/26 10:59:46 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-//this function is not actually in the bonus even tho there is a tester for it. 
+#include "libft.h"
 #include <stdlib.h>
-char	*ft_strndup(char *src, int n)
-{	
-	char	*dest;
-	int		length;
-	int		i;
+char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char * res;
+	int i;
+	int length;
 
-	length = n;
-	dest = (char *)malloc((length +1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
+	if (s == NULL)
+		return(NULL);
+
+	length = ft_strlen(s);
+	res = malloc(sizeof(char) * length + 1);
+	if(res == NULL)
+		return(res);
 	i = 0;
-	while (src[i] != '\0' && i < n)
+	while(s[i] != '\0')
 	{
-		dest[i] = src[i];
+		res[i] = f(i, s[i]);
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	res[i] = '\0';
+	return (res);
 }

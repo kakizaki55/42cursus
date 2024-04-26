@@ -6,13 +6,14 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:59 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 12:06:01 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:05:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <stdlib.h>
 #include <stdio.h>
+\
 static void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*p;
@@ -31,6 +32,8 @@ static void	ft_bzero(void *s, size_t n)
 void *ft_calloc(size_t nmemb, size_t size)
 {	
 	void *p;
+	// size_t size;
+	// size_t nmemb;
 
 	p = malloc(nmemb * size);
 	if(p == NULL)

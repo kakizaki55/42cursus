@@ -6,62 +6,49 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/23 12:50:25 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:29:59 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-static size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
-}
+#include "libft.h"
 
 size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t i;
 	size_t src_length;
 	size_t dst_length;
+	size_t res;
+	size_t cut_length;
+	res = 0; 
+
+	if((dst == NULL || src == NULL) && dstsize == 0)
+		return(dstsize);
 
 	src_length = ft_strlen(src);
 	dst_length = ft_strlen(dst);
+	cut_length = 0;
 	i = 0;
 
-	// if(dstsize < dst_length)
-	// 	return (src_length);
 
-	// if (dstsize == dst_length + 1) {
-    //     dst[dst_length] = '\0';
-    //     return (dst_length + src_length);
-    // }
+	if(dstsize > dst_length)
+	{
+		cut_length = dstsize - dst_length - 1;
+		res = src_length + dst_length;
+	} else
+	{
+		res = src_length + dstsize;	
+	}
 	
-	if(dstsize == 0 )
-		return (src_length + dst_length);
-	
-	if(dstsize <= dst_length)
-		return (src_length + dstsize);
-	
-	if (dstsize == dst_length + 1) {
-        dst[dst_length] = '\0';
-		// puts("here i am ");
-        return (src_length);
-    }
-	
-	while(i < dstsize - dst_length - 1)
+	while(i < cut_length && src[i] != '\0')
 	{
 		dst[i + dst_length] = src[i];	
 		i++;
 	}
-	
-	dst[i + dst_length] = '\0';
-	return (src_length + dstsize);
+	if(cut_length)
+		dst[i + dst_length] = '\0';
+	return (res);
 }
 
 // #include <stdio.h>
@@ -75,13 +62,13 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 // 	char s1[4] = "";
 // 	char s2[4] = "";
 	
-// 	printf("mac: %d\n",4);
+// 	// printf("mac: %d\n",4);
 // 	// strlcat(s1, str, max);
-// 	printf("%lu\n", strlcat(s1, "thx to ntoniolo for this test !", 4));
-// 	printf("strlcat: %s\n",buff1);
+// 	printf("%lu\n", strlcat((void *)0, "" -1, 0));
+// 	printf("strlcat: %s\n","");
 	
 // 	// ft_strlcat(s2, str, max);
-// 	printf("%lu \n", ft_strlcat(s2, "thx to ntoniolo for this test !", 4));
-// 	printf("ft_strlcat: %s\n", buff2);
+// 	printf("%lu \n", ft_strlcat((void *)0, "" - 1, 0));
+// 	printf("ft_strlcat: %s\n", "");
 	
 // }

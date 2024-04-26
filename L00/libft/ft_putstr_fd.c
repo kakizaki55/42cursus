@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 14:57:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 10:37:13 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/26 12:21:50 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/04/26 12:29:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-//this function is not actually in the bonus even tho there is a tester for it. 
-#include <stdlib.h>
-char	*ft_strndup(char *src, int n)
-{	
-	char	*dest;
-	int		length;
-	int		i;
-
-	length = n;
-	dest = (char *)malloc((length +1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
+#include <unistd.h>
+#include "libft.h"
+void ft_putstr_fd(char *s, int fd)
+{
+	int i;
+	if(s == NULL)
+		return;
 	i = 0;
-	while (src[i] != '\0' && i < n)
+	while(s[i])
 	{
-		dest[i] = src[i];
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
 }

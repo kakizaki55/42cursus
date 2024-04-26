@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 12:05:56 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:37:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int ft_atoi(const char *str)
 {
+	// need to deal with lon ong values and cast them to int before returning them bask
 	int i;
 	int res;
 	int sign;
@@ -28,11 +29,11 @@ int ft_atoi(const char *str)
 	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')) {
         i++;
     }
-    if (str[i] == '-') {
+    if (str[i] == '-') 
+	{
         sign = -1;
         i++;
-	}
-	if (str[i] == '+') {
+	} else if (str[i] == '+') {
         i++;
 	}
 	while(str[i] != '\0')

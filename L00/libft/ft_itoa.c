@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:45:57 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/25 19:10:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:17:57 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ char *fill_string(char *res, int n, int length, int is_neg)
 		expo--;
 		i++;
 	}
+	res[i] = '\0';
 	return(res);
 }
 
 char *ft_itoa(int n)
 {
-	int i;
 	char * res;
 	int length;
 	int is_neg;
@@ -77,6 +77,8 @@ char *ft_itoa(int n)
 	length = get_length(n);
 	if(n == -2147483648)
 		return(ft_strdup("-2147483648"));
+	if(n == 0)
+		return(ft_strdup("0"));
 	if(n < 0)
 	{
 		is_neg = 1;
@@ -92,14 +94,14 @@ char *ft_itoa(int n)
 }
 
 
-int main(void)
-{
-	int int_max = -2147483648;
-	int int_neg = -123;
+// int main(void)
+// {
+// 	int int_max = -2147483648;
+// 	int int_neg = -123;
 
-	printf("int max is :%s \n", ft_itoa(int_max));
-	printf("int neg is :%s \n", ft_itoa(int_neg));
-	// printf("int max is :%s \n", itoa(int_max));
+// 	printf("int max is :%s \n", ft_itoa(int_max));
+// 	printf("int neg is :%s \n", ft_itoa(int_neg));
+// 	// printf("int max is :%s \n", itoa(int_max));
 
-	return(0);
-}
+// 	return(0);
+// }

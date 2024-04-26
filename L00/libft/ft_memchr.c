@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 12:21:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 17:57:03 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/26 16:12:17 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/04/26 16:22:26 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-
-#include <string.h>
-void *ft_memmove(void *dst, const void *src, size_t len)
+#include "libft.h"
+void *ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*dstbuff;
-	unsigned char	*srcbuff;
-	int i;
-	dstbuff =(unsigned char *) dst;
-	srcbuff =(unsigned char *) src;
-	if(len <= 0)
-		return(dst);
+	size_t i;
+	unsigned char *str;
 
+	str = (unsigned char *)s;
 	i = 0;
-	if (dst < src)
+
+	while(i < n)
 	{
-		while(i < (int)len)
-		{
-			dstbuff[i] = srcbuff[i];
-			i++;
-		}
+		if((unsigned char)str[i] == (unsigned char)c)
+			return(&str[i]);
+		i++;
 	}
-	else if (dst > src)
-	{
-		i = (int)len - 1;
-		while(i >= 0)
-		{
-			dstbuff[i] = srcbuff[i];
-			i--;
-		}
-	}
-	return(dst);
+	return (NULL);
 }

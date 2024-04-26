@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:12:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/24 13:48:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:35:19 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static size_t	ft_strlen(const char *str)
 	return (NULL);
  }
 
-#include <stdio.h>
-#include <string.h>
-int    main(void)
-{
-    char str[] = "trip0ouille";
+// #include <stdio.h>
+// #include <string.h>
+// int    main(void)
+// {
+//     char str[] = "trip0ouille";
 
-    printf("%s\n", ft_strchr(str, 48));
-    printf("%s\n", strchr(str, 48));
-    return (0);
-}
+//     printf("%s\n", ft_strchr(str, 48));
+//     printf("%s\n", strchr(str, 48));
+//     return (0);
+// }
  
