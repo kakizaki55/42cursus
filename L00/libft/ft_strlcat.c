@@ -6,45 +6,49 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:57:43 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 18:46:51 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdio.h>
 #include "libft.h"
+
+static size_t	find(size_t dstsize, size_t dst_l, size_t src_l, size_t *cut_l)
+{
+	if (dstsize > dst_l)
+	{
+		*cut_l = dstsize - dst_l - 1;
+		return (src_l + dst_l);
+	}
+	else
+	{
+		return (src_l + dstsize);
+	}
+}
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	src_length;
-	size_t	dst_length;
+	size_t	src_l;
+	size_t	dst_l;
 	size_t	res;
-	size_t	cut_length;
+	size_t	cut_l;
 
 	res = 0;
 	if ((dst == NULL || src == NULL) && dstsize == 0)
 		return (dstsize);
-	src_length = ft_strlen(src);
-	dst_length = ft_strlen(dst);
-	cut_length = 0;
+	src_l = ft_strlen(src);
+	dst_l = ft_strlen(dst);
+	cut_l = 0;
 	i = 0;
-	if (dstsize > dst_length)
+	res = find(dstsize, dst_l, src_l, &cut_l);
+	while (i < cut_l && src[i] != '\0')
 	{
-		cut_length = dstsize - dst_length - 1;
-		res = src_length + dst_length;
-	}
-	else
-	{
-		res = src_length + dstsize;
-	}
-	while (i < cut_length && src[i] != '\0')
-	{
-		dst[i + dst_length] = src[i];
+		dst[i + dst_l] = src[i];
 		i++;
 	}
-	if (cut_length)
-		dst[i + dst_length] = '\0';
+	if (cut_l)
+		dst[i + dst_l] = '\0';
 	return (res);
 }
 

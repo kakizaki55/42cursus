@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 15:51:06 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:13:56 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,25 @@ int ft_atoi(const char *str)
 	return ((int)res * sign);
 }
 
-// int main()
-// {
-//     int val;
-//     char strn1[] = "12546";
+int main()
+{
+    int val;
+    char strn1[] = "-922337203685477580";
+    char strn2[] = "922337203685477580";
  
-//     val = atoi(strn1);
-//     printf("String value = %s\n", strn1);
-//     printf("Integer value = %d\n", val);
+    val = atoi(strn1);
+    printf("String value = %s\n", strn1);
+    printf("Integer value = %d\n", val);
  
-//     char strn2[] = "       --3  f";
-//     val = atoi(strn2);
-//     printf("String value = %s\n", strn2);
-//     printf("Integer value = %d\n", val);
+    val = atoi(strn2);
+    printf("String value = %s\n", strn2);
+    printf("Integer value = %d\n", val);
 
-// 	val = ft_atoi(strn1);
-//     printf("FT_String value = %s\n", strn1);
-//     printf("Integer value = %d\n", val);
-//     val = ft_atoi(strn2);
-//     printf("FT_String value = %s\n", strn2);
-//     printf("Integer value = %d\n", val);
-//     return (0);
-// }
+	val = ft_atoi(strn1);
+    printf("FT_String value = %s\n", strn1);
+    printf("Integer value = %d\n", val);
+    val = ft_atoi(strn2);
+    printf("FT_String value = %s\n", strn2);
+    printf("Integer value = %d\n", val);
+    return (0);
+}
