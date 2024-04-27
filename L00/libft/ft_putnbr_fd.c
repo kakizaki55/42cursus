@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:34:56 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 12:38:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:17:45 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <unistd.h>
 #include <limits.h>
@@ -30,7 +30,7 @@ static void	recursive_print( int num, int fd )
 	}
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n < 0)
 	{
@@ -39,7 +39,7 @@ void ft_putnbr_fd(int n, int fd)
 			write(fd, "-", 1);
 			n = n * -1;
 			recursive_print(n, fd);
-		}	
+		}
 		else if (n == -2147483648)
 		{
 			write(fd, "-2147483648", 11);

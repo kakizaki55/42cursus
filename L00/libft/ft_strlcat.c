@@ -1,52 +1,49 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 17:29:59 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:29:14 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <string.h>
 #include <stdio.h>
 #include "libft.h"
 
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t src_length;
-	size_t dst_length;
-	size_t res;
-	size_t cut_length;
-	res = 0; 
+	size_t	i;
+	size_t	src_length;
+	size_t	dst_length;
+	size_t	res;
+	size_t	cut_length;
 
-	if((dst == NULL || src == NULL) && dstsize == 0)
-		return(dstsize);
-
+	res = 0;
+	if ((dst == NULL || src == NULL) && dstsize == 0)
+		return (dstsize);
 	src_length = ft_strlen(src);
 	dst_length = ft_strlen(dst);
 	cut_length = 0;
 	i = 0;
-
-
-	if(dstsize > dst_length)
+	if (dstsize > dst_length)
 	{
 		cut_length = dstsize - dst_length - 1;
 		res = src_length + dst_length;
-	} else
-	{
-		res = src_length + dstsize;	
 	}
-	
-	while(i < cut_length && src[i] != '\0')
+	else
 	{
-		dst[i + dst_length] = src[i];	
+		res = src_length + dstsize;
+	}
+	while (i < cut_length && src[i] != '\0')
+	{
+		dst[i + dst_length] = src[i];
 		i++;
 	}
-	if(cut_length)
+	if (cut_length)
 		dst[i + dst_length] = '\0';
 	return (res);
 }

@@ -1,24 +1,26 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:21:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 12:29:29 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:18:12 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <unistd.h>
 #include "libft.h"
-void ft_putstr_fd(char *s, int fd)
+
+void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
-	if(s == NULL)
-		return;
+	int	i;
+
+	if (s == NULL)
+		return ;
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		ft_putchar_fd(s[i], fd);
 		i++;

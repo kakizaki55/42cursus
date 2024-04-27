@@ -1,73 +1,7 @@
 ft_memset:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_bzero:      [OK] [OK] [OK] [OK] 
 ft_memcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_memmove:    [FAILED] [OK] [FAILED] [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] [NO CRASH] [OK] [OK] [OK] 
-[fail]: your memmove does not work with basic input
-Test code:
-	char *src = "this is a good nyancat !\r\n";
-	char dst1[0xF0];
-	char dst2[0xF0];
-	int size = strlen(src);
-
-	__builtin___memmove_chk (dst1, src, size, __builtin_object_size (dst1, 0));
-	ft_memmove(dst2, src, size);
-	if (!memcmp(dst1, dst2, size))
-		exit(TEST_SUCCESS);
-	exit(TEST_FAILED);
-
-Diffs:
-     memmove: |this is a good nyancat !
-E	|
-  ft_memmove: ||
-
-[fail]: your memmove does not work with \0 and others unsigned char codes
-Test code:
-	char *src = "thi\xffs i\xfas \0a g\xde\xadood \0nyan\0cat\0 !\r\n";
-	int size = 33;
-	char dst1[0xF0];
-	char dst2[0xF0];
-
-	__builtin___memmove_chk (dst1, src, size, __builtin_object_size (dst1, 0));
-	ft_memmove(dst2, src, size);
-	if (!memcmp(dst1, dst2, size))
-		exit(TEST_SUCCESS);
-	exit(TEST_FAILED);
-
-Diffs:
-     memmove: |thi�s i�s |
-  ft_memmove: ||
-
-[fail]: your memmove does not support the overlap (test 1)
-Test code:
-	char dst1[0xF0];
-	char dst2[0xF0];
-	char *data = "thiß ß\xde\xad\xbe\xeftriñg will be øvérlapéd !\r\n";
-	int size = 0xF0 - 0xF;
-
-	__builtin___memset_chk (dst1, 'A', sizeof(dst1), __builtin_object_size (dst1, 0));
-	__builtin___memset_chk (dst2, 'A', sizeof(dst2), __builtin_object_size (dst2, 0));
-	__builtin___memcpy_chk (dst1, data, strlen(data), __builtin_object_size (dst1, 0));
-	__builtin___memcpy_chk (dst2, data, strlen(data), __builtin_object_size (dst2, 0));
-	__builtin___memmove_chk (dst1 + 3, dst1, size, __builtin_object_size (dst1 + 3, 0));
-	ft_memmove(dst2 + 3, dst2, size);
-	if (!memcmp(dst1, dst2, size))
-		exit(TEST_SUCCESS);
-	exit(TEST_FAILED);
-
-Diffs:
-     memmove: |thithiß ßޭ��triñg will be øvérlapéd !
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA�|
-  ft_memmove: |thithißޭ��triñg will be øvérlapéd !
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAthithiß ßޭ��triñg will be øvérlapéd !
-AAAAAAAAAAAAAA|
-
-[no crash]: your memmove does not segfault when null params is sent
-Test code:
-	char b[0xF0];
-
-	ft_memmove(b, ((void *)0), 5);
-
-
+ft_memmove:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_memchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_memcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strlen:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 

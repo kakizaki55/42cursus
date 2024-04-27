@@ -1,33 +1,32 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:40:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 10:59:46 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:30:30 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-
-#include "libft.h"
 #include <stdlib.h>
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char * res;
-	int i;
-	int length;
+	char	*res;
+	int		i;
+	int		length;
 
 	if (s == NULL)
-		return(NULL);
-
+		return (NULL);
 	length = ft_strlen(s);
 	res = malloc(sizeof(char) * length + 1);
-	if(res == NULL)
-		return(res);
+	if (res == NULL)
+		return (res);
 	i = 0;
-	while(s[i] != '\0')
+	while (s[i] != '\0')
 	{
 		res[i] = f(i, s[i]);
 		i++;

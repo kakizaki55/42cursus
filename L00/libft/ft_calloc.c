@@ -1,19 +1,18 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:59 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/25 20:05:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:10:19 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
+/******************************************************************************/
 
 #include <stdlib.h>
 #include <stdio.h>
-\
+
 static void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*p;
@@ -29,20 +28,19 @@ static void	ft_bzero(void *s, size_t n)
 	}
 	return ;
 }
-void *ft_calloc(size_t nmemb, size_t size)
-{	
-	void *p;
-	// size_t size;
-	// size_t nmemb;
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*p;
 
 	p = malloc(nmemb * size);
-	if(p == NULL)
+	if (p == NULL)
 	{
 		free (p);
 		return (NULL);
 	}
 	ft_bzero(p, size * nmemb);
-	return(p);
+	return (p);
 }
 // int main(void)
 // {	
