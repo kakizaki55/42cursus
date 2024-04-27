@@ -1,17 +1,41 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:21:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 11:17:18 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/04/27 14:52:22 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
+
+static	void	move_front(unsigned char*dest, unsigned char*ssrc, size_t len)
+{
+	int	i;
+
+	i = 0;
+	while (i < (int)len)
+	{
+		dest[i] = ssrc[i];
+		i++;
+	}
+}
+
+static	void	move_back(unsigned char*dest, unsigned char*ssrc, size_t len)
+{
+	int	i;
+
+	i = (int)len - 1;
+	while (i >= 0)
+	{
+			dest[i] = ssrc[i];
+			i--;
+	}
+}
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -26,20 +50,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	i = 0;
 	if (dst < src)
 	{
-		while (i < (int)len)
-		{
-			dstbuff[i] = srcbuff[i];
-			i++;
-		}
+		move_front(dstbuff, srcbuff, len);
 	}
 	else if (dst > src)
 	{
-		i = (int)len - 1;
-		while (i >= 0)
-		{
-			dstbuff[i] = srcbuff[i];
-			i--;
-		}
+		move_back(dstbuff, srcbuff, len);
 	}
 	return (dst);
 }

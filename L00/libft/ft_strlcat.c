@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 11:29:14 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/04/27 14:57:43 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
@@ -58,14 +58,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 // 	char s1[4] = "";
 // 	char s2[4] = "";
-	
 // 	// printf("mac: %d\n",4);
 // 	// strlcat(s1, str, max);
 // 	printf("%lu\n", strlcat((void *)0, "" -1, 0));
 // 	printf("strlcat: %s\n","");
-	
 // 	// ft_strlcat(s2, str, max);
 // 	printf("%lu \n", ft_strlcat((void *)0, "" - 1, 0));
 // 	printf("ft_strlcat: %s\n", "");
-	
 // }

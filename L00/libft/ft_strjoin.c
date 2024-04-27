@@ -1,28 +1,17 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:51:14 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 11:27:34 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/04/27 14:55:21 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include <stdlib.h>
-
-static int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
-}
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -34,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	res = malloc((ft_strlen((char *)s2) + ft_strlen((char *)s1) + 1) * sizeof(char));
+	res = malloc((ft_strlen(s2) + ft_strlen(s1) + 1) * sizeof(char));
 	if (res == NULL)
 		return (res);
 	while (s1[i] != '\0')

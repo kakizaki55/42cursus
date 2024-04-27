@@ -6,22 +6,21 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/26 14:37:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:51:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+//need to deal with lon ong values and cast them to int before returning them
 int ft_atoi(const char *str)
 {
-	// need to deal with lon ong values and cast them to int before returning them bask
-	int i;
-	int res;
-	int sign;
-	
+	long long i;
+	long long res;
+	long long sign;
+
 	res = 0;
 	i = 0;
 	sign = 1;
@@ -46,7 +45,7 @@ int ft_atoi(const char *str)
 		}
 		i++;
 	}
-	return res * sign;
+	return ((int)res * sign);
 }
 
 // int main()
@@ -66,10 +65,8 @@ int ft_atoi(const char *str)
 // 	val = ft_atoi(strn1);
 //     printf("FT_String value = %s\n", strn1);
 //     printf("Integer value = %d\n", val);
- 
 //     val = ft_atoi(strn2);
 //     printf("FT_String value = %s\n", strn2);
 //     printf("Integer value = %d\n", val);
- 
 //     return (0);
 // }
