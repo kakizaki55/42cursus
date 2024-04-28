@@ -6,67 +6,164 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 19:13:56 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:13:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
-//need to deal with lon ong values and cast them to int before returning them
-int ft_atoi(const char *str)
+static int	skip_whitespaces(const char *str)
 {
-	long long i;
-	long long res;
-	long long sign;
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+	{
+		i++;
+	}
+	return (i);
+}
+
+static int	get_sign(const char *str, int i, int *sign)
+{
+	*sign = 1;
+	if (str[i] == '-')
+	{
+		*sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+	{
+		i++;
+	}
+	return (i);
+}
+
+static long long	is_long_max_min(long long res, int sign, char c)
+{	
+	if (sign == 1)
+	{
+		if (res > (LONG_MAX - c - '0') / 10)
+		{
+			return ((int)LONG_MAX);
+		}
+	}
+	else if (sign == -1)
+	{
+		if (-res < (LONG_MIN + c - '0') / 10)
+		{	
+			return ((int)LONG_MIN);
+		}
+	}
+	return (res);
+}
+
+static long long	convert_to_int(const char *str, int i, int sign)
+{
+	long long	res;
+	long long	prev_res;
 
 	res = 0;
-	i = 0;
-	sign = 1;
-
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')) {
-        i++;
-    }
-    if (str[i] == '-') 
+	while (str[i] != '\0')
 	{
-        sign = -1;
-        i++;
-	} else if (str[i] == '+') {
-        i++;
-	}
-	while(str[i] != '\0')
-	{
-		if(str[i] >= '0' && str[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
-			res = res * 10 + str[i] - '0';
-		} else {
+			prev_res = res;
+			res = is_long_max_min(res, sign, str[i]);
+			if (prev_res == res)
+			{
+				res = res * 10 + str[i] - '0';
+			}
+		}
+		else
+		{
 			return (res * sign);
 		}
 		i++;
 	}
-	return ((int)res * sign);
+	return (res * sign);
 }
 
-int main()
+int	ft_atoi(const char *str)
 {
-    int val;
-    char strn1[] = "-922337203685477580";
-    char strn2[] = "922337203685477580";
- 
-    val = atoi(strn1);
-    printf("String value = %s\n", strn1);
-    printf("Integer value = %d\n", val);
- 
-    val = atoi(strn2);
-    printf("String value = %s\n", strn2);
-    printf("Integer value = %d\n", val);
+	int			i;
+	int			sign;
+	long long	res;
 
-	val = ft_atoi(strn1);
-    printf("FT_String value = %s\n", strn1);
-    printf("Integer value = %d\n", val);
-    val = ft_atoi(strn2);
-    printf("FT_String value = %s\n", strn2);
-    printf("Integer value = %d\n", val);
-    return (0);
+	res = 0;
+	i = skip_whitespaces(str);
+	i = get_sign(str, i, &sign);
+	res = convert_to_int(str, i, sign);
+	return ((int)res);
 }
+
+// int ft_atoi(const char *str)
+// {
+// 	long long i;
+// 	long long res;
+// 	int sign;
+// 	long long prev_res;
+
+// 	res = 0;
+// 	i = 0;
+// 	sign = 1;
+
+// 	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')) {
+//         i++;
+//     }
+//     if (str[i] == '-') 
+// 	{
+//         sign = -1;
+//         i++;
+// 	} else if (str[i] == '+') {
+//         i++;
+// 	}
+
+// 	while(str[i] != '\0')
+// 	{
+// 		if(str[i] >= '0' && str[i] <= '9')
+// 		{	
+// 			prev_res = res;
+// 			res = is_long_max_min(res, sign, str[i]);
+// 			if(prev_res == res)
+// 			{
+// 				res = res * 10 + str[i] - '0';
+
+// 			}	
+// 			else 
+// 			{
+// 				return ((int)res * sign);
+// 			}
+// 		} else {
+// 			return ((int)res * sign);
+// 		}
+// 		i++;
+// 	}
+// 	return ((int)res * sign);
+// }
+
+// int main()
+// {
+//     int val;
+//     char strn1[] = "-92233555000000000";
+//     char strn2[] = "922335555000000000";
+//     // char strn1[] = "-0";
+//     // char strn2[] = "0";
+//     val = atoi(strn1);
+//     // printf("String value = %s\n", strn1);
+//     printf("Integer value = %d\n", val);
+//     val = atoi(strn2);
+//     // printf("String value = %s\n", strn2);
+//     printf("Integer value = %d\n", val);
+
+// 	val = ft_atoi(strn1);
+//     // printf("FT_String value = %s\n", strn1);
+//     printf("FT_Integer value = %d\n", val);
+//     val = ft_atoi(strn2);
+//     // printf("FT_String value = %s\n", strn2);
+//     printf("FT_Integer value = %d\n", val);
+//     return (0);
+// }
