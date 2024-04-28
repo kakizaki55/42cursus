@@ -6,23 +6,35 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 18:20:57 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/28 20:31:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "libft.h"
+#include <stdlib.h>
 
-static int	check_chars(char c1, char c2)
+static char	*ft_strndup(char *src, int n)
 {
-	if (c1 == c2)
-		return (1);
-	return (0);
+	char	*dest;
+	int		length;
+	int		i;
+	// if(n == 0)
+	// 	return (NULL);
+	length = n;
+	dest = (char *)malloc((sizeof(char) * (length + 1)));
+	if (!dest)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
-static int	count_sub_strings(char *s, char c)
+static int	count_sub_strings(char *s, char c )
 {
 	int	i;
 	int	count;
@@ -35,28 +47,23 @@ static int	count_sub_strings(char *s, char c)
 		return (0);
 	if (c == '\0')
 		return (1);
-	while (check_chars(s[i], c))
+	while (s[i] == c)
 		i++;
 	while (s[i] != '\0')
 	{
-		if (check_chars(s[i], c))
+		if (s[i] == c)
 		{
-			if (is_sub_string)
-				count ++;
+			count += is_sub_string;
 			is_sub_string = 0;
 		}
 		else
-		{
 			is_sub_string = 1;
-		}
 		i++;
 	}
-	if (!check_chars(s[i - 1], c))
-		count++;
-	return (count);
+	return (!(s[i - 1] == c) + count);
 }
 
-static void free_all(char **str, int size)
+static void	free_all(char **str, int size)
 {
 	int	i;
 
@@ -69,33 +76,44 @@ static void free_all(char **str, int size)
 	free(str);
 }
 
+static char	*get_next_string(char *str, char chr, int *start_index)
+{
+	char	*substr;
+	int		end_index;
+
+	while (str[*start_index] && (str[*start_index] == chr))
+		(*start_index)++;
+	end_index = *start_index;
+	while (str[end_index] && !(str[end_index] == chr))
+		end_index++;
+	substr = ft_strndup(str + *start_index, end_index - *start_index);
+	if (substr == NULL)
+		return (NULL);
+	*start_index = end_index;
+	return (substr);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**results;
 	int		split_count;
 	int		i;
-	int		j;
 	int		start;
 
-	if (s == NULL)
-		return (NULL);
 	split_count = count_sub_strings((char *)s, c);
-	results = malloc(sizeof(char *) * (split_count + 1));
+	results = (char **)malloc(sizeof(char *) * (split_count + 1));
 	if (results == NULL)
 		return (NULL);
 	start = 0;
 	i = 0;
-	j = 0;
 	while (i < split_count)
 	{
-		while (s[j] != '\0' && check_chars(s[j], c))
-			j++;
-		start = j;
-		while (s[j] != '\0' && !check_chars(s[j], c))
-			j++;
-		results[i] = ft_strndup((char *)&s[start], j - start);
+		results[i] = get_next_string((char *)s, (char)c, &start);
 		if (results[i] == NULL)
+		{
 			free_all(results, i);
+			return (NULL);
+		}
 		i++;
 	}
 	results[i] = NULL;
@@ -103,10 +121,9 @@ char	**ft_split(char const *s, char c)
 }
 
 // #include <stdio.h>
-
 // int main(void) {
-//     char	str[] = "notempty";
-//     char	c = '\0';
+//     char	str[] = "hello!";
+//     char	c = ' ';
 //     char	**result;
 // 	int		split_count = count_sub_strings(str, c);
 
@@ -123,4 +140,3 @@ char	**ft_split(char const *s, char c)
 // 	free(result);
 //     return 0;
 // }
-

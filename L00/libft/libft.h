@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 18:24:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:55:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	ft_putnbr_fd(int n, int fd);
 
 //bonnus part
 
-char	*ft_strndup(char *src, int n);
+// char	*ft_strndup(char *src, int n);
 
 #endif

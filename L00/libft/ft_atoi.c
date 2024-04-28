@@ -6,14 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/28 17:13:49 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:58:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <limits.h>
+#include "libft.h"
 
 static int	skip_whitespaces(const char *str)
 {
@@ -69,7 +67,7 @@ static long long	convert_to_int(const char *str, int i, int sign)
 	res = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] >= '0' && str[i] <= '9')
+		if (ft_isdigit(str[i]))
 		{
 			prev_res = res;
 			res = is_long_max_min(res, sign, str[i]);
@@ -99,51 +97,6 @@ int	ft_atoi(const char *str)
 	res = convert_to_int(str, i, sign);
 	return ((int)res);
 }
-
-// int ft_atoi(const char *str)
-// {
-// 	long long i;
-// 	long long res;
-// 	int sign;
-// 	long long prev_res;
-
-// 	res = 0;
-// 	i = 0;
-// 	sign = 1;
-
-// 	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')) {
-//         i++;
-//     }
-//     if (str[i] == '-') 
-// 	{
-//         sign = -1;
-//         i++;
-// 	} else if (str[i] == '+') {
-//         i++;
-// 	}
-
-// 	while(str[i] != '\0')
-// 	{
-// 		if(str[i] >= '0' && str[i] <= '9')
-// 		{	
-// 			prev_res = res;
-// 			res = is_long_max_min(res, sign, str[i]);
-// 			if(prev_res == res)
-// 			{
-// 				res = res * 10 + str[i] - '0';
-
-// 			}	
-// 			else 
-// 			{
-// 				return ((int)res * sign);
-// 			}
-// 		} else {
-// 			return ((int)res * sign);
-// 		}
-// 		i++;
-// 	}
-// 	return ((int)res * sign);
-// }
 
 // int main()
 // {
