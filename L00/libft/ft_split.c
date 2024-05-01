@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/28 20:31:23 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/01 20:14:42 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static char	*ft_strndup(char *src, int n)
 	char	*dest;
 	int		length;
 	int		i;
-	// if(n == 0)
-	// 	return (NULL);
+
 	length = n;
 	dest = (char *)malloc((sizeof(char) * (length + 1)));
 	if (!dest)

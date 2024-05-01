@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:59 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 19:57:36 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/01 20:14:11 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (size != 0 && nmemb > SIZE_MAX / size)
 	{
-		// if (check_overflow(nmemb, size))
-			return (NULL);
+		return (NULL);
 	}
 	p = malloc(nmemb * size);
 	if (p == NULL)

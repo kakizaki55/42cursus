@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:45:57 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/01 20:54:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-int	get_length(int n)
+static int	get_length(int n)
 {
 	int	count;
 
@@ -27,7 +27,7 @@ int	get_length(int n)
 	return (count);
 }
 
-int	power(int base, int expo)
+static int	power(int base, int expo)
 {
 	int	i;
 	int	res;
@@ -42,7 +42,7 @@ int	power(int base, int expo)
 	return (res);
 }
 
-char	*fill_string(char *res, int n, int length, int is_neg)
+static char	*fill_string(char *res, int n, int length, int is_neg)
 {
 	int	i;
 	int	expo;
