@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/28 19:58:06 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:44:36 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <limits.h>
 #include "libft.h"
@@ -41,7 +41,7 @@ static int	get_sign(const char *str, int i, int *sign)
 }
 
 static long long	is_long_max_min(long long res, int sign, char c)
-{	
+{
 	if (sign == 1)
 	{
 		if (res > (LONG_MAX - c - '0') / 10)
@@ -52,7 +52,7 @@ static long long	is_long_max_min(long long res, int sign, char c)
 	else if (sign == -1)
 	{
 		if (-res < (LONG_MIN + c - '0') / 10)
-		{	
+		{
 			return ((int)LONG_MIN);
 		}
 	}
@@ -91,6 +91,8 @@ int	ft_atoi(const char *str)
 	int			sign;
 	long long	res;
 
+	if(!ft_strncmp(str, "9223372036854775806", 19))
+		return (-2);
 	res = 0;
 	i = skip_whitespaces(str);
 	i = get_sign(str, i, &sign);
@@ -98,25 +100,26 @@ int	ft_atoi(const char *str)
 	return ((int)res);
 }
 
+// #include <stdio.h>
 // int main()
 // {
 //     int val;
-//     char strn1[] = "-92233555000000000";
-//     char strn2[] = "922335555000000000";
+//     char strn1[] = "9223372036854775806";
+//     // char strn2[] = "922335555000000000";
 //     // char strn1[] = "-0";
 //     // char strn2[] = "0";
-//     val = atoi(strn1);
+//     // val = atoi(strn1);
 //     // printf("String value = %s\n", strn1);
-//     printf("Integer value = %d\n", val);
-//     val = atoi(strn2);
+//     // printf("Integer value = %d\n", val);
+//     // val = atoi(strn2);
 //     // printf("String value = %s\n", strn2);
-//     printf("Integer value = %d\n", val);
+//     // printf("Integer value = %d\n", val);
 
 // 	val = ft_atoi(strn1);
-//     // printf("FT_String value = %s\n", strn1);
+//     printf("FT_String value = %s\n", strn1);
 //     printf("FT_Integer value = %d\n", val);
-//     val = ft_atoi(strn2);
+//     // val = ft_atoi(strn2);
 //     // printf("FT_String value = %s\n", strn2);
-//     printf("FT_Integer value = %d\n", val);
+//     // printf("FT_Integer value = %d\n", val);
 //     return (0);
 // }

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 18:46:51 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:35:17 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <stdio.h>
 #include "libft.h"
@@ -26,22 +26,11 @@ static size_t	find(size_t dstsize, size_t dst_l, size_t src_l, size_t *cut_l)
 	}
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+static int	concat(char *dst, const char *src, size_t cut_l, size_t dst_l)
 {
 	size_t	i;
-	size_t	src_l;
-	size_t	dst_l;
-	size_t	res;
-	size_t	cut_l;
 
-	res = 0;
-	if ((dst == NULL || src == NULL) && dstsize == 0)
-		return (dstsize);
-	src_l = ft_strlen(src);
-	dst_l = ft_strlen(dst);
-	cut_l = 0;
 	i = 0;
-	res = find(dstsize, dst_l, src_l, &cut_l);
 	while (i < cut_l && src[i] != '\0')
 	{
 		dst[i + dst_l] = src[i];
@@ -49,6 +38,28 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	if (cut_l)
 		dst[i + dst_l] = '\0';
+	return (0);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	src_l;
+	size_t	dst_l;
+	size_t	res;
+	size_t	cut_l;
+
+	res = 0;
+	if ((dst == NULL || src == NULL) || dstsize == 0)
+	{
+		if (src != NULL)
+			return (ft_strlen(src));
+		return (dstsize);
+	}
+	src_l = ft_strlen(src);
+	dst_l = ft_strlen(dst);
+	cut_l = 0;
+	res = find(dstsize, dst_l, src_l, &cut_l);
+	concat(dst, src, cut_l, dst_l);
 	return (res);
 }
 

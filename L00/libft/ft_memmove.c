@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:21:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:52:22 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:23:46 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <stdio.h>
 #include <string.h>
@@ -25,7 +25,7 @@ static	void	move_front(unsigned char*dest, unsigned char*ssrc, size_t len)
 	}
 }
 
-static	void	move_back(unsigned char*dest, unsigned char*ssrc, size_t len)
+static	void	move_back(unsigned char *dest, unsigned char*ssrc, size_t len)
 {
 	int	i;
 
@@ -41,13 +41,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	unsigned char	*dstbuff;
 	unsigned char	*srcbuff;
-	int				i;
 
 	dstbuff = (unsigned char *)dst;
 	srcbuff = (unsigned char *)src;
 	if (len <= 0)
 		return (dst);
-	i = 0;
 	if (dst < src)
 	{
 		move_front(dstbuff, srcbuff, len);

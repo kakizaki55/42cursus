@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:59 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:34:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2023/01/01 09:24:31 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -28,10 +28,24 @@ static void	ft_bzero(void *s, size_t n)
 	}
 	return ;
 }
+// int check_overflow(size_t nmemb, size_t size)
+// {
+// 	size_t check;
+
+// 	check = 1;
+// 	check = (nmemb * size);
+
+// 	if (check != nmemb / size)
+// 		return (0);
+// 	return (1);
+// }
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*p;
+
+	// if (check_overflow(nmemb, size))
+	// 	return (NULL);
 
 	p = malloc(nmemb * size);
 	if (p == NULL)
