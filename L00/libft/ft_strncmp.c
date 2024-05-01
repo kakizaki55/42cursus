@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:31:51 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 15:58:10 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/01 20:12:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include <stdio.h>
 
@@ -16,10 +16,11 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	i;
 
-	if ((s1 == NULL || s2 == NULL) || n < 0)
-		return (0);
+	// if (n == 0)
+	// 	return (0);
+
 	i = 0;
-	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
 	{
 		if (s1[i] > s2[i] || s1[i] < s2[i])
 		{
@@ -29,3 +30,17 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
+
+// #include <string.h>
+// int main(void)
+// {
+// 	// int f1 = ft_strncmp(NULL, "hello", 0);
+// 	int f1 = ft_strncmp(NULL, "nope", 0);
+// 	// int f2 = strncmp((void *)0, "nope", 0);
+// 	// int f2 = strncmp(NULL, "hello", 1);
+
+// 	printf("ft is: %d \n", f1);
+// 	// printf("ft is: %p \n", (void *)0);
+// 	// printf("ft is: %p \n", NULL);
+// 	// printf("strncmp is: %d \n", f2);
+// } 

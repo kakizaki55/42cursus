@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 15:35:17 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/01 19:15:19 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
@@ -49,7 +49,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	cut_l;
 
 	res = 0;
-	if ((dst == NULL || src == NULL) || dstsize == 0)
+	if (dstsize == 0)
 	{
 		if (src != NULL)
 			return (ft_strlen(src));
