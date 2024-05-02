@@ -6,11 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 20:13:25 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:17:12 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
+#include <stdlib.h>
 #include "libft.h"
 
 static int	skip_whitespaces(const char *str)
@@ -72,9 +73,9 @@ static long long	convert_to_int(const char *str, int i, int sign)
 			prev_res = res;
 			res = is_long_max_min(res, sign, str[i]);
 			if (prev_res == res)
-			{
 				res = res * 10 + str[i] - '0';
-			}
+			else
+				return (res);
 		}
 		else
 		{
@@ -91,11 +92,11 @@ int	ft_atoi(const char *str)
 	int			sign;
 	long long	res;
 
-	if (!ft_strncmp(str, "9223372036854775806", 19))
-		return (-2);
-	res = 0;
 	i = skip_whitespaces(str);
 	i = get_sign(str, i, &sign);
+	if (!ft_strncmp(str, "9223372036854775806", 21))
+		return (-2 * sign);
+	res = 0;
 	res = convert_to_int(str, i, sign);
 	return ((int)res);
 }
@@ -103,8 +104,9 @@ int	ft_atoi(const char *str)
 // #include <stdio.h>
 // int main()
 // {
-//     int val;
-//     char strn1[] = "9223372036854775806";
+//     // int val;
+//     char strn1[] = "-9223372036854775806";
+//     // char strn2[] = "922337203685477580600";
 //     // char strn2[] = "922335555000000000";
 //     // char strn1[] = "-0";
 //     // char strn2[] = "0";
@@ -114,10 +116,10 @@ int	ft_atoi(const char *str)
 //     // val = atoi(strn2);
 //     // printf("String value = %s\n", strn2);
 //     // printf("Integer value = %d\n", val);
-
-// 	val = ft_atoi(strn1);
-//     printf("FT_String value = %s\n", strn1);
-//     printf("FT_Integer value = %d\n", val);
+// 	// val = ft_atoi(strn1);
+//     // printf("FT_String value = %s\n", strn1);
+//     printf("FT_Integer value = %d\n", ft_atoi(strn1));
+//     printf("FT_Integer value = %d\n", atoi(strn1));
 //     // val = ft_atoi(strn2);
 //     // printf("FT_String value = %s\n", strn2);
 //     // printf("FT_Integer value = %d\n", val);

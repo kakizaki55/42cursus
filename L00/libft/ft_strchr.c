@@ -6,24 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:12:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:58 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:47:46 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
-
-// static size_t	ft_strlen(const char *str)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (str[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 char	*ft_strchr(const char *s, int c)
 {

@@ -6,17 +6,17 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 13:52:24 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:50:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	if (c >= 65 && c <= 90)
+	if (c >= 'a' && c <= 'z')
 	{
 		return (1);
 	}
-	if (c >= 97 && c <= 122)
+	if (c >= 'A' && c <= 'Z')
 	{
 		return (1);
 	}

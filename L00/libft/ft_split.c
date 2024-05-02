@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 20:14:42 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:45:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ static int	count_sub_strings(char *s, char c )
 	return (!(s[i - 1] == c) + count);
 }
 
-static void	free_all(char **str, int size)
+static void	free_all(char **str)
 {
 	int	i;
 
 	i = 0;
-	while (i <= size)
+	while (str[i] != NULL)
 	{
 		free(str[i]);
 		i++;
@@ -110,7 +110,7 @@ char	**ft_split(char const *s, char c)
 		results[i] = get_next_string((char *)s, (char)c, &start);
 		if (results[i] == NULL)
 		{
-			free_all(results, i);
+			free_all(results);
 			return (NULL);
 		}
 		i++;

@@ -6,69 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:28:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:27:09 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:46:56 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
-
-// static char	*ft_strchr(const char *s, int c)
-// {
-// 	int	stringlength;
-// 	int	i;
-
-// 	i = 0;
-// 	stringlength = ft_strlen(s);
-// 	while (i < stringlength + 1)
-// 	{
-// 		if (s[i] == (char)c)
-// 		{
-// 			return ((char *)&s[i]);
-// 		}
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
-
-// static void	ft_bzero(void *s, size_t n)
-// {
-// 	unsigned char	*p;
-
-// 	if (n <= 0)
-// 		return ;
-// 	p = s;
-// 	while (n > 0)
-// 	{
-// 		*p = 0;
-// 		p++;
-// 		n--;
-// 	}
-// 	return ;
-// }
-
-// static char	*ft_substr(char const *s, unsigned int start, size_t len)
-// {
-// 	char			*res;
-// 	unsigned int	i;
-
-// 	if (s == NULL)
-// 		return (NULL);
-// 	i = 0;
-// 	res = malloc((len + 1) * sizeof(char));
-// 	if (res == NULL)
-// 		return (NULL);
-// 	if (start >= ft_strlen(s))
-// 		return (res);
-// 	ft_bzero(res, len);
-// 	while (s[i] != '\0' && i < len)
-// 	{
-// 		res[i] = s[i + start];
-// 		i++;
-// 	}
-// 	res[i] = '\0';
-// 	return (res);
-// }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
