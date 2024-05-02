@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 13:52:24 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 13:50:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:28:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_isalpha(int c)
 // 	char c = 'A';
 // 	char k = 'z';
 // 	char zero = '0';
-
 // 	printf("c is %d\n", ft_isalpha(c));
 // 	printf("k is %d\n", ft_isalpha(k));
 // 	printf("zero is %d\n", ft_isalpha(zero));

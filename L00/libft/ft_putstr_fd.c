@@ -6,11 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:21:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:27:46 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)

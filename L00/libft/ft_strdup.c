@@ -6,12 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:47 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:59 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:25:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
 #include "libft.h"
 
 static size_t	ft_strcpy(char *dst, const char *src)

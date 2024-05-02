@@ -6,11 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:28:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 13:46:56 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:26:17 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)

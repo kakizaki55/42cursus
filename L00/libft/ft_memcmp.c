@@ -6,11 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:25:43 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:41 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:24:01 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)

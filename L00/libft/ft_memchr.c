@@ -6,11 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:12:17 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:40 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:24:18 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)

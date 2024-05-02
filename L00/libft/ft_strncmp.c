@@ -6,11 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:31:51 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 13:49:04 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:30:18 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -35,7 +35,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // 	int f1 = ft_strncmp(NULL, "nope", 0);
 // 	// int f2 = strncmp((void *)0, "nope", 0);
 // 	// int f2 = strncmp(NULL, "hello", 1);
-
 // 	printf("ft is: %d \n", f1);
 // 	// printf("ft is: %p \n", (void *)0);
 // 	// printf("ft is: %p \n", NULL);

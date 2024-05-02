@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 13:45:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:29:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static char	*ft_strndup(char *src, int n)
 {
@@ -125,10 +124,8 @@ char	**ft_split(char const *s, char c)
 //     char	c = ' ';
 //     char	**result;
 // 	int		split_count = count_sub_strings(str, c);
-
 //     printf ("length is %d\n", split_count);
 //     result = ft_split(str, c);
-
 //     for (int i = 0; i < split_count; i++) {
 //         printf("%s\n", result[i]);
 //     }

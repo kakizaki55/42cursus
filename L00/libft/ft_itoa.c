@@ -6,12 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:45:57 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 20:54:27 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:29:26 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
 
 static int	get_length(int n)
@@ -95,10 +93,8 @@ char	*ft_itoa(int n)
 // {
 // 	int int_max = -2147483648;
 // 	int int_neg = -123;
-
 // 	printf("int max is :%s \n", ft_itoa(int_max));
 // 	printf("int neg is :%s \n", ft_itoa(int_neg));
 // 	// printf("int max is :%s \n", itoa(int_max));
-
 // 	return(0);
 // }

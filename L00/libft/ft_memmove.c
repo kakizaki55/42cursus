@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:21:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 20:14:28 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:24:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 static	void	move_front(unsigned char*dest, unsigned char*ssrc, size_t len)
 {

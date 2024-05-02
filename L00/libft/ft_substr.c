@@ -6,12 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:34 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 16:27:03 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:30:31 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
 static size_t	get_smaller(size_t num1, size_t num2)
@@ -53,7 +51,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 // {
 // 	char str[] = "i just want this part #############";
 // 	size_t size = 200000;
-
 // 	char *ret1 = ft_substr("", 1, 1);
 // 	// char *ret2 = substr(str, 5, size);
 // 	printf("ft: %s", ret1);

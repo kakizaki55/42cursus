@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:34:56 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 18:27:03 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:25:16 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <limits.h>
+#include "libft.h"
 
 static void	recursive_print( int num, int fd )
 {

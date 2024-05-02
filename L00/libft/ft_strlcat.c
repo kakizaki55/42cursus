@@ -6,11 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:20:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/01 19:15:19 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:30:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
 static size_t	find(size_t dstsize, size_t dst_l, size_t src_l, size_t *cut_l)
@@ -70,7 +69,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 // 	char buff1[0xF00] = "there is no stars in the sky";
 // 	char buff2[0xF00] = "there is no stars in the sky";
 // 	// size_t max = strlen("the cake is a lie !\0I'm hidden lol\r\n") + 4;
-
 // 	char s1[4] = "";
 // 	char s2[4] = "";
 // 	// printf("mac: %d\n",4);

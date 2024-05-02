@@ -6,11 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:37:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/04/27 14:26:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:29:41 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -36,10 +36,8 @@ void	*ft_memset(void *b, int c, size_t len)
 //    char buffer[BUF_SIZE + 1];
 //    char *string;
 //    ft_memset(buffer, 0, sizeof(buffer));
-
 //    string = (char *) memset(buffer,'A', 10);
 //    printf("\nBuffer contents: %s\n", string);
-
 //    ft_memset(buffer+10, 'B', 5);
 //    printf("\nBuffer contents: %s\n", buffer);
 // }

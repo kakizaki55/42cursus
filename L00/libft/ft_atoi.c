@@ -6,12 +6,10 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:17:12 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:23:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdlib.h>
 #include "libft.h"
 
 static int	skip_whitespaces(const char *str)
@@ -102,6 +100,7 @@ int	ft_atoi(const char *str)
 }
 
 // #include <stdio.h>
+// #include <stdlib.h>
 // int main()
 // {
 //     // int val;
