@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:24:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 19:52:21 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:35:04 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (!del || !lst)
 		return ;
-	if (lst != NULL)
-	{
-		del(lst->content);
-		free(lst);
-	}
+
+	del(lst->content);
+	free(lst);
 }
