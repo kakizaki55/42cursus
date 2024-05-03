@@ -61,7 +61,7 @@ ${NAME}:	${OBJS}
 re:			fclean all
 clean:
 			${RM} ${OBJS} $(BONUS_OBJS)
-fclean:		clean
+fclean:		clean 
 			${RM} ${NAME}
-bonus:		$(OBJS) $(BONUS_OBJS)
-				${AR} $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus: 
+			@make all "OBJS = $(OBJS) $(BONUS_OBJS)"
