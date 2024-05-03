@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 18:35:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:21 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/16 16:45:25 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/02 14:23:53 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	ft_isprint(int c)
 {
-	t_list	*i;
-
-	if (!lst || !*lst || !del)
-		return ;
-	while (*lst)
+	if (c >= ' ' && c <= '~')
 	{
-		i = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = i;
+		return (1);
 	}
-	*lst = NULL;
+	return (0);
 }

@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 18:35:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:21 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/23 13:12:41 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/02 14:29:58 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*i;
+	int	stringlength;
+	int	i;
 
-	if (!lst || !*lst || !del)
-		return ;
-	while (*lst)
+	i = 0;
+	stringlength = ft_strlen(s);
+	while (i < stringlength + 1)
 	{
-		i = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = i;
+		if (s[i] == (char)c)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
 	}
-	*lst = NULL;
+	return (NULL);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+// int    main(void)
+// {
+//     char str[] = "trip0ouille";
+//     printf("%s\n", ft_strchr(str, 48));
+//     printf("%s\n", strchr(str, 48));
+//     return (0);
+// }

@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 18:35:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:21 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/24 12:05:47 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/02 14:25:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+static size_t	ft_strcpy(char *dst, const char *src)
 {
-	t_list	*i;
+	size_t	i;
+	size_t	src_length;
 
-	if (!lst || !*lst || !del)
-		return ;
-	while (*lst)
+	src_length = ft_strlen(src);
+	i = 0;
+	while (src[i] != '\0')
 	{
-		i = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = i;
+		dst[i] = src[i];
+		i++;
 	}
-	*lst = NULL;
+	dst[i] = '\0';
+	return (src_length);
+}
+
+char	*ft_strdup(const char *s)
+{
+	size_t	length;
+	char	*cpy;
+
+	length = ft_strlen(s);
+	cpy = (char *)malloc(sizeof(char) * (length + 1));
+	if (cpy == NULL)
+		return (NULL);
+	ft_strcpy(cpy, s);
+	return (cpy);
 }

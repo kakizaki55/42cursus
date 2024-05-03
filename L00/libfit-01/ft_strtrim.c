@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 18:35:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:21 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/24 13:28:50 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/02 14:26:17 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	t_list	*i;
+	int		i;
+	char	*res;
 
-	if (!lst || !*lst || !del)
-		return ;
-	while (*lst)
-	{
-		i = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = i;
-	}
-	*lst = NULL;
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	res = ft_substr(s1, 0, i + 1);
+	return (res);
 }
+
+// int mian(void)
+// {
+// 	char string[] = "abcdefg";
+// 	ft_strtrim(string, "ab");
+// }

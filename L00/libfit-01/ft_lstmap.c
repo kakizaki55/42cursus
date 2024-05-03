@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 19:17:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 15:52:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:36:36 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*start;
 	t_list	*node;
-	t_list	*temp;
 
 	if (!lst || !f || !del)
 		return (NULL);
 	start = NULL;
 	while (lst)
 	{
-		temp = f(lst->content);
-		node = ft_lstnew(temp);
+		node = ft_lstnew(f(lst->content));
 		if (!node)
 		{
 			ft_lstclear(&start, del);
-			del(temp);
 			return (NULL);
 		}
 		ft_lstadd_back(&start, node);
@@ -37,3 +34,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	node->next = NULL;
 	return (start);
 }
+// int main(void)
+// {
+// 	t_list *l = lstnew(strdup(" 1 2 3 "));
+// 	t_list *ret;
+
+// 	l->next = lstnew(strdup("ss"));
+// 	l->next->next = lstnew(strdup("-_-"));
+// 	ft_lstmap(l,NULL, NULL);
+// }
+

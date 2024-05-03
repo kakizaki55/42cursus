@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 18:35:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:21 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/04/16 19:12:01 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/02 14:24:26 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	t_list	*i;
+	unsigned char	*dstbuff;
+	unsigned char	*srcbuff;
+	size_t			i;
 
-	if (!lst || !*lst || !del)
-		return ;
-	while (*lst)
+	dstbuff = (unsigned char *)dst;
+	srcbuff = (unsigned char *)src;
+	if (src == dst)
+		return (dst);
+	i = 0;
+	while (i < n)
 	{
-		i = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = i;
+		dstbuff[i] = srcbuff[i];
+		i++;
 	}
-	*lst = NULL;
+	return (dst);
 }
