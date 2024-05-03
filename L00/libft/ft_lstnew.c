@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:44:03 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 13:57:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:00:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ t_list	*ft_lstnew(void *content)
 	node = (t_list *) malloc(sizeof(t_list));
 	if (node == NULL)
 		return (NULL);
-
 	node->content = content;
 	node->next = NULL;
-
 	return (node);
 }

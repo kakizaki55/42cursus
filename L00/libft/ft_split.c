@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 13:58:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:01:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char	**ft_split(char const *s, char c)
 	int		split_count;
 	int		i;
 	int		start;
+
 	if (!s)
 		return (NULL);
 	split_count = count_sub_strings((char *)s, c);

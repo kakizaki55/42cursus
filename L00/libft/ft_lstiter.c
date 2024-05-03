@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:53:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/03 13:57:19 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:00:41 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!lst || !*f)
 		return ;
-
 	while (lst)
 	{	
 		f(lst->content);
