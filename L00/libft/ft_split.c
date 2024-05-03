@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:04:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 19:54:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:05 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,22 +118,3 @@ char	**ft_split(char const *s, char c)
 	results[i] = NULL;
 	return (results);
 }
-
-// #include <stdio.h>
-// int main(void) {
-//     char	str[] = "hello!";
-//     char	c = ' ';
-//     char	**result;
-// 	int		split_count = count_sub_strings(str, c);
-//     printf ("length is %d\n", split_count);
-//     result = ft_split(str, c);
-//     for (int i = 0; i < split_count; i++) {
-//         printf("%s\n", result[i]);
-//     }
-//     // Free the dynamically allocated memory
-//     for (int i = 0; i < split_count ; i++) {
-//         free(result[i]);
-//     }
-// 	free(result);
-//     return 0;
-// }

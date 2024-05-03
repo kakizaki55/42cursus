@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 13:12:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:29:58 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:12 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int    main(void)
-// {
-//     char str[] = "trip0ouille";
-//     printf("%s\n", ft_strchr(str, 48));
-//     printf("%s\n", strchr(str, 48));
-//     return (0);
-// }

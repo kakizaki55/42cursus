@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:31:51 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 19:15:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:32 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-// #include <string.h>
-// int main(void)
-// {
-	// int f1 = ft_strncmp(NULL, "hello", 0);
-	// int f1 = ft_strncmp(NULL, "nope", 2);
-	// int f2 = strncmp(NULL, "nope", 0);
-	// int f2 = strncmp(NULL, "hello", 1);
-	// printf("ft is: %d \n", f1);
-	// printf("ft is: %d \n", f2);
-	// printf("ft is: %p \n", (void *)0);
-	// printf("ft is: %p \n", NULL);
-	// printf("strncmp is: %d \n", f2);
-// }

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:34:55 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:30:21 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-
-// int main(void)
-// {
-// 	char *s1 = "MZIRIBMZIRIBMZE123";
-// 	char *s2 = "MZIRIBMZE";
-// 	size_t max = 9;
-// 	char *i1 = strnstr(s1, s2, max);
-// 	char *i2 = ft_strnstr(s1, s2, max);
-// 	printf("strnstr: %s \n" ,i1);
-// 	printf("ft_strnstr: %s \n" ,i2);
-// }

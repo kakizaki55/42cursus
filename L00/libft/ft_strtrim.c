@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:28:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:26:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:43 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	res = ft_substr(s1, 0, i + 1);
 	return (res);
 }
-
-// int mian(void)
-// {
-// 	char string[] = "abcdefg";
-// 	ft_strtrim(string, "ab");
-// }

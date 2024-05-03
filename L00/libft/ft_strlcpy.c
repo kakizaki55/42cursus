@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:41:46 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:30:13 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:25 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (src_length);
 }
-
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *str = "the cake is a lie !\0I'm hidden lol\r\n";
-// 	char str_dst[22];
-// 	printf("return is %zu\n", ft_strlcpy(str_dst, str, 21));
-// 	printf("%s",str_dst);
-// }

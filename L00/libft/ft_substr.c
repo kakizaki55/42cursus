@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:05:34 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:30:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:58:48 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	res[i] = '\0';
 	return (res);
 }
-
-// int main(void)
-// {
-// 	char str[] = "i just want this part #############";
-// 	size_t size = 200000;
-// 	char *ret1 = ft_substr("", 1, 1);
-// 	// char *ret2 = substr(str, 5, size);
-// 	printf("ft: %s", ret1);
-// 	free(ret1);
-// 	// printf("og: %s", ret2);
-// }

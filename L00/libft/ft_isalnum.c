@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:08:03 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:29:10 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/03 13:56:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,3 @@ int	ft_isalnum(int c)
 	}
 	return (0);
 }
-
-// #include <stdio.h>
-// #include <ctype.h>
-// int main(void)
-// {	
-// 	char c = 'A';
-// 	char k = 'z';
-// 	char zero = '0';
-// 	printf("c is %d\n", ft_isalnum(c));
-// 	printf("k is %d\n", ft_isalnum(k));
-// 	printf("zero is %d\n", ft_isalnum(zero));
-// 	printf("original c is %d\n", isalnum(c));
-// 	printf("original k is %d\n", isalnum(k));
-// 	printf("original zero is %d\n", isalnum(zero));
-// }
