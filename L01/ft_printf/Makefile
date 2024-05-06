@@ -5,8 +5,10 @@ INCLUDE		= include
 LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -I
+CC			= cc
+# CFLAGS		= -Wall -Werror -Wextra -I
+# this is just for testing out and development must change with proper flags
+CFLAGS		= -I 
 RM			= rm -f
 AR			= ar rc
 
@@ -41,10 +43,11 @@ $(NAME):	$(OBJ)
 			cp libft/libft.a .
 			mv libft.a $(NAME)
 			$(AR) $(NAME) $(OBJ)
-			echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
+			cc -I include main.c libftprintf.a
+			@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJF):
@@ -53,16 +56,18 @@ $(OBJF):
 clean:
 			$(RM) -rf $(OBJ_DIR)
 			make clean -C $(LIBFT)
-			echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
+			@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
-			$(RM) -f $(NAME)
-			$(RM) -f $(LIBFT)/libft.a
-			echo "$(CYAN)ft_printf executable files cleaned!$(DEF_COLOR)"
-			echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+			$(RM) $(NAME)
+			$(RM) $(LIBFT)/libft.a
+			$(RM) a.out
+			@echo "$(CYAN)ft_printf executable files cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
-			echo "$(GREEN)Cleaned and rebuilt everything for ft_printf!$(DEF_COLOR)"
+			cc -I include main.c libftprintf.a
+			@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf!$(DEF_COLOR)"
 
 norm:
 			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true

@@ -72,6 +72,7 @@ re:
 			fclean all
 clean:
 			$(RM) $(OBJS) 
+			$(RM) -r $(OBJ_DIR)
 
 fclean:		clean 
 			$(RM) $(NAME)

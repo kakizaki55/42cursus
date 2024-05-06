@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:50:39 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/06 15:50:06 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:18:04 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(void)
 
 	// GENERAL TEST (UNCOMMENT SECTION BELOW)
 	//--------------------------------------------
-	// ft_printf();
+	ft_printf("sting");
 	// printf("%zu\n", ft_strlen("123"));
 	// char c = 'c';
 	// char ce = '\0';
