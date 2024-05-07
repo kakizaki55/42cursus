@@ -6,9 +6,10 @@ LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= cc
-# CFLAGS		= -Wall -Werror -Wextra -I
+# CFLAGS		= -I -Wall -Werror -Wextra
 # this is just for testing out and development must change with proper flags
-CFLAGS		= -I 
+CFLAGS		= -I
+DEBUG_FLAGS	= -I -g -fsanitize=address
 RM			= rm -f
 AR			= ar rc
 
@@ -26,7 +27,8 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	ft_printf
+SRC_FILES	=	ft_printf \
+				ft_printf_utils
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -43,6 +45,7 @@ $(NAME):	$(OBJ)
 			cp libft/libft.a .
 			mv libft.a $(NAME)
 			$(AR) $(NAME) $(OBJ)
+# need 
 			cc -I include main.c libftprintf.a
 			@echo "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
@@ -66,10 +69,15 @@ fclean:		clean
 			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
+
 			cc -I include main.c libftprintf.a
 			@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf!$(DEF_COLOR)"
 
 norm:
 			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
 
-.PHONY:		all clean fclean re norm
+debug:		fclean all
+			$(CC) $(DEBUG_FLAGS) -I include main.c libftprintf.a
+			@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf in debug mode!$(DEF_COLOR)"
+
+.PHONY:		all clean fclean re norm debug

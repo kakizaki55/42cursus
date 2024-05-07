@@ -1,20 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 14:51:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/06 20:08:14 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/06 19:27:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-
-# include <stdarg.h>
-
-int	ft_printf(const char *format, ...);
-
-#endif
