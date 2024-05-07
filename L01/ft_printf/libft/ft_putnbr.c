@@ -1,46 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/07 19:42:09 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/05/07 17:30:35 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/07 17:42:43 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int printchar(char c)
-{
-	if(write(1, &c, 1) != -1)
-	{
-		return (1);
-	}
-	return (0);
-}
-
-int printstr(char * str)
-{
-	int i;
-	
-	i = 0;
-	while(str[i])
-	{
-		if(write(1, &str[i], 1) != -1)
-		{
-			i++;
-		} 
-		else
-		{
-		return (0);
-		}
-	}
-	return(i);
-}
-
-static void	recursive_print( int num, unsigned int *res)
+static void	recursive_print( int num, int *res)
 {
 	char	print;
 
@@ -59,10 +31,29 @@ static void	recursive_print( int num, unsigned int *res)
 	}
 }
 
-int	print_unsigned_nbr(int n)
+int	ft_putnbr(int n)
 {
-	unsigned int res;
+	int res;
+
 	res = 0;
+	if (n < 0)
+	{
+		if (n > INT_MIN)
+		{
+			write(1, "-", 1);
+			n = n * -1;
+			res += 1;
+			recursive_print(n, &res);
+		}
+		else if (n == -2147483648)
+		{
+			write(1, "-2147483648", 11);
+			res = 11;
+		}
+	}
+	else
+	{
 		recursive_print(n, &res);
+	}
 	return (res);
 }

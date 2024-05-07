@@ -42,7 +42,9 @@ SRC			= 	ft_isalpha \
 				ft_lstclear \
 				ft_lstiter \
 				ft_lstmap \
-				ft_putchar 
+				ft_putchar \
+				ft_putstr \
+				ft_putnbr
 
 SRCS		= $(addsuffix .c, $(SRC))
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))

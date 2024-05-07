@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/07 16:55:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:42:47 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,46 +28,39 @@ long long	check_token(char c, va_list arg_ptr)
 	char chr;
 	char *str;
 	void *ptr;
-	int nbr_float;
+	int nbr;
 	int nbr_int;
-	unsigned int unsigned_int_nbr;
+	unsigned int unsigned_nbr;
 	int hex_nbr;
+
+	unsigned int res;
 
 	if(c == 'c')
 	{
 		chr = va_arg(arg_ptr, int);
-		printf("%c", chr); fflush(stdout);
-		return (1);
+		return (printchar(chr));
 	}
 	else if(c == 's')
 	{
 		str = va_arg(arg_ptr, char *);
-		printf("%s", str); fflush(stdout);
-		return (ft_strlen(str));
+		return (printstr(str));
 	}
 	else if(c == 'p')
 	{
-		ptr = va_arg(arg_ptr, void *);
-		printf("%p", ptr); fflush(stdout);
-		return (ft_strlen(str));
+		//not sure how to print the memoy address here yet. 
+		// ptr = va_arg(arg_ptr, void *);
+		// printf("%p", ptr); fflush(stdout);
+		// return (0);
 	}
-	else if(c == 'd')
+	else if(c == 'd' || c == 'i')
 	{
-		nbr_float = va_arg(arg_ptr, int);
-		printf("%d", nbr_float); fflush(stdout);
-		return (ft_strlen(str));
-	}
-	else if(c == 'i')
-	{
-		nbr_int = va_arg(arg_ptr, int);
-		printf("%i", nbr_int); fflush(stdout);
-		return (ft_strlen(str));
+		nbr = va_arg(arg_ptr, int);
+		return(ft_putnbr(nbr));
 	}
 	else if(c == 'u')
 	{
-		unsigned_int_nbr = va_arg(arg_ptr, unsigned int);
-		printf("%u", unsigned_int_nbr); fflush(stdout);
-		return (ft_strlen(str));
+		unsigned_nbr = va_arg(arg_ptr, unsigned int);
+		return (print_unsigned_nbr(unsigned_nbr));
 	}
 	else if(c == 'x' || c == 'X')
 	{
@@ -114,5 +107,7 @@ int	ft_printf(const char *format, ...)
 		}
 		format++;
 	}
+
+	va_end(arg_ptr);
 	return(res);
 }
