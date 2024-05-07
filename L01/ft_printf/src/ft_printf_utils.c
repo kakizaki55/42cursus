@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/07 19:42:09 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/07 20:41:07 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int printstr(char * str)
 		} 
 		else
 		{
-		return (0);
+			return (0);
 		}
 	}
 	return(i);
@@ -65,4 +65,14 @@ int	print_unsigned_nbr(int n)
 	res = 0;
 		recursive_print(n, &res);
 	return (res);
+}
+
+
+int print_hex(void *ptr)
+{
+	long long num;
+	num = (long long)ptr;
+	// ft_putnbr_base(num);
+	printf("%lld\n", num);
+	return(8);
 }
