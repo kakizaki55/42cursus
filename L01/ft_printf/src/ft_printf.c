@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/07 20:27:58 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:16:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ long long	check_token(char c, va_list arg_ptr)
 	{
 		// not sure how to print the memoy address here yet. 
 		ptr = va_arg(arg_ptr, void *);
-		return (print_hex(ptr));
+		printf("ptr is : %p", ptr);
+		// return (print_address(ptr));git ad
 	}
 	else if(c == 'd' || c == 'i')
 	{
@@ -63,9 +64,8 @@ long long	check_token(char c, va_list arg_ptr)
 	}
 	else if(c == 'x' || c == 'X')
 	{
-		hex_nbr = va_arg(arg_ptr, int);
-		printf("%x", hex_nbr); fflush(stdout);
-		return (ft_strlen(str));
+		nbr = va_arg(arg_ptr, int);
+		return (ft_putnbr_base(nbr, "0123456789abcdef"));
 	}
 	else if(c == '%')
 	{
@@ -106,7 +106,6 @@ int	ft_printf(const char *format, ...)
 		}
 		format++;
 	}
-
 	va_end(arg_ptr);
 	return(res);
 }

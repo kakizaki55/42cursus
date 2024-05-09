@@ -44,7 +44,8 @@ SRC			= 	ft_isalpha \
 				ft_lstmap \
 				ft_putchar \
 				ft_putstr \
-				ft_putnbr
+				ft_putnbr \
+				ft_putnbr_base
 
 SRCS		= $(addsuffix .c, $(SRC))
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))

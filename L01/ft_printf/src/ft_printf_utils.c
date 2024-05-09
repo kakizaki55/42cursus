@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/07 20:41:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:13:43 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ int	print_unsigned_nbr(int n)
 }
 
 
-int print_hex(void *ptr)
-{
-	long long num;
-	num = (long long)ptr;
-	// ft_putnbr_base(num);
-	printf("%lld\n", num);
-	return(8);
-}
+// int print_address(int nbr)
+// {
+// 	write(1, "0x", 2);
+// 	// ft_putnbr_base(nbr, "0123456789abcdef");
+// 	return(8);
+// }
+
