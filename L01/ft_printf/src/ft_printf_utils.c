@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/09 15:13:43 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:12:50 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 
@@ -59,12 +59,9 @@ int printstr(char * str)
 // 	}
 // }
 
-int	print_unsigned_nbr(int n)
+int	print_unsigned_dec(unsigned int n)
 {
-	int res;
-	res = 0;
-		printf("%d", ft_putnbr(n));
-	return (res);
+	return (ft_putnbr_long(n));
 }
 
 int print_lower_hex(unsigned int nbr)

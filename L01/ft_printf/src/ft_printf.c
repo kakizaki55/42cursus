@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/09 15:16:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:12:35 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 #include "libftprintf.h"
@@ -59,8 +59,8 @@ long long	check_token(char c, va_list arg_ptr)
 	}
 	else if(c == 'u')
 	{
-		unsigned_nbr = va_arg(arg_ptr, unsigned int);
-		return (ft_putnbr(nbr));
+		unsigned_nbr = va_arg(arg_ptr, int);
+		return (print_unsigned_dec(unsigned_nbr));
 	}
 	else if(c == 'x')
 	{
@@ -89,9 +89,6 @@ int	ft_printf(const char *format, ...)
 	long long	res;
 
 	res = 0;
-	
-	// need to make a parser to figer out each token and see which for mat it needs to print
-	// use va_start and pass format as the beginnign of the va args. 
 
 	va_start(arg_ptr, format);
 
@@ -103,12 +100,12 @@ int	ft_printf(const char *format, ...)
 			if(!*format)
 				return(res);
 			res += check_token(*format, arg_ptr);
-			va_arg(arg_ptr, void *);
+			// va_arg(arg_ptr, void *);
 		}
 		else
 		{
-			if(write(1, format, 1) != -1)	
-				res++;
+			ft_putchar(*format);
+			res++;
 		}
 		format++;
 	}

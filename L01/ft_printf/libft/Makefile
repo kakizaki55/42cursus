@@ -45,6 +45,7 @@ SRC			= 	ft_isalpha \
 				ft_putchar \
 				ft_putstr \
 				ft_putnbr \
+				ft_putnbr_long \
 				ft_putnbr_base
 
 SRCS		= $(addsuffix .c, $(SRC))

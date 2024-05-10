@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/09 14:46:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:08:52 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -74,5 +74,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_putchar(char c);
 void	ft_putstr(char * str);
 int		ft_putnbr(int n);
+int		ft_putnbr_long(long long n);
 int		ft_putnbr_base(long long num, char *base);
 #endif
