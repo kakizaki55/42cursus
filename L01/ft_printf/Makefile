@@ -5,7 +5,7 @@ INCLUDE		= include
 LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-CC			= cc
+CC			= gcc
 # CFLAGS		= -I -Wall -Werror -Wextra
 # this is just for testing out and development must change with proper flags
 CFLAGS		= -I

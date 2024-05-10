@@ -49,8 +49,8 @@ long long	check_token(char c, va_list arg_ptr)
 	{
 		// not sure how to print the memoy address here yet. 
 		ptr = va_arg(arg_ptr, void *);
-		printf("ptr is : %p", ptr);
-		// return (print_address(ptr));git ad
+		// printf("ptr is : %p", ptr);
+		// return (print_address((unsigned int)ptr));
 	}
 	else if(c == 'd' || c == 'i')
 	{
@@ -60,12 +60,17 @@ long long	check_token(char c, va_list arg_ptr)
 	else if(c == 'u')
 	{
 		unsigned_nbr = va_arg(arg_ptr, unsigned int);
-		return (print_unsigned_nbr(unsigned_nbr));
+		return (print_unsigned_nbr(nbr));
 	}
-	else if(c == 'x' || c == 'X')
+	else if(c == 'x')
 	{
 		nbr = va_arg(arg_ptr, int);
-		return (ft_putnbr_base(nbr, "0123456789abcdef"));
+		return (print_lower_hex((unsigned int) nbr));
+	}
+	else if(c == 'X')
+	{
+		nbr = va_arg(arg_ptr, int);
+		return (print_upper_hex((unsigned int) nbr));
 	}
 	else if(c == '%')
 	{

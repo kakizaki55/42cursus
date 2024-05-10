@@ -43,8 +43,8 @@ int	main(void)
 	int d = -34578654; // need to handle min max pos neg
 	int	i = -42; 
 	unsigned u = 1234567; //no negatives (larger max)
-	int X = 98765432; //BC614E //NOTE: does not need to handle negatives
-	int x = 12345678; //BC614E
+	int X = -98765432; //BC614E //NOTE: does not need to handle negatives
+	int x = -12345678; //BC614E
 	//--------------------------------------------
 	// NULL VALUES TEST (UNCOMMENT SECTION BELOW)
 	//--------------------------------------------
@@ -75,36 +75,37 @@ int	main(void)
 	// printf("---------------------------------------------\n");
 	// printf("-----------------PRINTF TEST-----------------\n");
 	// printf("------------------cspdiuxX%%------------------\n");
-	printf("   Empty string test:");
-	len = printf("");
-	printf("      len: %d\n", len);
-	printf("Empty ft string test:");
-	len = ft_printf("");
-	printf("   ft_len: %d\n", len);
-
-	printf("\n------CHAR------\n");
-	len = printf("   printf: %c (char)\n", c);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %c (char)\n", c);
-	printf("   ft_len: %d\n", len);
-
-	printf("\n-----EMPTY CHAR-------\n");
-	len = printf("   printf: %c (empty char)\n", ce);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %c (empty char)\n\0", ce);
-	printf("   ft_len: %d\n", len);
-
-	printf("\n-----STRING-------\n");
-	len = printf("   printf: %s (string)\n", s);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %s (string)\n\0", s);
-	printf("   ft_len: %d\n", len);
 	
-	printf("\n------EMPTY STRING------\n");
-	len = printf("   printf: %s (empty string)\n", se);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %s (empty string)\n", se);
-	printf("   ft_len: %d\n", len);
+	// printf("   Empty string test:");
+	// len = printf("");
+	// printf("      len: %d\n", len);
+	// printf("Empty ft string test:");
+	// len = ft_printf("");
+	// printf("   ft_len: %d\n", len);
+
+	// printf("\n------CHAR------\n");
+	// len = printf("   printf: %c (char)\n", c);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %c (char)\n", c);
+	// printf("   ft_len: %d\n", len);
+
+	// printf("\n-----EMPTY CHAR-------\n");
+	// len = printf("   printf: %c (empty char)\n", ce);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %c (empty char)\n\0", ce);
+	// printf("   ft_len: %d\n", len);
+
+	// printf("\n-----STRING-------\n");
+	// len = printf("   printf: %s (string)\n", s);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %s (string)\n\0", s);
+	// printf("   ft_len: %d\n", len);
+	
+	// printf("\n------EMPTY STRING------\n");
+	// len = printf("   printf: %s (empty string)\n", se);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %s (empty string)\n", se);
+	// printf("   ft_len: %d\n", len);
 	
 	printf("\n------VOID POINTER------\n");
 	len = printf("   printf: %p (void pointer)\n", p);
@@ -112,23 +113,23 @@ int	main(void)
 	len = ft_printf("ft_printf: %p (void pointer)\n", p);
 	printf("   ft_len: %d\n", len);
 	
-	printf("\n------DECIMAL NUMBER------\n");
-	len = printf("   printf: %d (decimal number - d)\n", d);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %d (decimal number - d)\n", d);
-	printf("   ft_len: %d\n", len);
+	// printf("\n------DECIMAL NUMBER------\n");
+	// len = printf("   printf: %d (decimal number - d)\n", d);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %d (decimal number - d)\n", d);
+	// printf("   ft_len: %d\n", len);
 	
-	printf("\n------INTEGER------\n");
-	len = printf("   printf: %i (integer)\n", i);
-	printf("      len: %d\n", len);
-	 len = ft_printf("ft_printf: %i (integer)\n", i);
-	 printf("   ft_len: %d\n", len);
+	// printf("\n------INTEGER------\n");
+	// len = printf("   printf: %i (integer)\n", i);
+	// printf("      len: %d\n", len);
+	//  len = ft_printf("ft_printf: %i (integer)\n", i);
+	//  printf("   ft_len: %d\n", len);
 	
-	printf("\n------UNSIGNED DECIMAL------\n");
-	len = printf("   printf: %u (unsigned decimal)\n", u);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %u (unsigned decimal)\n", u);
-	printf("   ft_len: %d\n", len);
+	// printf("\n------UNSIGNED DECIMAL------\n");
+	// len = printf("   printf: %u (unsigned decimal)\n", u);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %u (unsigned decimal)\n", u);
+	// printf("   ft_len: %d\n", len);
 	
 	printf("\n-----lowercase HEX-------\n");
 	len = printf("   printf: %x (lowercase hex, from int)\n", x);
@@ -143,17 +144,23 @@ int	main(void)
 	printf("   ft_len: %d\n", len);
 	
 	
-	printf("\n------%%%%%% TEST------\n");
-	len = printf("   printf: %%%%%%\n");
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %%%%%%\n", X);
-	printf("   ft_len: %d\n", len);
+	// printf("\n------%%%%%% TEST------\n");
+	// len = printf("   printf: %%%%%%\n");
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %%%%%%\n", X);
+	// printf("   ft_len: %d\n", len);
 	
-	printf("\n------MIXED ARG TYPE TEST------\n");
-	len = printf("   printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n", c,s,p,d,i,u,x,X);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
-	printf("   ft_len: %d\n", len);
+	// printf("\n------MIXED ARG TYPE TEST------\n");
+	// len = printf("   printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n", c,s,p,d,i,u,x,X);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
+	// printf("   ft_len: %d\n", len);
+
+	// printf("\n------MIXED ARG TYPE TEST------\n");
+	// len = printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
+	// printf("      len: %d\n", len);
+	// len = ft_printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
+	// printf("   ft_len: %d\n", len);
 
 	printf("\n------------------END TEST-------------------\n");
 	printf("\n---------------------------------------------\n");

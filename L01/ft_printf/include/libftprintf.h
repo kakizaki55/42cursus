@@ -21,5 +21,8 @@ int printchar(char c);
 int printstr(char * str);
 int	print_unsigned_nbr(int n);
 int print_hex(void *ptr);
+int print_address(unsigned int nbr);
+int print_lower_hex(unsigned int nbr);
+int print_upper_hex(unsigned int nbr);
 
 #endif

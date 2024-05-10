@@ -67,11 +67,26 @@ int	print_unsigned_nbr(int n)
 	return (res);
 }
 
+int print_lower_hex(unsigned int nbr)
+{	
+	return(ft_putnbr_base(nbr, "0123456789abcdef"));
+}
 
-// int print_address(int nbr)
-// {
-// 	write(1, "0x", 2);
-// 	// ft_putnbr_base(nbr, "0123456789abcdef");
-// 	return(8);
-// }
+int print_upper_hex(unsigned int nbr)
+{
+	return(ft_putnbr_base(nbr, "0123456789ABCDEF"));
+}
+
+
+int print_address(unsigned int nbr)
+{
+	int i;
+	if(write(1, "0x", 2) != -1)
+	{
+			i++;
+	}
+	
+	i += ft_putnbr_base(nbr, "0123456789abcdef");
+	return(i);
+}
 
