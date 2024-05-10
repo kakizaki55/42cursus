@@ -150,11 +150,11 @@ int	main(void)
 	// len = ft_printf("ft_printf: %%%%%%\n", X);
 	// printf("   ft_len: %d\n", len);
 	
-	// printf("\n------MIXED ARG TYPE TEST------\n");
-	// len = printf("   printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n", c,s,p,d,i,u,x,X);
-	// printf("      len: %d\n", len);
-	// len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
-	// printf("   ft_len: %d\n", len);
+	printf("\n------MIXED ARG TYPE TEST------\n");
+	len = printf("   printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n", c,s,p,d,i,u,x,X);
+	printf("      len: %d\n", len);
+	len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
+	printf("   ft_len: %d\n", len);
 
 	printf("\n------MIXED ARG TYPE TEST------\n");
 	len = printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );

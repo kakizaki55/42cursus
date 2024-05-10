@@ -107,11 +107,12 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			ft_putchar(*format);	
-			res++;
+			if(write(1, format, 1) != -1)	
+				res++;
 		}
 		format++;
 	}
+
 	va_end(arg_ptr);
 	return(res);
 }
