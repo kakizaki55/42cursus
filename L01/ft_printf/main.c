@@ -43,8 +43,8 @@ int	main(void)
 	int d = -34578654; // need to handle min max pos neg
 	int	i = -42; 
 	unsigned u = 1234567; //no negatives (larger max)
-	int X = -98765432; //BC614E //NOTE: does not need to handle negatives
-	int x = -12345678; //BC614E
+	int X = 98765432; //BC614E //NOTE: does not need to handle negatives
+	int x = 12345678; //BC614E
 	//--------------------------------------------
 	// NULL VALUES TEST (UNCOMMENT SECTION BELOW)
 	//--------------------------------------------
@@ -131,17 +131,17 @@ int	main(void)
 	// len = ft_printf("ft_printf: %u (unsigned decimal)\n", u);
 	// printf("   ft_len: %d\n", len);
 	
-	printf("\n-----lowercase HEX-------\n");
-	len = printf("   printf: %x (lowercase hex, from int)\n", x);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %x (lowercase hex, from int)\n", x);
-	printf("   ft_len: %d\n", len);
+	// printf("\n-----lowercase HEX-------\n");
+	// len = printf("   printf: %x (lowercase hex, from int)\n", x);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %x (lowercase hex, from int)\n", x);
+	// printf("   ft_len: %d\n", len);
 	
-	printf("\n------UPPERCASE HEX------\n");
-	len = printf("   printf: %X (uppercase HEX from int)\n", X);
-	printf("      len: %d\n", len);
-	len = ft_printf("ft_printf: %X (uppercase HEX from int)\n", X);
-	printf("   ft_len: %d\n", len);
+	// printf("\n------UPPERCASE HEX------\n");
+	// len = printf("   printf: %X (uppercase HEX from int)\n", X);
+	// printf("      len: %d\n", len);
+	// len = ft_printf("ft_printf: %X (uppercase HEX from int)\n", X);
+	// printf("   ft_len: %d\n", len);
 	
 	
 	// printf("\n------%%%%%% TEST------\n");
@@ -156,11 +156,11 @@ int	main(void)
 	// len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
 	// printf("   ft_len: %d\n", len);
 
-	// printf("\n------MIXED ARG TYPE TEST------\n");
-	// len = printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
-	// printf("      len: %d\n", len);
-	// len = ft_printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
-	// printf("   ft_len: %d\n", len);
+	printf("\n------MIXED ARG TYPE TEST------\n");
+	len = printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
+	printf("      len: %d\n", len);
+	len = ft_printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
+	printf("   ft_len: %d\n", len);
 
 	printf("\n------------------END TEST-------------------\n");
 	printf("\n---------------------------------------------\n");

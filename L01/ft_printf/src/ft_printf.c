@@ -60,7 +60,7 @@ long long	check_token(char c, va_list arg_ptr)
 	else if(c == 'u')
 	{
 		unsigned_nbr = va_arg(arg_ptr, unsigned int);
-		return (print_unsigned_nbr(nbr));
+		return (ft_putnbr(nbr));
 	}
 	else if(c == 'x')
 	{
@@ -103,6 +103,7 @@ int	ft_printf(const char *format, ...)
 			if(!*format)
 				return(res);
 			res += check_token(*format, arg_ptr);
+			va_arg(arg_ptr, void *);
 		}
 		else
 		{

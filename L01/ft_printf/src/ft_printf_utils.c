@@ -40,30 +40,30 @@ int printstr(char * str)
 	return(i);
 }
 
-static void	recursive_print( int num, unsigned int *res)
-{
-	char	print;
+// static void	recursive_print( int num, unsigned int *res)
+// {
+// 	char	print;
 
-	if (num >= 10)
-	{
-		recursive_print (num / 10, res);
-		print = num % 10 + '0';
-		write(1, &print, 1);
-		*res += 1;
-	}
-	else if (num < 10)
-	{
-		print = num % 10 + '0';
-		write(1, &print, 1);
-		*res += 1;
-	}
-}
+// 	if (num >= 10)
+// 	{
+// 		recursive_print (num / 10, res);
+// 		print = num % 10 + '0';
+// 		write(1, &print, 1);
+// 		*res += 1;
+// 	}
+// 	else if (num < 10)
+// 	{
+// 		print = num % 10 + '0';
+// 		write(1, &print, 1);
+// 		*res += 1;
+// 	}
+// }
 
 int	print_unsigned_nbr(int n)
 {
-	unsigned int res;
+	int res;
 	res = 0;
-		recursive_print(n, &res);
+		printf("%d", ft_putnbr(n));
 	return (res);
 }
 

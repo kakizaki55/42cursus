@@ -5,7 +5,7 @@ INCLUDE		= include
 LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-CC			= gcc
+CC			= cc
 # CFLAGS		= -I -Wall -Werror -Wextra
 # this is just for testing out and development must change with proper flags
 CFLAGS		= -I
@@ -28,7 +28,7 @@ WHITE = \033[0;97m
 #Sources
 
 SRC_FILES	=	ft_printf \
-				ft_printf_utils
+				ft_printf_utils 
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
