@@ -6,12 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:45:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 17:42:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 18:29:21 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int print_address(unsigned long ptr)
 {
