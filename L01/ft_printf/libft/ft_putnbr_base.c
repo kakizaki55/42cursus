@@ -1,19 +1,16 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:23:49 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/09 15:04:08 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:21:36 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-// #include "libft.h"
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "libft.h"
 
 static void	recursive_print(long long num, unsigned int *res, char *base, int base_l)
 {
@@ -47,7 +44,7 @@ static void	recursive_print(long long num, unsigned int *res, char *base, int ba
 int		ft_putnbr_base(long long num, char *base)
 {
 	long long  base_l;
-	base_l = strlen(base);
+	base_l = ft_strlen(base);
 	unsigned int res;
 
 	res = 0;

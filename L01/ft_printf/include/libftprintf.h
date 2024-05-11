@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:51:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/10 23:04:01 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 11:41:59 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,10 +17,10 @@
 
 int	ft_printf(const char *format, ...);
 
-int printchar(char c);
-int printstr(char * str);
-int	print_unsigned_dec(int n);
-int print_address(unsigned int nbr);
+int print_char(char c);
+int print_str(char * str);
+int	print_unsigned_dec(unsigned int n);
+int print_address(void *ptr);
 int print_lower_hex(unsigned int nbr);
 int print_upper_hex(unsigned int nbr);
 

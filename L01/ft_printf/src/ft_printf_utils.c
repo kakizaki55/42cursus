@@ -6,13 +6,13 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/10 23:12:50 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 11:54:27 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-int printchar(char c)
+int print_char(char c)
 {
 	if(write(1, &c, 1) != -1)
 	{
@@ -21,7 +21,8 @@ int printchar(char c)
 	return (0);
 }
 
-int printstr(char * str)
+
+int print_str(char * str)
 {
 	int i;
 	
@@ -40,25 +41,6 @@ int printstr(char * str)
 	return(i);
 }
 
-// static void	recursive_print( int num, unsigned int *res)
-// {
-// 	char	print;
-
-// 	if (num >= 10)
-// 	{
-// 		recursive_print (num / 10, res);
-// 		print = num % 10 + '0';
-// 		write(1, &print, 1);
-// 		*res += 1;
-// 	}
-// 	else if (num < 10)
-// 	{
-// 		print = num % 10 + '0';
-// 		write(1, &print, 1);
-// 		*res += 1;
-// 	}
-// }
-
 int	print_unsigned_dec(unsigned int n)
 {
 	return (ft_putnbr_long(n));
@@ -75,15 +57,56 @@ int print_upper_hex(unsigned int nbr)
 }
 
 
-int print_address(unsigned int nbr)
-{
+int print_address(void *ptr) {
+
+    uintptr_t addr = (uintptr_t)ptr;
+    char output[19];
+    output[18] = '\0';
+    int start;
 	int i;
-	if(write(1, "0x", 2) != -1)
+
+	// if(ptr < (uintptr_t)0)
+	// {
+	// 	start = 19;
+	// }
+	// else 
+	// {
+	// 	start = 16;
+	// }
+	start = 16;
+
+    // Find the starting position for non-zero digits
+    int found_nonzero = 0;
+    for (int i = 0; i < 16; i += 4) {
+        unsigned char nibble = (addr >> i) & 0xF;
+        if (nibble != 0) {
+            found_nonzero = 1;
+            start = start - i;
+            break;
+        }
+    }
+
+	// 0x1086833a0
+
+
+	i = start - 2;
+    // Convert pointer value to hexadecimal
+    while (i >= 0) 
 	{
-			i++;
-	}
+        unsigned char nibble = (addr >> (((start - i) * 4) - 8)) & 0xF;
+        output[i] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'a';
+		i--;
+    }
+	// 0x119d383a0
+	// printf("i is %d\n", start);
+
+    // Add '0x' and terminating \0 char 
+    output[0] = '0';
+    output[1] = 'x';
+	output[start] = '\0';
 	
-	i += ft_putnbr_base(nbr, "0123456789abcdef");
-	return(i);
+    ft_putstr(output);
+
+	return(ft_strlen(output));
 }
 
