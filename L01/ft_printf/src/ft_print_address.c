@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:45:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 18:29:21 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:03:32 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ int print_address(unsigned long ptr)
 {
 	int res;
 
+	res = 0;
 	if(write(1, "0x", 2) != -1)
 	{
 		res = 2;
+	}
+	else
+	{
+		return (-1);
 	}
 	return(ft_putnbr_base(ptr, "0123456789abcdef") + res);
 }

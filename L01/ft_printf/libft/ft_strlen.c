@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:35:37 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/02 14:25:52 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:59:25 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,4 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
+// ((e >> 1) + 62)

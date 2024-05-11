@@ -6,22 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 18:28:53 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:08:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-
-// • %c Prints a single character.
-// • %s Prints a string (as defined by the common C convention).
-// • %p The void * pointer argument has to be printed in hexadecimal format.
-// • %d Prints a decimal (base 10) number.
-// • %i Prints an integer in base 10.
-// • %u Prints an unsigned decimal (base 10) number.
-// • %x Prints a number in hexadecimal (base 16) lowercase format.
-// • %X Prints a number in hexadecimal (base 16) uppercase format.
-// • %% Prints a percent sign.
 
 unsigned int	check_token(char c, va_list arg_ptr)
 {
@@ -29,11 +19,7 @@ unsigned int	check_token(char c, va_list arg_ptr)
 	char *str;
 	void *ptr;
 	int nbr;
-	int nbr_int;
 	unsigned int unsigned_nbr;
-	int hex_nbr;
-
-	unsigned int res;
 
 	if(c == 'c')
 	{
@@ -72,41 +58,46 @@ unsigned int	check_token(char c, va_list arg_ptr)
 	}
 	else if(c == '%')
 	{
-		ft_putchar('%');
-		return(1);
+		if(ft_putchar('%') != -1)
+			return(1);
+		else 
+			return (-1);
 	}
 	
 	return (0);
 }
 
-
 int	ft_printf(const char *format, ...)
 {
-
 	va_list			arg_ptr;
-	unsigned int	res;
+	int	res;
+	int prev_res;
+	if(format == NULL)
+		return(-1);
 
 	res = 0;
-
 	va_start(arg_ptr, format);
-
 	while(*format)
 	{
-		if(*format == '%' )
+		if(*format == '%')
 		{
 			format++;
 			if(!*format)
 				return(res);
+			prev_res = res;
 			res += check_token(*format, arg_ptr);
+			if(res < prev_res)
+				return (-1);
 		}
 		else
 		{
-			ft_putchar(*format);
-			res++;
+			if(ft_putchar(*format) != -1)
+				res++;
+			else 
+				return (-1);
 		}
 		format++;
 	}
-
 	va_end(arg_ptr);
 	return(res);
 }

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_long.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:06:05 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/10 23:09:49 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 20:29:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -40,10 +40,14 @@ int	ft_putnbr_long(long long n)
 	{
 		if (n > LONG_MIN)
 		{
-			write(1, "-", 1);
-			n = n * -1;
-			res += 1;
-			recursive_print(n, &res);
+			if(write(1, "-", 1) != -1)
+			{
+				n = n * -1;
+				res += 1;
+				recursive_print(n, &res);
+			}
+			else 
+				return (-1);
 		}
 		else if (n == -9223372036854775807)
 		{
@@ -52,8 +56,6 @@ int	ft_putnbr_long(long long n)
 		}
 	}
 	else
-	{
 		recursive_print(n, &res);
-	}
 	return (res);
 }

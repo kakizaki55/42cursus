@@ -6,13 +6,13 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:23:49 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 18:16:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:12:21 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	recursive_print(unsigned long num, unsigned int *res, char *base, unsigned long base_l)
+static int	recursive_print(unsigned long num, unsigned int *res, char *base, unsigned long base_l)
 {
 	char	print;
 
@@ -20,7 +20,7 @@ static void	recursive_print(unsigned long num, unsigned int *res, char *base, un
 	{
 		recursive_print (num / base_l, res, base , base_l);
 		print = base[num % base_l];
-;		write(1, &print, 1);
+		write(1, &print, 1);
 		*res += 1;
 	}
 	else if (num < base_l)
@@ -28,16 +28,21 @@ static void	recursive_print(unsigned long num, unsigned int *res, char *base, un
 		if(num >= 0 && num <= 9)
 		{
 			print = base[num % base_l];
-			write(1, &print, 1);
-			*res += 1;
+			if(write(1, &print, 1) != -1)
+				*res += 1;
+			else 
+				return (-1);
 		}
 		else
 		{
 			print = base[num % base_l];
-			write(1, &print, 1);
-			*res += 1;
+			if(write(1, &print, 1) != -1)
+				*res += 1;
+			else 
+				return (-1);
 		}
 	}
+	return (0);
 }
 
 int		ft_putnbr_base(unsigned long num, char *base)
@@ -47,14 +52,7 @@ int		ft_putnbr_base(unsigned long num, char *base)
 	unsigned int res;
 
 	res = 0;
-		recursive_print(num, &res, base, base_l);
+	if(recursive_print(num, &res, base, base_l) == -1)
+		return (-1);
 	return (res);
-	
-	
 }
-
-// int main(void)
-// {
-// 	printf("\nreturn value is %d\n", ft_putnbr_base(12345678, "0123456789abcdef"));
-// 	return(0);
-// }

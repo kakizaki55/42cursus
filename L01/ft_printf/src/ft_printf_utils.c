@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 17:20:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:09:00 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 int print_char(char c)
 {
-	if(write(1, &c, 1) != -1)
-	{
-		return (1);
-	}
-	return (0);
+	return(ft_putchar(c));
 }
 
 
@@ -39,7 +35,7 @@ int print_str(char * str)
 		} 
 		else
 		{
-			return (0);
+			return (-1);
 		}
 	}
 	return(i);
