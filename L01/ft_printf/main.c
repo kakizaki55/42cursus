@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:50:39 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 11:54:34 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 17:21:15 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 // • %c Prints a single character.
 // • %s Prints a string (as defined by the common C convention).
@@ -39,7 +39,8 @@ int	main(void)
 	char ce = '\0';
 	char s[14] = "Hello there!!";
 	char *se = "";
-	void *p ;
+	void *p = (void *) ULONG_MAX;
+	// void *p = &s;
 	int d = -34578654; // need to handle min max pos neg
 	int	i = -42; 
 	unsigned u = 1234567; //no negatives (larger max)
@@ -141,26 +142,26 @@ int	main(void)
 	// len = printf("   printf: %X (uppercase HEX from int)\n", X);
 	// printf("      len: %d\n", len);
 	// len = ft_printf("ft_printf: %X (uppercase HEX from int)\n", X);
-	// printf("   ft_len: %d\n", len);
+	printf("   ft_len: %d\n", len);
 	
 	
-	// printf("\n------%%%%%% TEST------\n");
-	// len = printf("   printf: %%%%%%\n");
-	// printf("      len: %d\n", len);
-	// len = ft_printf("ft_printf: %%%%%%\n", X);
-	// printf("   ft_len: %d\n", len);
+	printf("\n------%%%%%% TEST------\n");
+	len = printf("   printf: %%%%%%\n");
+	printf("      len: %d\n", len);
+	len = ft_printf("ft_printf: %%%%%%\n", X);
+	printf("   ft_len: %d\n", len);
 	
-	// printf("\n------MIXED ARG TYPE TEST------\n");
-	// len = printf("   printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n", c,s,p,d,i,u,x,X);
-	// printf("      len: %d\n", len);
-	// len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
-	// printf("   ft_len: %d\n", len);
+	printf("\n------MIXED ARG TYPE TEST------\n");
+	len = printf("   printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n", c,s,p,d,i,u,x,X);
+	printf("      len: %d\n", len);
+	len = ft_printf("ft_printf: %c , %s, %p, %d, %i, %u, %x, %X %% (multi_test)\n\0", c,s,p,d,i,u,x,X);
+	printf("   ft_len: %d\n", len);
 
-	// printf("\n------MIXED ARG TYPE TEST------\n");
-	// len = printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
-	// printf("      len: %d\n", len);
-	// len = ft_printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
-	// printf("   ft_len: %d\n", len);
+	printf("\n------MIXED ARG TYPE TEST------\n");
+	len = printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
+	printf("      len: %d\n", len);
+	len = ft_printf("   printf: %c, %c, %c, %c, %c,(multi_test)\n", 'H', 'e', 'l', 'l', 'o' );
+	printf("   ft_len: %d\n", len);
 
 	printf("\n------------------END TEST-------------------\n");
 	printf("\n---------------------------------------------\n");

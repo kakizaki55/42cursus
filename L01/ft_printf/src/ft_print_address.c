@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_print_address.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 14:51:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 17:30:46 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/05/09 17:45:25 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/11 17:42:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
+#include "libftprintf.h"
 
-# include <stdarg.h>
+int print_address(unsigned long ptr)
+{
+	int res;
 
-int	ft_printf(const char *format, ...);
-
-int print_char(char c);
-int print_str(char * str);
-int	print_unsigned_dec(unsigned int n);
-int print_address(unsigned long ptr);
-int print_lower_hex(unsigned int nbr);
-int print_upper_hex(unsigned int nbr);
-
-#endif
+	if(write(1, "0x", 2) != -1)
+	{
+		res = 2;
+	}
+	return(ft_putnbr_base(ptr, "0123456789abcdef") + res);
+}

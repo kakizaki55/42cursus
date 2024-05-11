@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 12:03:32 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 17:25:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
@@ -48,7 +48,7 @@ unsigned int	check_token(char c, va_list arg_ptr)
 	else if(c == 'p')
 	{
 		ptr = va_arg(arg_ptr, void *);
-		return (print_address(ptr));
+		return (print_address((unsigned long)ptr));
 	}
 	else if(c == 'd' || c == 'i')
 	{
@@ -98,7 +98,6 @@ int	ft_printf(const char *format, ...)
 			if(!*format)
 				return(res);
 			res += check_token(*format, arg_ptr);
-			// va_arg(arg_ptr, void *); 				//this somehow helps with M3 chips 
 		}
 		else
 		{
