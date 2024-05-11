@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 22:08:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:48:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ unsigned int	check_token(char c, va_list arg_ptr)
 	if(c == 'c')
 	{
 		chr = va_arg(arg_ptr, int);
-		return (print_char(chr));
+		return (ft_print_char(chr));
 	}
 	else if(c == 's')
 	{
 		str = va_arg(arg_ptr, char *);
-		return (print_str(str));
+		return (ft_print_str(str));
 	}
 	else if(c == 'p')
 	{
 		ptr = va_arg(arg_ptr, void *);
-		return (print_address((unsigned long)ptr));
+		return (ft_print_address((unsigned long)ptr));
 	}
 	else if(c == 'd' || c == 'i')
 	{
@@ -44,17 +44,17 @@ unsigned int	check_token(char c, va_list arg_ptr)
 	else if(c == 'u')
 	{
 		unsigned_nbr = va_arg(arg_ptr, int);
-		return (print_unsigned_dec(unsigned_nbr));
+		return (ft_print_unsigned_dec(unsigned_nbr));
 	}
 	else if(c == 'x')
 	{
 		nbr = va_arg(arg_ptr, int);
-		return (print_lower_hex((unsigned int) nbr));
+		return (ft_print_lower_hex((unsigned int) nbr));
 	}
 	else if(c == 'X')
 	{
 		nbr = va_arg(arg_ptr, int);
-		return (print_upper_hex((unsigned int) nbr));
+		return (ft_print_upper_hex((unsigned int) nbr));
 	}
 	else if(c == '%')
 	{

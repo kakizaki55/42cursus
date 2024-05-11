@@ -29,7 +29,8 @@ WHITE = \033[0;97m
 
 SRC_FILES	=	ft_printf \
 				ft_printf_utils \
-				ft_print_address
+				ft_print_str \
+				ft_print_address 
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

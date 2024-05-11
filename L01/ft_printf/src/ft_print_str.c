@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 13:52:24 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 22:17:21 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/05/11 22:44:52 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/11 22:46:38 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "libft.h"
+
+int ft_print_str(char * str)
 {
-	if (c >= 'a' && c <= 'z')
+	int i;
+
+	if(!str)
+		return write(1, "(null)", 6);
+	i = 0;
+	while(str[i])
 	{
-		return (1);
+		if(write(1, &str[i], 1) != -1)
+			i++;
+		else
+			return (-1);
 	}
-	if (c >= 'A' && c <= 'Z')
-	{
-		return (1);
-	}
-	return (0);
+	return(i);
 }
