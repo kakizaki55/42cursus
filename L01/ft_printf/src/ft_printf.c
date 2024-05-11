@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/10 23:38:51 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 12:03:32 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,7 +23,7 @@
 // • %X Prints a number in hexadecimal (base 16) uppercase format.
 // • %% Prints a percent sign.
 
-long long	check_token(char c, va_list arg_ptr)
+unsigned int	check_token(char c, va_list arg_ptr)
 {
 	char chr;
 	char *str;
@@ -47,15 +47,13 @@ long long	check_token(char c, va_list arg_ptr)
 	}
 	else if(c == 'p')
 	{
-		// not sure how to print the memoy address here yet. 
 		ptr = va_arg(arg_ptr, void *);
-		// printf("ptr is : %p", ptr);
 		return (print_address(ptr));
 	}
 	else if(c == 'd' || c == 'i')
 	{
 		nbr = va_arg(arg_ptr, int);
-		return(ft_putnbr(nbr));
+		return (ft_putnbr(nbr));
 	}
 	else if(c == 'u')
 	{
@@ -85,8 +83,8 @@ long long	check_token(char c, va_list arg_ptr)
 int	ft_printf(const char *format, ...)
 {
 
-	va_list		arg_ptr;
-	long long	res;
+	va_list			arg_ptr;
+	unsigned int	res;
 
 	res = 0;
 
@@ -100,7 +98,7 @@ int	ft_printf(const char *format, ...)
 			if(!*format)
 				return(res);
 			res += check_token(*format, arg_ptr);
-			// va_arg(arg_ptr, void *);
+			// va_arg(arg_ptr, void *); 				//this somehow helps with M3 chips 
 		}
 		else
 		{

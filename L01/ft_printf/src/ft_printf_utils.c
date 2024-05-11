@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:51:29 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 11:54:27 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/11 12:04:59 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -60,8 +60,8 @@ int print_upper_hex(unsigned int nbr)
 int print_address(void *ptr) {
 
     uintptr_t addr = (uintptr_t)ptr;
-    char output[19];
-    output[18] = '\0';
+    char output[32];
+    output[31] = '\0';
     int start;
 	int i;
 
