@@ -5,17 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 19:31:27 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 20:53:25 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/05/12 16:12:10 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/05/12 16:12:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	int res;
-	
+	int	res;
+
+	res = 0;
 	res = write(1, &c, 1);
 	return (res);
 }

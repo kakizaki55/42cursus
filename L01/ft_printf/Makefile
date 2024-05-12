@@ -77,7 +77,7 @@ norm:
 			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
 
 debug:		fclean all
-# $(CC) $(DEBUG_FLAGS) -I include libftprintf.a
+			$(CC) $(DEBUG_FLAGS) -I include libftprintf.a
 			@echo "$(GREEN)Cleaned and rebuilt everything for ft_printf in debug mode!$(DEF_COLOR)"
 
 .PHONY:		all clean fclean re norm debug

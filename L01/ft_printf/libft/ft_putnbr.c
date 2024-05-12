@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:30:35 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 22:43:47 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:25:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,56 +20,62 @@ static void	recursive_print( int num, int *res)
 	{
 		recursive_print (num / 10, res);
 		print = num % 10 + '0';
-		if(write(1, &print, 1) != -1)
+		if (write(1, &print, 1) != -1)
 			*res += 1;
 		else
 		{
 			*res = -1;
-			return ;	
+			return ;
 		}
 	}
 	else if (num < 10)
 	{
 		print = num % 10 + '0';
-		if(write(1, &print, 1) != -1)
+		if (write(1, &print, 1) != -1)
 			*res += 1;
 		else
 		{
 			*res = -1;
-			return ;		
+			return ;
 		}
 	}
 }
 
+static void	check_sign(int *n, int *res)
+{
+	if (write(1, "-", 1) != -1)
+	{	
+		*n = *n * -1;
+		*res += 1;
+		recursive_print(*n, res);
+	}
+	else
+		*res = -1;
+}
+
+static void	print_min(int *res)
+{
+	if (write(1, "-2147483648", 11) != -1)
+		*res = 11;
+	else
+		*res = -1;
+}
+
 int	ft_putnbr(int n)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (n < 0)
 	{
 		if (n > INT_MIN)
-		{	
-			if(write(1, "-", 1) != -1)
-			{	
-				n = n * -1;
-				res += 1;
-				recursive_print(n, &res);
-			}
-			else
-				res = -1;
-		}
+			check_sign(&n, &res);
 		else if (n == -2147483648)
 		{
-			if(write(1, "-2147483648", 11) != -1)
-				res = 11;
-			else 
-				res = -1;
+			print_min(&res);
 		}
 	}
 	else
-	{
 		recursive_print(n, &res);
-	}
 	return (res);
 }

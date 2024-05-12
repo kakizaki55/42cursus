@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:06:05 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/11 20:29:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:23:28 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ static void	recursive_print( long long num, int *res)
 
 int	ft_putnbr_long(long long n)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (n < 0)
 	{
 		if (n > LONG_MIN)
 		{
-			if(write(1, "-", 1) != -1)
+			if (write(1, "-", 1) != -1)
 			{
 				n = n * -1;
 				res += 1;
 				recursive_print(n, &res);
 			}
-			else 
+			else
 				return (-1);
 		}
 		else if (n == -9223372036854775807)

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/11 22:09:20 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/12 20:11:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 int		ft_putchar(char c);
-void	ft_putstr(char * str);
+void	ft_putstr(char *str);
 int		ft_putnbr(int n);
 int		ft_putnbr_long(long long n);
 int		ft_putnbr_base(unsigned long num, char *base);
