@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 18:31:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/12 20:09:32 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:47:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ unsigned int	check_token(char c, va_list arg_ptr)
 		else
 			return (-1);
 	}
-	return (0);
+	else
+		return (-1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -56,7 +57,10 @@ int	ft_printf(const char *format, ...)
 			prev_res = res;
 			res += check_token(*format, arg_ptr);
 			if (res < prev_res)
+			{
+				printf("\n\n\n\n\n\n\nres is :%d\n\n\n\n\n\n\n\n",res);
 				return (-1);
+			}
 		}
 		else if (ft_putchar(*format) == -1)
 			return (-1);

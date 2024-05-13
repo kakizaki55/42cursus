@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:50:39 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/12 20:13:28 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:24:37 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int	main(void)
 
 	// GENERAL TEST (UNCOMMENT SECTION BELOW)
 	//--------------------------------------------
-	// printf("%zu\n", ft_strlen("123"));
+	len = 0;
+	len = ft_printf("%d\n", NULL);
+	// len = printf("%d\n", (int)NULL);
+	printf("len is :%d\n", len);
 	// char c = 'c';
 	// char ce = '\0';
 	// char s[14] = "Hello there!!";
@@ -49,16 +52,16 @@ int	main(void)
 	//--------------------------------------------
 	// NULL VALUES TEST (UNCOMMENT SECTION BELOW)
 	//--------------------------------------------
-	char c = '\0';
-	char ce = '\0';
-	char *s = NULL;
-	char *se = NULL;
-	void *p = NULL;
-	int d = 0; // need to handle min max pos neg
-	int	i = 0; 
-	unsigned u = 0; //no negatives (larger max: 4294967295)
-	int X = INT_MIN; //BC614E //NOTE: does not need to handle negatives
-	int x = INT_MIN; //BC614E
+	// char c = '\0';
+	// char ce = '\0';
+	// char *s = NULL;
+	// char *se = NULL;
+	// void *p = NULL;
+	// int d = 0; // need to handle min max pos neg
+	// int	i = 0; 
+	// unsigned u = 0; //no negatives (larger max: 4294967295)
+	// int X = INT_MIN; //BC614E //NOTE: does not need to handle negatives
+	// int x = INT_MIN; //BC614E
 	//--------------------------------------------
 	// MAX/MIN VALUES TEST (UNCOMMENT SECTION BELOW)
 	//--------------------------------------------
@@ -77,12 +80,12 @@ int	main(void)
 	// printf("-----------------PRINTF TEST-----------------\n");
 	// printf("------------------cspdiuxX%%------------------\n");
 	
-	printf("   Empty string test:");
-	// len = printf(NULL);
-	printf("      len: %d\n", len);
-	printf("Empty ft string test:");
-	// len = ft_printf(NULL);
-	printf("   ft_len: %d\n", len);
+	// printf("   Empty string test:");
+	// // len = printf(NULL);
+	// printf("      len: %d\n", len);
+	// printf("Empty ft string test:");
+	// // len = ft_printf(NULL);
+	// printf("   ft_len: %d\n", len);
 
 	// printf("\n------CHAR------\n");
 	// len = printf("   printf: %c (char)\n", c);

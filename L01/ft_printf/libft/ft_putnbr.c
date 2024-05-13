@@ -6,13 +6,13 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:30:35 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/12 16:25:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:42:45 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	recursive_print( int num, int *res)
+static int recursive_print( int num, int *res)
 {
 	char	print;
 
@@ -20,30 +20,29 @@ static void	recursive_print( int num, int *res)
 	{
 		recursive_print (num / 10, res);
 		print = num % 10 + '0';
-		if (write(1, &print, 1) != -1)
+		if (write(1, &print, 1) == 1)
 			*res += 1;
 		else
 		{
-			*res = -1;
-			return ;
+			return (-1);
 		}
 	}
 	else if (num < 10)
 	{
 		print = num % 10 + '0';
-		if (write(1, &print, 1) != -1)
+		if (write(1, &print, 1) == 1)
 			*res += 1;
 		else
 		{
-			*res = -1;
-			return ;
+			return (-1);
 		}
 	}
+	return (*res);
 }
 
 static void	check_sign(int *n, int *res)
 {
-	if (write(1, "-", 1) != -1)
+	if (write(1, "-", 1) == 1)
 	{	
 		*n = *n * -1;
 		*res += 1;
@@ -55,11 +54,23 @@ static void	check_sign(int *n, int *res)
 
 static void	print_min(int *res)
 {
-	if (write(1, "-2147483648", 11) != -1)
-		*res = 11;
-	else
-		*res = -1;
+	int		i;
+	char	*int_min = "-2147483648";
+
+	i = 0;
+	while (int_min[i])
+	{
+		if (write(1, &int_min[i], 1) != -1)
+			*res += 1;
+		else
+		{
+			*res = -1;
+			return ;
+		}
+		i++;
+	}
 }
+
 
 int	ft_putnbr(int n)
 {
@@ -76,6 +87,6 @@ int	ft_putnbr(int n)
 		}
 	}
 	else
-		recursive_print(n, &res);
+		return (recursive_print(n, &res));
 	return (res);
 }
