@@ -6,13 +6,13 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:30:35 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/13 18:42:45 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:28:53 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int recursive_print( int num, int *res)
+static void	recursive_print( int num, int *res)
 {
 	char	print;
 
@@ -24,7 +24,8 @@ static int recursive_print( int num, int *res)
 			*res += 1;
 		else
 		{
-			return (-1);
+			*res = -1;
+			return ;
 		}
 	}
 	else if (num < 10)
@@ -34,10 +35,10 @@ static int recursive_print( int num, int *res)
 			*res += 1;
 		else
 		{
-			return (-1);
+			*res = -1;
+			return ;
 		}
 	}
-	return (*res);
 }
 
 static void	check_sign(int *n, int *res)
@@ -55,12 +56,13 @@ static void	check_sign(int *n, int *res)
 static void	print_min(int *res)
 {
 	int		i;
-	char	*int_min = "-2147483648";
+	char	*int_min;
 
+	int_min = "-2147483648";
 	i = 0;
 	while (int_min[i])
 	{
-		if (write(1, &int_min[i], 1) != -1)
+		if (write(1, &int_min[i], 1) == 1)
 			*res += 1;
 		else
 		{
@@ -70,7 +72,6 @@ static void	print_min(int *res)
 		i++;
 	}
 }
-
 
 int	ft_putnbr(int n)
 {
@@ -87,6 +88,6 @@ int	ft_putnbr(int n)
 		}
 	}
 	else
-		return (recursive_print(n, &res));
+		recursive_print(n, &res);
 	return (res);
 }

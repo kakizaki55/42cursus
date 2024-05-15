@@ -6,16 +6,14 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/05/12 20:15:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:45:01 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 

@@ -7,8 +7,6 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= cc
 CFLAGS		= -Wall -Werror -Wextra -I 
-# this is just for testing out and development must change with proper flags
-# CFLAGS		= -I
 DEBUG_FLAGS	= -I -g -fsanitize=address
 RM			= rm -f
 AR			= ar rc
@@ -31,7 +29,6 @@ SRC_FILES	=	ft_printf \
 				ft_printf_utils \
 				ft_print_str \
 				ft_print_address 
-
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
