@@ -6,10 +6,9 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:17 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/21 15:41:14 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/21 17:17:23 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
-
 
 #include "get_next_line.h"
 

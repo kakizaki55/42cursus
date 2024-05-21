@@ -6,16 +6,15 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:21 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/21 15:15:17 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/21 17:14:39 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
@@ -26,4 +25,4 @@ char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *str);
 char	*ft_strldup(const char *s, size_t len);
 
-# endif
+#endif
