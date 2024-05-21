@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/21 14:35:31 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/21 16:20:05 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,6 +27,8 @@ int main(void)
 	}
 
 	line = get_next_line(fd);
-	printf("test print: %s\n", line);
+	printf("_______line is:%s _________\n", line);
+	line = get_next_line(fd);
+	printf("_______line is:%s _________\n", line);
 	return(0);
 }
