@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/21 17:16:56 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/21 21:29:08 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,9 +25,21 @@ int	main(void)
 	{
 		return (1);
 	}
+	// line = get_next_line(fd);
+	// line = get_next_line(fd);
+	// line = get_next_line(fd);
+	// line = get_next_line(fd);
 	line = get_next_line(fd);
-	printf("_______line is:%s _________\n", line);
+	printf("line is:%s\n", line);
+	printf("line length:%zu\n", ft_strlen(line));
 	line = get_next_line(fd);
-	printf("_______line is:%s _________\n", line);
+	printf("line is:%s\n", line);
+	printf("line length:%zu\n", ft_strlen(line));
+	line = get_next_line(fd);
+	printf("line is:%s\n", line);
+	printf("line length:%zu\n", ft_strlen(line));
+	line = get_next_line(fd);
+	printf("line is:%s\n", line);
+	printf("line length:%zu\n", ft_strlen(line));
 	return (0);
 }
