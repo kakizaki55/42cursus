@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:17 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 19:15:07 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 19:26:26 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,20 +69,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-char *get_new_string(int fd, char *static_string)
+char *get_new_string(int fd, char *sttc_str)
 {
 	char	*buffer;
 	int		bytes;
 
 	bytes = 1;
-	if(static_string == NULL)
-		static_string = "";
+	if(sttc_str == NULL)
+		sttc_str = "";
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if(buffer == NULL)
 		return (NULL);
 
-	while(check_for_new_line(static_string) == 0 && bytes != 0)
+	while(check_for_new_line(sttc_str) == 0 && bytes != 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if(bytes == -1)
@@ -91,8 +91,8 @@ char *get_new_string(int fd, char *static_string)
 			return (NULL);
 		}
 		buffer[bytes] = '\0';
-		static_string = ft_strjoin(static_string, buffer);
+		sttc_str = ft_strjoin(sttc_str, buffer);
 	}
 	free (buffer);
-	return (static_string);
+	return (sttc_str);
 }
