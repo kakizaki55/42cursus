@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 18:51:39 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 20:16:20 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,23 +19,24 @@ int	main(void)
 {
 	int		fd;
 	char	*line;
+	int 	i;
+	int 	print_len;
 
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		return (1);
 	}
-	line = get_next_line(fd);
-	// printf("line is:%s\n", line);
-	// printf("line length:%zu\n", ft_strlen(line));
-	// line = get_next_line(fd);
-	// printf("line is:%s\n", line);
-	// printf("line length:%zu\n", ft_strlen(line));
-	// line = get_next_line(fd);
-	// printf("line is:%s\n", line);
-	// printf("line length:%zu\n", ft_strlen(line));
-	// line = get_next_line(fd);
-	// printf("line is:%s\n", line);
-	// printf("line length:%zu\n", ft_strlen(line));
+
+	i = 1;
+	print_len = 8;
+
+	while (i <= print_len)
+	{
+		line = get_next_line(fd);
+		printf("line [%d]:%s\n",i ,line);
+		printf("line [%d]:%zu\n",i ,ft_strlen(line));
+		i++;
+	}
 	return (0);
 }
