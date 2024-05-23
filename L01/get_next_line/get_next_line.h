@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:21 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 19:15:46 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 19:42:04 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,9 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
-int		check_for_new_line(char *string);
+int		check_for_new_line(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-char 	*get_new_string(int fd, char *static_string);
+char 	*get_new_string(int fd, char *sttc_str);
+char 	*get_one_line(char *str);
 
 #endif

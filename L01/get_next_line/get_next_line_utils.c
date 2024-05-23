@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:17 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 19:26:26 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 19:43:15 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,17 +24,17 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	check_for_new_line(char *string)
+int	check_for_new_line(char *str)
 {
 	int	i;
 
-	if(string == NULL)
+	if(str == NULL)
 		return (0);
 	
 	i = 0;
-	while (string[i])
+	while (str[i])
 	{
-		if (string[i] == '\n')
+		if (str[i] == '\n')
 			return (i);
 		i++;
 	}
@@ -95,4 +95,28 @@ char *get_new_string(int fd, char *sttc_str)
 	}
 	free (buffer);
 	return (sttc_str);
+}
+
+char *get_one_line(char *str)
+{
+	int len;
+	int i;
+	char *result;
+
+	len = 0;
+	while (str[len] != '\0' && str[len] != '\n')
+	{
+		len++;
+	}
+	i = 0;
+	result = malloc(sizeof(char) * len + 2);
+	if (result == NULL)
+		return (NULL);
+	while (i <= len)
+	{
+		result[i] = str[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }
