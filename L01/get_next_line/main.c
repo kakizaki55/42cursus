@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 20:16:20 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 20:52:37 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,7 +34,7 @@ int	main(void)
 	while (i <= print_len)
 	{
 		line = get_next_line(fd);
-		printf("line [%d]:%s\n",i ,line);
+		printf("line [%d]:%s",i ,line);
 		printf("line [%d]:%zu\n",i ,ft_strlen(line));
 		i++;
 	}
