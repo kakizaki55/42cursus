@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:17 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/21 18:09:50 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 19:15:07 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,6 +24,24 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+int	check_for_new_line(char *string)
+{
+	int	i;
+
+	if(string == NULL)
+		return (0);
+	
+	i = 0;
+	while (string[i])
+	{
+		if (string[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*res;
@@ -34,9 +52,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	res = malloc((ft_strlen(s2) + ft_strlen(s1) + 1) * sizeof(char));
+	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (res == NULL)
-		return (res);
+		return (NULL);
 	while (s1[i] != '\0')
 	{
 		res[i] = s1[i];
@@ -51,56 +69,30 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-char	*ft_strldup(const char *s, size_t len)
+char *get_new_string(int fd, char *static_string)
 {
-	char	*cpy;
-	size_t	i;
+	char	*buffer;
+	int		bytes;
 
-	cpy = (char *)malloc(sizeof(char) * (len + 1));
-	if (cpy == NULL)
+	bytes = 1;
+	if(static_string == NULL)
+		static_string = "";
+
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if(buffer == NULL)
 		return (NULL);
 
-	i = 0;
-	while (s[i] != '\0' && i < len)
+	while(check_for_new_line(static_string) == 0 && bytes != 0)
 	{
-		cpy[i] = s[i];
-		i++;
+		bytes = read(fd, buffer, BUFFER_SIZE);
+		if(bytes == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[bytes] = '\0';
+		static_string = ft_strjoin(static_string, buffer);
 	}
-	cpy[i] = '\0';
-	return (cpy);
+	free (buffer);
+	return (static_string);
 }
-
-// static size_t	get_smaller(size_t num1, size_t num2)
-// {
-// 	if (num1 < num2)
-// 		return (num1);
-// 	if (num1 > num2)
-// 		return (num2);
-// 	return (num2);
-// }
-
-// char	*ft_substr(const char *s, unsigned int start, size_t len)
-// {
-// 	char			*res;
-// 	unsigned int	i;
-// 	size_t			sub_length;
-
-// 	sub_length = 0;
-// 	if (s == NULL)
-// 		return (NULL);
-// 	if (start > ft_strlen(s))
-// 		return ("");
-// 	while (s[start + sub_length] != '\0')
-// 		sub_length++;
-// 	i = 0;
-// 	res = malloc((get_smaller(sub_length, len) + 1) * sizeof(char));
-// 	if (res == NULL)
-// 		return (NULL);
-// 	while (s[i + start] != '\0' && i < len)
-// 	{
-// 		res[i] = s[i + start];
-// 		i++;
-// 	}
-// 	res[i] = '\0';
-// 	return (res);
-// }
