@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:17 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 21:40:30 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 22:22:31 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
+	if(str == NULL)
+		return(0);
 	i = 0;
 	while (str[i])
 	{
@@ -42,27 +44,31 @@ int	check_for_new_line(char *str)
 }
 
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *sttc_str, char *buffer)
 {
 	char	*res;
 	int		i;
 	int		j;
 
-	if (s1 == NULL || s2 == NULL)
+	if (sttc_str == NULL || buffer == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
-	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	res = malloc((ft_strlen(sttc_str) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (res == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
 	{
-		res[i] = s1[i];
+		free(buffer);
+		free(sttc_str);
+		return (NULL);
+	}
+	while (sttc_str[i] != '\0')
+	{
+		res[i] = sttc_str[i];
 		i++;
 	}
-	while (s2[j] != '\0')
+	while (buffer[j] != '\0')
 	{
-		res[i + j] = s2[j];
+		res[i + j] = buffer[j];
 		j++;
 	}
 	res[i + j] = '\0';
@@ -92,6 +98,11 @@ char *get_new_string(int fd, char *sttc_str)
 		}
 		buffer[bytes] = '\0';
 		sttc_str = ft_strjoin(sttc_str, buffer);
+		if(sttc_str == NULL)
+		{
+			free(sttc_str);
+			return (NULL);
+		}
 	}
 	free (buffer);
 	return (sttc_str);
@@ -104,6 +115,8 @@ char *get_one_line(char *str)
 	char *result;
 
 	len = 0;
+	if(str[0] == '\0')
+		return (NULL);
 	while (str[len] != '\0' && str[len] != '\n')
 	{
 		len++;

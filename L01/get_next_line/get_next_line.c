@@ -6,7 +6,7 @@
 /*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:19 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 21:44:31 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/23 22:18:06 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,6 @@ char	*trim_string(int n, char *str)
 
 	if(n == 0 || str == NULL)
 	{
-		free(str);
 		return (NULL);
 	}
 
@@ -35,8 +34,9 @@ char	*trim_string(int n, char *str)
 		result[i] = str[n + i];
 		i++;
 	}
-	free(str);
 	result[i] = '\0';
+	if (str != NULL)
+        free(str); 
 	return (result);
 }
 
@@ -45,8 +45,17 @@ char	*get_next_line(int fd)
 {
 	static char	*sttc_str;
 	char 		*result;
+	// static int 	prev_fd = -1;
+
 	if(fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+
+	// if (prev_fd != fd && prev_fd != -1)
+    // {
+    //     free(sttc_str);
+    //     sttc_str = NULL;
+    // }
+    // prev_fd = fd;
 
 	sttc_str = get_new_string(fd, sttc_str);
 	if(sttc_str == NULL)
