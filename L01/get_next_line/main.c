@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: minokakakizak <minokakakizak@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 22:01:36 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/24 13:08:01 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 

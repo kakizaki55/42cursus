@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizaki <minokakakizaki@student.    +#+  +:+       +#+        */
+/*   By: minokakakizak <minokakakizak@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:21 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/23 21:53:33 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/24 13:45:54 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,5 +26,6 @@ int		check_for_new_line(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char 	*get_new_string(int fd, char *sttc_str);
 char 	*get_one_line(char *str);
+char *ft_strdup(const char *str);
 
 #endif
