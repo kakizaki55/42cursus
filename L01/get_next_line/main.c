@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/24 20:09:18 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:55:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "get_next_line.h"
 #include <fcntl.h>
 
-// __attribute((destructor)) static void destructor(void) {
-// 	system("leaks -q --list --fullStacks a.out");
-// }
+__attribute((destructor)) static void destructor(void) {
+	system("leaks -q --list --fullStacks a.out");
+}
 
 int	main(void)
 {

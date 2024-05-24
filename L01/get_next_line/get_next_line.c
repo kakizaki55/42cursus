@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:19 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/24 20:14:09 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:56:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char *get_new_string(int fd, char *sttc_str)
 	sttc_str = ft_strdup(result);
 	free(result);
 	free(buffer);
-	if(bytes ==  0 && sttc_str == NULL)
+	if(bytes ==  0 && *sttc_str == '\0')
 	{
 		free(sttc_str);
 		return (NULL);
