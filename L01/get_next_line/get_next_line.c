@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minokakakizak <minokakakizak@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:19 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/24 20:56:27 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/24 23:52:51 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "get_next_line.h"
 
@@ -18,8 +18,6 @@ char	*ft_strjoin(char *sttc_str, char *buffer)
 	int		i;
 	int		j;
 
-	if (sttc_str == NULL && buffer == NULL)
-		return (NULL);
 	i = 0;
 	j = 0;
 	res = malloc((ft_strlen(sttc_str) + ft_strlen(buffer) + 1) * sizeof(char));
@@ -39,8 +37,7 @@ char	*ft_strjoin(char *sttc_str, char *buffer)
 		j++;
 	}
 	res[i + j] = '\0';
-	free(sttc_str);
-	return (res);
+	return (free(sttc_str), res);
 }
 
 char *get_new_string(int fd, char *sttc_str)
@@ -67,6 +64,7 @@ char *get_new_string(int fd, char *sttc_str)
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if(bytes == -1)
 		{
+			free(sttc_str);
 			free(result);
 			free(buffer);
 			return (NULL);
@@ -114,7 +112,6 @@ char *get_one_line(char *str)
 		i++;
 	}
 	result[i] = '\0';
-	// free(str);
 	return (result);
 }
 
@@ -144,11 +141,9 @@ char	*trim_string(int n, char *str)
 		i++;
 	}
 	result[i] = '\0';
-    free(str); 
-	return (result);
+	return (free(str), result);
 }
 
-// some how the last line needs to be freed after.........
 char	*get_next_line(int fd)
 {
 	static char	*sttc_str;
