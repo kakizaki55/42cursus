@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizak <minokakakizak@student.42    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:19 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/24 14:00:15 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/24 20:14:09 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -24,7 +24,10 @@ char	*ft_strjoin(char *sttc_str, char *buffer)
 	j = 0;
 	res = malloc((ft_strlen(sttc_str) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (res == NULL)
+	{
+		free(sttc_str);
 		return (NULL);
+	}
 	while (sttc_str[i] != '\0')
 	{
 		res[i] = sttc_str[i];
@@ -36,6 +39,7 @@ char	*ft_strjoin(char *sttc_str, char *buffer)
 		j++;
 	}
 	res[i + j] = '\0';
+	free(sttc_str);
 	return (res);
 }
 
@@ -47,27 +51,44 @@ char *get_new_string(int fd, char *sttc_str)
 
 	bytes = 1;
 	if(sttc_str == NULL)
-		sttc_str = "";
-	result = sttc_str;
+		result = ft_strdup("");
+	else
+		result = ft_strdup(sttc_str);
+	
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if(buffer == NULL)
+	{
+		free(result);
 		return (NULL);
+	}
 
 	while(check_for_new_line(result) == 0 && bytes != 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if(bytes == -1)
 		{
+			free(result);
 			free(buffer);
 			return (NULL);
 		}
 		buffer[bytes] = '\0';
 		result = ft_strjoin(result, buffer);
 		if(result == NULL)
+		{
+			free (buffer);
 			return(NULL);
+		}
 	}
-	free (buffer);
-	return (result);
+	free(sttc_str);
+	sttc_str = ft_strdup(result);
+	free(result);
+	free(buffer);
+	if(bytes ==  0 && sttc_str == NULL)
+	{
+		free(sttc_str);
+		return (NULL);
+	}
+	return (sttc_str);
 }
 
 char *get_one_line(char *str)
@@ -93,6 +114,7 @@ char *get_one_line(char *str)
 		i++;
 	}
 	result[i] = '\0';
+	// free(str);
 	return (result);
 }
 
@@ -104,27 +126,29 @@ char	*trim_string(int n, char *str)
 
 	if(n == 0 || str == NULL)
 	{
+		free(str);
 		return (NULL);
 	}
-
 	len = ft_strlen(str) - n;
 	
 	i = 0;
 	result = malloc(sizeof(char) * len + 1);
 	if (result == NULL)
+	{
+		free(str);
 		return (NULL);
+	}
 	while (i < len)
 	{
 		result[i] = str[n + i];
 		i++;
 	}
 	result[i] = '\0';
-	if (str != NULL)
-        free(str); 
+    free(str); 
 	return (result);
 }
 
-
+// some how the last line needs to be freed after.........
 char	*get_next_line(int fd)
 {
 	static char	*sttc_str;

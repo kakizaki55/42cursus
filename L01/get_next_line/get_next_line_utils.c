@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minokakakizak <minokakakizak@student.42    +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:17 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/24 13:45:46 by minokakakiz      ###   ########.fr       */
+/*   Updated: 2024/05/24 20:03:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -42,21 +42,33 @@ int	check_for_new_line(char *str)
 	}
 	return (0);
 }
-char *ft_strdup(const char *str) 
+static size_t	ft_strcpy(char *dst, const char *src)
 {
-    char *dup;
-    int len;
-    int i;
+	size_t	i;
+	size_t	src_length;
 
-    len = ft_strlen(str);
-    dup = malloc(sizeof(char) * (len + 1));
-    if (!dup)
-        return (NULL);
-    i = 0;
-    while (str[i]) {
-        dup[i] = str[i];
-        i++;
-    }
-    dup[i] = '\0';
-    return (dup);
+	src_length = ft_strlen(src);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (src_length);
+}
+
+char	*ft_strdup(const char *s)
+{
+	size_t	length;
+	char	*cpy;
+	// if(s[0] == '\0')
+	// 	return (NULL);
+
+	length = ft_strlen(s);
+	cpy = (char *)malloc(sizeof(char) * (length + 1));
+	if (cpy == NULL)
+		return (NULL);
+	ft_strcpy(cpy, s);
+	return (cpy);
 }
