@@ -1,16 +1,16 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minokakakizak <minokakakizak@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 14:11:19 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/25 13:43:59 by minokakakiz      ###   ########.fr       */
+/*   Created: 2024/05/25 13:41:24 by minokakakiz       #+#    #+#             */
+/*   Updated: 2024/05/25 13:46:12 by minokakakiz      ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin(char *sttc_str, char *buffer)
 {
@@ -124,19 +124,19 @@ char	*trim_string(int n, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*sttc_str;
+	static char	*sttc_str[1024];
 	char		*result;
 
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
-	sttc_str = get_new_string(fd, sttc_str);
-	if (sttc_str == NULL)
+	sttc_str[fd] = get_new_string(fd, sttc_str[fd]);
+	if (sttc_str[fd] == NULL)
 		return (NULL);
-	result = get_one_line(sttc_str);
+	result = get_one_line(sttc_str[fd]);
 	if (result == NULL)
 		return (NULL);
-	sttc_str = trim_string(ft_strlen(result), sttc_str);
-	if (sttc_str == NULL)
+	sttc_str[fd] = trim_string(ft_strlen(result), sttc_str[fd]);
+	if (sttc_str[fd] == NULL)
 		return (NULL);
 	return (result);
 }
