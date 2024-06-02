@@ -6,13 +6,13 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/02 16:02:18 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/02 16:33:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-int test(void)
+int	test(void)
 {
 	ft_printf("test");
 	return (0);

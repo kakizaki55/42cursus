@@ -42,7 +42,7 @@ $(NAME):	$(OBJ)
 			mv libft.a $(NAME)
 			$(AR) $(NAME) $(OBJ)
 			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o pushswap
-			mv $(NAME) $(OBJ_DIR)
+#mv $(NAME) $(OBJ_DIR)
 			@echo "$(GREEN) $(NAME) compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
