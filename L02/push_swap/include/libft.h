@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/02 14:56:09 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:26:59 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <limits.h>
 # include <stdarg.h>
 
@@ -76,11 +77,11 @@ int		ft_putnbr(int n);
 int		ft_putnbr_long(long long n);
 int		ft_putnbr_base(unsigned long num, char *base);
 
-int	ft_put_address(unsigned long ptr);
-int	ft_printf(const char *format, ...);
-int	ft_print_str(char *str);
-int	ft_print_unsigned_dec(unsigned int n);
-int	ft_print_lower_hex(unsigned int nbr);
-int	ft_print_upper_hex(unsigned int nbr);
+int		ft_put_address(unsigned long ptr);
+int		ft_printf(const char *format, ...);
+int		ft_print_str(char *str);
+int		ft_print_unsigned_dec(unsigned int n);
+int		ft_print_lower_hex(unsigned int nbr);
+int		ft_print_upper_hex(unsigned int nbr);
 
 #endif
