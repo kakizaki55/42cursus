@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/02 16:33:51 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/02 19:43:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,5 +16,8 @@
 int	main(void)
 {
 	test();
+
+
+	printf("%d", (unsigned int)10);
 	return (0);
 }
