@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:11:19 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/05/25 15:27:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:46:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ char	*ft_strjoin(char *sttc_str, char *buffer)
 	j = 0;
 	res = malloc((ft_strlen(sttc_str) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (res == NULL)
-	{
-		free(sttc_str);
-		return (NULL);
-	}
+		return (free(sttc_str), NULL);
 	while (sttc_str[i] != '\0')
 	{
 		res[i] = sttc_str[i];
