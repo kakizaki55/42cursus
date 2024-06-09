@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 15:44:03 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/09 21:11:49 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/09 23:24:05 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,7 +21,7 @@ t_c_list	*ft_c_lstnew(int content)
 	if (node == NULL)
 		return (NULL);
 	node->content = content;
-	node->next = node;
-	node->prev = node;
+	node->next = NULL;
+	node->prev = NULL;
 	return (node);
 }

@@ -27,7 +27,7 @@ WHITE = \033[0;97m
 
 SRC_FILES	=	pushswap_utils \
 				ft_c_lstnew \
-				ft_c_lstadd_front \
+				ft_c_lstadd \
 				ft_c_lstsize 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
