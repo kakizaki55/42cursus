@@ -1,30 +1,24 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/09 21:33:10 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/05/02 18:53:28 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/06/02 14:56:52 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "libft.h"
 
-typedef struct c_list
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int				content;
-	struct c_list	*next;
-	struct c_list	*prev;
-}	t_c_list;
-
-t_c_list	*ft_c_lstnew(int content);
-int			ft_c_lstsize(t_c_list *lst);
-void		ft_c_lstadd(t_c_list **lst, t_c_list *new);
-
-
-
-
-#endif
+	if (!lst || !*f)
+		return ;
+	while (lst)
+	{	
+		f(lst->content);
+		lst = lst->next;
+	}
+}

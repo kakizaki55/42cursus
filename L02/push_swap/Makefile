@@ -5,9 +5,9 @@ INCLUDE		= include
 LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-CC			= cc
-CFLAGS		= -Wall -Werror -Wextra -I 
-DEBUG_FLAGS	= -I -g -fsanitize=address
+CC			= cc -I
+# CFLAGS		= -Wall -Werror -Wextra
+# DEBUG_FLAGS	= -I -g -fsanitize=address
 RM			= rm -f
 AR			= ar rc
 
@@ -25,7 +25,10 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	pushswap_utils
+SRC_FILES	=	pushswap_utils \
+				ft_c_lstnew \
+				ft_c_lstadd_front \
+				ft_c_lstsize 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
