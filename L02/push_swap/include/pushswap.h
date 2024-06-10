@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/09 21:33:10 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:07:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
@@ -18,11 +18,12 @@ typedef struct c_list
 	int				content;
 	struct c_list	*next;
 	struct c_list	*prev;
+	int 			head;
 }	t_c_list;
 
 t_c_list	*ft_c_lstnew(int content);
-int			ft_c_lstsize(t_c_list *lst);
-void		ft_c_lstadd(t_c_list **lst, t_c_list *new);
+int			ft_c_lstsize(t_c_list **lst);
+t_c_list	*ft_c_lstadd(t_c_list *head, t_c_list *new);
 
 
 
