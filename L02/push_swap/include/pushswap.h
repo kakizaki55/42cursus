@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/11 17:22:20 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:12:41 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ typedef struct c_list
 t_c_list	*ft_c_lstnew(int content);
 int			ft_c_lstsize(t_c_list **lst);
 void		**ft_c_lstadd(t_c_list **head, t_c_list *new);
-
-
+void 		print_lst(t_c_list *head);
 
 
 #endif

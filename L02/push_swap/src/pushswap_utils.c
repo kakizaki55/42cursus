@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/11 17:40:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:11:48 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,29 @@ int	ft_c_lstsize(t_c_list **lst)
 	int	res;
 	t_c_list *current;
 
-
 	current = *lst;
-	// printf("%p\n",&(*lst)); fflush(stdout);
 	res = 1;
 	while (1)
 	{	
 		*lst = (*lst)->next;
-		printf("prev%p\n",(*lst)->prev); fflush(stdout);
-		printf("next%p\n",(*lst)->next); fflush(stdout);
-		if(((*lst)->next) == current)
+		if(*lst == current)
 		{
 			break ;
 		}
 		res++;
 	}
 	return (res);
+}
+
+void print_lst(t_c_list *head)
+{
+	t_c_list *current = head;
+	
+    while (1)
+	{	
+        ft_printf("list is:%d\n", current->content);
+        current = current->next;
+		if(current == head)
+			break;
+	}
 }

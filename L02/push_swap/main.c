@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/11 17:45:23 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:11:56 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,38 @@ int	main(int argc, char *argv[])
 	printf("next is:%p\n", (head)->next);
 	printf("prev is:%p\n", (head)->prev);
 	
-	// head = ft_c_lstadd(ft_c_lstnew(4));
-	// printf("%d\n", (*head)->content);
-	// printf("head is:%p\n", (head));
-	// printf("next is:%p\n", (*head)->next);
-	// printf("prev is:%p\n", (*head)->prev);
+	ft_c_lstadd(&head, ft_c_lstnew(4));
+	printf("%d\n", (head)->content);
+	printf("head is:%p\n", (head));
+	printf("next is:%p\n", (head)->next);
+	printf("prev is:%p\n", (head)->prev);
 
-	// printf("%d\n", ft_c_lstsize(&head));
+	ft_c_lstadd(&head, ft_c_lstnew(5));
+	printf("%d\n", (head)->content);
+	printf("head is:%p\n", (head));
+	printf("next is:%p\n", (head)->next);
+	printf("prev is:%p\n", (head)->prev);
+
+	ft_c_lstadd(&head, ft_c_lstnew(6));
+	printf("%d\n", (head)->content);
+	printf("head is:%p\n", (head));
+	printf("next is:%p\n", (head)->next);
+	printf("prev is:%p\n", (head)->prev);
+
+	printf("%d\n", ft_c_lstsize(&head));
 	// printf("%d\n", head->next->content);
-	t_c_list *current = head;
+	t_c_list *current = head ;
 
 	do {
         printf("list is:%d\n", current->content);
-        current = current->next;
+        current = current->prev;
     } while (current != head);
+
+	print_lst(head);
+	// do {
+    //     printf("list is:%d\n", current->content);
+    //     current = current->next;
+    // } while (current != head);
 	
 	// int ARG[] = {1, 2, 3, 4, 5};
 	// int i;
