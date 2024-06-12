@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/11 19:11:56 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:49:44 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 #include "pushswap.h"
@@ -58,27 +58,19 @@ int	main(int argc, char *argv[])
 	printf("prev is:%p\n", (head)->prev);
 
 	printf("%d\n", ft_c_lstsize(&head));
-	// printf("%d\n", head->next->content);
-	t_c_list *current = head ;
-
-	do {
-        printf("list is:%d\n", current->content);
-        current = current->prev;
-    } while (current != head);
 
 	print_lst(head);
-	// do {
-    //     printf("list is:%d\n", current->content);
-    //     current = current->next;
-    // } while (current != head);
-	
-	// int ARG[] = {1, 2, 3, 4, 5};
-	// int i;
-	// i = 0;
-	// while(ARG[i])
-	// {
-	// 	printf("ARG[i]:%d\n", ARG[i]);
-	// 	i++;
-	// }
-	// return (0);
+	ft_printf("---------------------\n");
+	rotate(&head);
+	print_lst(head);
+	ft_printf("---------------------\n");
+	rotate(&head);
+	print_lst(head);
+
+	ft_printf("---------------------\n");
+	r_rotate(&head);
+	print_lst(head);
+	ft_printf("---------------------\n");
+	r_rotate(&head);
+	print_lst(head);
 }

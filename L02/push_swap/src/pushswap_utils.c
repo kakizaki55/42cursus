@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pushswap_utils.c                                   :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/11 19:11:48 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:47:33 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 #include "pushswap.h"
@@ -67,12 +67,27 @@ int	ft_c_lstsize(t_c_list **lst)
 void print_lst(t_c_list *head)
 {
 	t_c_list *current = head;
-	
+	int i;
+
+	i = 0;
     while (1)
 	{	
-        ft_printf("list is:%d\n", current->content);
+        ft_printf("[%d]:%d\n", i, current->content);
         current = current->next;
+		i++;
 		if(current == head)
 			break;
 	}
 }
+
+void rotate(t_c_list **head)
+{
+	*head = (*head)->next;
+}
+
+void r_rotate(t_c_list **head)
+{
+	*head = (*head)->prev;
+}
+//idea for function
+// ft_for();
