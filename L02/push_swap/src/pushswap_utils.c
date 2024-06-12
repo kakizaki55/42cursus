@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:24:54 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:34:11 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,7 +26,7 @@ t_c_list	*ft_c_lstnew(int content)
 	return (node);
 }
 
-void	**ft_c_lstadd(t_c_list **head, t_c_list *new)
+void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 {	
 
 	if(*head == NULL)
@@ -57,7 +57,7 @@ int	ft_c_lstsize(t_c_list **lst)
 		*lst = (*lst)->next;
 		if(*lst == current)
 		{
-			break ;
+			return (res);
 		}
 		res++;
 	}
@@ -96,7 +96,7 @@ t_c_list *ft_lstpop(t_c_list **head)
 	t_c_list *temp;
 
 	temp = *head;
-	poped = ft_lstnew((*head)->content);
+	poped = ft_c_lstnew((*head)->content);
 	(*head)->prev->next = (*head)->next;
 	(*head)->next->prev = (*head)->prev;
 	*head = (*head)->next;
