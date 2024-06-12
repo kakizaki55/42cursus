@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:28:43 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:49:15 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -88,4 +88,11 @@ int	main(int argc, char *argv[])
 	ft_lstswap(&head);
 	puts("list is at:");
 	print_lst(head);
+	printf("size is:%d\n", ft_c_lstsize(&head));
+
+	ft_printf("---------------------\n");
+	print_lst(head);
+	ft_c_lstiter(head, add2);
+	print_lst(head);
+
 }

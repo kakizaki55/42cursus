@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:34:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:50:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -117,3 +117,22 @@ void 	ft_lstswap(t_c_list **head)
 
 //idea for function
 // ft_for();
+
+
+// there are more addiatianl functions
+int add2(int number)
+{
+	return (number + 2);
+}
+void	ft_c_lstiter(t_c_list *head, int (*f)(int))
+{
+	t_c_list *current = head;
+
+    while (1)
+	{	
+    	current->content = f(current->content);
+        current = current->next;
+		if(current == head)
+			break;
+	}
+}

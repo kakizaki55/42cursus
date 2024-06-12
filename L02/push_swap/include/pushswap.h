@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:34:24 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:51:03 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,7 +29,8 @@ void 		rotate(t_c_list **head);
 void		r_rotate(t_c_list **head);
 t_c_list 	*ft_lstpop(t_c_list **head);
 void		ft_lstswap(t_c_list **head);
-
+void		ft_c_lstiter(t_c_list *head, int (*f)(int));
+int 		add2(int number);
 
 
 
