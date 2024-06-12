@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:14:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:16:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -97,15 +97,12 @@ t_c_list *ft_lstpop(t_c_list **head)
 
 	temp = *head;
 	poped = ft_lstnew((*head)->content);
-
 	(*head)->prev->next = (*head)->next;
 	(*head)->next->prev = (*head)->prev;
-
 	*head = (*head)->next;
 	free(temp);
 	poped->next = poped;
 	poped->prev = poped;
-
 	return (poped);
 }
 

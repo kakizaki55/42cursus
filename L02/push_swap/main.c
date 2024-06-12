@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:12:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:16:36 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -77,7 +77,10 @@ int	main(int argc, char *argv[])
 	print_lst(poped);
 	puts("list is at:");
 	print_lst(head);
-	// ft_printf("---------------------\n");
-	// ft_lstpop(head);
-	// print_lst(head);
+	ft_printf("---------------------\n");
+	// t_c_list *poped;
+	poped = ft_lstpop(&head);
+	print_lst(poped);
+	puts("list is at:");
+	print_lst(head);
 }
