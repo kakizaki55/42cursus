@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 12:42:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:11:25 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,6 +27,7 @@ void		**ft_c_lstadd(t_c_list **head, t_c_list *new);
 void 		print_lst(t_c_list *head);
 void 		rotate(t_c_list **head);
 void		r_rotate(t_c_list **head);
+t_c_list 	*ft_lstpop(t_c_list **head);
 
 
 

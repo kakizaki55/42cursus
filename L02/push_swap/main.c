@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 12:49:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:12:07 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,7 +70,14 @@ int	main(int argc, char *argv[])
 	ft_printf("---------------------\n");
 	r_rotate(&head);
 	print_lst(head);
+
 	ft_printf("---------------------\n");
-	r_rotate(&head);
+	t_c_list *poped;
+	poped = ft_lstpop(&head);
+	print_lst(poped);
+	puts("list is at:");
 	print_lst(head);
+	// ft_printf("---------------------\n");
+	// ft_lstpop(head);
+	// print_lst(head);
 }
