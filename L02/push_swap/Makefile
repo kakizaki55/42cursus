@@ -1,6 +1,6 @@
 #Variables
-
-NAME		= pushswap.a
+PROG_NAME	= push_swap
+NAME		= push_swap.a
 INCLUDE		= include
 LIBFT		= libft
 SRC_DIR		= src/
@@ -42,7 +42,7 @@ $(NAME):	$(OBJ)
 			cp libft/libft.a .
 			mv libft.a $(NAME)
 			$(AR) $(NAME) $(OBJ)
-			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o pushswap
+			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
 #mv $(NAME) $(OBJ_DIR)
 			@echo "$(GREEN) $(NAME) compiled!$(DEF_COLOR)"
 
@@ -62,19 +62,19 @@ fclean:		clean
 			$(RM) $(NAME)
 			$(RM) $(LIBFT)/libft.a
 			$(RM) a.out
-			$(RM) pushswap
+			$(RM) $(PROG_NAME)
 			@echo "$(CYAN) $(NAME) executable files cleaned!$(DEF_COLOR)"
 			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
-			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o pushswap
+			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
 			@echo "$(GREEN)Cleaned and rebuilt everything for  $(NAME)!$(DEF_COLOR)"
 
 norm:
 			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
 
 debug:		fclean all
-			$(CC) $(DEBUG_FLAGS) -I include pushswap.a
+			$(CC) $(DEBUG_FLAGS) -I include $(NAME)
 			@echo "$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(DEF_COLOR)"
 
 .PHONY:		all clean fclean re norm debug
