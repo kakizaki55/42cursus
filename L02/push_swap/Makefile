@@ -7,7 +7,7 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= cc -I
 # CFLAGS		= -Wall -Werror -Wextra
-# DEBUG_FLAGS	= -I -g -fsanitize=address
+DEBUG_FLAGS	= -g -fsanitize=address
 RM			= rm -f
 AR			= ar rc
 
@@ -73,7 +73,7 @@ norm:
 			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
 
 debug:		fclean all
-			$(CC) $(DEBUG_FLAGS) -I include $(NAME)
+			$(CC) $(CFLAGS) $(INCLUDE) $(DEBUG_FLAGS) main.c $(NAME) -o $(PROG_NAME)
 			@echo "$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(DEF_COLOR)"
 
 .PHONY:		all clean fclean re norm debug

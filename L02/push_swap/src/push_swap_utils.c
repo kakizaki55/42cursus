@@ -67,13 +67,16 @@ int	ft_c_lstsize(t_c_list **lst)
 	return (res);
 }
 
-void print_lst(t_c_list *head)
+void ft_c_print_lst(t_c_list *head)
 {
 	t_c_list *current = head;
 	int i;
 
 	if(head == NULL)
-		ft_printf("List is NULL");
+	{
+		ft_printf("List is NULL\n");
+		return ;
+	}
 
 	i = 0;
     while (1)
@@ -131,6 +134,7 @@ void ft_c_lstclear(t_c_list *head)
 			break;
 		}
 	}
+	// free(head);
 }
 
 void 	ft_lstswap(t_c_list **head)

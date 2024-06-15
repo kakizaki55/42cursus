@@ -32,15 +32,16 @@ typedef struct c_list
 t_c_list	*ft_c_lstnew(int content);
 int			ft_c_lstsize(t_c_list **lst);
 void		ft_c_lstadd(t_c_list **head, t_c_list *new);
-void 		print_lst(t_c_list *head);
+void 		ft_c_print_lst(t_c_list *head);
 void 		rotate(t_c_list **head);
 void		r_rotate(t_c_list **head);
 t_c_list 	*ft_lstpop(t_c_list **head);
 void		ft_lstswap(t_c_list **head);
 void		ft_c_lstiter(t_c_list *head, int (*f)(int));
+void 		ft_c_lstclear(t_c_list *head);
 int 		add2(int number);
 
-int args_validation(int argc, char *argv[]);
+int *args_validation(int argc, char *argv[]);
 
 
 
