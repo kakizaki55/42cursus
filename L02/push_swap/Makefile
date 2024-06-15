@@ -25,7 +25,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	pushswap_utils \
+SRC_FILES	=	push_swap_utils \
 				args_validation \
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -43,7 +43,6 @@ $(NAME):	$(OBJ)
 			mv libft.a $(NAME)
 			$(AR) $(NAME) $(OBJ)
 			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
-#mv $(NAME) $(OBJ_DIR)
 			@echo "$(GREEN) $(NAME) compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)

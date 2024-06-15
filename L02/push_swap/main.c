@@ -6,26 +6,23 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/13 10:00:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:11:19 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
-#include "pushswap.h"
+#include "push_swap.h"
 
 int	main(int argc, char *argv[])
 {	
-	// t_c_list *head;
+
+	t_c_list *head;
 	// int check;
-	// int i = 0;
+	int i = 0;
+	int *args_arr;
+	
+	args_arr = args_validation(argc, argv);
 
-
-	// while(i < argc)
-	// {
-	// 	ft_printf("%s\n", argv[i]);
-	// 	i++;
-	// }
-	// check = args_validation(argc, argv);
 	// printf("check is%d", check);
 	// print_lst(head);
 
@@ -45,92 +42,92 @@ int	main(int argc, char *argv[])
 
 
 
+	//____________this is the testing to ake sure everything works okay_____________
+	// t_c_list *head;
 
-	t_c_list *head;
+	// head = NULL;
+	// ft_c_lstadd(&head, ft_c_lstnew(1));
+	// printf("%d\n", (head)->content);
+	// printf("head is:%p\n", (head));
+	// printf("next is:%p\n", (head)->next);
+	// printf("prev is:%p\n", (head)->prev);
 
-	head = NULL;
-	ft_c_lstadd(&head, ft_c_lstnew(1));
-	printf("%d\n", (head)->content);
-	printf("head is:%p\n", (head));
-	printf("next is:%p\n", (head)->next);
-	printf("prev is:%p\n", (head)->prev);
-
-	ft_c_lstadd(&head, ft_c_lstnew(2));
-	printf("%d\n", (head)->content);
-	printf("head is:%p\n", (head));
-	printf("next is:%p\n", (head)->next);
-	printf("prev is:%p\n", (head)->prev);
+	// ft_c_lstadd(&head, ft_c_lstnew(2));
+	// printf("%d\n", (head)->content);
+	// printf("head is:%p\n", (head));
+	// printf("next is:%p\n", (head)->next);
+	// printf("prev is:%p\n", (head)->prev);
 
 
-	ft_c_lstadd(&head, ft_c_lstnew(3));
-	printf("%d\n", (head)->content);
-	printf("head is:%p\n", (head));
-	printf("next is:%p\n", (head)->next);
-	printf("prev is:%p\n", (head)->prev);
+	// ft_c_lstadd(&head, ft_c_lstnew(3));
+	// printf("%d\n", (head)->content);
+	// printf("head is:%p\n", (head));
+	// printf("next is:%p\n", (head)->next);
+	// printf("prev is:%p\n", (head)->prev);
 	
-	ft_c_lstadd(&head, ft_c_lstnew(4));
-	printf("%d\n", (head)->content);
-	printf("head is:%p\n", (head));
-	printf("next is:%p\n", (head)->next);
-	printf("prev is:%p\n", (head)->prev);
+	// ft_c_lstadd(&head, ft_c_lstnew(4));
+	// printf("%d\n", (head)->content);
+	// printf("head is:%p\n", (head));
+	// printf("next is:%p\n", (head)->next);
+	// printf("prev is:%p\n", (head)->prev);
 
-	ft_c_lstadd(&head, ft_c_lstnew(5));
-	printf("%d\n", (head)->content);
-	printf("head is:%p\n", (head));
-	printf("next is:%p\n", (head)->next);
-	printf("prev is:%p\n", (head)->prev);
+	// ft_c_lstadd(&head, ft_c_lstnew(5));
+	// printf("%d\n", (head)->content);
+	// printf("head is:%p\n", (head));
+	// printf("next is:%p\n", (head)->next);
+	// printf("prev is:%p\n", (head)->prev);
 
-	ft_c_lstadd(&head, ft_c_lstnew(6));
-	printf("%d\n", (head)->content);
-	printf("head is:%p\n", (head));
-	printf("next is:%p\n", (head)->next);
-	printf("prev is:%p\n", (head)->prev);
+	// ft_c_lstadd(&head, ft_c_lstnew(6));
+	// printf("%d\n", (head)->content);
+	// printf("head is:%p\n", (head));
+	// printf("next is:%p\n", (head)->next);
+	// printf("prev is:%p\n", (head)->prev);
 
-	printf("%d\n", ft_c_lstsize(&head));
+	// printf("%d\n", ft_c_lstsize(&head));
 
-	print_lst(head);
-	ft_printf("---------------------\n");
-	rotate(&head);
-	print_lst(head);
-	ft_printf("---------------------\n");
-	rotate(&head);
-	print_lst(head);
+	// print_lst(head);
+	// ft_printf("---------------------\n");
+	// rotate(&head);
+	// print_lst(head);
+	// ft_printf("---------------------\n");
+	// rotate(&head);
+	// print_lst(head);
 
-	ft_printf("---------------------\n");
-	r_rotate(&head);
-	print_lst(head);
+	// ft_printf("---------------------\n");
+	// r_rotate(&head);
+	// print_lst(head);
 
-	ft_printf("---------------------\n");
-	t_c_list *poped;
-	poped = ft_lstpop(&head);
-	puts("poped is:");
-	print_lst(poped);
-	puts("list is at:");
-	print_lst(head);
+	// ft_printf("---------------------\n");
+	// t_c_list *poped;
+	// poped = ft_lstpop(&head);
+	// puts("poped is:");
+	// print_lst(poped);
+	// puts("list is at:");
+	// print_lst(head);
 
-	ft_printf("---------------------\n");
-	poped = ft_lstpop(&head);
-	puts("poped is:");
-	print_lst(poped);
-	puts("list is at:");
-	print_lst(head);
+	// ft_printf("---------------------\n");
+	// poped = ft_lstpop(&head);
+	// puts("poped is:");
+	// print_lst(poped);
+	// puts("list is at:");
+	// print_lst(head);
 
-	ft_printf("---------------------\n");
-	print_lst(head);
-	ft_lstswap(&head);
-	puts("swap lst is:");
-	print_lst(head);
-	printf("size is:%d\n", ft_c_lstsize(&head));
+	// ft_printf("---------------------\n");
+	// print_lst(head);
+	// ft_lstswap(&head);
+	// puts("swap lst is:");
+	// print_lst(head);
+	// printf("size is:%d\n", ft_c_lstsize(&head));
 
-	ft_printf("---------------------\n");
-	print_lst(head);
-	ft_printf("---------------------\n");
-	puts("iterated lst is:");
-	ft_c_lstiter(head, add2);
-	print_lst(head);
-	ft_printf("---------------------\n");
-	puts("iterated lst is:");
-	ft_c_lstiter(head, add2);
-	print_lst(head);
+	// ft_printf("---------------------\n");
+	// print_lst(head);
+	// ft_printf("---------------------\n");
+	// puts("iterated lst is:");
+	// ft_c_lstiter(head, add2);
+	// print_lst(head);
+	// ft_printf("---------------------\n");
+	// puts("iterated lst is:");
+	// ft_c_lstiter(head, add2);
+	// print_lst(head);
 
 }

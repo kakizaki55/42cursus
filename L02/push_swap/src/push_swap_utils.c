@@ -1,17 +1,20 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap_utils.c                                   :+:      :+:    :+:   */
+/*   push_swap_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/12 23:52:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:56:07 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
-#include "pushswap.h"
+#include "push_swap.h"
+
+//basic funcitonss
+//also maybe need to change the head and fiel name to push_swap instaed of push_swap
 
 t_c_list	*ft_c_lstnew(int content)
 {
@@ -69,6 +72,9 @@ void print_lst(t_c_list *head)
 	t_c_list *current = head;
 	int i;
 
+	if(head == NULL)
+		ft_printf("List is NULL");
+
 	i = 0;
     while (1)
 	{	
@@ -104,6 +110,27 @@ t_c_list *ft_lstpop(t_c_list **head)
 	poped->next = poped;
 	poped->prev = poped;
 	return (poped);
+}
+
+void ft_c_lstclear(t_c_list *head)
+{
+	t_c_list *current = head;
+
+    while (1)
+	{	
+		// t_c_list *temp;
+
+		// temp = head;
+		
+    	// current->content = f(current->content);
+        current = current->next;
+		free(current->prev);
+		if(current->next == NULL)
+		{
+			free(current);
+			break;
+		}
+	}
 }
 
 void 	ft_lstswap(t_c_list **head)

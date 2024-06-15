@@ -1,17 +1,17 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   push_swap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/13 00:37:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:01:04 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 typedef struct c_list
 {
@@ -20,6 +20,9 @@ typedef struct c_list
 	struct c_list	*prev;
 	int 			head;
 }	t_c_list;
+
+# define true  1
+# define false 0
 
 // # define true = 1
 // # define false = 0
