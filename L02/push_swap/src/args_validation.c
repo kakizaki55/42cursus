@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/17 13:22:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:27:02 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,11 +44,8 @@ int *args_validation(int argc, char *argv[])
 {	
 	int i;
 	int *args_array;
-	//leavering one more args so i can fill it with a NULL Value
 	args_array = ft_calloc(sizeof(int), argc);
 	if(args_array == (void *)NULL)
-		return (NULL);
-	if(argc < 2)
 		return (NULL);
 
 	i = 1;
@@ -64,8 +61,5 @@ int *args_validation(int argc, char *argv[])
 		i++;
 	}
 	args_array[i + 1] = NULL;
-
-	print_arr(args_array);
-
 	return (args_array);
 }

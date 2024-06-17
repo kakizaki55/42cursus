@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/17 13:04:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:26:36 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,10 +21,14 @@ int	main(int argc, char *argv[])
 	head = NULL;
 	int i = 0;
 	int *args_arr;
+
+	if(argc < 2)
+		return (-1);
 	
 	args_arr = args_validation(argc, argv);
 
-	// print_arr(args_arr, argc - 1);
+
+	print_arr(args_arr);
 
 
 
