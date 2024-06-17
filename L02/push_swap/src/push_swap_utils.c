@@ -13,9 +13,6 @@
 #include "libft.h"
 #include "push_swap.h"
 
-//basic funcitonss
-//also maybe need to change the head and fiel name to push_swap instaed of push_swap
-
 t_c_list	*ft_c_lstnew(int content)
 {
 	t_c_list	*node;
@@ -122,14 +119,9 @@ void ft_c_lstclear(t_c_list **head)
 
     while (1)
 	{	
-		// t_c_list *temp;
-
-		// temp = head;
-		
-    	// current->content = f(current->content);
         current = current->next;
-		ft_printf("[%d]: %p\n", i, current->prev);
-		ft_printf("[%d]: %p\n", i, current->next);
+		// ft_printf("[%d]: %p\n", i, current->prev);
+		// ft_printf("[%d]: %p\n", i, current->next);
 		if(current->next == *head)
 		{
 			free(current);

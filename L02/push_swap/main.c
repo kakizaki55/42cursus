@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/17 12:41:58 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:04:38 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,48 +19,45 @@ int	main(int argc, char *argv[])
 	t_c_list *head;
 
 	head = NULL;
-	// int check;
 	int i = 0;
 	int *args_arr;
 	
-	// args_arr = args_validation(argc, argv);
+	args_arr = args_validation(argc, argv);
 
-	ft_c_lstadd(&head, ft_c_lstnew(1));
-	ft_c_lstadd(&head, ft_c_lstnew(2));
-	ft_c_lstadd(&head, ft_c_lstnew(3));
-	ft_c_lstadd(&head, ft_c_lstnew(4));
-	ft_c_lstadd(&head, ft_c_lstnew(5));
-	ft_c_lstadd(&head, ft_c_lstnew(6));
-	ft_c_lstadd(&head, ft_c_lstnew(7));
+	// print_arr(args_arr, argc - 1);
 
 
-	ft_c_print_lst(head);
-	ft_c_lstclear(&head);
-	ft_c_print_lst(head);
-	
-	
 
-	
-	
 
-	// printf("check is%d", check);
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------TEST----------------
+	// ft_c_lstadd(&head, ft_c_lstnew(1));
+	// ft_c_lstadd(&head, ft_c_lstnew(2));
+	// ft_c_lstadd(&head, ft_c_lstnew(3));
+	// ft_c_lstadd(&head, ft_c_lstnew(4));
+	// ft_c_lstadd(&head, ft_c_lstnew(5));
+	// ft_c_lstadd(&head, ft_c_lstnew(6));
+	// ft_c_lstadd(&head, ft_c_lstnew(7));
+
+
+	// ft_c_print_lst(head);
+	// ft_c_lstclear(&head);
+	// ft_c_print_lst(head);
+
 	// print_lst(head);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//----------------------------------------
 
 	//____________this is the testing to ake sure everything works okay_____________
 	// t_c_list *head;

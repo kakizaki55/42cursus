@@ -27,7 +27,7 @@ typedef struct c_list
 // # define true = 1
 // # define false = 0
 
-// extern char *ARGS = "1 2 3 4 5 6";
+// extern int *ARGS = "1 2 3 4 5 6";
 
 t_c_list	*ft_c_lstnew(int content);
 int			ft_c_lstsize(t_c_list **lst);
@@ -42,7 +42,7 @@ void 		ft_c_lstclear(t_c_list **head);
 int 		add2(int number);
 
 int *args_validation(int argc, char *argv[]);
-
+int print_arr(int *arr);
 
 
 
