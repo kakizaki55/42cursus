@@ -43,7 +43,9 @@ int 		add2(int number);
 
 int *args_validation(int argc, char *argv[]);
 int print_arr(int *arr);
+int arr_len(int *arr);
 
+int *compress(int *arr);
 
 
 #endif
