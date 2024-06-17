@@ -38,7 +38,7 @@ void		r_rotate(t_c_list **head);
 t_c_list 	*ft_lstpop(t_c_list **head);
 void		ft_lstswap(t_c_list **head);
 void		ft_c_lstiter(t_c_list *head, int (*f)(int));
-void 		ft_c_lstclear(t_c_list *head);
+void 		ft_c_lstclear(t_c_list **head);
 int 		add2(int number);
 
 int *args_validation(int argc, char *argv[]);

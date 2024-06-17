@@ -115,9 +115,10 @@ t_c_list *ft_lstpop(t_c_list **head)
 	return (poped);
 }
 
-void ft_c_lstclear(t_c_list *head)
+void ft_c_lstclear(t_c_list **head)
 {
-	t_c_list *current = head;
+	t_c_list *current = *head;
+	int i = 0;
 
     while (1)
 	{	
@@ -127,14 +128,20 @@ void ft_c_lstclear(t_c_list *head)
 		
     	// current->content = f(current->content);
         current = current->next;
-		free(current->prev);
-		if(current->next == NULL)
+		ft_printf("[%d]: %p\n", i, current->prev);
+		ft_printf("[%d]: %p\n", i, current->next);
+		if(current->next == *head)
 		{
 			free(current);
 			break;
 		}
+		else
+		{
+			free(current->prev);
+		}
+		i++;
 	}
-	// free(head);
+	*head = NULL;
 }
 
 void 	ft_lstswap(t_c_list **head)
