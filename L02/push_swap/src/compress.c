@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:29:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/17 13:55:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:28:00 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,32 +20,77 @@ int is_smaller(int a, int b)
 	return (false);
 }
 
-int is_bigger(int a, int b)
+// int is_bigger(int a, int b)
+// {
+// 	if(a > b)
+// 		return (true);
+// 	return (false);
+// }
+
+int find_min_index(int *arr, int len)
 {
-	if(a > b)
-		return (true);
-	return (false);
-}
-
-int *compress(int *arr)
-{	
-	int res[arr_len(arr)];
-	res[0] = NULL;
-
-	// need to compress this files so i can replace all ints with number starting from 1 and all the way up. 
-	int small;
-	int big;
 	int i;
+	int temp;
+	int res;
 
-	small = 1;
-	big = arr_len(arr);
+	temp = INT_MAX;
 	i = 0 ;
 
-	while(arr[i] != NULL)
+	while(i < len)
 	{
-		ft_printf("i is: %d\n", i);
+		if(is_smaller(arr[i], temp))
+		{
+			temp = arr[i];
+			res = i;
+		}
 		i++;
 	}
-
 	return (res);
+}
+
+// int find_max_index(int *arr, int len)
+// {
+// 	int i;
+// 	int temp;
+// 	int res;
+
+// 	temp = INT_MIN;
+
+// 	i = 0 ;
+
+// 	while(i < len)
+// 	{
+// 		if(is_bigger(arr[i], temp))
+// 		{
+// 			temp = arr[i];
+// 			res = i;
+// 		}
+// 		i++;
+// 	}
+// 	return (res);
+// }
+
+
+int *compress(int *arr, int len)
+{	
+	int *res;
+	res = ft_calloc(sizeof(int), len);
+	if(res == NULL)
+		return (NULL);
+	int min_i;
+
+	int i;
+	int j;
+	i = 0;
+	j = 1;
+
+    while (i < len) {
+        min_i = find_min_index(arr, len);
+        res[min_i] = j++;
+
+        arr[min_i] = INT_MAX;
+        i += 1;
+    }
+
+	return (free(arr), res);
 }

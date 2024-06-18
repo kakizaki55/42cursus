@@ -63,6 +63,7 @@ fclean:		clean
 			$(RM) $(LIBFT)/libft.a
 			$(RM) a.out
 			$(RM) $(PROG_NAME)
+			$(RM) -rf push_swap.dSYM
 			@echo "$(CYAN) $(NAME) executable files cleaned!$(DEF_COLOR)"
 			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 

@@ -6,32 +6,36 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/17 13:27:02 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:50:37 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
 
-int arr_len(int *arr)
-{
-	int res;
+// int arr_len(int *arr)
+// {
+// 	int res;
 
-	res = 0;
-	while(arr[res] != NULL)
-	{
-		res++;
-	}
-	return (res);
-}
+// 	res = 0;
+// 	res = sizeof(&arr) / sizeof(arr[0]);
+// 	// res =( *(&arr + 1) - arr) / 2;
+// 	// need to find a better way to find the length of ana array 
+// 	// while(NULL != arr[res])
+// 	// {
+// 	// 	// arr++;
+// 	// 	res++;
+// 	// }
+// 	return (res);
+// }
 
-int print_arr(int *arr)
+int print_arr(int *arr, int len)
 {
 	int i;
-	int len;
+	// int len;
 	i = 0;
 
-	len = arr_len(arr);
+	// len = COUNT_OF(arr);
 	while (i < len)
 	{
 		ft_printf("[%d]:%d\n", i, arr[i]);
@@ -45,7 +49,7 @@ int *args_validation(int argc, char *argv[])
 	int i;
 	int *args_array;
 	args_array = ft_calloc(sizeof(int), argc);
-	if(args_array == (void *)NULL)
+	if(args_array == NULL)
 		return (NULL);
 
 	i = 1;
@@ -60,6 +64,6 @@ int *args_validation(int argc, char *argv[])
 		// also need to remember to free everything is somthing goes wrong.
 		i++;
 	}
-	args_array[i + 1] = NULL;
+	// args_array[i + 1] = NULL;
 	return (args_array);
 }

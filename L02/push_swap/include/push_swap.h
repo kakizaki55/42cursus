@@ -21,8 +21,18 @@ typedef struct c_list
 	int 			head;
 }	t_c_list;
 
+typedef struct min_max
+{
+	int	small;
+	int small_index;
+	int big;
+	int big_index;
+}	t_min_max;
+
 # define true  1
 # define false 0
+# define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
+
 
 // # define true = 1
 // # define false = 0
@@ -42,10 +52,10 @@ void 		ft_c_lstclear(t_c_list **head);
 int 		add2(int number);
 
 int *args_validation(int argc, char *argv[]);
-int print_arr(int *arr);
-int arr_len(int *arr);
+int print_arr(int *arr, int len);
+// int arr_len(int *arr);
 
-int *compress(int *arr);
+int *compress(int *arr, int len);
 
 
 #endif
