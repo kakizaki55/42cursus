@@ -26,9 +26,14 @@ t_c_list	*ft_c_lstnew(int content)
 	return (node);
 }
 
+void ft_c_push(t_c_list **src, t_c_list **dest, char *stack)
+{
+	ft_c_lstadd(dest, ft_lstpop(src));
+	ft_printf("p%s\n", stack);
+}
+
 void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 {	
-
 	if(*head == NULL)
 	{
 		new->next = new;
@@ -43,19 +48,36 @@ void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 	(*head)->prev = new;
 	last->next = new;
 	*head = new;
+} 
+
+t_c_list *ft_lstpop(t_c_list **head)
+{
+	t_c_list *poped; 
+	t_c_list *temp;
+
+	temp = *head;
+	poped = ft_c_lstnew((*head)->content);
+	(*head)->prev->next = (*head)->next;
+	(*head)->next->prev = (*head)->prev;
+	*head = (*head)->next;
+	free(temp);
+	poped->next = poped;
+	poped->prev = poped;
+	return (poped);
 }
 
-int	ft_c_lstsize(t_c_list **lst)
+
+int	ft_c_lstsize(t_c_list *lst)
 {
 	int	res;
 	t_c_list *current;
 
-	current = *lst;
+	current = lst;
 	res = 1;
 	while (1)
 	{	
-		*lst = (*lst)->next;
-		if(*lst == current)
+		lst = lst->next;
+		if(lst == current)
 		{
 			return (res);
 		}
@@ -78,7 +100,14 @@ void ft_c_print_lst(t_c_list *head)
 	i = 0;
     while (1)
 	{	
-        ft_printf("[%d]:%d\n", i, current->content);
+		if(i == 0)
+		{
+        	ft_printf("[%d]:%d<-head\n", i, current->content);
+		}
+		else
+		{
+        	ft_printf("[%d]:%d\n", i, current->content);
+		}
         current = current->next;
 		i++;
 		if(current == head)
@@ -86,30 +115,18 @@ void ft_c_print_lst(t_c_list *head)
 	}
 }
 
-void rotate(t_c_list **head)
+void ft_rotate(t_c_list **head, char stack)
 {
 	*head = (*head)->next;
+	ft_printf("r%s\n", stack);
+
 }
 
-void r_rotate(t_c_list **head)
+void ft_r_rotate(t_c_list **head, char stack)
 {
 	*head = (*head)->prev;
-}
+	ft_printf("rr%s\n", stack);
 
-t_c_list *ft_lstpop(t_c_list **head)
-{
-	t_c_list *poped; 
-	t_c_list *temp;
-
-	temp = *head;
-	poped = ft_c_lstnew((*head)->content);
-	(*head)->prev->next = (*head)->next;
-	(*head)->next->prev = (*head)->prev;
-	*head = (*head)->next;
-	free(temp);
-	poped->next = poped;
-	poped->prev = poped;
-	return (poped);
 }
 
 void ft_c_lstclear(t_c_list **head)
@@ -120,8 +137,6 @@ void ft_c_lstclear(t_c_list **head)
     while (1)
 	{	
         current = current->next;
-		// ft_printf("[%d]: %p\n", i, current->prev);
-		// ft_printf("[%d]: %p\n", i, current->next);
 		if(current->next == *head)
 		{
 			free(current);
@@ -136,24 +151,19 @@ void ft_c_lstclear(t_c_list **head)
 	*head = NULL;
 }
 
-void 	ft_lstswap(t_c_list **head)
+void 	ft_lstswap(t_c_list **head, char *stack)
 {
 	int	temp;
 
 	temp = (*head)->content;
 	(*head)->content = (*head)->next->content;
 	(*head)->next->content = temp;
+	ft_printf("s%s\n", stack);
 }
 
 //idea for function
 // ft_for();
 
-
-// there are more addiatianl functions
-int add2(int number)
-{
-	return (number + 2);
-}
 void	ft_c_lstiter(t_c_list *head, int (*f)(int))
 {
 	t_c_list *current = head;

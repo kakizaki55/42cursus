@@ -27,7 +27,9 @@ WHITE = \033[0;97m
 
 SRC_FILES	=	push_swap_utils \
 				args_validation \
-				compress 
+				compress \
+				sort \
+				sort_utils 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -44,10 +46,11 @@ $(NAME):	$(OBJ)
 			mv libft.a $(NAME)
 			$(AR) $(NAME) $(OBJ)
 			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
-			@echo "$(GREEN) $(NAME) compiled!$(DEF_COLOR)"
+			@echo "$(GREEN)<-----------------$(NAME) compiled!------------------>$(DEF_COLOR)"
+			@echo "$(GREEN)<-----------------$(PROG_NAME) compiled!-------------------->$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
+			@echo "$(YELLOW)<------Compiling: $<------>$(DEF_COLOR)"
 			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@ 
 
 $(OBJF):
@@ -56,7 +59,7 @@ $(OBJF):
 clean:
 			$(RM) -rf $(OBJ_DIR)
 			make clean -C $(LIBFT)
-			@echo "$(BLUE) $(NAME) object files cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)<--------$(NAME) object files cleaned!-------->$(DEF_COLOR)"
 
 fclean:		clean
 			$(RM) $(NAME)
@@ -64,18 +67,18 @@ fclean:		clean
 			$(RM) a.out
 			$(RM) $(PROG_NAME)
 			$(RM) -rf push_swap.dSYM
-			@echo "$(CYAN) $(NAME) executable files cleaned!$(DEF_COLOR)"
-			@echo "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)<------$(NAME) executable files cleaned!------>$(DEF_COLOR)"
+			@echo "$(CYAN)<------libft executable files cleaned!------------>$(DEF_COLOR)"
 
 re:			fclean all
 			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
-			@echo "$(GREEN)Cleaned and rebuilt everything for  $(NAME)!$(DEF_COLOR)"
+			@echo "$(GREEN)<----Cleaned and rebuilt everything for  $(NAME)!---->$(DEF_COLOR)"
 
 norm:
 			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
 
 debug:		fclean all
 			$(CC) $(CFLAGS) $(INCLUDE) $(DEBUG_FLAGS) main.c $(NAME) -o $(PROG_NAME)
-			@echo "$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(DEF_COLOR)"
+			@echo "<------$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(DEF_COLOR)------>"
 
 .PHONY:		all clean fclean re norm debug

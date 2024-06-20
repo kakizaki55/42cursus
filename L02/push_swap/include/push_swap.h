@@ -21,41 +21,45 @@ typedef struct c_list
 	int 			head;
 }	t_c_list;
 
-typedef struct min_max
-{
-	int	small;
-	int small_index;
-	int big;
-	int big_index;
-}	t_min_max;
 
 # define true  1
 # define false 0
-# define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
+// # define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
-
-// # define true = 1
-// # define false = 0
-
-// extern int *ARGS = "1 2 3 4 5 6";
-
+//push_swap_utils.c
 t_c_list	*ft_c_lstnew(int content);
-int			ft_c_lstsize(t_c_list **lst);
-void		ft_c_lstadd(t_c_list **head, t_c_list *new);
+int			ft_c_lstsize(t_c_list *lst);
 void 		ft_c_print_lst(t_c_list *head);
-void 		rotate(t_c_list **head);
-void		r_rotate(t_c_list **head);
-t_c_list 	*ft_lstpop(t_c_list **head);
-void		ft_lstswap(t_c_list **head);
 void		ft_c_lstiter(t_c_list *head, int (*f)(int));
-void 		ft_c_lstclear(t_c_list **head);
-int 		add2(int number);
+//
 
+t_c_list 	*ft_lstpop(t_c_list **head);
+void		ft_c_lstadd(t_c_list **head, t_c_list *new);
+void 		ft_c_push(t_c_list **src, t_c_list **dest, char *stack);
+void 		ft_rotate(t_c_list **head, char stack);
+void		ft_r_rotate(t_c_list **head, char stack);
+void		ft_lstswap(t_c_list **head, char *stack);
+//
+void 		ft_c_lstclear(t_c_list **head);
+// int 		add2(int number);
+
+//args_validation.c
 int *args_validation(int argc, char *argv[]);
 int print_arr(int *arr, int len);
-// int arr_len(int *arr);
 
+//compress.c
 int *compress(int *arr, int len);
+int is_smaller(int a, int b);
+int find_min_index(int *arr, int len);
+
+//sort_utils.c
+int check_sort(t_c_list *head);
+int check_r_sort(t_c_list *head);
+int find_nbr(t_c_list *head, int nbr);
+
+//sort.c
+void short_sort(t_c_list **head, int len);
+
 
 
 #endif

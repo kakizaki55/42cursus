@@ -6,60 +6,55 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/18 13:28:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/20 21:53:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
 
+t_c_list *init(int *args_arr, int len)
+{
+	t_c_list *a;
+	int i;
+	a = NULL;
+
+	i = len - 1 ;
+	while(i >= 0)
+	{
+		ft_c_lstadd(&a, ft_c_lstnew(args_arr[i]));
+		i--;
+	}
+	return (a);
+}
+
 int	main(int argc, char *argv[])
 {	
 
 	t_c_list *head;
+	// int test[5] = { 10, 5, 3, 15, 0};
 
 	head = NULL;
-	// int test_args[] = { 11, 2, 132 , 0, 132, 12, 12, 203412 }; 
-	// int test_args[50];
-	// int length = *(&test_args + 1) - test_args
-	// ft_printf("length is: %d", length);
 	int i = 0;
 	int *args_arr;
 	args_arr = args_validation(argc, argv);
 	int len = argc - 1;
 
-	ft_printf("len is: %d\n",len);
-	print_arr(args_arr, len);
-	args_arr = compress(args_arr, len);
-	print_arr(args_arr, len);
+	// ft_printf("len is: %d\n",len);
+	// print_arr(args_arr, len);
+
 	
+	args_arr = compress(args_arr, len);
+	head = init(args_arr, len);
+	// ft_c_print_lst(head);
 
-
-	// print_arr(args_arr);
-
-	//sand box
-
-	// if((int)NULL < INT_MIN)
-	// {
-	// 	puts("NULL is smaller then int min");
-	// }
-	// else
-	// {
-	// 	puts("null is not smaller then int min");
-	// }
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//this is a test to try and sort small lst
+	short_sort(&head, len);
+	// ft_c_print_lst(head);
+	
+	// ft_printf("1 is sorted 0 is not:%d\n", check_sorted(head));
+	// ft_printf("3 is at index:%d\n", find_nbr(head, 3));
+	// ft_printf("1 is sorted 0 is not:%d\n", check_r_sorted(head));
 
 
 
