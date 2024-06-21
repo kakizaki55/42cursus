@@ -50,16 +50,18 @@ int print_arr(int *arr, int len);
 //compress.c
 int *compress(int *arr, int len);
 int is_smaller(int a, int b);
+int is_bigger(int a, int b);
 int find_min_index(int *arr, int len);
 
 //sort_utils.c
 int check_sort(t_c_list *head);
 int check_r_sort(t_c_list *head);
 int find_nbr(t_c_list *head, int nbr);
+int find_r_nbr(t_c_list *head, int nbr);
 int check_any_sort(t_c_list *head);
 
 //sort.c
-int short_sort(t_c_list **head, int len);
+int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 void sort(t_c_list **head, int len);
 
 

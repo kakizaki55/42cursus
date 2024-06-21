@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 15:37:49 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:48:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -80,6 +80,32 @@ int find_nbr(t_c_list *head, int nbr)
 		{
 			i++;
         	current = current->next;
+		} 
+		else
+		{
+			return (i);
+		}
+		if(current == head)
+			return(false);
+	}
+}
+
+int find_r_nbr(t_c_list *head, int nbr)
+{
+	if(head == NULL || nbr == 0)
+		return (false);
+	int i;
+	t_c_list *current;
+
+	i = 0;
+	current = head;
+
+    while (1)
+	{	
+    	if(current->content != nbr)
+		{
+			i++;
+        	current = current->prev;
 		} 
 		else
 		{
