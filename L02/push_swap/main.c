@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/20 21:53:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:51:54 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,7 +49,7 @@ int	main(int argc, char *argv[])
 	// ft_c_print_lst(head);
 
 	//this is a test to try and sort small lst
-	short_sort(&head, len);
+	sort(&head, len);
 	// ft_c_print_lst(head);
 	
 	// ft_printf("1 is sorted 0 is not:%d\n", check_sorted(head));

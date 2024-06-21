@@ -59,7 +59,8 @@ int find_nbr(t_c_list *head, int nbr);
 int check_any_sort(t_c_list *head);
 
 //sort.c
-void short_sort(t_c_list **head, int len);
+int short_sort(t_c_list **head, int len);
+void sort(t_c_list **head, int len);
 
 
 
