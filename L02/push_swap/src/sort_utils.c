@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 17:48:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:06:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ int check_sort(t_c_list *head)
 	int i;
 	t_c_list *current;
 
-	i = 1;
+	i = find_min(head);
 	current = head;
 
     while (1)
@@ -118,21 +118,44 @@ int find_r_nbr(t_c_list *head, int nbr)
 
 int check_any_sort(t_c_list *head)
 {
+	int size;
 	int i;
-	int target_index;
 
 	i = 0;
-	target_index = find_nbr(head, 1);
-
-	while(i < target_index)
+	size = ft_c_lstsize(head);
+	ft_printf("size is: %d\n", size);
+	
+	while(i < size)
 	{
+		if(check_sort(head))
+			return (true);
+		puts("important!");
+		ft_c_print_lst(head);
 		head = head->next;
 		i++;
 	}
 	if(check_sort(head))
-		return (target_index);
+		return (true);
 	else
 		return (false);
+}
+
+int find_min(t_c_list *head)
+{
+	t_c_list *current = head;
+	int res;
+
+	res = INT_MAX;
+	while (1)
+	{	if(res > current->content)
+			res = current->content;
+        current = current->next;
+		if(current == head)
+		{
+			return (res);
+		}
+	}
+	return (0);
 }
 
 

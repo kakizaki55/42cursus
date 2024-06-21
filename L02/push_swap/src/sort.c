@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 20:43:51 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:08:13 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,24 +20,25 @@ int sort_two(t_c_list **head, char *stack)
 	return (true);
 }
 
-int sort_three(t_c_list **head, char *stack)
+int sort_three(t_c_list **head,int smallest, char *stack)
 {
 	int i = 0;
 	int target = 0;
 	if(check_any_sort(*head))
 	{
-		target = find_nbr(*head, 1);
+		target = find_nbr(*head, smallest);
 		while(i++ < target)
 			ft_rotate(head, stack);
 	}
 	else
 	{
+		ft_c_print_lst(*head);
 		ft_lstswap(head, stack);
-		target = find_nbr(*head, 1);
+		ft_c_print_lst(*head);
+		target = find_nbr(*head, smallest);
 		while(i++ < target)
 			ft_rotate(head, stack);
 	}
-	ft_c_print_lst(*head);
 	return (true);
 }
 
@@ -60,23 +61,43 @@ int recon(t_c_list *head, int nbr)
 			return (index);
 		temp = temp->next;
 		index ++;
-
 		if(r_temp->content > nbr)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;
-
 		i++;
 	}
 	return (0);
 }
+
+int sort_small(t_c_list **head, int len, char *stack)
+{
+	int smallest;
+	smallest = find_min(*head);
+	if(check_sort(*head) || len == 1)
+		return (true);
+	//if the length is 2
+	if(len == 2)
+	{
+		sort_two(head, stack);
+		return (true);
+	}
+	// if the the length is 3
+	if(len == 3)
+	{
+		sort_three(head, smallest, stack);
+		return (true);
+	}
+}
+
+
 int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
 	int index;
 	int half;
 
 	half = len / 2;
-	while(ft_c_lstsize(*stack_a) > half)
+	while(ft_c_lstsize(*stack_a) > half )
 	{
 		index = recon(*stack_a, (half));
 		while(index != 0)
@@ -93,27 +114,25 @@ int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 			}
 		}
 		ft_c_push(stack_a, stack_b, "a");
-		ft_c_print_lst(*stack_a);
-		ft_c_print_lst(*stack_b);
 	}
+	puts("checking here:\n");
+	ft_c_print_lst(*stack_a);
+	ft_c_print_lst(*stack_b);
+	sort_small(stack_a, ft_c_lstsize(*stack_a), "a");
+	sort_small(stack_b, ft_c_lstsize(*stack_b), "b");
+	puts("checking here:\n");
+	ft_c_print_lst(*stack_a);
+	ft_c_print_lst(*stack_b);
+	return (true);
 }
 
 
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len)
 {	
-	//if the length is 1
-	if(check_sort(*stack_a) || len == 1)
-		return (true);
-	//if the length is 2
-	if(len == 2)
+	//if the length is 1 to 3
+	if(len <= 3)
 	{
-		sort_two(stack_a, "a");
-		return (true);
-	}
-	// if the the length is 3
-	if(len == 3)
-	{
-		sort_three(stack_a, "a");
+		sort_small(stack_a, len, "a");
 		return (true);
 	}
 	// if the lenth is 6 or under

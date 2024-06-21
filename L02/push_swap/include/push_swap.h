@@ -59,6 +59,7 @@ int check_r_sort(t_c_list *head);
 int find_nbr(t_c_list *head, int nbr);
 int find_r_nbr(t_c_list *head, int nbr);
 int check_any_sort(t_c_list *head);
+int find_min(t_c_list *head);
 
 //sort.c
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
