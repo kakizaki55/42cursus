@@ -6,65 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/20 23:50:04 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:42:20 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
-
-// void sort(t_c_list **head, int len)
-// {
-// 	int target;
-// 	target = 1;
-
-// 	while (1)
-// 	{	
-// 		if((*head)->content == target)
-// 		{	
-// 			if(target - 1 == (*head)->next->content)
-// 			{
-// 				ft_lstswap(head);
-// 				target++;
-// 				ft_rotate(head);
-// 				ft_rotate(head);
-// 			}
-// 			else
-// 			{
-// 				target++;
-// 				ft_rotate(head);
-// 			}
-// 		}
-// 		else if((*head)->content > (*head)->next->content)
-// 		{
-// 			ft_lstswap(head);
-// 			if((*head)->content == target)
-// 			{
-// 				target++;
-// 				ft_rotate(head);
-// 			}
-// 			else
-// 			{
-// 				ft_rotate(head);
-// 				ft_rotate(head);
-// 			}
-// 		}
-// 		else
-// 		{
-// 			ft_rotate(head);
-// 		}
-// 		if(target >= len)
-// 		{
-// 			if(target == (*head)->next->content)
-// 			{
-// 				ft_lstswap(head);
-// 			}
-// 				ft_rotate(head);
-// 			break;
-// 		}
-// 	}
-		
-// }
 
 void short_sort(t_c_list **head, int len)
 {	
@@ -82,24 +29,28 @@ void short_sort(t_c_list **head, int len)
 		else 
 			return ;
 	}
-	//if the the length is 3
-	// ft_printf("len is: %d\n", len);
-	// if(len == 3)
-	// {
-	// 	if(check_sort(*head))
-	// 		return ;
-	// 	int i;
-	// 	int nbr;
+	// if the the length is 3
+	ft_printf("len is: %d\n", len);
 
-	// 	i = 0;
-	// 	nbr = find_nbr(*head,1);
-
-	// 	while(i < nbr)
-	// 	{
-	// 		ft_rotate(head, "a");
-	// 	}
-		
-	// }
+	int i = 0;
+	int target = 0;
+	if(len == 3)
+	{
+		if(check_any_sort(*head))
+		{
+			target = find_nbr(*head, 1);
+			while(i++ < target)
+				ft_rotate(head, "a");
+		}
+		else
+		{
+			ft_lstswap(head, "a");
+			target = find_nbr(*head, 1);
+			while(i++ < target)
+				ft_rotate(head, "a");
+		}	
+		return ;
+	}
 
 	//initing stacks
 	stack_a = *head;

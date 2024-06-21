@@ -36,8 +36,8 @@ void		ft_c_lstiter(t_c_list *head, int (*f)(int));
 t_c_list 	*ft_lstpop(t_c_list **head);
 void		ft_c_lstadd(t_c_list **head, t_c_list *new);
 void 		ft_c_push(t_c_list **src, t_c_list **dest, char *stack);
-void 		ft_rotate(t_c_list **head, char stack);
-void		ft_r_rotate(t_c_list **head, char stack);
+void 		ft_rotate(t_c_list **head, char *stack);
+void		ft_r_rotate(t_c_list **head, char *stack);
 void		ft_lstswap(t_c_list **head, char *stack);
 //
 void 		ft_c_lstclear(t_c_list **head);
@@ -56,6 +56,7 @@ int find_min_index(int *arr, int len);
 int check_sort(t_c_list *head);
 int check_r_sort(t_c_list *head);
 int find_nbr(t_c_list *head, int nbr);
+int check_any_sort(t_c_list *head);
 
 //sort.c
 void short_sort(t_c_list **head, int len);

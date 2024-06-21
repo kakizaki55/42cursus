@@ -115,14 +115,14 @@ void ft_c_print_lst(t_c_list *head)
 	}
 }
 
-void ft_rotate(t_c_list **head, char stack)
+void ft_rotate(t_c_list **head, char *stack)
 {
 	*head = (*head)->next;
 	ft_printf("r%s\n", stack);
 
 }
 
-void ft_r_rotate(t_c_list **head, char stack)
+void ft_r_rotate(t_c_list **head, char *stack)
 {
 	*head = (*head)->prev;
 	ft_printf("rr%s\n", stack);

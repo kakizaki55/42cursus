@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/20 21:59:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:37:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -89,3 +89,24 @@ int find_nbr(t_c_list *head, int nbr)
 			return(false);
 	}
 }
+
+int check_any_sort(t_c_list *head)
+{
+	int i;
+	int target_index;
+
+	i = 0;
+	target_index = find_nbr(head, 1);
+
+	while(i < target_index)
+	{
+		head = head->next;
+		i++;
+	}
+	if(check_sort(head))
+		return (target_index);
+	else
+		return (false);
+}
+
+
