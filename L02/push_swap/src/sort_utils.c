@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 23:06:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:22:36 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -123,13 +123,13 @@ int check_any_sort(t_c_list *head)
 
 	i = 0;
 	size = ft_c_lstsize(head);
-	ft_printf("size is: %d\n", size);
+	// ft_printf("size is: %d\n", size);
 	
 	while(i < size)
 	{
 		if(check_sort(head))
 			return (true);
-		puts("important!");
+		// puts("important!");
 		ft_c_print_lst(head);
 		head = head->next;
 		i++;

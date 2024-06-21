@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 23:08:13 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/22 00:45:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,7 +32,7 @@ int sort_three(t_c_list **head,int smallest, char *stack)
 	}
 	else
 	{
-		ft_c_print_lst(*head);
+		// ft_c_print_lst(*head);
 		ft_lstswap(head, stack);
 		ft_c_print_lst(*head);
 		target = find_nbr(*head, smallest);
@@ -123,6 +123,7 @@ int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 	puts("checking here:\n");
 	ft_c_print_lst(*stack_a);
 	ft_c_print_lst(*stack_b);
+	
 	return (true);
 }
 
@@ -133,6 +134,7 @@ int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len)
 	if(len <= 3)
 	{
 		sort_small(stack_a, len, "a");
+		ft_c_print_lst(*stack_a);
 		return (true);
 	}
 	// if the lenth is 6 or under
