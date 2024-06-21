@@ -71,7 +71,6 @@ fclean:		clean
 			@echo "$(CYAN)<------libft executable files cleaned!------------>$(DEF_COLOR)"
 
 re:			fclean all
-			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
 			@echo "$(GREEN)<----Cleaned and rebuilt everything for  $(NAME)!---->$(DEF_COLOR)"
 
 norm:

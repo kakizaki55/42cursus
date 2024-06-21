@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 18:33:27 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/21 20:43:51 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -56,31 +56,45 @@ int recon(t_c_list *head, int nbr)
 	r_temp = head;
 	while (i <= nbr)
 	{
-		if(nbr < temp->content)
+		if(temp->content > nbr)
 			return (index);
 		temp = temp->next;
 		index ++;
-		if(nbr < r_temp->content)
+
+		if(r_temp->content > nbr)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;
+
 		i++;
 	}
 	return (0);
 }
-
 int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	int i;
-	i = 0;
-	if((*stack_a)->content >= len / 2)
-	{
+	int index;
+	int half;
 
+	half = len / 2;
+	while(ft_c_lstsize(*stack_a) > half)
+	{
+		index = recon(*stack_a, (half));
+		while(index != 0)
+		{
+			if(index > 0)
+			{
+				ft_rotate(stack_a, "a");
+				index--;
+			}
+			else
+			{
+				ft_r_rotate(stack_a, "a");
+				index++;
+			}
+		}
 		ft_c_push(stack_a, stack_b, "a");
 		ft_c_print_lst(*stack_a);
 		ft_c_print_lst(*stack_b);
-		ft_printf("recon returns:%d\n", recon(*stack_a, (len / 2)));
-
 	}
 }
 
