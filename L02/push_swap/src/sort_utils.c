@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 23:22:36 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:48:19 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -123,18 +123,34 @@ int check_any_sort(t_c_list *head)
 
 	i = 0;
 	size = ft_c_lstsize(head);
-	// ft_printf("size is: %d\n", size);
-	
 	while(i < size)
 	{
 		if(check_sort(head))
 			return (true);
-		// puts("important!");
-		ft_c_print_lst(head);
 		head = head->next;
 		i++;
 	}
 	if(check_sort(head))
+		return (true);
+	else
+		return (false);
+}
+
+int check_any_r_sort(t_c_list *head)
+{
+	int size;
+	int i;
+
+	i = 0;
+	size = ft_c_lstsize(head);
+	while(i < size)
+	{
+		if(check_r_sort(head))
+			return (true);
+		head = head->prev;
+		i++;
+	}
+	if(check_r_sort(head))
 		return (true);
 	else
 		return (false);
@@ -148,6 +164,24 @@ int find_min(t_c_list *head)
 	res = INT_MAX;
 	while (1)
 	{	if(res > current->content)
+			res = current->content;
+        current = current->next;
+		if(current == head)
+		{
+			return (res);
+		}
+	}
+	return (0);
+}
+
+int find_max(t_c_list *head)
+{
+	t_c_list *current = head;
+	int res;
+
+	res = INT_MIN;
+	while (1)
+	{	if(res < current->content)
 			res = current->content;
         current = current->next;
 		if(current == head)

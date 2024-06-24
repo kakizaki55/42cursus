@@ -29,10 +29,9 @@ typedef struct c_list
 //push_swap_utils.c
 t_c_list	*ft_c_lstnew(int content);
 int			ft_c_lstsize(t_c_list *lst);
-void 		ft_c_print_lst(t_c_list *head);
+void 		ft_c_print_lst(t_c_list *head, t_c_list *stack);
 void		ft_c_lstiter(t_c_list *head, int (*f)(int));
 //
-
 t_c_list 	*ft_lstpop(t_c_list **head);
 void		ft_c_lstadd(t_c_list **head, t_c_list *new);
 void 		ft_c_push(t_c_list **src, t_c_list **dest, char *stack);
@@ -59,7 +58,9 @@ int check_r_sort(t_c_list *head);
 int find_nbr(t_c_list *head, int nbr);
 int find_r_nbr(t_c_list *head, int nbr);
 int check_any_sort(t_c_list *head);
+int check_any_r_sort(t_c_list *head);
 int find_min(t_c_list *head);
+int find_max(t_c_list *head);
 
 //sort.c
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);

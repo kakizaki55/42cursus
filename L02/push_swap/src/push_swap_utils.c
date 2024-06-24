@@ -52,18 +52,18 @@ void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 
 t_c_list *ft_lstpop(t_c_list **head)
 {
-	t_c_list *poped; 
+	t_c_list *popped; 
 	t_c_list *temp;
 
 	temp = *head;
-	poped = ft_c_lstnew((*head)->content);
+	popped = ft_c_lstnew((*head)->content);
 	(*head)->prev->next = (*head)->next;
 	(*head)->next->prev = (*head)->prev;
 	*head = (*head)->next;
 	free(temp);
-	poped->next = poped;
-	poped->prev = poped;
-	return (poped);
+	popped->next = popped;
+	popped->prev = popped;
+	return (popped);
 }
 
 
@@ -86,14 +86,14 @@ int	ft_c_lstsize(t_c_list *lst)
 	return (res);
 }
 
-void ft_c_print_lst(t_c_list *head)
+void ft_c_print_lst(t_c_list *head, t_c_list *stack)
 {
 	t_c_list *current = head;
 	int i;
 
 	if(head == NULL)
 	{
-		ft_printf("List is NULL\n");
+		ft_printf("List [%s]is NULL\n", stack);
 		return ;
 	}
 
@@ -102,7 +102,7 @@ void ft_c_print_lst(t_c_list *head)
 	{	
 		if(i == 0)
 		{
-        	ft_printf("[%d]:%d<-head\n", i, current->content);
+        	ft_printf("[%d]:%d<-head[%s]\n", i, current->content, stack);
 		}
 		else
 		{
