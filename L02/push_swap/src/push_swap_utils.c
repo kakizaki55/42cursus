@@ -86,7 +86,7 @@ int	ft_c_lstsize(t_c_list *lst)
 	return (res);
 }
 
-void ft_c_print_lst(t_c_list *head, t_c_list *stack)
+void ft_c_print_lst(t_c_list *head, char *stack)
 {
 	t_c_list *current = head;
 	int i;

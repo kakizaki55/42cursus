@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/24 20:00:12 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:09:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -55,7 +55,6 @@ int sort_three(t_c_list **head,int target_nbr, char *stack)
 			ft_rotate(head, stack);
 	}
 
-
 	return (true);
 }
 
@@ -88,7 +87,7 @@ int recon(t_c_list *head, int half)
 	return (0);
 }
 
-int sort_small(t_c_list **head, int len, char *stack)
+int sort_two_three(t_c_list **head, int len, char *stack)
 {
 	int smallest;
 	int largest;
@@ -98,29 +97,26 @@ int sort_small(t_c_list **head, int len, char *stack)
 	if(len == 2)
 	{
 		sort_two(head, stack);
-		return (true);
+		// return (true);
 	}
-	// if the the length is 3
 	if(len == 3)
 	{
 		if(stack == "a")
 			sort_three(head, smallest, stack);
 		if(stack == "b")
 			sort_three(head, largest, stack);
-		return (true);
+		// return (true);
 	}
+	return (true);
 }
 
-
-int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
+void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half)
 {
 	int i;
 	int index;
-	int half;
 
 	i = 0;
-	half = ft_c_lstsize(*stack_a) / 2;
-	// the rotation can also be its own function
+	index = 0;
 	while(i++ < half)
 	{
 		index = recon(*stack_a, half);
@@ -139,34 +135,45 @@ int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 		}
 		ft_c_push(stack_a, stack_b, "a");
 	}
-	sort_small(stack_a, ft_c_lstsize(*stack_a), "a");
-	sort_small(stack_b, ft_c_lstsize(*stack_b), "b");
-	// likely need to make this a new function
-	int iter = 0;
+}
 
-	int b_size = ft_c_lstsize(*stack_b);
-	while (iter < b_size)
+void push_all(t_c_list **src_lst, t_c_list **dest_lst)
+{
+	int i = 0;
+
+	int b_size = ft_c_lstsize(*src_lst);
+	while (i < b_size)
 	{
-		ft_c_push(stack_b, stack_a, "b");
-		iter++;
+		ft_c_push(src_lst, dest_lst, "b");
+		i++;
 	}
-	*stack_b = NULL;
-	ft_c_print_lst(*stack_a, "a");
-	ft_c_print_lst(*stack_b, "b");
+	*src_lst = NULL;
+}
+
+int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
+{
+	int i;
+	int index;
+	int half;
+
+	i = 0;
+	half = ft_c_lstsize(*stack_a) / 2;
+	split_lsts(stack_a, stack_b, half);
+	sort_two_three(stack_a, ft_c_lstsize(*stack_a), "a");
+	sort_two_three(stack_b, ft_c_lstsize(*stack_b), "b");
+	push_all(stack_b, stack_a);
 	return (true);
 }
 
-
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len)
 {	
-	//if the length is 1 to 3
+	if(check_sort(*stack_a))
+		return (true);
 	if(len <= 3)
 	{
-		sort_small(stack_a, len, "a");
-		// ft_c_print_lst(*stack_a, "a");
+		sort_two_three(stack_a, len, "a");
 		return (true);
 	}
-	// if the lenth is 6 or under
 	if(len <= 6)
 	{
 		sort_six(stack_a, stack_b, len);
@@ -188,6 +195,9 @@ void sort(t_c_list **head, int len)
 	{
 		puts("here");
 	}
+
+	// ft_c_print_lst(stack_a, "a");
+	// ft_c_print_lst(stack_b, "b");
 
 	// ft_c_push(&stack_a, &stack_b, "a");
 

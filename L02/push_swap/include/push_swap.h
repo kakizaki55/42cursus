@@ -29,7 +29,7 @@ typedef struct c_list
 //push_swap_utils.c
 t_c_list	*ft_c_lstnew(int content);
 int			ft_c_lstsize(t_c_list *lst);
-void 		ft_c_print_lst(t_c_list *head, t_c_list *stack);
+void 		ft_c_print_lst(t_c_list *head, char *stack);
 void		ft_c_lstiter(t_c_list *head, int (*f)(int));
 //
 t_c_list 	*ft_lstpop(t_c_list **head);
