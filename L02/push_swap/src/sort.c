@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/24 21:09:29 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:29:31 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
@@ -133,7 +133,7 @@ void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half)
 				index++;
 			}
 		}
-		ft_c_push(stack_a, stack_b, "a");
+		ft_c_push(stack_a, stack_b, "b");
 	}
 }
 
@@ -144,7 +144,7 @@ void push_all(t_c_list **src_lst, t_c_list **dest_lst)
 	int b_size = ft_c_lstsize(*src_lst);
 	while (i < b_size)
 	{
-		ft_c_push(src_lst, dest_lst, "b");
+		ft_c_push(src_lst, dest_lst, "a");
 		i++;
 	}
 	*src_lst = NULL;
@@ -196,8 +196,8 @@ void sort(t_c_list **head, int len)
 		puts("here");
 	}
 
-	// ft_c_print_lst(stack_a, "a");
-	// ft_c_print_lst(stack_b, "b");
+	ft_c_print_lst(stack_a, "a");
+	ft_c_print_lst(stack_b, "b");
 
 	// ft_c_push(&stack_a, &stack_b, "a");
 
