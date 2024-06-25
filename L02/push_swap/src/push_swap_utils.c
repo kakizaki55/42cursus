@@ -66,7 +66,6 @@ t_c_list *ft_lstpop(t_c_list **head)
 	return (popped);
 }
 
-
 int	ft_c_lstsize(t_c_list *lst)
 {
 	int	res;

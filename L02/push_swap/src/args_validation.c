@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   args_validation.c                                  :+:      :+:    :+:   */
@@ -6,36 +6,18 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/18 12:50:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:33:44 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-// int arr_len(int *arr)
-// {
-// 	int res;
-
-// 	res = 0;
-// 	res = sizeof(&arr) / sizeof(arr[0]);
-// 	// res =( *(&arr + 1) - arr) / 2;
-// 	// need to find a better way to find the length of ana array 
-// 	// while(NULL != arr[res])
-// 	// {
-// 	// 	// arr++;
-// 	// 	res++;
-// 	// }
-// 	return (res);
-// }
-
 int print_arr(int *arr, int len)
 {
 	int i;
-	// int len;
 	i = 0;
 
-	// len = COUNT_OF(arr);
 	while (i < len)
 	{
 		ft_printf("[%d]:%d\n", i, arr[i]);

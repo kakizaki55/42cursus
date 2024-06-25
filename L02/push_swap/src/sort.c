@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/25 13:29:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:39:22 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int sort_two(t_c_list **head, char *stack)
 {
-	if((stack == "b") && is_smaller((*head)->content, (*head)->next->content))
+	if((stack[0] == 'b') && is_smaller((*head)->content, (*head)->next->content))
 		ft_lstswap(head, stack);
-	if(stack == "a" && is_smaller((*head)->next->content, (*head)->content))
+	if(stack[0] == 'a' && is_smaller((*head)->next->content, (*head)->content))
 		ft_lstswap(head, stack);
 	return (true);
 }
@@ -26,13 +26,13 @@ int sort_three(t_c_list **head,int target_nbr, char *stack)
 {
 	int i = 0;
 	int target = 0;
-	if(check_any_sort(*head) && stack == "a")
+	if(check_any_sort(*head) && stack[0] == 'a')
 	{
 		target = find_nbr(*head, target_nbr);
 		while(i++ < target)
 			ft_rotate(head, stack);
 	}
-	else if(stack == "a")
+	else if(stack[0] == 'a')
 	{
 		ft_lstswap(head, stack);
 		// ft_c_print_lst(*head);
@@ -40,13 +40,13 @@ int sort_three(t_c_list **head,int target_nbr, char *stack)
 		while(i++ < target)
 			ft_rotate(head, stack);
 	}
-	if(check_any_r_sort(*head) && stack == "b")
+	if(check_any_r_sort(*head) && stack[0] == 'b')
 	{
 		target = find_nbr(*head, target_nbr);
 		while(i++ < target)
 			ft_rotate(head, stack);
 	}
-	else if(stack == "b")
+	else if(stack[0] == 'b')
 	{
 		ft_lstswap(head, stack);
 		// ft_c_print_lst(*head);
@@ -101,9 +101,9 @@ int sort_two_three(t_c_list **head, int len, char *stack)
 	}
 	if(len == 3)
 	{
-		if(stack == "a")
+		if(stack[0] == 'a')
 			sort_three(head, smallest, stack);
-		if(stack == "b")
+		if(stack[0] == 'b')
 			sort_three(head, largest, stack);
 		// return (true);
 	}
