@@ -68,6 +68,7 @@ void push_all(t_c_list **src_lst, t_c_list **dest_lst);
 //short_sort.c
 int sort_two(t_c_list **head, char stack);
 int sort_three(t_c_list **head,int target_nbr, char stack);
+int sort_two_three(t_c_list **head, int len, char stack);
 void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half);
 int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len);
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);

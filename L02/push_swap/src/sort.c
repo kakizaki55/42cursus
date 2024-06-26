@@ -6,54 +6,102 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/25 17:45:16 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:45:37 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void split_lsts_rc(t_c_list **stack_a, t_c_list **stack_b, char stack)
+void split_lsts_long(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 {
 	int i;
 	int index;
-	int half;
+	int len;
 
 	i = 0;
 	index = 0;
-	half = stack == 'a' ? ft_c_lstsize(*stack_a) / 2 :ft_c_lstsize(*stack_b) / 2;
-	while(i++ < half)
+	len = ft_c_lstsize(*src) / 2;
+	while(i++ < len)
 	{
-		index = stack == 'a' ? recon(*stack_a, half) : recon_b(*stack_b, half);
+		if(stack == 'a')
+		{
+			index = recon(*src, dlmt);
+		} 
+		else
+		{
+			puts("heres");
+			index = recon_b(*src, dlmt);
+		}
+			
 		while(index != 0)
 		{
 			if(index > 0)
 			{	
-				stack == 'a' ? ft_rotate(stack_a, stack) : ft_rotate(stack_b, stack);
+				ft_rotate(src, stack);
 				index--;
 			}
 			else
 			{
-				stack == 'a' ? ft_r_rotate(stack_a, stack) : ft_r_rotate(stack_b, stack);
+				ft_r_rotate(src, stack);
 				index++;
 			}
 		}
-		stack == 'a' ? ft_c_push(stack_a, stack_b, 'b') : ft_c_push(stack_b, stack_a, 'a');
+		ft_c_push(src , dest, stack);
 	}
 }
 
+void recursive_split(t_c_list **stack_a, t_c_list **stack_b, int len)
+{
+	
+}
+
 int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
-{	
+{
 	//basically need to this function to flip between and b, if it becomes sorted at all then ove on to the next one.
 	
-	split_lsts_rc(stack_a, stack_b, 'a');
+
+	int dlmt;
+
+	dlmt = ft_c_lstsize(*stack_a) / 2;
+	split_lsts_long(stack_a, stack_b, 'a', dlmt);
+	dlmt /= 2;
 	puts("-----------");
 	ft_c_print_lst(*stack_a, 'a');
 	ft_c_print_lst(*stack_b, 'b');
-	split_lsts_rc(stack_a, stack_b, 'b');
+	while(ft_c_lstsize(*stack_b) > 3)
+	{	
+		printf("dlmt is:%d", dlmt);
+		split_lsts_long(stack_b, stack_a, 'b', dlmt);
+		dlmt /= 2;	
+	}
+
+	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
 	puts("-----------");
 	ft_c_print_lst(*stack_a, 'a');
 	ft_c_print_lst(*stack_b, 'b');
+
+	// int i = 0;
+	// int len = ft_c_lstsize(*stack_a);
+	// recursive_split(stack_a, stack_b, len);
+
+	
+
+	// while(1)
+	// {
+		// if(ft_c_lstsize(*stack_b) <= 3)
+		// 	sort_two_three(stack_b,ft_c_lstsize(*stack_b), 'b');
+		// if(ft_c_lstsize(*stack_a) <= 3)
+		// 	sort_two_three(stack_a,ft_c_lstsize(*stack_a), 'a');
+
+		// split_lsts_rc(stack_a, stack_b, 'a');
+		// split_lsts_rc(stack_b, stack_a, 'b');
+	// }
+
+	
+	// ft_c_print_lst(*stack_a, 'a');
+	// ft_c_print_lst(*stack_b, 'b');
+
 	return (true);
 }
 
@@ -69,9 +117,9 @@ void sort(t_c_list **head, int len)
 	stack_b = NULL;
 
 	if(sort_short(&stack_a, &stack_b, len))
-		// return ;
+		return ;
 
-	// long_sort(&stack_a, &stack_b, len);
-	ft_c_print_lst(stack_a, 'a');
-	ft_c_print_lst(stack_b, 'b');
+	long_sort(&stack_a, &stack_b, len);
+	// ft_c_print_lst(stack_a, 'a');
+	// ft_c_print_lst(stack_b, 'b');
 }

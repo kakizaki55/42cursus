@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/25 15:50:29 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:59:44 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ int sort_three(t_c_list **head,int target_nbr, char stack)
 	int target_index = 0;
 	int is_sorted;
 
-	is_sorted = stack == 'a' ? check_any_sort(*head) : check_any_r_sort(*head);
+	is_sorted = (stack == 'a') ? check_any_sort(*head) : check_any_r_sort(*head);
 
 	if(!is_sorted)
 		ft_lstswap(head, stack);
 
-	target_index = recon(*head, target_nbr);
+	if(is_smaller(find_nbr(*head,target_nbr), find_r_nbr(*head,target_nbr)))
+		target_index = find_nbr(*head,target_nbr);
+	else
+		target_index = find_r_nbr(*head, target_nbr);
+	
 		while(target_index != 0)
 		{
 			if(target_index > 0)
@@ -66,7 +70,10 @@ int sort_two_three(t_c_list **head, int len, char stack)
 		if(stack == 'a')
 			sort_three(head, smallest, stack);
 		if(stack == 'b')
+		{
+			puts("inside sort 3");
 			sort_three(head, largest, stack);
+		}
 	}
 	return (true);
 }
