@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/25 13:34:42 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:01:58 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,4 +192,73 @@ int find_max(t_c_list *head)
 	return (0);
 }
 
+int recon(t_c_list *head, int deli)
+{
+	int i;
+	int index;
+	int r_index;
+	t_c_list *temp;
+	t_c_list *r_temp;
+	int lst_size = ft_c_lstsize(head);
 
+	i = 0;
+	index = 0;
+	r_index = 0;
+	temp = head;
+	r_temp = head;
+	while (i < lst_size)
+	{
+		if(temp->content <= deli)
+			return (index);
+		temp = temp->next;
+		index ++;
+		if(r_temp->content <= deli)
+			return (r_index);
+		r_temp = r_temp->prev;
+		r_index--;
+		i++;
+	}
+	return (false);
+}
+
+int recon_b(t_c_list *head, int deli)
+{
+	int i;
+	int index;
+	int r_index;
+	t_c_list *temp;
+	t_c_list *r_temp;
+	int lst_size = ft_c_lstsize(head);
+
+	i = 0;
+	index = 0;
+	r_index = 0;
+	temp = head;
+	r_temp = head;
+	while (i < lst_size)
+	{
+		if(temp->content > deli)
+			return (index);
+		temp = temp->next;
+		index ++;
+		if(r_temp->content > deli)
+			return (r_index);
+		r_temp = r_temp->prev;
+		r_index--;
+		i++;
+	}
+	return (false);
+}
+
+void push_all(t_c_list **src_lst, t_c_list **dest_lst)
+{
+	int i = 0;
+
+	int b_size = ft_c_lstsize(*src_lst);
+	while (i < b_size)
+	{
+		ft_c_push(src_lst, dest_lst, 'a');
+		i++;
+	}
+	*src_lst = NULL;
+}

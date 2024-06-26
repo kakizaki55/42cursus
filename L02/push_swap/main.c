@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 16:51:54 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:12:44 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
@@ -39,24 +39,17 @@ int	main(int argc, char *argv[])
 	int *args_arr;
 	args_arr = args_validation(argc, argv);
 	int len = argc - 1;
-
-	// ft_printf("len is: %d\n",len);
-	// print_arr(args_arr, len);
-
 	
 	args_arr = compress(args_arr, len);
 	head = init(args_arr, len);
-	// ft_c_print_lst(head);
 
 	//this is a test to try and sort small lst
 	sort(&head, len);
-	// ft_c_print_lst(head);
+	// ft_c_print_lst(head, 'a');
 	
 	// ft_printf("1 is sorted 0 is not:%d\n", check_sorted(head));
 	// ft_printf("3 is at index:%d\n", find_nbr(head, 3));
 	// ft_printf("1 is sorted 0 is not:%d\n", check_r_sorted(head));
-
-
 
 
 //-----------------TEST----------------

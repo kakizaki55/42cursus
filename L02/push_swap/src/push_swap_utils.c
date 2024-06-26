@@ -26,10 +26,10 @@ t_c_list	*ft_c_lstnew(int content)
 	return (node);
 }
 
-void ft_c_push(t_c_list **src, t_c_list **dest, char *stack)
+void ft_c_push(t_c_list **src, t_c_list **dest, char stack)
 {
 	ft_c_lstadd(dest, ft_lstpop(src));
-	ft_printf("p%s\n", stack);
+	ft_printf("p%c\n", stack);
 }
 
 void	ft_c_lstadd(t_c_list **head, t_c_list *new)
@@ -85,14 +85,14 @@ int	ft_c_lstsize(t_c_list *lst)
 	return (res);
 }
 
-void ft_c_print_lst(t_c_list *head, char *stack)
+void ft_c_print_lst(t_c_list *head, char stack)
 {
 	t_c_list *current = head;
 	int i;
 
 	if(head == NULL)
 	{
-		ft_printf("List [%s]is NULL\n", stack);
+		ft_printf("List [%c]is NULL\n", stack);
 		return ;
 	}
 
@@ -101,7 +101,7 @@ void ft_c_print_lst(t_c_list *head, char *stack)
 	{	
 		if(i == 0)
 		{
-        	ft_printf("[%d]:%d<-head[%s]\n", i, current->content, stack);
+        	ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
 		}
 		else
 		{
@@ -114,17 +114,17 @@ void ft_c_print_lst(t_c_list *head, char *stack)
 	}
 }
 
-void ft_rotate(t_c_list **head, char *stack)
+void ft_rotate(t_c_list **head, char stack)
 {
 	*head = (*head)->next;
-	ft_printf("r%s\n", stack);
+	ft_printf("r%c\n", stack);
 
 }
 
-void ft_r_rotate(t_c_list **head, char *stack)
+void ft_r_rotate(t_c_list **head, char stack)
 {
 	*head = (*head)->prev;
-	ft_printf("rr%s\n", stack);
+	ft_printf("rr%c\n", stack);
 
 }
 
@@ -150,14 +150,14 @@ void ft_c_lstclear(t_c_list **head)
 	*head = NULL;
 }
 
-void 	ft_lstswap(t_c_list **head, char *stack)
+void 	ft_lstswap(t_c_list **head, char stack)
 {
 	int	temp;
 
 	temp = (*head)->content;
 	(*head)->content = (*head)->next->content;
 	(*head)->next->content = temp;
-	ft_printf("s%s\n", stack);
+	ft_printf("s%c\n", stack);
 }
 
 //idea for function

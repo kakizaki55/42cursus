@@ -29,18 +29,17 @@ typedef struct c_list
 //push_swap_utils.c
 t_c_list	*ft_c_lstnew(int content);
 int			ft_c_lstsize(t_c_list *lst);
-void 		ft_c_print_lst(t_c_list *head, char *stack);
+void 		ft_c_print_lst(t_c_list *head, char stack);
 void		ft_c_lstiter(t_c_list *head, int (*f)(int));
 //
 t_c_list 	*ft_lstpop(t_c_list **head);
 void		ft_c_lstadd(t_c_list **head, t_c_list *new);
-void 		ft_c_push(t_c_list **src, t_c_list **dest, char *stack);
-void 		ft_rotate(t_c_list **head, char *stack);
-void		ft_r_rotate(t_c_list **head, char *stack);
-void		ft_lstswap(t_c_list **head, char *stack);
+void 		ft_c_push(t_c_list **src, t_c_list **dest, char stack);
+void 		ft_rotate(t_c_list **head, char stack);
+void		ft_r_rotate(t_c_list **head, char stack);
+void		ft_lstswap(t_c_list **head, char stack);
 //
 void 		ft_c_lstclear(t_c_list **head);
-// int 		add2(int number);
 
 //args_validation.c
 int *args_validation(int argc, char *argv[]);
@@ -61,9 +60,19 @@ int check_any_sort(t_c_list *head);
 int check_any_r_sort(t_c_list *head);
 int find_min(t_c_list *head);
 int find_max(t_c_list *head);
+int recon(t_c_list *head, int deli);
+int recon_b(t_c_list *head, int deli);
+void push_all(t_c_list **src_lst, t_c_list **dest_lst);
+// void rotate_to_target(t_c_list **head, int target_nbr, char stack);
+
+//short_sort.c
+int sort_two(t_c_list **head, char stack);
+int sort_three(t_c_list **head,int target_nbr, char stack);
+void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half);
+int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len);
+int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 
 //sort.c
-int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 void sort(t_c_list **head, int len);
 
 
