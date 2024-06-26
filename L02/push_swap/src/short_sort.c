@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   short_sort.c                                       :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/26 18:59:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:26:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
@@ -27,6 +27,8 @@ int sort_three(t_c_list **head,int target_nbr, char stack)
 	int i = 0;
 	int target_index = 0;
 	int is_sorted;
+	
+	// ft_printf("target nbr: %d\n", target_nbr);
 
 	is_sorted = (stack == 'a') ? check_any_sort(*head) : check_any_r_sort(*head);
 
@@ -36,8 +38,9 @@ int sort_three(t_c_list **head,int target_nbr, char stack)
 	if(is_smaller(find_nbr(*head,target_nbr), find_r_nbr(*head,target_nbr)))
 		target_index = find_nbr(*head,target_nbr);
 	else
-		target_index = find_r_nbr(*head, target_nbr);
-	
+		target_index = find_r_nbr(*head, target_nbr) * -1;
+
+		// ft_printf("target index: %d\n", target_index);
 		while(target_index != 0)
 		{
 			if(target_index > 0)
@@ -68,10 +71,11 @@ int sort_two_three(t_c_list **head, int len, char stack)
 	if(len == 3)
 	{
 		if(stack == 'a')
+		{
 			sort_three(head, smallest, stack);
+		}
 		if(stack == 'b')
 		{
-			puts("inside sort 3");
 			sort_three(head, largest, stack);
 		}
 	}
@@ -114,8 +118,12 @@ int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 
 	i = 0;
 	split_lsts(stack_a, stack_b, len);
+	// ft_c_print_lst(*stack_a, 'a');
+	// ft_c_print_lst(*stack_b, 'b');
 	sort_two_three(stack_a, ft_c_lstsize(*stack_a), 'a');
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
+	// ft_c_print_lst(*stack_a, 'a');
+	// ft_c_print_lst(*stack_b, 'b');
 	push_all(stack_b, stack_a);
 	return (true);
 }
