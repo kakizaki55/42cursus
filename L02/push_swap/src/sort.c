@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/26 23:26:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:37:46 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,7 @@ void split_lsts_long(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 	i = 0;
 	index = 0;
 	len = ft_c_lstsize(*src) / 2;
-	while(i++ < len)
+	while(i++ <= len)
 	{
 		if(stack == 'a')
 		{
@@ -30,7 +30,7 @@ void split_lsts_long(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 		} 
 		else
 		{
-			puts("heres");
+			// puts("heres");
 			index = recon_b(*src, dlmt);
 		}
 			
@@ -117,9 +117,9 @@ void sort(t_c_list **head, int len)
 	stack_b = NULL;
 
 	if(sort_short(&stack_a, &stack_b, len))
-		// return ;
+		return ;
 
-	// long_sort(&stack_a, &stack_b, len);
-	ft_c_print_lst(stack_a, 'a');
-	ft_c_print_lst(stack_b, 'b');
+	long_sort(&stack_a, &stack_b, len);
+	// ft_c_print_lst(stack_a, 'a');
+	// ft_c_print_lst(stack_b, 'b');
 }
