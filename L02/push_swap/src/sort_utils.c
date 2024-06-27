@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
@@ -6,14 +6,12 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/26 19:09:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:06:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
-
-//this function need to check if the lst is at all sorted. 
 
 int check_sort(t_c_list *head)
 {
@@ -237,11 +235,11 @@ int recon_b(t_c_list *head, int deli)
 	r_temp = head;
 	while (i < lst_size)
 	{
-		if(temp->content > deli)
+		if(temp->content >= deli)
 			return (index);
 		temp = temp->next;
 		index ++;
-		if(r_temp->content > deli)
+		if(r_temp->content >= deli)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;

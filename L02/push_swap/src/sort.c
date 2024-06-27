@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/26 23:37:46 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:09:42 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,72 +18,65 @@ void split_lsts_long(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 	int i;
 	int index;
 	int len;
+	char r_stack;
 
 	i = 0;
 	index = 0;
-	len = ft_c_lstsize(*src) / 2;
+	len = (ft_c_lstsize(*src) / 2);
+	r_stack = (stack == 'b') ? 'a' : 'b';
 	while(i++ <= len)
 	{
-		if(stack == 'a')
-		{
+		if(stack == 'b')
 			index = recon(*src, dlmt);
-		} 
 		else
-		{
-			// puts("heres");
 			index = recon_b(*src, dlmt);
-		}
 			
 		while(index != 0)
 		{
 			if(index > 0)
 			{	
-				ft_rotate(src, stack);
+				ft_rotate(src, r_stack);
 				index--;
 			}
 			else
 			{
-				ft_r_rotate(src, stack);
+				ft_r_rotate(src, r_stack);
 				index++;
 			}
 		}
+		// if(r_stack == 'b' && ft_c_lstsize(*src) < 3)
+		// 	return ;
 		ft_c_push(src , dest, stack);
 	}
 }
 
-void recursive_split(t_c_list **stack_a, t_c_list **stack_b, int len)
-{
-	
-}
 
 int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
 	//basically need to this function to flip between and b, if it becomes sorted at all then ove on to the next one.
 	
-
 	int dlmt;
 
 	dlmt = ft_c_lstsize(*stack_a) / 2;
-	split_lsts_long(stack_a, stack_b, 'a', dlmt);
-	dlmt /= 2;
-	puts("-----------");
-	ft_c_print_lst(*stack_a, 'a');
-	ft_c_print_lst(*stack_b, 'b');
-	while(ft_c_lstsize(*stack_b) > 3)
+	split_lsts_long(stack_a, stack_b, 'b', dlmt);
+	// dlmt /= 2;
+	// puts("-----------");
+	// ft_c_print_lst(*stack_a, 'a');
+	// ft_c_print_lst(*stack_b, 'b');
+	while(1)
 	{	
 		printf("dlmt is:%d", dlmt);
-		split_lsts_long(stack_b, stack_a, 'b', dlmt);
-		dlmt /= 2;	
+		dlmt /= 2;
+		split_lsts_long(stack_b, stack_a, 'a', dlmt);
+		if(dlmt <= 4)
+			break;
 	}
-
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
-	puts("-----------");
-	ft_c_print_lst(*stack_a, 'a');
-	ft_c_print_lst(*stack_b, 'b');
+	// puts("-----------");
+	// ft_c_print_lst(*stack_a, 'a');
+	// ft_c_print_lst(*stack_b, 'b');
+	// ft_printf("int is : %d\n", 5/2);
 
-	// int i = 0;
-	// int len = ft_c_lstsize(*stack_a);
-	// recursive_split(stack_a, stack_b, len);
 
 	
 
@@ -109,12 +102,15 @@ void sort(t_c_list **head, int len)
 {
 	t_c_list *stack_a;
 	t_c_list *stack_b;
-	int target = 1;
-	int index = 0;
+	// int target = 1;
+	// int index = 0;
 
 	//initing stacks
 	stack_a = *head;
 	stack_b = NULL;
+
+	ft_printf("int is : %d\n", 7/2);
+
 
 	if(sort_short(&stack_a, &stack_b, len))
 		return ;
