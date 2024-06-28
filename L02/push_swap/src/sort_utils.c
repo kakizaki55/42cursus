@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/28 11:36:53 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:09:31 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -206,17 +206,17 @@ int recon_smaller(t_c_list *head, int deli)
 	r_temp = head;
 	while (i < lst_size)
 	{
-		if(temp->content < deli)
+		if(temp->content <= deli)
 			return (index);
 		temp = temp->next;
-		index ++;
-		if(r_temp->content < deli)
+		index++;
+		if(r_temp->content <= deli)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;
 		i++;
 	}
-	return (false);
+	return (0);
 }
 
 int recon_larger(t_c_list *head, int deli)
@@ -238,14 +238,14 @@ int recon_larger(t_c_list *head, int deli)
 		if(temp->content > deli)
 			return (index);
 		temp = temp->next;
-		index ++;
+		index++;
 		if(r_temp->content > deli)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;
 		i++;
 	}
-	return (false);
+	return (0);
 }
 
 void push_all(t_c_list **src_lst, t_c_list **dest_lst)

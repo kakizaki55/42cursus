@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/28 12:07:52 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:12:18 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -88,14 +88,13 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 	dlmt = ft_c_lstsize(*stack_a) / 2;
 	half_way = dlmt;
 	split_lsts_long(stack_a, stack_b, 'b', dlmt);
-	// dlmt /= 2;.
 	// puts("-----------");
 	// ft_c_print_lst(*stack_a, 'a');
 	// ft_c_print_lst(*stack_b, 'b');
 	while(1)
 	{	
 		dlmt /= 2;
-		// printf("dlmt is:%d", dlmt);
+		printf("dlmt is:%d", dlmt);
 		split_lsts_long(stack_b, stack_a, 'a', dlmt);
 		if(dlmt <= 3)
 			break;
@@ -105,8 +104,6 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 	// puts("-----------");
 	// ft_c_print_lst(*stack_a, 'a');
 	// ft_c_print_lst(*stack_b, 'b');
-
-	// ft_printf("int is : %d\n", 5/2)
 	int i = 0;
 	int target_nbr = find_max(*stack_b) + 1;
 	int index;
@@ -163,10 +160,10 @@ void sort(t_c_list **head, int len)
 	// ft_printf("int is : %d\n", 7/2);
 
 
-	if(sort_short(&stack_a, &stack_b, len))
-		return ;
-
-	long_sort(&stack_a, &stack_b, len);
+	if(ft_c_lstsize(stack_a) <= 6)
+		sort_short(&stack_a, &stack_b, len);
+	else 
+		long_sort(&stack_a, &stack_b, len);
 	// ft_c_print_lst(stack_a, 'a');
 	// ft_c_print_lst(stack_b, 'b');
 }
