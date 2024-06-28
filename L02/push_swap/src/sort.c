@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/27 22:09:42 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:12:42 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -65,16 +65,16 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 	// ft_c_print_lst(*stack_b, 'b');
 	while(1)
 	{	
-		printf("dlmt is:%d", dlmt);
 		dlmt /= 2;
+		printf("dlmt is:%d", dlmt);
 		split_lsts_long(stack_b, stack_a, 'a', dlmt);
-		if(dlmt <= 4)
+		if(dlmt <= 3)
 			break;
 	}
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
 	// puts("-----------");
-	// ft_c_print_lst(*stack_a, 'a');
-	// ft_c_print_lst(*stack_b, 'b');
+	ft_c_print_lst(*stack_a, 'a');
+	ft_c_print_lst(*stack_b, 'b');
 	// ft_printf("int is : %d\n", 5/2);
 
 
@@ -109,7 +109,7 @@ void sort(t_c_list **head, int len)
 	stack_a = *head;
 	stack_b = NULL;
 
-	ft_printf("int is : %d\n", 7/2);
+	// ft_printf("int is : %d\n", 7/2);
 
 
 	if(sort_short(&stack_a, &stack_b, len))
