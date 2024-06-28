@@ -60,8 +60,8 @@ int check_any_sort(t_c_list *head);
 int check_any_r_sort(t_c_list *head);
 int find_min(t_c_list *head);
 int find_max(t_c_list *head);
-int recon(t_c_list *head, int deli);
-int recon_b(t_c_list *head, int deli);
+int recon_smaller(t_c_list *head, int deli);
+int recon_larger(t_c_list *head, int deli);
 void push_all(t_c_list **src_lst, t_c_list **dest_lst);
 // void rotate_to_target(t_c_list **head, int target_nbr, char stack);
 

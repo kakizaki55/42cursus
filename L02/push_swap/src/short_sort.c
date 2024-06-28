@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/27 21:44:42 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:48:52 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -99,7 +99,7 @@ void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int len)
 	half = ft_c_lstsize(*stack_a) / 2;
 	while(i++ < half)
 	{
-		index = recon(*stack_a, half);
+		index = recon_smaller(*stack_a, half);
 		while(index != 0)
 		{
 			if(index > 0)
