@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/28 16:11:56 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:32:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -132,12 +132,15 @@ int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
 	// ft_c_print_lst(*stack_a, 'a');
 	// ft_c_print_lst(*stack_b, 'b');
-	push_all(stack_b, stack_a);
+	push_all(stack_b, stack_a, 'a');
+	// printf("check sort: %d", check_sort(*stack_a));
 	return (true);
 }
 
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len)
 {	
+	// printf("check sort: %d", check_sort(*stack_a));
+
 	if(check_sort(*stack_a))
 		return (true);
 	if(len <= 3)

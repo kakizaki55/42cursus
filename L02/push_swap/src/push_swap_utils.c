@@ -27,13 +27,15 @@ t_c_list	*ft_c_lstnew(int content)
 }
 
 void ft_c_push(t_c_list **src, t_c_list **dest, char stack)
-{
+{	
 	ft_c_lstadd(dest, ft_lstpop(src));
 	ft_printf("p%c\n", stack);
 }
 
 void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 {	
+	if(new == NULL)
+		return ;
 	if(*head == NULL)
 	{
 		new->next = new;
@@ -50,26 +52,52 @@ void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 	*head = new;
 } 
 
+// t_c_list *ft_lstpop(t_c_list **head)
+// {
+// 	t_c_list *popped; 
+// 	t_c_list *temp;
+	
+// 	if(!*head ||!head)
+// 		return (NULL);
+
+// 	temp = *head;
+// 	popped = ft_c_lstnew((*head)->content);
+// 	(*head)->prev->next = (*head)->next;
+// 	(*head)->next->prev = (*head)->prev;
+// 	*head = (*head)->next;
+// 	// ft_printf("head is:%d", temp->content);
+// 		free(temp);
+// 	popped->next = popped;
+// 	popped->prev = popped;
+// 	return (popped);
+// }
+
 t_c_list *ft_lstpop(t_c_list **head)
 {
-	t_c_list *popped; 
-	t_c_list *temp;
+    if (!head || !*head) return NULL;
 
-	temp = *head;
-	popped = ft_c_lstnew((*head)->content);
-	(*head)->prev->next = (*head)->next;
-	(*head)->next->prev = (*head)->prev;
-	*head = (*head)->next;
-	free(temp);
-	popped->next = popped;
-	popped->prev = popped;
-	return (popped);
+    t_c_list *popped = *head;
+
+    if (popped->next == popped) {
+        *head = NULL;
+    } else {
+        popped->prev->next = popped->next;
+        popped->next->prev = popped->prev;
+        *head = popped->next;
+    }
+
+    popped->next = popped;
+    popped->prev = popped;
+
+    return popped;
 }
 
 int	ft_c_lstsize(t_c_list *lst)
 {
 	int	res;
 	t_c_list *current;
+	if(!lst)
+		return (0);
 
 	current = lst;
 	res = 1;
@@ -128,27 +156,27 @@ void ft_r_rotate(t_c_list **head, char stack)
 
 }
 
-void ft_c_lstclear(t_c_list **head)
-{
-	t_c_list *current = *head;
-	int i = 0;
+// void ft_c_lstclear(t_c_list **head)
+// {
+// 	t_c_list *current = *head;
+// 	int i = 0;
 
-    while (1)
-	{	
-        current = current->next;
-		if(current->next == *head)
-		{
-			free(current);
-			break;
-		}
-		else
-		{
-			free(current->prev);
-		}
-		i++;
-	}
-	*head = NULL;
-}
+//     while (1)
+// 	{	
+//         current = current->next;
+// 		if(current->next == *head)
+// 		{
+// 			free(current);
+// 			break;
+// 		}
+// 		else
+// 		{
+// 			free(current->prev);
+// 		}
+// 		i++;
+// 	}
+// 	*head = NULL;
+// }
 
 void 	ft_lstswap(t_c_list **head, char stack)
 {

@@ -62,7 +62,8 @@ int find_min(t_c_list *head);
 int find_max(t_c_list *head);
 int recon_smaller(t_c_list *head, int deli);
 int recon_larger(t_c_list *head, int deli);
-void push_all(t_c_list **src_lst, t_c_list **dest_lst);
+void push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack);
+void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack);
 // void rotate_to_target(t_c_list **head, int target_nbr, char stack);
 
 //short_sort.c

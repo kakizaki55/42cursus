@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/28 16:09:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/29 21:51:43 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,6 +35,7 @@ int check_sort(t_c_list *head)
 		if(current == head)
 			return (true);
 	}
+	return (false);
 }
 
 int check_r_sort(t_c_list *head)
@@ -60,6 +61,7 @@ int check_r_sort(t_c_list *head)
 		if(current == head)
 			return (true);
 	}
+	return (false);
 }
 
 int find_nbr(t_c_list *head, int nbr)
@@ -86,6 +88,7 @@ int find_nbr(t_c_list *head, int nbr)
 		if(current == head)
 			return(false);
 	}
+	return (false);
 }
 
 int find_r_nbr(t_c_list *head, int nbr)
@@ -112,6 +115,7 @@ int find_r_nbr(t_c_list *head, int nbr)
 		if(current == head)
 			return(false);
 	}
+	return (false);
 }
 
 int check_any_sort(t_c_list *head)
@@ -161,7 +165,7 @@ int find_min(t_c_list *head)
 
 	res = INT_MAX;
 	while (1)
-	{	if(res > current->content)
+	{	if(res > current->content && (current->content > 0))
 			res = current->content;
         current = current->next;
 		if(current == head)
@@ -216,7 +220,7 @@ int recon_smaller(t_c_list *head, int deli)
 		r_index--;
 		i++;
 	}
-	return (0);
+	return (INT_MAX);
 }
 
 int recon_larger(t_c_list *head, int deli)
@@ -248,15 +252,33 @@ int recon_larger(t_c_list *head, int deli)
 	return (0);
 }
 
-void push_all(t_c_list **src_lst, t_c_list **dest_lst)
+void push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 {
 	int i = 0;
 
-	int b_size = ft_c_lstsize(*src_lst);
-	while (i < b_size)
+	int size = ft_c_lstsize(*src_lst);
+	while (i < size)
 	{
-		ft_c_push(src_lst, dest_lst, 'a');
+		ft_c_push(src_lst, dest_lst, dest_stack);
 		i++;
+	}
+	*src_lst = NULL;
+}
+
+void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
+{
+	int i = 0;
+	int biggest;
+	
+	// biggest =  find_max(*src_lst);
+	int size = ft_c_lstsize(*src_lst);
+	if((*src_lst)->content == biggest)
+	{
+		while (i < size)
+		{
+			ft_c_push(src_lst, dest_lst, dest_stack);
+			i++;
+		}
 	}
 	*src_lst = NULL;
 }
