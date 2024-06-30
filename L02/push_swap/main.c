@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/25 15:12:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 14:06:45 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ t_c_list *init(int *args_arr, int len)
 
 int	main(int argc, char *argv[])
 {	
-
 	t_c_list *head;
-	// int test[5] = { 10, 5, 3, 15, 0};
 
 	head = NULL;
 	int i = 0;
@@ -45,11 +43,6 @@ int	main(int argc, char *argv[])
 
 	//this is a test to try and sort small lst
 	sort(&head, len);
-	// ft_c_print_lst(head, 'a');
-	
-	// ft_printf("1 is sorted 0 is not:%d\n", check_sorted(head));
-	// ft_printf("3 is at index:%d\n", find_nbr(head, 3));
-	// ft_printf("1 is sorted 0 is not:%d\n", check_r_sorted(head));
 
 
 //-----------------TEST----------------

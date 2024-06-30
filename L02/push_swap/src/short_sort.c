@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   short_sort.c                                       :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/29 10:32:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 14:08:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
@@ -97,11 +97,9 @@ void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int len)
 	i = 0;
 	index = 0;
 	half = ft_c_lstsize(*stack_a) / 2;
-	printf("half is:%d", half);
 	while(i++ < half)
 	{
 		index = recon_smaller(*stack_a, half);
-		printf("index is:%d", index);
 		while(index != 0)
 		{
 			if(index > 0)

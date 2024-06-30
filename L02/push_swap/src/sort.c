@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/29 22:36:23 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 14:38:25 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
@@ -142,7 +142,8 @@ void rotate_stack(t_c_list **src, int stack, int index)
 
 void chunk_and_push(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-    int chunk_size = len / 20;  // Start with 5 chunks, adjust as needed
+	//chink size::
+    int chunk_size = (len / 20) || 2; 
     int dlmt = chunk_size + (len / 2);
     
     while (*stack_a != NULL)
@@ -231,37 +232,14 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 		}
 		i++;
 	}
+
+	ft_printf("do i make it hear?");
 	
 	//step 4;
 	chunk_and_push(stack_a, stack_b, len);
 
 	//step 5:
 	sort_back(stack_a, stack_b, len);
-
-
-	// dlmt = half_way;
-	// while(*stack_a != NULL)
-	// {	
-	// 	dlmt += 10;
-	// 	printf("dlmt is:%d", dlmt);
-	// 	if(dlmt >  len)
-	// 		break;
-	// 	split_lsts_long(stack_a, stack_b, 'b', dlmt);
-	// }
-	// ft_printf("here\n");
-	// ft_c_print_lst(*stack_a, 'a');
-	// ft_c_print_lst(*stack_b, 'b');
-
-
-
-	//--------------this is where i push it back
-	
-	// if(!check_sort(*stack_a))
-	// {
-	// 	ft_r_rotate(stack_a, 'a');
-	// 	if(is_bigger((*stack_a)->content, (*stack_a)->next->content))
-	// 		ft_lstswap(stack_a, 'a');
-	// }
 
 	return (true);
 }
@@ -270,20 +248,17 @@ void sort(t_c_list **head, int len)
 {
 	t_c_list *stack_a;
 	t_c_list *stack_b;
-	// int target = 1;
-	// int index = 0;
 
 	//initing stacks
 	stack_a = *head;
 	stack_b = NULL;
-
-	// ft_printf("int is : %d\n", 7/2);
 
 
 	if(ft_c_lstsize(stack_a) <= 6)
 		sort_short(&stack_a, &stack_b, len);
 	else 
 		long_sort(&stack_a, &stack_b, len);
-	// ft_c_print_lst(stack_a, 'a');
-	// ft_c_print_lst(stack_b, 'b');
+
+	ft_c_print_lst(stack_a, 'a');
+	ft_c_print_lst(stack_b, 'b');
 }

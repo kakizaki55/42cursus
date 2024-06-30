@@ -41,7 +41,7 @@ void		ft_lstswap(t_c_list **head, char stack);
 //
 void 		ft_c_lstclear(t_c_list **head);
 
-//args_validation.c
+//args_validation.ccle
 int *args_validation(int argc, char *argv[]);
 int print_arr(int *arr, int len);
 
