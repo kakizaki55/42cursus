@@ -28,17 +28,15 @@ typedef struct c_list
 
 //push_swap_utils.c
 t_c_list	*ft_c_lstnew(int content);
+void 		ft_c_push(t_c_list **src, t_c_list **dest, char stack);
+void		ft_c_lstadd(t_c_list **head, t_c_list *new);
+t_c_list 	*ft_lstpop(t_c_list **head);
 int			ft_c_lstsize(t_c_list *lst);
 void 		ft_c_print_lst(t_c_list *head, char stack);
-void		ft_c_lstiter(t_c_list *head, int (*f)(int));
-//
-t_c_list 	*ft_lstpop(t_c_list **head);
-void		ft_c_lstadd(t_c_list **head, t_c_list *new);
-void 		ft_c_push(t_c_list **src, t_c_list **dest, char stack);
 void 		ft_rotate(t_c_list **head, char stack);
 void		ft_r_rotate(t_c_list **head, char stack);
+void		rotate_stack(t_c_list **src, int stack, int index);
 void		ft_lstswap(t_c_list **head, char stack);
-//
 void 		ft_c_lstclear(t_c_list **head);
 
 //args_validation.c
@@ -67,10 +65,10 @@ void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack);
 // void rotate_to_target(t_c_list **head, int target_nbr, char stack);
 
 //short_sort.c
+void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half);
 int sort_two(t_c_list **head, char stack);
 int sort_three(t_c_list **head,int target_nbr, char stack);
 int sort_two_three(t_c_list **head, int len, char stack);
-void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half);
 int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len);
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 

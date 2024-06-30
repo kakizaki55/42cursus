@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/29 21:51:43 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:55:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -270,7 +270,6 @@ void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 	int i = 0;
 	int biggest;
 	
-	// biggest =  find_max(*src_lst);
 	int size = ft_c_lstsize(*src_lst);
 	if((*src_lst)->content == biggest)
 	{

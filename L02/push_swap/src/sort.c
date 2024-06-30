@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/30 15:21:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:12:16 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,35 +36,16 @@ void split_lsts_small(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 			}
 		}
 		else
-		{
 			index = recon_larger(*src, dlmt);
-		}
-		
-		while(index != 0)
-		{
-			if(index > 0)
-			{	
-				ft_rotate(src, src_stack);
-				index--;
-			}
-			else
-			{
-				ft_r_rotate(src, src_stack);
-				index++;
-			}
-		}
+		rotate_stack(src, src_stack, index);
 		ft_c_push(src , dest, stack);
 	}
 }
 
 void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int chunk_size)
 {
-    if (!src || !*src || !dest)
-        return;
-
 	int i;
 	int index;
-	int len;
 	char src_stack;
 
 	i = 0;
@@ -82,23 +63,9 @@ void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 			}
 		}
 		else
-		{
 			index = recon_larger(*src, dlmt);
-		}
 
-		while(index != 0)
-		{
-			if(index > 0)
-			{	
-				ft_rotate(src, src_stack);
-				index--;
-			}
-			else
-			{
-				ft_r_rotate(src, src_stack);
-				index++;
-			}
-		}
+		rotate_stack(src, src_stack, index);
 		ft_c_push(src , dest, stack);
 	}
 }
@@ -116,29 +83,9 @@ int find_sortest_path(t_c_list **src, int target_nbr)
 	return (res);
 }
 
-void rotate_stack(t_c_list **src, int stack, int index)
-{
-	if (!src || !*src) {
-        return;
-    }
-	while(index != 0)
-		{
-			if(index > 0)
-			{	
-				ft_rotate(src, stack);
-				index--;
-			}
-			else
-			{
-				ft_r_rotate(src, stack);
-				index++;
-			}
-		}
-}
-
 void chunk_and_push(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	//this is where i will be doing chunk minupulations::
+	//this is where i will be doing chunk minupulations:
     int chunk_size = len / 10; 
 	if(chunk_size == 0)
 		chunk_size = 5;
@@ -148,15 +95,12 @@ void chunk_and_push(t_c_list **stack_a, t_c_list **stack_b, int len)
     {
         split_lsts_large(stack_a, stack_b, 'b', dlmt, chunk_size);
         if (dlmt >= len)
-		{
             break;
-		}
+
         
         dlmt += chunk_size;
         if (dlmt > len)
-		{
-            dlmt = len;
-		}
+        	dlmt = len;
     }
 }
 
@@ -185,10 +129,8 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
 	
 	int dlmt;
-	int half_way;
 
 	dlmt = ft_c_lstsize(*stack_a) / 2;
-	half_way = dlmt;
 	//step one:
 	split_lsts_small(stack_a, stack_b, 'b', dlmt);
 	//step two:
@@ -199,7 +141,6 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 		if(dlmt <= 3)
 			break;
 	}
-	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
 	
 	//step 3;
 	chunk_and_push(stack_a, stack_b, len);
@@ -224,4 +165,7 @@ void sort(t_c_list **head, int len)
 		long_sort(&stack_a, &stack_b, len);
 	ft_c_print_lst(stack_a, 'a');
 	ft_c_print_lst(stack_b, 'b');
+	ft_c_lstclear(&stack_a);
+	ft_c_lstclear(&stack_b);
+	
 }

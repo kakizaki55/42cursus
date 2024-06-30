@@ -136,6 +136,28 @@ void ft_r_rotate(t_c_list **head, char stack)
 
 }
 
+
+void rotate_stack(t_c_list **src, int stack, int index)
+{
+	if (!src || !*src) {
+        return;
+    }
+	while(index != 0)
+		{
+			if(index > 0)
+			{	
+				ft_rotate(src, stack);
+				index--;
+			}
+			else
+			{
+				ft_r_rotate(src, stack);
+				index++;
+			}
+		}
+}
+
+
 void 	ft_lstswap(t_c_list **head, char stack)
 {
 	int	temp;
@@ -145,28 +167,25 @@ void 	ft_lstswap(t_c_list **head, char stack)
 	(*head)->next->content = temp;
 	ft_printf("s%c\n", stack);
 }
-// void ft_c_lstclear(t_c_list **head)
-// {
-// 	t_c_list *current = *head;
-// 	int i = 0;
 
-//     while (1)
-// 	{	
-//         current = current->next;
-// 		if(current->next == *head)
-// 		{
-// 			free(current);
-// 			break;
-// 		}
-// 		else
-// 		{
-// 			free(current->prev);
-// 		}
-// 		i++;
-// 	}
-// 	*head = NULL;
-// }
+void ft_c_lstclear(t_c_list **head)
+{
+    if (*head == NULL)
+        return;
 
+    t_c_list *current = (*head)->next;
+    t_c_list *next;
+
+    while (current != *head)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+
+    free(*head);
+    *head = NULL;
+}
 
 void	ft_c_lstiter(t_c_list *head, int (*f)(int))
 {
