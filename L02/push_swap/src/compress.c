@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:29:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/21 17:53:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 14:58:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,6 +19,7 @@ int is_smaller(int a, int b)
 		return (true);
 	return (false);
 }
+
 int is_bigger(int a, int b)
 {
 	if(a > b)

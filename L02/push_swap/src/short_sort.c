@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/29 10:32:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:32:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,8 +27,6 @@ int sort_three(t_c_list **head,int target_nbr, char stack)
 	int i = 0;
 	int target_index = 0;
 	int is_sorted;
-	
-	// ft_printf("target nbr: %d\n", target_nbr);
 
 	is_sorted = (stack == 'a') ? check_any_sort(*head) : check_any_r_sort(*head);
 
@@ -39,21 +37,19 @@ int sort_three(t_c_list **head,int target_nbr, char stack)
 		target_index = find_nbr(*head,target_nbr);
 	else
 		target_index = find_r_nbr(*head, target_nbr) * -1;
-
-		// ft_printf("target index: %d\n", target_index);
-		while(target_index != 0)
+	while(target_index != 0)
+	{
+		if(target_index > 0)
 		{
-			if(target_index > 0)
-			{
-				ft_rotate(head, stack);
-				target_index--;
-			}
-			else
-			{
-				ft_r_rotate(head, stack);
-				target_index++;
-			}
+			ft_rotate(head, stack);
+			target_index--;
 		}
+		else
+		{
+			ft_r_rotate(head, stack);
+			target_index++;
+		}
+	}
 	return (true);
 }
 
@@ -63,13 +59,6 @@ int sort_two_three(t_c_list **head, int len, char stack)
 	int largest;
 	smallest = find_min(*head);
 	largest = find_max(*head);
-
-	// ft_printf("largest is: ",largest);
-	// ft_printf("size is: ",ft_c_lstsize(*head));
-
-	// if((largest == ft_c_lstsize(*head)) && (smallest == 1))
-	// 	return (false);
-
 	if(len == 2)
 	{
 		sort_two(head, stack);
@@ -97,11 +86,9 @@ void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int len)
 	i = 0;
 	index = 0;
 	half = ft_c_lstsize(*stack_a) / 2;
-	printf("half is:%d", half);
 	while(i++ < half)
 	{
 		index = recon_smaller(*stack_a, half);
-		printf("index is:%d", index);
 		while(index != 0)
 		{
 			if(index > 0)
@@ -121,26 +108,15 @@ void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int len)
 
 int sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	int i;
-	int index;
-
-	i = 0;
 	split_lsts(stack_a, stack_b, len);
-	// ft_c_print_lst(*stack_a, 'a');
-	// ft_c_print_lst(*stack_b, 'b');
 	sort_two_three(stack_a, ft_c_lstsize(*stack_a), 'a');
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
-	// ft_c_print_lst(*stack_a, 'a');
-	// ft_c_print_lst(*stack_b, 'b');
 	push_all(stack_b, stack_a, 'a');
-	// printf("check sort: %d", check_sort(*stack_a));
 	return (true);
 }
 
 int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len)
 {	
-	// printf("check sort: %d", check_sort(*stack_a));
-
 	if(check_sort(*stack_a))
 		return (true);
 	if(len <= 3)
