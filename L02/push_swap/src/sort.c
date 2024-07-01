@@ -6,7 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/30 14:38:25 by mkakizak         ###   ########.fr       */
+=======
+/*   Updated: 2024/06/30 15:21:31 by mkakizak         ###   ########.fr       */
+>>>>>>> 0f834d7d45661ecc8846c22cc3fe144962fbe212
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +32,6 @@ void split_lsts_small(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 	{
 		if(stack == 'b')
 		{
-			// printf("in smaller");
 			index = recon_smaller(*src, dlmt);
 			if(index == INT_MAX)
 			{
@@ -38,7 +41,6 @@ void split_lsts_small(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 		}
 		else
 		{
-			// printf("in larger");
 			index = recon_larger(*src, dlmt);
 		}
 		
@@ -76,7 +78,6 @@ void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 	{
 		if(stack == 'b')
 		{
-			// printf("in smaller i is: %d", i);
 			index = recon_smaller(*src, dlmt);
 			if(index == INT_MAX)
 			{
@@ -86,7 +87,6 @@ void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 		}
 		else
 		{
-			// printf("in larger");
 			index = recon_larger(*src, dlmt);
 		}
 
@@ -142,18 +142,17 @@ void rotate_stack(t_c_list **src, int stack, int index)
 
 void chunk_and_push(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	//chink size::
-    int chunk_size = (len / 20) || 2; 
-    int dlmt = chunk_size + (len / 2);
+	//this is where i will be doing chunk minupulations::
+    int chunk_size = len / 10; 
+	if(chunk_size == 0)
+		chunk_size = 5;
+    int dlmt = chunk_size;
     
     while (*stack_a != NULL)
     {
         split_lsts_large(stack_a, stack_b, 'b', dlmt, chunk_size);
-		// printf("dlmt:%d len: %d", dlmt, len);
-
         if (dlmt >= len)
 		{
-			// printf("dlmt:%d len: %d", dlmt, len);
             break;
 		}
         
@@ -173,17 +172,14 @@ void sort_back(t_c_list **stack_a, t_c_list **stack_b, int len)
 	int size;
 
 	i = 0;
-
 	target_nbr = find_max(*stack_b);
 	size = ft_c_lstsize(*stack_b);
-	// printf("traget nbr: %dlen is:%d", target_nbr, len);
 	while(i < size)
 	{
 		index = find_sortest_path(stack_b, target_nbr);
 		rotate_stack(stack_b, 'b', index);
 		ft_c_push(stack_b, stack_a, 'a');
 		target_nbr--;
-		// printf("i:%d", i);
 		i++;
 	}
 	
@@ -191,7 +187,6 @@ void sort_back(t_c_list **stack_a, t_c_list **stack_b, int len)
 
 int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	//basically need to this function to flip between and b, if it becomes sorted at all then ove on to the next one.
 	
 	int dlmt;
 	int half_way;
@@ -209,38 +204,12 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 			break;
 	}
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
-
-
-	//step 3:
-	int i = 0;
-	int target_nbr = find_max(*stack_b) + 1;
-	int index;
-	int b_size = ft_c_lstsize(*stack_b);
-	while(i < (len / 2) - b_size)
-	{	 
-		if(target_nbr == (*stack_a)->content)
-		{
-			ft_c_push(stack_a, stack_b, 'b');
-			target_nbr++;
-		} 
-		else
-		{
-			index = find_sortest_path(stack_a, target_nbr);
-			rotate_stack(stack_a, 'a', index);
-			ft_c_push(stack_a, stack_b, 'b');
-			target_nbr++;
-		}
-		i++;
-	}
-
-	ft_printf("do i make it hear?");
 	
-	//step 4;
+	//step 3;
 	chunk_and_push(stack_a, stack_b, len);
 
-	//step 5:
+	//step 4:
 	sort_back(stack_a, stack_b, len);
-
 	return (true);
 }
 
@@ -253,12 +222,10 @@ void sort(t_c_list **head, int len)
 	stack_a = *head;
 	stack_b = NULL;
 
-
 	if(ft_c_lstsize(stack_a) <= 6)
 		sort_short(&stack_a, &stack_b, len);
 	else 
 		long_sort(&stack_a, &stack_b, len);
-
 	ft_c_print_lst(stack_a, 'a');
 	ft_c_print_lst(stack_b, 'b');
 }
