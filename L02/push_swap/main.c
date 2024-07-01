@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 18:52:00 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:33:07 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char *argv[])
 	args_arr = args_validation(argc, argv);
 	len = argc - 1;         
 	args_arr = compress(args_arr, len);
-	print_arr(args_arr, len);
 
 	head = init(args_arr, len);
 	free(args_arr);

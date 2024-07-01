@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 18:51:09 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:47:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ int *args_validation(int argc, char *argv[])
 	was_zero = 0;
 	args_array = ft_calloc(sizeof(long long), argc);
 	if(args_array == NULL)
-		return (NULL);
+		error();
 	i = 1;
 	while(i < argc)
 	{	
 		nbr = ft_atoi_long(argv[i]);
-		printf("nbr is:%lld\n", nbr);
-
 		if((nbr > INT_MAX || nbr < INT_MIN))
 			error();
 		check_doubles(args_array, nbr, i);

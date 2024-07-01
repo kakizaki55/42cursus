@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:29:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 18:52:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:47:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int find_min_index(int *arr, int len)
 	temp = INT_MAX;
 	i = 0 ;
 
+	res = -1;
 	while(i < len)
 	{
 		if(is_smaller(arr[i], temp))
@@ -48,12 +49,25 @@ int find_min_index(int *arr, int len)
 	return (res);
 }
 
+void fill_last(int *arr, int len, int last_nbr)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		if(arr[i] == 0)
+			arr[i] = last_nbr;
+		i++;
+	}
+}
+
 int *compress(int *arr, int len)
 {	
 	int *res;
 	res = ft_calloc(sizeof(int), len);
 	if(res == NULL)
-		return (NULL);
+		error();
 	int min_i;
 
 	int i;
@@ -63,11 +77,14 @@ int *compress(int *arr, int len)
 
     while (i < len) {
         min_i = find_min_index(arr, len);
-        res[min_i] = j++;
-
-        arr[min_i] = INT_MAX;
-        i += 1;
+		if(min_i != -1)
+		{	
+        	res[min_i] = j++;
+        	arr[min_i] = INT_MAX;
+		}
+        i++;
     }
-
+	fill_last(res, len, j);
+	// print_arr(res, len);
 	return (free(arr), res);
 }

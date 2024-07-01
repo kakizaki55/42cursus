@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 18:27:15 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:45:51 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ long	ft_atoi_long(const char *str)
 		return (-2 * sign);
 	res = 0;
 	res = convert_to_long(str, i, sign);
-	// ft_printf("res is:%d", res);
 	return (res);
 }

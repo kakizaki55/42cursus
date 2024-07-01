@@ -19,7 +19,9 @@ t_c_list	*ft_c_lstnew(int content)
 
 	node = (t_c_list *) ft_calloc(sizeof(t_c_list), 1);
 	if (node == NULL)
-		return (NULL);
+	{
+		error();
+	}
 	node->content = content;
 	node->next = NULL;
 	node->prev = NULL;
