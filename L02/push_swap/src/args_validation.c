@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/30 15:58:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:44:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,6 +30,8 @@ int *args_validation(int argc, char *argv[])
 {	
 	int i;
 	int *args_array;
+	long nbr;
+
 	args_array = ft_calloc(sizeof(int), argc);
 	if(args_array == NULL)
 		return (NULL);
@@ -38,11 +40,18 @@ int *args_validation(int argc, char *argv[])
 
 	while(i < argc)
 	{	
-		int nbr;
-		nbr = ft_atoi(argv[i]);
-		// ft_printf("nbr:%d\n", nbr);
-		args_array[i - 1] = nbr;
-		//need some kinda of error check here but how do i do it with out using 0 and -1;
+		// long max = 1844674407370955161;
+		nbr = ft_atoi_long(argv[i]);
+		// printf("%lu\n", LONG_MAX);
+		// printf("%lu\n", INT_MAX);
+		if(nbr < INT_MAX && nbr > INT_MIN) 
+			args_array[i - 1] = nbr;
+		else
+		{
+			ft_printf("Error\n");
+			// free(args_array);
+		}
+		//  need some kinda of error check here but how do i do it with out using 0 and -1;
 		// also need to remember to free everything is somthing goes wrong.
 		i++;
 	}

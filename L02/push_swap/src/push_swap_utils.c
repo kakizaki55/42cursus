@@ -34,16 +34,18 @@ void ft_c_push(t_c_list **src, t_c_list **dest, char stack)
 
 void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 {	
-	if(new == NULL)
+	t_c_list *last;
+
+	if(!new)
 		return ;
-	if(*head == NULL)
+	if(!*head)
 	{
 		new->next = new;
 		new->prev = new;
 		*head = new;
 	}
 
-	t_c_list *last = (*head)->prev;
+	last = (*head)->prev;
 	
 	new->next = *head;
 	new->prev = last;
@@ -54,7 +56,8 @@ void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 
 t_c_list *ft_lstpop(t_c_list **head)
 {
-    if (!head || !*head) return NULL;
+    if (!head || !*head) 
+		return NULL;
 
     t_c_list *popped = *head;
 
@@ -93,34 +96,6 @@ int	ft_c_lstsize(t_c_list *lst)
 	return (res);
 }
 
-void ft_c_print_lst(t_c_list *head, char stack)
-{
-	t_c_list *current = head;
-	int i;
-
-	if(head == NULL)
-	{
-		ft_printf("List [%c]is NULL\n", stack);
-		return ;
-	}
-
-	i = 0;
-    while (1)
-	{	
-		if(i == 0)
-		{
-        	ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
-		}
-		else
-		{
-        	ft_printf("[%d]:%d\n", i, current->content);
-		}
-        current = current->next;
-		i++;
-		if(current == head)
-			break;
-	}
-}
 
 void ft_rotate(t_c_list **head, char stack)
 {
@@ -139,9 +114,9 @@ void ft_r_rotate(t_c_list **head, char stack)
 
 void rotate_stack(t_c_list **src, int stack, int index)
 {
-	if (!src || !*src) {
+	if (!src || !*src)
         return;
-    }
+	
 	while(index != 0)
 		{
 			if(index > 0)
@@ -170,11 +145,11 @@ void 	ft_lstswap(t_c_list **head, char stack)
 
 void ft_c_lstclear(t_c_list **head)
 {
-    if (*head == NULL)
-        return;
-
     t_c_list *current = (*head)->next;
     t_c_list *next;
+
+    if (*head == NULL)
+        return;
 
     while (current != *head)
     {
@@ -195,6 +170,35 @@ void	ft_c_lstiter(t_c_list *head, int (*f)(int))
 	{	
     	current->content = f(current->content);
         current = current->next;
+		if(current == head)
+			break;
+	}
+}
+
+void ft_c_print_lst(t_c_list *head, char stack)
+{
+	t_c_list *current = head;
+	int i;
+
+	if(head == NULL)
+	{
+		ft_printf("List [%c]is NULL\n", stack);
+		return ;
+	}
+
+	i = 0;
+    while (1)
+	{	
+		if(i == 0)
+		{
+        	ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
+		}
+		else
+		{
+        	ft_printf("[%d]:%d\n", i, current->content);
+		}
+        current = current->next;
+		i++;
 		if(current == head)
 			break;
 	}

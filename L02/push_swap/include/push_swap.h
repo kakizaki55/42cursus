@@ -73,4 +73,6 @@ int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 void sort(t_c_list **head, int len);
 int find_sortest_path(t_c_list **src, int target_nbr);
 
+//ft_atoi_long.c
+long	ft_atoi_long(const char *str);
 #endif

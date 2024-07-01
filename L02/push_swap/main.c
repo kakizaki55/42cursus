@@ -6,17 +6,17 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 12:07:23 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:13:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q push_swap");
-// }
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q push_swap");
+}
 
 t_c_list *init(int *args_arr, int len)
 {
