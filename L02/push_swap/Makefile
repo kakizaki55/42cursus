@@ -30,7 +30,8 @@ SRC_FILES	=	push_swap_utils \
 				compress \
 				sort \
 				sort_utils \
-				short_sort
+				short_sort \
+				ft_atoi_long 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

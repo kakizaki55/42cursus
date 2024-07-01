@@ -1,16 +1,17 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_long.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 15:23:07 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 13:07:29 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/07/01 16:05:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
+#include "push_swap.h"
 
 static int	skip_whitespaces(const char *str)
 {
@@ -45,6 +46,7 @@ static long long	is_long_max_min(long long res, int sign, char c)
 	{
 		if (res> (LONG_MAX - c - '0') / 10)
 		{
+			error();
 			return ((int)LONG_MAX);
 		}
 	}
@@ -52,13 +54,14 @@ static long long	is_long_max_min(long long res, int sign, char c)
 	{
 		if (-res < (LONG_MIN + c - '0') / 10)
 		{
+			error();
 			return ((int)LONG_MIN);
 		}
 	}
 	return (res);
 }
 
-static long long	convert_to_int(const char *str, int i, int sign)
+static long long	convert_to_long(const char *str, int i, int sign)
 {
 	long long	res;
 	long long	prev_res;
@@ -66,6 +69,8 @@ static long long	convert_to_int(const char *str, int i, int sign)
 	res = 0;
 	while (str[i] != '\0')
 	{
+		if(!(ft_isdigit(str[i])))
+			error();
 		if (ft_isdigit(str[i]))
 		{
 			prev_res = res;
@@ -84,7 +89,7 @@ static long long	convert_to_int(const char *str, int i, int sign)
 	return (res * sign);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi_long(const char *str)
 {
 	int			i;
 	int			sign;
@@ -95,6 +100,6 @@ int	ft_atoi(const char *str)
 	if (!ft_strncmp(str, "9223372036854775806", 21))
 		return (-2 * sign);
 	res = 0;
-	res = convert_to_int(str, i, sign);
-	return ((int)res);
+	res = convert_to_long(str, i, sign);
+	return (res);
 }
