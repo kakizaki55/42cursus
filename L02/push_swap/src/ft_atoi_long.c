@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 17:54:28 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:27:15 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	skip_whitespaces(const char *str)
 	return (i);
 }
 
-static int	get_sign(const char *str, int i, int *sign)
+static int	get_sign(const char *str, int i, long long *sign)
 {
 	*sign = 1;
 	if (str[i] == '-')
@@ -40,11 +40,11 @@ static int	get_sign(const char *str, int i, int *sign)
 	return (i);
 }
 
-static long long	is_long_max_min(long long res, int sign, char c)
+static long long	is_long_max_min(long long res, long sign, char c)
 {
 	if (sign == 1)
 	{
-		if (res> (LONG_MAX - c - '0') / 10)
+		if (res > (LONG_MAX - c - '0') / 10)
 		{
 			error();
 			return ((int)LONG_MAX);
@@ -61,7 +61,7 @@ static long long	is_long_max_min(long long res, int sign, char c)
 	return (res);
 }
 
-static long long	convert_to_long(const char *str, int i, int sign)
+static long long	convert_to_long(const char *str, int i, long long sign)
 {
 	long long	res;
 	long long	prev_res;
@@ -92,7 +92,7 @@ static long long	convert_to_long(const char *str, int i, int sign)
 long	ft_atoi_long(const char *str)
 {
 	int			i;
-	int			sign;
+	long long	sign;
 	long long	res;
 
 	i = skip_whitespaces(str);
@@ -103,5 +103,6 @@ long	ft_atoi_long(const char *str)
 		return (-2 * sign);
 	res = 0;
 	res = convert_to_long(str, i, sign);
+	// ft_printf("res is:%d", res);
 	return (res);
 }
