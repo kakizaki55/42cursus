@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 17:50:12 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:54:28 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ static long long	convert_to_long(const char *str, int i, int sign)
 	res = 0;
 	while (str[i] != '\0')
 	{
-		if(!(ft_isdigit(str[i])))
-			error();
 		if (ft_isdigit(str[i]))
 		{
 			prev_res = res;
