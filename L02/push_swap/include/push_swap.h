@@ -18,13 +18,11 @@ typedef struct c_list
 	int				content;
 	struct c_list	*next;
 	struct c_list	*prev;
-	int 			head;
 }	t_c_list;
 
 
 # define true  1
 # define false 0
-// # define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
 //push_swap_utils.c
 t_c_list	*ft_c_lstnew(int content);
@@ -62,7 +60,6 @@ int recon_smaller(t_c_list *head, int deli);
 int recon_larger(t_c_list *head, int deli);
 void push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack);
 void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack);
-// void rotate_to_target(t_c_list **head, int target_nbr, char stack);
 
 //short_sort.c
 void split_lsts(t_c_list **stack_a, t_c_list **stack_b, int half);
@@ -74,7 +71,6 @@ int sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 
 //sort.c
 void sort(t_c_list **head, int len);
-
-
+int find_sortest_path(t_c_list **src, int target_nbr);
 
 #endif

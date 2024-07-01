@@ -6,17 +6,17 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/30 19:07:48 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:07:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 #include "push_swap.h"
 
-__attribute__((destructor))
-static void destructor() {
-    system("leaks -q push_swap");
-}
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q push_swap");
+// }
 
 t_c_list *init(int *args_arr, int len)
 {
@@ -37,19 +37,20 @@ int	main(int argc, char *argv[])
 {	
 
 	t_c_list *head;
-	// int test[5] = { 10, 5, 3, 15, 0};
+	int *args_arr;
+	int len;
 
 	head = NULL;
-	int i = 0;
-	int *args_arr;
 	args_arr = args_validation(argc, argv);
-	int len = argc - 1;
-	
+	len = argc - 1;
 	args_arr = compress(args_arr, len);
-	head = init(args_arr, len);
 
-	//this is a test to try and sort small lst
+	head = init(args_arr, len);
+	free(args_arr);
 	sort(&head, len);
+
+	// ft_c_lstclear(&head);
+
 	// ft_c_print_lst(head, 'a');
 	
 	// ft_printf("1 is sorted 0 is not:%d\n", check_sorted(head));

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/30 15:55:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:43:51 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -280,4 +280,17 @@ void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 		}
 	}
 	*src_lst = NULL;
+}
+
+int find_sortest_path(t_c_list **src, int target_nbr)
+{	
+	int res;
+
+	res = 0;
+	if(is_smaller(find_nbr(*src, target_nbr), find_r_nbr(*src, target_nbr)))
+		res = find_nbr(*src, target_nbr);
+	else
+		res = find_r_nbr(*src, target_nbr) * -1;
+	
+	return (res);
 }

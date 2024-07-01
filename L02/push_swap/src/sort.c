@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/06/30 19:12:16 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:17:17 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -70,34 +70,18 @@ void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 	}
 }
 
-int find_sortest_path(t_c_list **src, int target_nbr)
-{	
-	int res;
-
-	res = 0;
-	if(is_smaller(find_nbr(*src, target_nbr), find_r_nbr(*src, target_nbr)))
-		res = find_nbr(*src, target_nbr);
-	else
-		res = find_r_nbr(*src, target_nbr) * -1;
-	
-	return (res);
-}
-
-void chunk_and_push(t_c_list **stack_a, t_c_list **stack_b, int len)
+void chunk_and_push(t_c_list **src, t_c_list **dest, int len, int chunk_size, char stack)
 {
-	//this is where i will be doing chunk minupulations:
-    int chunk_size = len / 10; 
+    int dlmt;
 	if(chunk_size == 0)
 		chunk_size = 5;
-    int dlmt = chunk_size;
     
-    while (*stack_a != NULL)
+	dlmt = chunk_size;
+    while (*src != NULL)
     {
-        split_lsts_large(stack_a, stack_b, 'b', dlmt, chunk_size);
+        split_lsts_large(src, dest, stack, dlmt, chunk_size);
         if (dlmt >= len)
             break;
-
-        
         dlmt += chunk_size;
         if (dlmt > len)
         	dlmt = len;
@@ -141,11 +125,11 @@ int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 		if(dlmt <= 3)
 			break;
 	}
-	
-	//step 3;
-	chunk_and_push(stack_a, stack_b, len);
+	//step three;
+	int bias = 14;
+	chunk_and_push(stack_a, stack_b, len, len / bias, 'b');
 
-	//step 4:
+	//step four:
 	sort_back(stack_a, stack_b, len);
 	return (true);
 }
@@ -154,17 +138,26 @@ void sort(t_c_list **head, int len)
 {
 	t_c_list *stack_a;
 	t_c_list *stack_b;
+	int index;
 
 	//initing stacks
 	stack_a = *head;
 	stack_b = NULL;
 
+	if(check_any_sort(stack_a))
+	{
+		index = find_sortest_path(&stack_a, 1);
+		rotate_stack(&stack_a, 'a', index);
+		ft_c_lstclear(&stack_a);
+		return;
+	}
+
 	if(ft_c_lstsize(stack_a) <= 6)
 		sort_short(&stack_a, &stack_b, len);
 	else 
 		long_sort(&stack_a, &stack_b, len);
-	ft_c_print_lst(stack_a, 'a');
-	ft_c_print_lst(stack_b, 'b');
+	// ft_c_print_lst(stack_a, 'a');
+	// ft_c_print_lst(stack_b, 'b');
 	ft_c_lstclear(&stack_a);
 	ft_c_lstclear(&stack_b);
 	
