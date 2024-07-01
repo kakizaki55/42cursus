@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 16:21:46 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:10:44 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int print_arr(int *arr, int len)
 
 void error()
 {
-	// ft_printf("Error::::\n");
-	write(2, "Error\n", 7);
-	exit(1);
+	write(2, "Error\n", 6);
+	exit (1);
 }
 
 
@@ -46,7 +45,6 @@ int *args_validation(int argc, char *argv[])
 		return (NULL);
 
 	i = 1;
-	// ft_printf("here argc:%d\n", argc);
 	while(i < argc)
 	{	j = 0;
 		nbr = ft_atoi_long(argv[i]);
@@ -54,7 +52,7 @@ int *args_validation(int argc, char *argv[])
 			error();
 		while(j < i)
 		{
-			if(nbr == args_array[j])
+			if(nbr == args_array[j] && nbr != 0)
 			{
 				free(args_array);
 				error();
