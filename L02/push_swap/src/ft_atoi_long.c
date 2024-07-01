@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 16:05:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:50:12 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static long long	convert_to_long(const char *str, int i, int sign)
 		}
 		else
 		{
+			if(!(str[i] == ' '))
+				error();
 			return (res * sign);
 		}
 		i++;
@@ -96,6 +98,8 @@ long	ft_atoi_long(const char *str)
 	long long	res;
 
 	i = skip_whitespaces(str);
+	if(str[i] == '\0')
+		error();
 	i = get_sign(str, i, &sign);
 	if (!ft_strncmp(str, "9223372036854775806", 21))
 		return (-2 * sign);
