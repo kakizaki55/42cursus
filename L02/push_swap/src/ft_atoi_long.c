@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_long.c                                     :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 13:44:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:05:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
@@ -46,6 +46,7 @@ static long long	is_long_max_min(long long res, int sign, char c)
 	{
 		if (res> (LONG_MAX - c - '0') / 10)
 		{
+			error();
 			return ((int)LONG_MAX);
 		}
 	}
@@ -53,6 +54,7 @@ static long long	is_long_max_min(long long res, int sign, char c)
 	{
 		if (-res < (LONG_MIN + c - '0') / 10)
 		{
+			error();
 			return ((int)LONG_MIN);
 		}
 	}
@@ -67,6 +69,8 @@ static long long	convert_to_long(const char *str, int i, int sign)
 	res = 0;
 	while (str[i] != '\0')
 	{
+		if(!(ft_isdigit(str[i])))
+			error();
 		if (ft_isdigit(str[i]))
 		{
 			prev_res = res;

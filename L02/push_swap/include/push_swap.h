@@ -40,6 +40,7 @@ void 		ft_c_lstclear(t_c_list **head);
 //args_validation.c
 int *args_validation(int argc, char *argv[]);
 int print_arr(int *arr, int len);
+void error();
 
 //compress.c
 int *compress(int *arr, int len);

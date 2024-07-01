@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 13:12:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:46:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
@@ -140,10 +140,8 @@ void sort(t_c_list **head, int len)
 	t_c_list *stack_b;
 	int index;
 
-	//initing stacks
 	stack_a = *head;
 	stack_b = NULL;
-
 	if(check_any_sort(stack_a))
 	{
 		index = find_sortest_path(&stack_a, 1);
@@ -159,6 +157,5 @@ void sort(t_c_list **head, int len)
 	// ft_c_print_lst(stack_a, 'a');
 	// ft_c_print_lst(stack_b, 'b');
 	ft_c_lstclear(&stack_a);
-	// ft_c_lstclear(&stack_b);
 	
 }
