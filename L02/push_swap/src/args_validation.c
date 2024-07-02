@@ -6,18 +6,18 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 00:27:04 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 19:47:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:04:13 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int print_arr(int *arr, int len)
+int	print_arr(int *arr, int len)
 {
-	int i;
-	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < len)
 	{
 		ft_printf("[%d]:%d\n", i, arr[i]);
@@ -26,20 +26,20 @@ int print_arr(int *arr, int len)
 	return (0);
 }
 
-void error()
+void	error(void)
 {
 	write(2, "Error\n", 6);
 	exit (1);
 }
 
-void check_doubles(int *args_array, long nbr, int len)
+void	check_doubles(int *args_array, long nbr, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < len)
+	while (i < len)
 	{
-		if(nbr == args_array[i] && nbr != 0)
+		if (nbr == args_array[i] && nbr != 0)
 		{
 			free(args_array);
 			error();
@@ -48,29 +48,27 @@ void check_doubles(int *args_array, long nbr, int len)
 	}
 }
 
-
-int *args_validation(int argc, char *argv[])
+int	*args_validation(int argc, char *argv[])
 {	
-	int i;
-	int *args_array;
-	long long nbr;
-	long was_zero;
+	int		i;
+	int		*args_array;
+	long	nbr;
+	long	was_zero;
 
 	was_zero = 0;
-	args_array = ft_calloc(sizeof(long long), argc);
-	if(args_array == NULL)
+	args_array = ft_calloc(sizeof(long), argc);
+	if (args_array == NULL)
 		error();
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{	
 		nbr = ft_atoi_long(argv[i]);
-		if((nbr > INT_MAX || nbr < INT_MIN))
+		if ((nbr > INT_MAX || nbr < INT_MIN))
 			error();
 		check_doubles(args_array, nbr, i);
-
-		if(was_zero && nbr == 0)
+		if (was_zero && nbr == 0)
 			error();
-		if(nbr == 0 && !was_zero)
+		if (nbr == 0 && !was_zero)
 				was_zero = 1;
 		args_array[i - 1] = nbr;
 		i++;

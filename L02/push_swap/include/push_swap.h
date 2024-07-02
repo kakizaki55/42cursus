@@ -20,7 +20,6 @@ typedef struct c_list
 	struct c_list	*prev;
 }	t_c_list;
 
-
 # define true  1
 # define false 0
 

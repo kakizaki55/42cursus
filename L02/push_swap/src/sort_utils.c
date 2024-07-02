@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
@@ -6,169 +6,166 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 11:43:51 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:22:34 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int check_sort(t_c_list *head)
+int	check_sort(t_c_list *head)
 {
-	int i;
-	t_c_list *current;
+	int			i;
+	t_c_list	*current;
 
 	i = find_min(head);
 	current = head;
-
-    while (1)
+	while (1)
 	{	
-    	if(current->content == i)
+		if (current->content == i)
 		{
-        	current = current->next;
+			current = current->next;
 			i++;
 		}
 		else
 		{
 			return (false);
 		}
-		if(current == head)
+		if (current == head)
 			return (true);
 	}
 	return (false);
 }
 
-int check_r_sort(t_c_list *head)
+int	check_r_sort(t_c_list *head)
 {
-	int i;
-	t_c_list *current;
+	int			i;
+	t_c_list	*current;
 
 	i = ft_c_lstsize(head);
 	current = head;
-
-
-    while (1)
+	while (1)
 	{	
-    	if(current->content == i)
+		if (current->content == i)
 		{
 			i--;
-        	current = current->next;
+			current = current->next;
 		}
 		else
 		{
 			return (false);
 		}
-		if(current == head)
+		if (current == head)
 			return (true);
 	}
 	return (false);
 }
 
-int find_nbr(t_c_list *head, int nbr)
+int	find_nbr(t_c_list *head, int nbr)
 {
-	if(head == NULL || nbr == 0)
-		return (false);
-	int i;
-	t_c_list *current;
+	int			i;
+	t_c_list	*current;
 
+	if (head == NULL || nbr == 0)
+		return (false);
 	i = 0;
 	current = head;
-
-    while (1)
-	{	
-    	if(current->content != nbr)
+	while (1)
+	{
+		if (current->content != nbr)
 		{
 			i++;
-        	current = current->next;
-		} 
+			current = current->next;
+		}
 		else
 		{
 			return (i);
 		}
-		if(current == head)
-			return(false);
+		if (current == head)
+			return (false);
 	}
 	return (false);
 }
 
-int find_r_nbr(t_c_list *head, int nbr)
+int	find_r_nbr(t_c_list *head, int nbr)
 {
-	if(head == NULL || nbr == 0)
-		return (false);
-	int i;
-	t_c_list *current;
+	int			i;
+	t_c_list	*current;
 
+	if (head == NULL || nbr == 0)
+		return (false);
 	i = 0;
 	current = head;
-
-    while (1)
+	while (1)
 	{	
-    	if(current->content != nbr)
+		if (current->content != nbr)
 		{
 			i++;
-        	current = current->prev;
-		} 
+			current = current->prev;
+		}
 		else
 		{
 			return (i);
 		}
-		if(current == head)
-			return(false);
+		if (current == head)
+			return (false);
 	}
 	return (false);
 }
 
-int check_any_sort(t_c_list *head)
+int	check_any_sort(t_c_list *head)
 {
-	int size;
-	int i;
+	int	size;
+	int	i;
 
 	i = 0;
 	size = ft_c_lstsize(head);
-	while(i < size)
+	while (i < size)
 	{
-		if(check_sort(head))
+		if (check_sort(head))
 			return (true);
 		head = head->next;
 		i++;
 	}
-	if(check_sort(head))
+	if (check_sort(head))
 		return (true);
 	else
 		return (false);
 }
 
-int check_any_r_sort(t_c_list *head)
+int	check_any_r_sort(t_c_list *head)
 {
-	int size;
-	int i;
+	int	size;
+	int	i;
 
 	i = 0;
 	size = ft_c_lstsize(head);
-	while(i < size)
+	while (i < size)
 	{
-		if(check_r_sort(head))
+		if (check_r_sort(head))
 			return (true);
 		head = head->prev;
 		i++;
 	}
-	if(check_r_sort(head))
+	if (check_r_sort(head))
 		return (true);
 	else
 		return (false);
 }
 
-int find_min(t_c_list *head)
+int	find_min(t_c_list *head)
 {
-	t_c_list *current = head;
-	int res;
+	t_c_list	*current;
+	int			res;
 
+	current = head;
 	res = INT_MAX;
 	while (1)
-	{	if(res > current->content && (current->content > 0))
+	{	
+		if (res > current->content && (current->content > 0))
 			res = current->content;
-        current = current->next;
-		if(current == head)
+		current = current->next;
+		if (current == head)
 		{
 			return (res);
 		}
@@ -178,15 +175,17 @@ int find_min(t_c_list *head)
 
 int find_max(t_c_list *head)
 {
-	t_c_list *current = head;
-	int res;
+	t_c_list	*current;
+	int			res;
 
+	current = head;
 	res = INT_MIN;
 	while (1)
-	{	if(res < current->content)
+	{	
+		if (res < current->content)
 			res = current->content;
-        current = current->next;
-		if(current == head)
+		current = current->next;
+		if (current == head)
 		{
 			return (res);
 		}
@@ -196,13 +195,14 @@ int find_max(t_c_list *head)
 
 int recon_smaller(t_c_list *head, int deli)
 {
-	int i;
-	int index;
-	int r_index;
-	t_c_list *temp;
-	t_c_list *r_temp;
-	int lst_size = ft_c_lstsize(head);
+	int			i;
+	int			index;
+	int			r_index;
+	t_c_list	*temp;
+	t_c_list	*r_temp;
+	int			lst_size;
 
+	lst_size = ft_c_lstsize(head);
 	i = 0;
 	index = 0;
 	r_index = 0;
@@ -210,11 +210,11 @@ int recon_smaller(t_c_list *head, int deli)
 	r_temp = head;
 	while (i < lst_size)
 	{
-		if(temp->content <= deli)
+		if (temp->content <= deli)
 			return (index);
 		temp = temp->next;
 		index++;
-		if(r_temp->content <= deli)
+		if (r_temp->content <= deli)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;
@@ -225,13 +225,14 @@ int recon_smaller(t_c_list *head, int deli)
 
 int recon_larger(t_c_list *head, int deli)
 {
-	int i;
-	int index;
-	int r_index;
-	t_c_list *temp;
-	t_c_list *r_temp;
-	int lst_size = ft_c_lstsize(head);
+	int			i;
+	int			index;
+	int			r_index;
+	t_c_list	*temp;
+	t_c_list	*r_temp;
+	int lst_size;
 
+	lst_size = ft_c_lstsize(head);
 	i = 0;
 	index = 0;
 	r_index = 0;
@@ -239,11 +240,11 @@ int recon_larger(t_c_list *head, int deli)
 	r_temp = head;
 	while (i < lst_size)
 	{
-		if(temp->content > deli)
+		if (temp->content > deli)
 			return (index);
 		temp = temp->next;
 		index++;
-		if(r_temp->content > deli)
+		if (r_temp->content > deli)
 			return (r_index);
 		r_temp = r_temp->prev;
 		r_index--;
@@ -252,11 +253,13 @@ int recon_larger(t_c_list *head, int deli)
 	return (0);
 }
 
-void push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
+void	push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 {
-	int i = 0;
+	int	i;
+	int	size;
 
-	int size = ft_c_lstsize(*src_lst);
+	size = ft_c_lstsize(*src_lst);
+	i = 0;
 	while (i < size)
 	{
 		ft_c_push(src_lst, dest_lst, dest_stack);
@@ -267,11 +270,13 @@ void push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 
 void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 {
-	int i = 0;
+	int i;
 	int biggest;
-	
-	int size = ft_c_lstsize(*src_lst);
-	if((*src_lst)->content == biggest)
+	int size;
+
+	i = 0;
+	size = ft_c_lstsize(*src_lst);
+	if ((*src_lst)->content == biggest)
 	{
 		while (i < size)
 		{
@@ -282,15 +287,14 @@ void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 	*src_lst = NULL;
 }
 
-int find_sortest_path(t_c_list **src, int target_nbr)
+int	find_sortest_path(t_c_list **src, int target_nbr)
 {	
-	int res;
+	int	res;
 
 	res = 0;
-	if(is_smaller(find_nbr(*src, target_nbr), find_r_nbr(*src, target_nbr)))
+	if (is_smaller(find_nbr(*src, target_nbr), find_r_nbr(*src, target_nbr)))
 		res = find_nbr(*src, target_nbr);
 	else
 		res = find_r_nbr(*src, target_nbr) * -1;
-	
 	return (res);
 }

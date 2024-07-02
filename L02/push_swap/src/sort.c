@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 19:53:21 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:26:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 
 void split_lsts_small(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 {
-	int i;
-	int index;
-	int len;
-	char src_stack;
+	int		i;
+	int		index;
+	int		len;
+	char	src_stack;
 
 	i = 0;
 	index = 0;
 	len = (ft_c_lstsize(*src) / 2);
 	src_stack = (stack == 'b') ? 'a' : 'b';
-	while(i++ <= len)
+	while (i++ <= len)
 	{
-		if(stack == 'b')
+		if (stack == 'b')
 		{
 			index = recon_smaller(*src, dlmt);
-			if(index == INT_MAX)
+			if (index == INT_MAX)
 			{
 				i++;
 				break ;
@@ -42,21 +42,21 @@ void split_lsts_small(t_c_list **src, t_c_list **dest, char stack, int dlmt)
 	}
 }
 
-void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int chunk_size)
+void	split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int chunk_size)
 {
-	int i;
-	int index;
-	char src_stack;
+	int		i;
+	int		index;
+	char	src_stack;
 
 	i = 0;
 	index = 0;
 	src_stack = (stack == 'b') ? 'a' : 'b';
-	while(i++ <= chunk_size)
+	while (i++ <= chunk_size)
 	{
-		if(stack == 'b')
+		if (stack == 'b')
 		{
 			index = recon_smaller(*src, dlmt);
-			if(index == INT_MAX)
+			if (index == INT_MAX)
 			{
 				i++;
 				break ;
@@ -64,41 +64,40 @@ void split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 		}
 		else
 			index = recon_larger(*src, dlmt);
-
 		rotate_stack(src, src_stack, index);
-		ft_c_push(src , dest, stack);
+		ft_c_push(src, dest, stack);
 	}
 }
 
-void chunk_and_push(t_c_list **src, t_c_list **dest, int len, int chunk_size, char stack)
+void	chunk_and_push(t_c_list **src, t_c_list **dest, int len, int chunk_size, char stack)
 {
-    int dlmt;
-	if(chunk_size == 0)
+	int	dlmt;
+
+	if (chunk_size == 0)
 		chunk_size = 5;
-    
 	dlmt = chunk_size;
-    while (*src != NULL)
-    {
-        split_lsts_large(src, dest, stack, dlmt, chunk_size);
-        if (dlmt >= len)
-            break;
-        dlmt += chunk_size;
-        if (dlmt > len)
-        	dlmt = len;
-    }
+	while (*src != NULL)
+	{
+		split_lsts_large(src, dest, stack, dlmt, chunk_size);
+		if (dlmt >= len)
+			break ;
+		dlmt += chunk_size;
+		if (dlmt > len)
+			dlmt = len;
+	}
 }
 
-void sort_back(t_c_list **stack_a, t_c_list **stack_b, int len)
+void	sort_back(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	int i;
-	int target_nbr;
-	int index;
-	int size;
+	int	i;
+	int	target_nbr;
+	int	index;
+	int	size;
 
 	i = 0;
 	target_nbr = find_max(*stack_b);
 	size = ft_c_lstsize(*stack_b);
-	while(i < size)
+	while (i < size)
 	{
 		index = find_sortest_path(stack_b, target_nbr);
 		rotate_stack(stack_b, 'b', index);
@@ -106,58 +105,53 @@ void sort_back(t_c_list **stack_a, t_c_list **stack_b, int len)
 		target_nbr--;
 		i++;
 	}
-	
 }
 
-int long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
+int	long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 {
-	
-	int dlmt;
+	int	dlmt;
 
 	dlmt = ft_c_lstsize(*stack_a) / 2;
 	//step one:
 	split_lsts_small(stack_a, stack_b, 'b', dlmt);
 	//step two:
-	while(1)
+	while (1)
 	{	
 		dlmt /= 2;
 		split_lsts_small(stack_b, stack_a, 'a', dlmt);
-		if(dlmt <= 3)
-			break;
+		if (dlmt <= 3)
+			break ;
 	}
 	//step three;
 	int bias = 14;
 	chunk_and_push(stack_a, stack_b, len, len / bias, 'b');
-
 	//step four:
 	sort_back(stack_a, stack_b, len);
 	return (true);
 }
 
-void sort(t_c_list **head, int len)
+void	sort(t_c_list **head, int len)
 {
-	t_c_list *stack_a;
-	t_c_list *stack_b;
-	int index;
+	t_c_list	*stack_a;
+	t_c_list	*stack_b;
+	int			index;
 
 	stack_a = *head;
 	stack_b = NULL;
-	if(check_any_sort(stack_a))
+	if (check_any_sort(stack_a))
 	{
 		index = find_sortest_path(&stack_a, 1);
 		rotate_stack(&stack_a, 'a', index);
 		// ft_c_print_lst(stack_a, 'a');
 		// ft_c_print_lst(stack_b, 'b');
 		ft_c_lstclear(&stack_a);
-		return;
+		return ;
 	}
-
-	if(ft_c_lstsize(stack_a) <= 6)
+	if (ft_c_lstsize(stack_a) <= 6)
 		sort_short(&stack_a, &stack_b, len);
-	else 
+	else
 		long_sort(&stack_a, &stack_b, len);
 	// ft_c_print_lst(stack_a, 'a');
 	// ft_c_print_lst(stack_b, 'b');
 	ft_c_lstclear(&stack_a);
-	
 }

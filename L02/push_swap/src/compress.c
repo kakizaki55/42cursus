@@ -6,40 +6,39 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 13:29:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/01 19:47:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:06:35 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int is_smaller(int a, int b)
+int	is_smaller(int a, int b)
 {
-	if(a < b)
+	if (a < b)
 		return (true);
 	return (false);
 }
 
-int is_bigger(int a, int b)
+int	is_bigger(int a, int b)
 {
-	if(a > b)
+	if (a > b)
 		return (true);
 	return (false);
 }
 
-int find_min_index(int *arr, int len)
+int	find_min_index(int *arr, int len)
 {
-	int i;
-	int temp;
-	int res;
+	int	i;
+	int	temp;
+	int	res;
 
 	temp = INT_MAX;
 	i = 0 ;
-
 	res = -1;
-	while(i < len)
+	while (i < len)
 	{
-		if(is_smaller(arr[i], temp))
+		if (is_smaller(arr[i], temp))
 		{
 			temp = arr[i];
 			res = i;
@@ -49,42 +48,41 @@ int find_min_index(int *arr, int len)
 	return (res);
 }
 
-void fill_last(int *arr, int len, int last_nbr)
+void	fill_last(int *arr, int len, int last_nbr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < len)
 	{
-		if(arr[i] == 0)
+		if (arr[i] == 0)
 			arr[i] = last_nbr;
 		i++;
 	}
 }
 
-int *compress(int *arr, int len)
+int	*compress(int *arr, int len)
 {	
-	int *res;
-	res = ft_calloc(sizeof(int), len);
-	if(res == NULL)
-		error();
-	int min_i;
+	int	*res;
+	int	i;
+	int	j;
+	int	min_i;
 
-	int i;
-	int j;
+	res = ft_calloc(sizeof(int), len);
+	if (res == NULL)
+		error();
 	i = 0;
 	j = 1;
-
-    while (i < len) {
-        min_i = find_min_index(arr, len);
-		if(min_i != -1)
+	while (i < len)
+	{
+		min_i = find_min_index(arr, len);
+		if (min_i != -1)
 		{	
-        	res[min_i] = j++;
-        	arr[min_i] = INT_MAX;
+			res[min_i] = j++;
+			arr[min_i] = INT_MAX;
 		}
-        i++;
-    }
+		i++;
+	}
 	fill_last(res, len, j);
-	// print_arr(res, len);
 	return (free(arr), res);
 }
