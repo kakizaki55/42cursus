@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 14:22:34 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:50:13 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	check_sort(t_c_list *head)
 		}
 		else
 		{
-			return (false);
+			return (FALSE);
 		}
 		if (current == head)
-			return (true);
+			return (TRUE);
 	}
-	return (false);
+	return (FALSE);
 }
 
 int	check_r_sort(t_c_list *head)
@@ -53,12 +53,12 @@ int	check_r_sort(t_c_list *head)
 		}
 		else
 		{
-			return (false);
+			return (FALSE);
 		}
 		if (current == head)
-			return (true);
+			return (TRUE);
 	}
-	return (false);
+	return (FALSE);
 }
 
 int	find_nbr(t_c_list *head, int nbr)
@@ -67,7 +67,7 @@ int	find_nbr(t_c_list *head, int nbr)
 	t_c_list	*current;
 
 	if (head == NULL || nbr == 0)
-		return (false);
+		return (FALSE);
 	i = 0;
 	current = head;
 	while (1)
@@ -82,9 +82,9 @@ int	find_nbr(t_c_list *head, int nbr)
 			return (i);
 		}
 		if (current == head)
-			return (false);
+			return (FALSE);
 	}
-	return (false);
+	return (FALSE);
 }
 
 int	find_r_nbr(t_c_list *head, int nbr)
@@ -93,7 +93,7 @@ int	find_r_nbr(t_c_list *head, int nbr)
 	t_c_list	*current;
 
 	if (head == NULL || nbr == 0)
-		return (false);
+		return (FALSE);
 	i = 0;
 	current = head;
 	while (1)
@@ -108,9 +108,9 @@ int	find_r_nbr(t_c_list *head, int nbr)
 			return (i);
 		}
 		if (current == head)
-			return (false);
+			return (FALSE);
 	}
-	return (false);
+	return (FALSE);
 }
 
 int	check_any_sort(t_c_list *head)
@@ -123,14 +123,14 @@ int	check_any_sort(t_c_list *head)
 	while (i < size)
 	{
 		if (check_sort(head))
-			return (true);
+			return (TRUE);
 		head = head->next;
 		i++;
 	}
 	if (check_sort(head))
-		return (true);
+		return (TRUE);
 	else
-		return (false);
+		return (FALSE);
 }
 
 int	check_any_r_sort(t_c_list *head)
@@ -143,14 +143,14 @@ int	check_any_r_sort(t_c_list *head)
 	while (i < size)
 	{
 		if (check_r_sort(head))
-			return (true);
+			return (TRUE);
 		head = head->prev;
 		i++;
 	}
 	if (check_r_sort(head))
-		return (true);
+		return (TRUE);
 	else
-		return (false);
+		return (FALSE);
 }
 
 int	find_min(t_c_list *head)
@@ -268,23 +268,23 @@ void	push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 	*src_lst = NULL;
 }
 
-void push_all_large(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
+void push_all_large(t_c_list **src, t_c_list **dest, char dest_stack)
 {
 	int i;
 	int biggest;
 	int size;
 
 	i = 0;
-	size = ft_c_lstsize(*src_lst);
-	if ((*src_lst)->content == biggest)
+	size = ft_c_lstsize(*src);
+	if ((*src)->content == biggest)
 	{
 		while (i < size)
 		{
-			ft_c_push(src_lst, dest_lst, dest_stack);
+			ft_c_push(src, dest, dest_stack);
 			i++;
 		}
 	}
-	*src_lst = NULL;
+	*src = NULL;
 }
 
 int	find_sortest_path(t_c_list **src, int target_nbr)
@@ -297,4 +297,72 @@ int	find_sortest_path(t_c_list **src, int target_nbr)
 	else
 		res = find_r_nbr(*src, target_nbr) * -1;
 	return (res);
+}
+void	split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b, int len)
+{
+	int	i;
+	int	index;
+	int	half;
+
+	i = 0;
+	index = 0;
+	half = ft_c_lstsize(*stack_a) / 2;
+	while (i++ < half)
+	{
+		index = recon_smaller(*stack_a, half);
+		while (index != 0)
+		{
+			if (index > 0)
+			{
+				ft_rotate(stack_a, 'a');
+				index--;
+			}
+			else
+			{
+				ft_r_rotate(stack_a, 'a');
+				index++;
+			}
+		}
+		ft_c_push(stack_a, stack_b, 'b');
+	}
+	// ft_c_print_lst(*stack_a, 'a');
+	// ft_c_print_lst(*stack_b, 'b');
+}
+
+char	get_other_stack(char c)
+{	
+	if (c == 'a')
+		return ('b');
+	else
+		return ('a');
+	return (' ');
+}
+
+void		splt_lst_hlf(t_c_list **src, t_c_list **dest, char stk, int dlmt)
+{
+	int		i;
+	int		index;
+	int		len;
+	char	src_stack;
+
+	i = 0;
+	index = 0;
+	len = (ft_c_lstsize(*src) / 2);
+	src_stack = get_other_stack(stk);
+	while (i++ <= len)
+	{
+		if (stk == 'b')
+		{
+			index = recon_smaller(*src, dlmt);
+			if (index == INT_MAX)
+			{
+				i++;
+				break ;
+			}
+		}
+		else
+			index = recon_larger(*src, dlmt);
+		rotate_stack(src, src_stack, index);
+		ft_c_push(src, dest, stk);
+	}
 }

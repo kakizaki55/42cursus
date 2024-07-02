@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 14:13:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:36:07 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_c_push(t_c_list **src, t_c_list **dest, char stack)
 
 void	ft_c_lstadd(t_c_list **head, t_c_list *new)
 {	
-	t_c_list *last;
+	t_c_list	*last;
 
 	if (!new)
 		return ;
@@ -78,7 +78,7 @@ t_c_list	*ft_lstpop(t_c_list **head)
 
 int	ft_c_lstsize(t_c_list *lst)
 {
-	int	res;
+	int			res;
 	t_c_list	*current;
 
 	if (!lst)

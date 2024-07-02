@@ -6,43 +6,14 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 14:26:27 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:52:38 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void split_lsts_small(t_c_list **src, t_c_list **dest, char stack, int dlmt)
-{
-	int		i;
-	int		index;
-	int		len;
-	char	src_stack;
-
-	i = 0;
-	index = 0;
-	len = (ft_c_lstsize(*src) / 2);
-	src_stack = (stack == 'b') ? 'a' : 'b';
-	while (i++ <= len)
-	{
-		if (stack == 'b')
-		{
-			index = recon_smaller(*src, dlmt);
-			if (index == INT_MAX)
-			{
-				i++;
-				break ;
-			}
-		}
-		else
-			index = recon_larger(*src, dlmt);
-		rotate_stack(src, src_stack, index);
-		ft_c_push(src , dest, stack);
-	}
-}
-
-void	split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int chunk_size)
+void	split_lsts_ch(t_c_list **src, t_c_list **dest, int dlmt, int chunk_size)
 {
 	int		i;
 	int		index;
@@ -50,10 +21,10 @@ void	split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 
 	i = 0;
 	index = 0;
-	src_stack = (stack == 'b') ? 'a' : 'b';
+	src_stack = 'a';
 	while (i++ <= chunk_size)
 	{
-		if (stack == 'b')
+		if (src_stack == 'a')
 		{
 			index = recon_smaller(*src, dlmt);
 			if (index == INT_MAX)
@@ -65,20 +36,24 @@ void	split_lsts_large(t_c_list **src, t_c_list **dest, char stack, int dlmt, int
 		else
 			index = recon_larger(*src, dlmt);
 		rotate_stack(src, src_stack, index);
-		ft_c_push(src, dest, stack);
+		ft_c_push(src, dest, 'b');
 	}
 }
 
-void	chunk_and_push(t_c_list **src, t_c_list **dest, int len, int chunk_size, char stack)
+void	chunk_and_push(t_c_list **src, t_c_list **dest, int len, char stack)
 {
 	int	dlmt;
+	int	bias;
+	int	chunk_size;
 
+	bias = 14;
+	chunk_size = len / bias;
 	if (chunk_size == 0)
 		chunk_size = 5;
 	dlmt = chunk_size;
 	while (*src != NULL)
 	{
-		split_lsts_large(src, dest, stack, dlmt, chunk_size);
+		split_lsts_ch(src, dest, dlmt, chunk_size);
 		if (dlmt >= len)
 			break ;
 		dlmt += chunk_size;
@@ -112,22 +87,17 @@ int	long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 	int	dlmt;
 
 	dlmt = ft_c_lstsize(*stack_a) / 2;
-	//step one:
-	split_lsts_small(stack_a, stack_b, 'b', dlmt);
-	//step two:
+	splt_lst_hlf(stack_a, stack_b, 'b', dlmt);
 	while (1)
 	{	
 		dlmt /= 2;
-		split_lsts_small(stack_b, stack_a, 'a', dlmt);
+		splt_lst_hlf(stack_b, stack_a, 'a', dlmt);
 		if (dlmt <= 3)
 			break ;
 	}
-	//step three;
-	int bias = 14;
-	chunk_and_push(stack_a, stack_b, len, len / bias, 'b');
-	//step four:
+	chunk_and_push(stack_a, stack_b, len, 'b');
 	sort_back(stack_a, stack_b, len);
-	return (true);
+	return (TRUE);
 }
 
 void	sort(t_c_list **head, int len)
@@ -142,8 +112,6 @@ void	sort(t_c_list **head, int len)
 	{
 		index = find_sortest_path(&stack_a, 1);
 		rotate_stack(&stack_a, 'a', index);
-		// ft_c_print_lst(stack_a, 'a');
-		// ft_c_print_lst(stack_b, 'b');
 		ft_c_lstclear(&stack_a);
 		return ;
 	}
