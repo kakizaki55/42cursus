@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 17:36:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:04:13 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,104 +95,61 @@ int	ft_c_lstsize(t_c_list *lst)
 	return (res);
 }
 
-void	ft_rotate(t_c_list **head, char stack)
-{
-	*head = (*head)->next;
-	ft_printf("r%c\n", stack);
-}
+// void	ft_rotate(t_c_list **head, char stack)
+// {
+// 	*head = (*head)->next;
+// 	ft_printf("r%c\n", stack);
+// }
 
-void ft_r_rotate(t_c_list **head, char stack)
-{
-	*head = (*head)->prev;
-	ft_printf("rr%c\n", stack);
-}
+// void ft_r_rotate(t_c_list **head, char stack)
+// {
+// 	*head = (*head)->prev;
+// 	ft_printf("rr%c\n", stack);
+// }
 
-void rotate_stack(t_c_list **src, int stack, int index)
-{
-	if (!src || !*src)
-		return ;
-	while (index != 0)
-	{
-		if (index > 0)
-		{	
-			ft_rotate(src, stack);
-			index--;
-		}
-		else
-		{
-			ft_r_rotate(src, stack);
-			index++;
-		}
-	}
-}
+// void rotate_stack(t_c_list **src, int stack, int index)
+// {
+// 	if (!src || !*src)
+// 		return ;
+// 	while (index != 0)
+// 	{
+// 		if (index > 0)
+// 		{	
+// 			ft_rotate(src, stack);
+// 			index--;
+// 		}
+// 		else
+// 		{
+// 			ft_r_rotate(src, stack);
+// 			index++;
+// 		}
+// 	}
+// }
 
-void	ft_lstswap(t_c_list **head, char stack)
-{
-	int	temp;
+// void	ft_lstswap(t_c_list **head, char stack)
+// {
+// 	int	temp;
 
-	temp = (*head)->content;
-	(*head)->content = (*head)->next->content;
-	(*head)->next->content = temp;
-	ft_printf("s%c\n", stack);
-}
+// 	temp = (*head)->content;
+// 	(*head)->content = (*head)->next->content;
+// 	(*head)->next->content = temp;
+// 	ft_printf("s%c\n", stack);
+// }
 
-void ft_c_lstclear(t_c_list **head)
-{
-	t_c_list	*current;
-	t_c_list	*next;	
+// void ft_c_lstclear(t_c_list **head)
+// {
+// 	t_c_list	*current;
+// 	t_c_list	*next;	
 
-	current = (*head)->next;
-	if (*head == NULL)
-		return ;
-	while (current != *head)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}	
-	free(*head);
-	*head = NULL;
-}
-
-void	ft_c_lstiter(t_c_list *head, int (*f)(int))
-{
-	t_c_list	*current;
-
-	current = head;
-	while (1)
-	{	
-		current->content = f(current->content);
-		current = current->next;
-		if (current == head)
-			break ;
-	}
-}
-
-void	ft_c_print_lst(t_c_list *head, char stack)
-{
-	t_c_list	*current;
-	int			i;
-
-	current = head;
-	if (head == NULL)
-	{
-		ft_printf("List [%c]is NULL\n", stack);
-		return ;
-	}
-	i = 0;
-	while (1)
-	{
-		if (i == 0)
-		{
-			ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
-		}
-		else
-		{
-			ft_printf("[%d]:%d\n", i, current->content);
-		}
-			current = current->next;
-		i++;
-		if (current == head)
-			break ;
-	}
-}
+// 	current = (*head)->next;
+// 	if (*head == NULL)
+// 		return ;
+// 	while (current != *head)
+// 	{
+// 		next = current->next;
+// 		free(current);
+// 		current = next;
+// 	}	
+// 	free(*head);
+// 	*head = NULL;
+// }

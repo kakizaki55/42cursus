@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 18:52:38 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:05:15 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,5 @@ void	sort(t_c_list **head, int len)
 		sort_short(&stack_a, &stack_b, len);
 	else
 		long_sort(&stack_a, &stack_b, len);
-	// ft_c_print_lst(stack_a, 'a');
-	// ft_c_print_lst(stack_b, 'b');
 	ft_c_lstclear(&stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 18:50:13 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:06:22 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,8 +325,6 @@ void	split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b, int len)
 		}
 		ft_c_push(stack_a, stack_b, 'b');
 	}
-	// ft_c_print_lst(*stack_a, 'a');
-	// ft_c_print_lst(*stack_b, 'b');
 }
 
 char	get_other_stack(char c)
@@ -364,5 +362,34 @@ void		splt_lst_hlf(t_c_list **src, t_c_list **dest, char stk, int dlmt)
 			index = recon_larger(*src, dlmt);
 		rotate_stack(src, src_stack, index);
 		ft_c_push(src, dest, stk);
+	}
+}
+
+void	ft_c_print_lst(t_c_list *head, char stack)
+{
+	t_c_list	*current;
+	int			i;
+
+	current = head;
+	if (head == NULL)
+	{
+		ft_printf("List [%c]is NULL\n", stack);
+		return ;
+	}
+	i = 0;
+	while (1)
+	{
+		if (i == 0)
+		{
+			ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
+		}
+		else
+		{
+			ft_printf("[%d]:%d\n", i, current->content);
+		}
+			current = current->next;
+		i++;
+		if (current == head)
+			break ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 18:52:48 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:55:53 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	sort_two_three(t_c_list **head, int len, char stack)
 			sort_three(head, largest, stack);
 		}
 	}
-	// ft_c_print_lst(*head, 'a');
 	return (TRUE);
 }
 

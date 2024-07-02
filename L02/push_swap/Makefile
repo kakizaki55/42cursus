@@ -26,6 +26,7 @@ WHITE = \033[0;97m
 #Sources
 
 SRC_FILES	=	push_swap_utils \
+				push_swap_utils_extra \
 				args_validation \
 				compress \
 				sort \
