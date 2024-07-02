@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:04:13 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:34:07 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,62 +94,3 @@ int	ft_c_lstsize(t_c_list *lst)
 	}
 	return (res);
 }
-
-// void	ft_rotate(t_c_list **head, char stack)
-// {
-// 	*head = (*head)->next;
-// 	ft_printf("r%c\n", stack);
-// }
-
-// void ft_r_rotate(t_c_list **head, char stack)
-// {
-// 	*head = (*head)->prev;
-// 	ft_printf("rr%c\n", stack);
-// }
-
-// void rotate_stack(t_c_list **src, int stack, int index)
-// {
-// 	if (!src || !*src)
-// 		return ;
-// 	while (index != 0)
-// 	{
-// 		if (index > 0)
-// 		{	
-// 			ft_rotate(src, stack);
-// 			index--;
-// 		}
-// 		else
-// 		{
-// 			ft_r_rotate(src, stack);
-// 			index++;
-// 		}
-// 	}
-// }
-
-// void	ft_lstswap(t_c_list **head, char stack)
-// {
-// 	int	temp;
-
-// 	temp = (*head)->content;
-// 	(*head)->content = (*head)->next->content;
-// 	(*head)->next->content = temp;
-// 	ft_printf("s%c\n", stack);
-// }
-
-// void ft_c_lstclear(t_c_list **head)
-// {
-// 	t_c_list	*current;
-// 	t_c_list	*next;	
-
-// 	current = (*head)->next;
-// 	if (*head == NULL)
-// 		return ;
-// 	while (current != *head)
-// 	{
-// 		next = current->next;
-// 		free(current);
-// 		current = next;
-// 	}	
-// 	free(*head);
-// 	*head = NULL;
-// }

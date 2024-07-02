@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:06:22 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:38:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,263 +133,31 @@ int	check_any_sort(t_c_list *head)
 		return (FALSE);
 }
 
-int	check_any_r_sort(t_c_list *head)
-{
-	int	size;
-	int	i;
+// void	ft_c_print_lst(t_c_list *head, char stack)
+// {
+// 	t_c_list	*current;
+// 	int			i;
 
-	i = 0;
-	size = ft_c_lstsize(head);
-	while (i < size)
-	{
-		if (check_r_sort(head))
-			return (TRUE);
-		head = head->prev;
-		i++;
-	}
-	if (check_r_sort(head))
-		return (TRUE);
-	else
-		return (FALSE);
-}
-
-int	find_min(t_c_list *head)
-{
-	t_c_list	*current;
-	int			res;
-
-	current = head;
-	res = INT_MAX;
-	while (1)
-	{	
-		if (res > current->content && (current->content > 0))
-			res = current->content;
-		current = current->next;
-		if (current == head)
-		{
-			return (res);
-		}
-	}
-	return (0);
-}
-
-int find_max(t_c_list *head)
-{
-	t_c_list	*current;
-	int			res;
-
-	current = head;
-	res = INT_MIN;
-	while (1)
-	{	
-		if (res < current->content)
-			res = current->content;
-		current = current->next;
-		if (current == head)
-		{
-			return (res);
-		}
-	}
-	return (0);
-}
-
-int recon_smaller(t_c_list *head, int deli)
-{
-	int			i;
-	int			index;
-	int			r_index;
-	t_c_list	*temp;
-	t_c_list	*r_temp;
-	int			lst_size;
-
-	lst_size = ft_c_lstsize(head);
-	i = 0;
-	index = 0;
-	r_index = 0;
-	temp = head;
-	r_temp = head;
-	while (i < lst_size)
-	{
-		if (temp->content <= deli)
-			return (index);
-		temp = temp->next;
-		index++;
-		if (r_temp->content <= deli)
-			return (r_index);
-		r_temp = r_temp->prev;
-		r_index--;
-		i++;
-	}
-	return (INT_MAX);
-}
-
-int recon_larger(t_c_list *head, int deli)
-{
-	int			i;
-	int			index;
-	int			r_index;
-	t_c_list	*temp;
-	t_c_list	*r_temp;
-	int lst_size;
-
-	lst_size = ft_c_lstsize(head);
-	i = 0;
-	index = 0;
-	r_index = 0;
-	temp = head;
-	r_temp = head;
-	while (i < lst_size)
-	{
-		if (temp->content > deli)
-			return (index);
-		temp = temp->next;
-		index++;
-		if (r_temp->content > deli)
-			return (r_index);
-		r_temp = r_temp->prev;
-		r_index--;
-		i++;
-	}
-	return (0);
-}
-
-void	push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
-{
-	int	i;
-	int	size;
-
-	size = ft_c_lstsize(*src_lst);
-	i = 0;
-	while (i < size)
-	{
-		ft_c_push(src_lst, dest_lst, dest_stack);
-		i++;
-	}
-	*src_lst = NULL;
-}
-
-void push_all_large(t_c_list **src, t_c_list **dest, char dest_stack)
-{
-	int i;
-	int biggest;
-	int size;
-
-	i = 0;
-	size = ft_c_lstsize(*src);
-	if ((*src)->content == biggest)
-	{
-		while (i < size)
-		{
-			ft_c_push(src, dest, dest_stack);
-			i++;
-		}
-	}
-	*src = NULL;
-}
-
-int	find_sortest_path(t_c_list **src, int target_nbr)
-{	
-	int	res;
-
-	res = 0;
-	if (is_smaller(find_nbr(*src, target_nbr), find_r_nbr(*src, target_nbr)))
-		res = find_nbr(*src, target_nbr);
-	else
-		res = find_r_nbr(*src, target_nbr) * -1;
-	return (res);
-}
-void	split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b, int len)
-{
-	int	i;
-	int	index;
-	int	half;
-
-	i = 0;
-	index = 0;
-	half = ft_c_lstsize(*stack_a) / 2;
-	while (i++ < half)
-	{
-		index = recon_smaller(*stack_a, half);
-		while (index != 0)
-		{
-			if (index > 0)
-			{
-				ft_rotate(stack_a, 'a');
-				index--;
-			}
-			else
-			{
-				ft_r_rotate(stack_a, 'a');
-				index++;
-			}
-		}
-		ft_c_push(stack_a, stack_b, 'b');
-	}
-}
-
-char	get_other_stack(char c)
-{	
-	if (c == 'a')
-		return ('b');
-	else
-		return ('a');
-	return (' ');
-}
-
-void		splt_lst_hlf(t_c_list **src, t_c_list **dest, char stk, int dlmt)
-{
-	int		i;
-	int		index;
-	int		len;
-	char	src_stack;
-
-	i = 0;
-	index = 0;
-	len = (ft_c_lstsize(*src) / 2);
-	src_stack = get_other_stack(stk);
-	while (i++ <= len)
-	{
-		if (stk == 'b')
-		{
-			index = recon_smaller(*src, dlmt);
-			if (index == INT_MAX)
-			{
-				i++;
-				break ;
-			}
-		}
-		else
-			index = recon_larger(*src, dlmt);
-		rotate_stack(src, src_stack, index);
-		ft_c_push(src, dest, stk);
-	}
-}
-
-void	ft_c_print_lst(t_c_list *head, char stack)
-{
-	t_c_list	*current;
-	int			i;
-
-	current = head;
-	if (head == NULL)
-	{
-		ft_printf("List [%c]is NULL\n", stack);
-		return ;
-	}
-	i = 0;
-	while (1)
-	{
-		if (i == 0)
-		{
-			ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
-		}
-		else
-		{
-			ft_printf("[%d]:%d\n", i, current->content);
-		}
-			current = current->next;
-		i++;
-		if (current == head)
-			break ;
-	}
-}
+// 	current = head;
+// 	if (head == NULL)
+// 	{
+// 		ft_printf("List [%c]is NULL\n", stack);
+// 		return ;
+// 	}
+// 	i = 0;
+// 	while (1)
+// 	{
+// 		if (i == 0)
+// 		{
+// 			ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
+// 		}
+// 		else
+// 		{
+// 			ft_printf("[%d]:%d\n", i, current->content);
+// 		}
+// 			current = current->next;
+// 		i++;
+// 		if (current == head)
+// 			break ;
+// 	}
+// }
