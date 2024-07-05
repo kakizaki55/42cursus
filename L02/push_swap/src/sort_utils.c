@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:58:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:38:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:02:33 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,32 +132,3 @@ int	check_any_sort(t_c_list *head)
 	else
 		return (FALSE);
 }
-
-// void	ft_c_print_lst(t_c_list *head, char stack)
-// {
-// 	t_c_list	*current;
-// 	int			i;
-
-// 	current = head;
-// 	if (head == NULL)
-// 	{
-// 		ft_printf("List [%c]is NULL\n", stack);
-// 		return ;
-// 	}
-// 	i = 0;
-// 	while (1)
-// 	{
-// 		if (i == 0)
-// 		{
-// 			ft_printf("[%d]:%d<-head[%c]\n", i, current->content, stack);
-// 		}
-// 		else
-// 		{
-// 			ft_printf("[%d]:%d\n", i, current->content);
-// 		}
-// 			current = current->next;
-// 		i++;
-// 		if (current == head)
-// 			break ;
-// 	}
-// }

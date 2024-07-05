@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/05 13:50:28 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:00:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		ft_r_rotate(t_c_list **head, char stack);
 void		rotate_stack(t_c_list **src, int stack, int index);
 void		ft_lstswap(t_c_list **head, char stack);
 void		ft_c_lstclear(t_c_list **head);
-// void		ft_c_print_lst(t_c_list *head, char stack);
+void		ft_c_print_lst(t_c_list *head, char stack);
 
 //args_validation
 int			*args_validation(int argc, char *argv[]);
