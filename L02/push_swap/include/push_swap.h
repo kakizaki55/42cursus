@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:50 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 20:03:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:50:28 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ int			find_max(t_c_list *head);
 int			recon_smaller(t_c_list *head, int deli);
 int			recon_larger(t_c_list *head, int deli);
 void		push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack);
-void		push_all_large(t_c_list **src, t_c_list **dest, char dest_stack);
-void		split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b, int len);
+void		split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b);
 int			check_either_sort(t_c_list *head, char stack);
 char		get_other_stack(char c);
 void		splt_lst_hlf(t_c_list **src, t_c_list **dest, char stk, int dlmt);

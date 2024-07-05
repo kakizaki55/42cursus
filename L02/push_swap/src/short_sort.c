@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:46:10 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:45:58 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:46:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	sort_two_three(t_c_list **head, int len, char stack)
 	return (TRUE);
 }
 
-int	sort_six(t_c_list **stack_a, t_c_list **stack_b, int len)
+int	sort_six(t_c_list **stack_a, t_c_list **stack_b)
 {
-	split_lsts_tw_thr(stack_a, stack_b, len);
+	split_lsts_tw_thr(stack_a, stack_b);
 	sort_two_three(stack_a, ft_c_lstsize(*stack_a), 'a');
 	sort_two_three(stack_b, ft_c_lstsize(*stack_b), 'b');
 	push_all(stack_b, stack_a, 'a');
@@ -102,7 +102,7 @@ int	sort_short(t_c_list **stack_a, t_c_list **stack_b, int len)
 	}
 	if (len <= 6)
 	{
-		sort_six(stack_a, stack_b, len);
+		sort_six(stack_a, stack_b);
 		return (TRUE);
 	}
 	return (FALSE);

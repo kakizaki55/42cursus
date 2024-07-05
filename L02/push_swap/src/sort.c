@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:05:15 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:40:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	split_lsts_ch(t_c_list **src, t_c_list **dest, int dlmt, int chunk_size)
 	}
 }
 
-void	chunk_and_push(t_c_list **src, t_c_list **dest, int len, char stack)
+void	chunk_and_push(t_c_list **src, t_c_list **dest, int len)
 {
 	int	dlmt;
 	int	bias;
@@ -62,7 +62,7 @@ void	chunk_and_push(t_c_list **src, t_c_list **dest, int len, char stack)
 	}
 }
 
-void	sort_back(t_c_list **stack_a, t_c_list **stack_b, int len)
+void	sort_back(t_c_list **stack_a, t_c_list **stack_b)
 {
 	int	i;
 	int	target_nbr;
@@ -95,8 +95,8 @@ int	long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 		if (dlmt <= 3)
 			break ;
 	}
-	chunk_and_push(stack_a, stack_b, len, 'b');
-	sort_back(stack_a, stack_b, len);
+	chunk_and_push(stack_a, stack_b, len);
+	sort_back(stack_a, stack_b);
 	return (TRUE);
 }
 

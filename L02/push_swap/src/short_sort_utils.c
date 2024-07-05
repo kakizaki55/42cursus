@@ -6,14 +6,14 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:30:24 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:46:20 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:41:21 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b, int len)
+void	split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b)
 {
 	int	i;
 	int	index;

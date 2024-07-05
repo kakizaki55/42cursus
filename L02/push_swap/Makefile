@@ -5,8 +5,8 @@ INCLUDE		= include
 LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-CC			= cc -I
-# CFLAGS		= -Wall -Werror -Wextra
+CC			= cc
+CFLAGS		= -Wall -Werror -Wextra -I
 DEBUG_FLAGS	= -g -fsanitize=address
 RM			= rm -f
 AR			= ar rc

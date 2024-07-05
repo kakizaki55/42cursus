@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:25:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:49:08 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:50:24 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,6 @@ void	push_all(t_c_list **src_lst, t_c_list **dest_lst, char dest_stack)
 		i++;
 	}
 	*src_lst = NULL;
-}
-
-void	push_all_large(t_c_list **src, t_c_list **dest, char dest_stack)
-{
-	int	i;
-	int	biggest;
-	int	size;
-
-	i = 0;
-	size = ft_c_lstsize(*src);
-	if ((*src)->content == biggest)
-	{
-		while (i < size)
-		{
-			ft_c_push(src, dest, dest_stack);
-			i++;
-		}
-	}
-	*src = NULL;
 }
 
 int	recon_smaller(t_c_list *head, int deli)
