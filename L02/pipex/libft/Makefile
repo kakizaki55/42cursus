@@ -51,6 +51,10 @@ SRC			= 	ft_isalpha \
 				ft_printf \
 				ft_printf_utils \
 				ft_print_str \
+				get_next_line \
+				get_next_line_utils
+
+
 
 SRCS		= $(addsuffix .c, $(SRC))
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))

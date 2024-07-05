@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/04 17:23:18 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:19:12 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,6 +24,12 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+#  define TRUE 1
+#  define FALSE 0
+# endif
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -83,5 +89,15 @@ int		ft_print_str(char *str);
 int		ft_print_unsigned_dec(unsigned int n);
 int		ft_print_lower_hex(unsigned int nbr);
 int		ft_print_upper_hex(unsigned int nbr);
+
+char	*get_next_line(int fd);
+// size_t	ft_strlen(const char *str);
+int		check_for_new_line(char *str);
+// char	*ft_strjoin(char *s1, char *s2);
+int		init(char *sttc_str, char **buffer, char **result);
+int		clean_up(char **sttc_str, char **buffer, char **result, int *bytes);
+char	*get_new_string(int fd, char *sttc_str);
+char	*get_one_line(char *str);
+// char	*ft_strdup(const char *str);
 
 #endif
