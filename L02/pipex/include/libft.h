@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/04 19:19:12 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:48:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -91,13 +91,13 @@ int		ft_print_lower_hex(unsigned int nbr);
 int		ft_print_upper_hex(unsigned int nbr);
 
 char	*get_next_line(int fd);
-// size_t	ft_strlen(const char *str);
+size_t	gnl_strlen(const char *str);
 int		check_for_new_line(char *str);
-// char	*ft_strjoin(char *s1, char *s2);
+char	*gnl_strjoin(char *s1, char *s2);
 int		init(char *sttc_str, char **buffer, char **result);
 int		clean_up(char **sttc_str, char **buffer, char **result, int *bytes);
 char	*get_new_string(int fd, char *sttc_str);
 char	*get_one_line(char *str);
-// char	*ft_strdup(const char *str);
+char	*gnl_strdup(const char *str);
 
 #endif

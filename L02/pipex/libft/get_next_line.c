@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 13:41:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/07/04 19:25:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:50:05 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,7 @@ char	*gnl_strjoin(char *sttc_str, char *buffer)
 
 	i = 0;
 	j = 0;
-	res = malloc((ft_strlen(sttc_str) + ft_strlen(buffer) + 1) * sizeof(char));
+	res = malloc((gnl_strlen(sttc_str) + gnl_strlen(buffer) + 1) * sizeof(char));
 	if (res == NULL)
 	{
 		free(sttc_str);
@@ -57,7 +57,7 @@ char	*get_new_string(int fd, char *sttc_str)
 			return (free(sttc_str), free(result), free(buffer), NULL);
 		}
 		buffer[bytes] = '\0';
-		result = ft_strjoin(result, buffer);
+		result = gnl_strjoin(result, buffer);
 		if (result == NULL)
 		{
 			return (free(buffer), NULL);
@@ -105,7 +105,7 @@ char	*trim_string(int n, char *str)
 		free(str);
 		return (NULL);
 	}
-	len = ft_strlen(str) - n;
+	len = gnl_strlen(str) - n;
 	i = 0;
 	result = malloc(sizeof(char) * len + 1);
 	if (result == NULL)
@@ -135,7 +135,7 @@ char	*get_next_line(int fd)
 	result = get_one_line(sttc_str[fd]);
 	if (result == NULL)
 		return (NULL);
-	sttc_str[fd] = trim_string(ft_strlen(result), sttc_str[fd]);
+	sttc_str[fd] = trim_string(gnl_strlen(result), sttc_str[fd]);
 	if (sttc_str[fd] == NULL)
 		return (NULL);
 	return (result);
