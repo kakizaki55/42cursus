@@ -36,7 +36,7 @@ OBJF		=	.cache_exists
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) main.c
 			make -C $(LIBFT)
 			cp libft/libft.a .
 			mv libft.a $(NAME)
@@ -61,6 +61,7 @@ fclean:		clean
 			$(RM) $(NAME)
 			$(RM) $(LIBFT)/libft.a
 			$(RM) a.out
+			$(RM) pipex.dSYM
 			$(RM) $(PROG_NAME)
 			@echo "$(CYAN)<------$(NAME) executable files cleaned!------>$(DEF_COLOR)"
 			@echo "$(CYAN)<------libft executable files cleaned!------------>$(DEF_COLOR)"
