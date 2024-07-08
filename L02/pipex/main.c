@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/08 14:25:30 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:53:08 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,16 @@
 
 __attribute__((destructor))
 static void	destructor(void) {
+	ft_printf("n\n------------------------------------------------------\n");
+	system ("bash ./cleanup.sh");
+	ft_printf("\n------------------------------------------------------\n\n");
 	system ("leaks -q --groupByType pipex");
+}
+
+void throw_error(char *message)
+{
+	perror(message);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char *argv[],  char *envp[])
@@ -37,57 +46,62 @@ int	main(int argc, char *argv[],  char *envp[])
 	int filein = open(input, O_RDONLY);
 	if(filein == -1)
 	{
+		throw_error("input file not found");
 		// thorw error
 	}
 	if(child_pid == 0)
 	{
+		// ft_printf("child_pid:%d\n", child_pid);
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO); // this connects the write end of the pipe
 		dup2(filein, STDIN_FILENO); // this connects the write end of the pipe
 		// execve("/usr/bin/", &cmd_arr[0], envp);
 		execlp(cmd_arr[0], cmd_arr[0]);
-		// close(filein);
+		close(pipefd[1]);
 	}
-	else
-	{
-		//throw error
-	}
+	// else
+	// {
+	// 	throw_error("first child failed");
+	// 	//throw error
+	// }
 
+	waitpid(-1, NULL, 0);
 	child_pid = fork();
-	int fileout = open (output, O_WRONLY);
-	if(fileout == -1)
-	{
-		// thorw error
-	}
 	if(child_pid == 0)
 	{
+		int fileout = open (output, O_WRONLY);
+		if(fileout == -1)
+		{
+			throw_error("output file not found");
+		}
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);
 		dup2(fileout, STDOUT_FILENO);
 		execlp(cmd_arr[1], cmd_arr[1]);
-		close(fileout);
-		
-	}else
-	{
-		//throw error
+		close(pipefd[0]);
 	}
+
+	ft_printf("child_pid:%d\n", child_pid);
+	return (0);
+	// {
+	// 	throw_error("second child failed");
+	// 	//throw error
+	// }
 
 	close(pipefd[0]);
 	close(pipefd[1]);
 
-	waitpid(child_pid, NULL, 0);
-	// waitpid(child_pid, NULL, 0);
+	waitpid(-1, NULL, 0);
 	free_all(cmd_arr);
 
-	return (0);
 
 
 	// ---checking to see if the argv are parsed correctly---
-	ft_printf("input:%s\noutput%s\n", input, output);
-	for (int i = 0; cmd_arr[i]; i++)
-	{
-		ft_printf("cmd: %s\n", cmd_arr[i]);
-	}
+	// ft_printf("input:%s\noutput%s\n", input, output);
+	// for (int i = 0; cmd_arr[i]; i++)
+	// {
+	// 	ft_printf("cmd: %s\n", cmd_arr[i]);
+	// }
 	// for (int i = 0; envp[i]; i++)
 	// {
 	// 	ft_printf("env: %s\n", envp[i]);
@@ -112,5 +126,4 @@ int	main(int argc, char *argv[],  char *envp[])
 	// close(fd);
 	// ft_printf("hello world\n");
 
-	return (0);
 }
