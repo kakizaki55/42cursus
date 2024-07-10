@@ -12,7 +12,9 @@
 
 #ifndef PIPEX_H
 # define PIPEX_H
+
 #include <fcntl.h>
+#include <sys/wait.h>
 
 int free_all(char **str_arr);
 void throw_error(char *message);

@@ -30,7 +30,8 @@ int free_all(char **str_arr)
 
 void throw_error(char *message)
 {
-	perror(message);
+	
+	ft_printf("perror return :%s\n", strerror(message));
 	exit(EXIT_FAILURE);
 }
 

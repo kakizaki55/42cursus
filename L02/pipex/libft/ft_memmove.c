@@ -29,7 +29,7 @@ static	void	move_back(unsigned char *dest, unsigned char*ssrc, size_t len)
 	size_t	i;
 
 	i = (size_t)len - 1;
-	while (i >= 0)
+	while (i != 0)
 	{
 		dest[i] = ssrc[i];
 		i--;

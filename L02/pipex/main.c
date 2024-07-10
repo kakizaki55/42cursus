@@ -16,7 +16,7 @@
 __attribute__((destructor))
 static void	destructor(void) {
 	ft_printf("\n------------------------------------------------------\n");
-	system ("leaks -q --fullStacks pipex");
+	system ("valgrind -q pipex");
 	ft_printf("\n------------------------------------------------------\n");
 	// system ("bash ./cleanup.sh");
 }
