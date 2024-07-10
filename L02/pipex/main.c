@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,69 +6,19 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/09 20:18:54 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:30:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex.h"
 
 __attribute__((destructor))
 static void	destructor(void) {
-	// ft_printf("n\n------------------------------------------------------\n");
-	// system ("bash ./cleanup.sh");
 	ft_printf("\n------------------------------------------------------\n");
-	system ("leaks -q --groupByType pipex");
-}
-
-void throw_error(char *message)
-{
-	perror(message);
-	exit(EXIT_FAILURE);
-}
-
-char *find_path(char *cmd, char *envp[])
-{
-	char **path_arr;
-	char *path_str;
-	char *path;
-	int i;
-
-	i = 0;
-	while (envp[i])
-	{
-		if(ft_strnstr(envp[i], "PATH=", 5))
-		{
-			path_str = ft_strnstr(envp[i], "PATH=", 5);
-			break ;
-		}
-		i++;
-	}
-	path_str = ft_strtrim(path_str, "PATH=");
-	path_arr = ft_split(path_str, ':');
-	i = 0;
-	for(int i = 0; path_arr[i]; i++)
-	{
-		// ft_printf("all paths are:%s\n", path_arr[i]);
-	}
-
-	while (path_arr[i])
-	{
-		// ft_printf("paths:%s\n", path_arr[i]);
-		if(ft_strncmp(&path_arr[i][ft_strlen(path_arr[i]) - 1], "/", 1))
-			path = ft_strjoin(path_arr[i], "/");
-		// ft_printf("paths:%s\n", path);
-		path = ft_strjoin(path, cmd);
-		// free(cmd);
-		// ft_printf("paths:%s\n", path);
-		if(!access(path, X_OK))
-		{
-			return (free(path_str), free(path_arr), path);
-		}
-		free(path);
-		i ++;
-	}
-	return (NULL);
+	system ("leaks -q --fullStacks pipex");
+	ft_printf("\n------------------------------------------------------\n");
+	// system ("bash ./cleanup.sh");
 }
 
 int execute_cmd(char *cmd, char*envp[])
@@ -108,20 +58,17 @@ int	main(int argc, char *argv[],  char *envp[])
 	{
 		throw_error("input file not found");
 	}
-	// child_pid = fork();
 	if(!fork())
 	{
 		ft_printf("child_pid:%d\n", child_pid);
-		close(pipefd[0]);
+		close(pipefd[0]); // This closes the read end of the pipe
 		dup2(pipefd[1], STDOUT_FILENO); // this connects the write end of the pipe
-		dup2(filein, STDIN_FILENO); // this connects the write end of the pipe
-
-		execute_cmd(cmd_arr[0], envp);
-		close(pipefd[1]);
+		dup2(filein, STDIN_FILENO); // this makes filein the input for this fork
+		execute_cmd(cmd_arr[0], envp); // exicute the command
+		close(pipefd[1]);//closing the write end of the pipe
 	}
 
 	waitpid(-1, NULL, 0);
-	// child_pid = fork();
 	if(!fork())
 	{
 		int fileout = open (output, O_WRONLY);
@@ -129,24 +76,17 @@ int	main(int argc, char *argv[],  char *envp[])
 		{
 			throw_error("output file not found");
 		}
-		close(pipefd[1]);
-		dup2(pipefd[0], STDIN_FILENO);
-		dup2(fileout, STDOUT_FILENO);
-		execute_cmd(cmd_arr[0], envp);
-		close(pipefd[0]);
+		close(pipefd[1]); // this closes the write end of the pipe
+		dup2(pipefd[0], STDIN_FILENO); // this connects the read end of the pipe for this fork
+		dup2(fileout, STDOUT_FILENO); // this makes fileout the output for this fork
+		execute_cmd(cmd_arr[1], envp); // exicute the command
+		close(pipefd[0]); //closig the read end of the pipe
 	}
 
-	// // ft_printf("child_pid:%d\n", child_pid);
-	// return (0);
-	// // {
-	// // 	throw_error("second child failed");
-	// // 	//throw error
-	// // }
-
-	// waitpid(-1, NULL, 0);
-	// close(pipefd[0]);
-	// close(pipefd[1]);
-	// free_all(cmd_arr);
+	close(pipefd[0]);
+	close(pipefd[1]);
+	waitpid(-1, NULL, 0);
+	free_all(cmd_arr);
 	return (0);
 
 
