@@ -7,7 +7,8 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= cc -I
 # CFLAGS		= -Wall -Werror -Wextra
-DEBUG_FLAGS	= -g -fsanitize=address
+# DEBUG_FLAGS	= -g -fsanitize=address
+DEBUG_FLAGS = valgrind
 RM			= rm -f
 AR			= ar rc
 

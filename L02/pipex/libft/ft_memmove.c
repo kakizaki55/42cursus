@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 12:21:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 18:22:19 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/07/11 18:00:12 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/07/11 18:01:00 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	move_front(unsigned char*dest, unsigned char*ssrc, size_t len)
+static void	move_front(unsigned char *dest, unsigned char *ssrc, size_t len)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ static	void	move_front(unsigned char*dest, unsigned char*ssrc, size_t len)
 	}
 }
 
-static	void	move_back(unsigned char *dest, unsigned char*ssrc, size_t len)
+static void	move_back(unsigned char *dest, unsigned char *ssrc, size_t len)
 {
 	size_t	i;
 

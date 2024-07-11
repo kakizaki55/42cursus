@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 13:41:24 by minokakakiz       #+#    #+#             */
-/*   Updated: 2024/07/07 12:50:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:02:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -20,7 +20,8 @@ char	*gnl_strjoin(char *sttc_str, char *buffer)
 
 	i = 0;
 	j = 0;
-	res = malloc((gnl_strlen(sttc_str) + gnl_strlen(buffer) + 1) * sizeof(char));
+	res = malloc((gnl_strlen(sttc_str) + gnl_strlen(buffer) + 1)
+			* sizeof(char));
 	if (res == NULL)
 	{
 		free(sttc_str);
