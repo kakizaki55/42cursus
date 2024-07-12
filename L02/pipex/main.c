@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/12 17:28:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/12 23:28:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "libft.h"
 #include "pipex.h"
@@ -18,7 +18,7 @@ __attribute__((destructor)) static void destructor(void)
 	// ft_printf("\n------------------------------------------------------\n");
 	// system ("valgrind -q pipex");
 	// ft_printf("\n------------------------------------------------------\n");
-	system ("cat test.txt; rm test.txt");
+	// system ("cat outfile; rm outfile");
 }
 
 int	execute_cmd(char *cmd, char *envp[])
@@ -30,16 +30,17 @@ int	execute_cmd(char *cmd, char *envp[])
 	cmd_arr = ft_split(cmd, ' ');
 	path = find_path(cmd_arr[0], envp);
 
-	ft_printf("path is:%s\n", path);
+	// ft_printf("path is:%s\n", path);
 	// ft_printf("is it even getting here?\n");
 
-	for(int i = 0; cmd_arr[i]; i++)
-		ft_printf("%s\n", cmd_arr[i]);
+	// for(int i = 0; cmd_arr[i]; i++)
+	// 	ft_printf("%s\n", cmd_arr[i]);
 
 	if (!path)
 	{
 		free_all(cmd_arr);
-		throw_error("could not find command");
+		// throw_error("could not find command");
+		exit(127);
 	}
 
 	// ft_printf("is it getting here?\n");
@@ -47,11 +48,10 @@ int	execute_cmd(char *cmd, char *envp[])
 	if (execve(path, cmd_arr, envp) == -1)
 	{
 		ft_printf("!!!execve error!!");
-		throw_error("execve went wrong");
+		// throw_error("execve went wrong");
 	}
 
-	ft_printf("it shouldn't get here");
-
+	// exit(256);
 	return (0);
 }
 
@@ -85,7 +85,7 @@ int	main(int argc, char *argv[], char *envp[])
 		dup2(fileout, STDOUT_FILENO);
 		// this makes fileout the output for this fork
 		execute_cmd(cmd_arr[1], envp); // exicute the command
-		close(pipefd[0]);              // closig the read end of the pipe
+		close(pipefd[0]);      // closig the read end of the pipe
 	}
 
 
@@ -103,17 +103,36 @@ int	main(int argc, char *argv[], char *envp[])
 		// this connects the write end of the pipe
 		dup2(filein, STDIN_FILENO);
 		// this makes filein the input for this fork
-		ft_printf("cmd is%s", cmd_arr[0]);
+		// ft_printf("cmd is%s", cmd_arr[0]);
 		execute_cmd(cmd_arr[0], envp); // exicute the command
 		close(pipefd[1]);              // closing the write end of the pipe
 	}
-	
-	waitpid(-1, NULL, 0);
+
+	int status;
+	int status2;
 
 	close(pipefd[0]);
 	close(pipefd[1]);
-	waitpid(-1, NULL, 0);
+	if(waitpid(-1, &status, 0) == -1)
+		exit(EXIT_FAILURE);
+	if(waitpid(-1, &status2, 0) == -1)
+		exit(EXIT_FAILURE);
+
+
+	// if(waitpid(-1, &status, 0) == -1)
+	// 	exit(status);
+	// waitpid(-1, &status, 0);
 	free_all(cmd_arr);
+	ft_printf("does it get here end of main exsit status: %d\n", status);
+	if (WIFEXITED(status) || WIFEXITED(status2)) 
+	{
+        printf("Exit status was %d\n", WIFEXITED(status));
+		if(status)
+			exit(WEXITSTATUS(status));
+		if(status2)
+			exit(WEXITSTATUS(status2));
+        // return(status);
+    }
 	return (0);
 	// ---checking to see if the argv are parsed correctly---
 	// ft_printf("input:%s\noutput%s\n", input, output);
