@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/11 18:01:14 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:28:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 __attribute__((destructor)) static void destructor(void)
 {
-	ft_printf("\n------------------------------------------------------\n");
+	// ft_printf("\n------------------------------------------------------\n");
 	// system ("valgrind -q pipex");
-	ft_printf("\n------------------------------------------------------\n");
-	// system ("bash ./cleanup.sh");
+	// ft_printf("\n------------------------------------------------------\n");
+	system ("cat test.txt; rm test.txt");
 }
 
 int	execute_cmd(char *cmd, char *envp[])
@@ -29,12 +29,29 @@ int	execute_cmd(char *cmd, char *envp[])
 
 	cmd_arr = ft_split(cmd, ' ');
 	path = find_path(cmd_arr[0], envp);
+
+	ft_printf("path is:%s\n", path);
+	// ft_printf("is it even getting here?\n");
+
+	for(int i = 0; cmd_arr[i]; i++)
+		ft_printf("%s\n", cmd_arr[i]);
+
 	if (!path)
-		throw_error("could not find command");
-	if (execve(path, &cmd_arr[0], envp) == -1)
 	{
+		free_all(cmd_arr);
+		throw_error("could not find command");
+	}
+
+	// ft_printf("is it getting here?\n");
+
+	if (execve(path, cmd_arr, envp) == -1)
+	{
+		ft_printf("!!!execve error!!");
 		throw_error("execve went wrong");
 	}
+
+	ft_printf("it shouldn't get here");
+
 	return (0);
 }
 
@@ -52,30 +69,16 @@ int	main(int argc, char *argv[], char *envp[])
 	input = argv[1];
 	output = argv[argc - 1];
 	pipe(pipefd);
-	filein = open(input, O_RDONLY);
-	if (filein == -1)
+
+
+
+	fileout = open(output, O_WRONLY | O_CREAT , 0777 );
+	if (fileout == -1)
 	{
-		throw_error("input file not found");
+		throw_error("output file not found");
 	}
 	if (!fork())
 	{
-		ft_printf("child_pid:%d\n", child_pid);
-		close(pipefd[0]); // This closes the read end of the pipe
-		dup2(pipefd[1], STDOUT_FILENO);
-		// this connects the write end of the pipe
-		dup2(filein, STDIN_FILENO);
-		// this makes filein the input for this fork
-		execute_cmd(cmd_arr[0], envp); // exicute the command
-		close(pipefd[1]);              // closing the write end of the pipe
-	}
-	waitpid(-1, NULL, 0);
-	if (!fork())
-	{
-		fileout = open(output, O_WRONLY);
-		if (fileout == -1)
-		{
-			throw_error("output file not found");
-		}
 		close(pipefd[1]); // this closes the write end of the pipe
 		dup2(pipefd[0], STDIN_FILENO);
 		// this connects the read end of the pipe for this fork
@@ -84,6 +87,29 @@ int	main(int argc, char *argv[], char *envp[])
 		execute_cmd(cmd_arr[1], envp); // exicute the command
 		close(pipefd[0]);              // closig the read end of the pipe
 	}
+
+
+
+	filein = open(input, O_RDONLY);
+	if (filein == -1)
+	{
+		throw_error("input file not found");
+	}
+	if (!fork())
+	{
+		// ft_printf("child_pid:%d\n", child_pid);
+		close(pipefd[0]); // This closes the read end of the pipe
+		dup2(pipefd[1], STDOUT_FILENO);
+		// this connects the write end of the pipe
+		dup2(filein, STDIN_FILENO);
+		// this makes filein the input for this fork
+		ft_printf("cmd is%s", cmd_arr[0]);
+		execute_cmd(cmd_arr[0], envp); // exicute the command
+		close(pipefd[1]);              // closing the write end of the pipe
+	}
+	
+	waitpid(-1, NULL, 0);
+
 	close(pipefd[0]);
 	close(pipefd[1]);
 	waitpid(-1, NULL, 0);
