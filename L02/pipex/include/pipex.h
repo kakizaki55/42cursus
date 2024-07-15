@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:27:14 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/12 22:21:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:58:57 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,8 @@
 
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <errno.h>
+# include <string.h>
 
 int		free_all(char **str_arr);
 void	throw_error(char *message);

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/12 23:28:10 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/15 09:22:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,6 @@ __attribute__((destructor)) static void destructor(void)
 int	execute_cmd(char *cmd, char *envp[])
 {
 	char	**cmd_arr;
-	char	**envs;
 	char	*path;
 
 	cmd_arr = ft_split(cmd, ' ');
@@ -36,22 +35,20 @@ int	execute_cmd(char *cmd, char *envp[])
 	// for(int i = 0; cmd_arr[i]; i++)
 	// 	ft_printf("%s\n", cmd_arr[i]);
 
-	if (!path)
+	if (!path && (execve(path, cmd_arr, envp) == -1))
 	{
-		free_all(cmd_arr);
-		// throw_error("could not find command");
+		// ft_printf("!!!execve error!!");
+		perror("command path not found");
 		exit(127);
 	}
 
-	// ft_printf("is it getting here?\n");
-
 	if (execve(path, cmd_arr, envp) == -1)
 	{
-		ft_printf("!!!execve error!!");
-		// throw_error("execve went wrong");
+		// ft_printf("!!!execve error!!");
+		perror("execution went worng");
+		exit(EXIT_FAILURE);
 	}
 
-	// exit(256);
 	return (0);
 }
 
@@ -65,37 +62,27 @@ int	main(int argc, char *argv[], char *envp[])
 	int		filein;
 	int		fileout;
 
+	if(argc != 5)
+	{
+		errno = EINVAL;
+		perror("bash");
+		exit(EXIT_FAILURE);
+	}
+
 	cmd_arr = parse_cmd(argc, argv);
 	input = argv[1];
 	output = argv[argc - 1];
 	pipe(pipefd);
 
 
-
-	fileout = open(output, O_WRONLY | O_CREAT , 0777 );
-	if (fileout == -1)
-	{
-		throw_error("output file not found");
-	}
-	if (!fork())
-	{
-		close(pipefd[1]); // this closes the write end of the pipe
-		dup2(pipefd[0], STDIN_FILENO);
-		// this connects the read end of the pipe for this fork
-		dup2(fileout, STDOUT_FILENO);
-		// this makes fileout the output for this fork
-		execute_cmd(cmd_arr[1], envp); // exicute the command
-		close(pipefd[0]);      // closig the read end of the pipe
-	}
-
-
-
 	filein = open(input, O_RDONLY);
 	if (filein == -1)
 	{
-		throw_error("input file not found");
+		throw_error("could not find input file");
 	}
-	if (!fork())
+
+	child_pid = fork();
+	if (child_pid == 0)
 	{
 		// ft_printf("child_pid:%d\n", child_pid);
 		close(pipefd[0]); // This closes the read end of the pipe
@@ -109,31 +96,66 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 
 	int status;
-	int status2;
+
+	if(waitpid(child_pid, &status, 0) == -1)
+		exit(EXIT_FAILURE);
+
+	fileout = open(output, O_WRONLY | O_CREAT , 0644 );
+	if (fileout == -1)
+	{
+		throw_error("output file not found");
+	}
+	// if (!fork())
+	// {
+	close(pipefd[1]); // this closes the write end of the pipe
+	dup2(pipefd[0], STDIN_FILENO);
+	// this connects the read end of the pipe for this fork
+	dup2(fileout, STDOUT_FILENO);
+	// this makes fileout the output for this fork
+	execute_cmd(cmd_arr[1], envp); // exicute the command
+	close(pipefd[0]);      // closig the read end of the pipe
+	// }
+
+	// int status;
 
 	close(pipefd[0]);
 	close(pipefd[1]);
-	if(waitpid(-1, &status, 0) == -1)
-		exit(EXIT_FAILURE);
-	if(waitpid(-1, &status2, 0) == -1)
-		exit(EXIT_FAILURE);
+
+	// if(waitpid(-1, &status, 0) == -1)
+	// 	exit(EXIT_FAILURE);
+
+	// if(waitpid(-1, &status2, 0) == -1)
+	// 	exit(EXIT_FAILURE);
 
 
 	// if(waitpid(-1, &status, 0) == -1)
 	// 	exit(status);
 	// waitpid(-1, &status, 0);
 	free_all(cmd_arr);
-	ft_printf("does it get here end of main exsit status: %d\n", status);
-	if (WIFEXITED(status) || WIFEXITED(status2)) 
-	{
-        printf("Exit status was %d\n", WIFEXITED(status));
-		if(status)
-			exit(WEXITSTATUS(status));
-		if(status2)
-			exit(WEXITSTATUS(status2));
-        // return(status);
-    }
+	// ft_printf("does it get here end of main exsit status: %d\n", status);
+
+	// if (WIFEXITED(status)) 
+	// {
+    //     printf("Exit status was %d\n", status);
+	// 	// if(status)
+	// 		exit(WEXITSTATUS(status));
+	// 	// if(status2)
+	// 	// 	exit(WEXITSTATUS(status2));
+    //     // return(status);
+    // }
+
+	// ft_printf("does it get here end of main exsit status2: %d\n", status2);
+	// if(WIFEXITED(status2))
+	// {
+	// 	printf("Exit status2 was %d\n", status2);
+	// 	exit(WEXITSTATUS(status2));
+
+	// }
 	return (0);
+
+
+
+
 	// ---checking to see if the argv are parsed correctly---
 	// ft_printf("input:%s\noutput%s\n", input, output);
 	// for (int i = 0; cmd_arr[i]; i++)

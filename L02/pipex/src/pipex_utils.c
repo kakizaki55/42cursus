@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:26:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/12 22:21:27 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:38:56 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,7 @@ int	free_all(char **str_arr)
 void	throw_error(char *message)
 {
 	perror(message);
-		exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 char	**parse_cmd(int argc, char *argv[])
@@ -79,10 +79,27 @@ char	*find_path(char *cmd, char *envp[])
 	}
 	path_str = ft_strtrim(path_str, "PATH=");
 	path_arr = ft_split(path_str, ':');
+
+	// while(path_arr[i])
+	// 	i++;
+	// // path_arr[i] = ft_strdup("");
+	// // path_arr[++i] = NULL;
+
 	i = 0;
 
 	while (path_arr[i])
-	{
+	{	
+		if(cmd[0] == '/')
+		{
+			if (!access(cmd, X_OK))
+			{
+				return (free(path_str), free(path_arr), cmd);
+			} 
+			else
+			{
+				return (NULL);
+			}
+		}
 		if (ft_strncmp(&path_arr[i][ft_strlen(path_arr[i]) - 1], "/", 1))
 			path = ft_strjoin(path_arr[i], "/");
 
