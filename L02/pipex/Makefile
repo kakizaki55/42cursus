@@ -6,8 +6,8 @@ LIBFT		= libft
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC			= cc -I
-# CFLAGS		= -Wall -Werror -Wextra
-DEBUG_FLAGS	= -g -fsanitize=address
+CFLAGS		= -Wall -Werror -Wextra -I
+DEBUG_FLAGS	= -g -fsanitize=address -I
 # DEBUG_FLAGS = valgrind
 RM			= rm -f
 AR			= ar rc
@@ -70,11 +70,8 @@ fclean:		clean
 re:			fclean all
 			@echo "$(GREEN)<----Cleaned and rebuilt everything for  $(NAME)!---->$(DEF_COLOR)"
 
-norm:
-			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
-
 debug:		fclean all
-			$(CC) $(CFLAGS) $(INCLUDE) $(DEBUG_FLAGS) main.c $(NAME) -o $(PROG_NAME)
-			@echo "<------$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(DEF_COLOR)------>"
+			$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
+			@echo "$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"
 
-.PHONY:		all clean fclean re norm debug
+.PHONY:		all clean fclean re debug
