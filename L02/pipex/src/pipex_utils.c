@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:26:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/16 16:55:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:08:47 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	throw_error(char *message, int exit_status, int error_number)
 	if(error_number)
 		errno = error_number;
 	perror(message);
+	free(message);
 	exit(exit_status);
 }
 

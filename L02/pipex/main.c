@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/16 17:44:52 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:07:12 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,20 @@ int	execute_cmd(char *cmd, char *envp[])
 {
 	char	**cmd_arr;
 	char	*path;
-
-	cmd_arr = ft_split(cmd, ' ');
-	free(cmd);
-	path = find_path(cmd_arr[0], envp);
+	char    temp[ft_strlen(cmd)];
+	
+	// if(!ft_strnstr(cmd, "awk", ft_strlen(cmd)))
+	// {
+		cmd_arr = ft_split(cmd, ' ');
+		ft_strlcpy(temp, cmd, ft_strlen(cmd));
+		free(cmd);
+		path = find_path(cmd_arr[0], envp);
+	// }
 	if (!path)
 	{
 		free_all(cmd_arr);
 		free(path);
-		throw_error("bash: command not found", 127, 0);
+		throw_error(ft_strjoin(temp, ":bash: command not found"), 127, 0);
 	}
 
 	if (execve(path, cmd_arr, envp) == -1)
@@ -42,7 +47,6 @@ int	execute_cmd(char *cmd, char *envp[])
 		free(path);
 		throw_error("execution went worng", EXIT_FAILURE, 0);
 	}
-
 	return (free_all(cmd_arr), free(path), 0);
 }
 
