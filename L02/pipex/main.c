@@ -25,12 +25,12 @@ int	execute_cmd(char *cmd, char *envp[])
 {
 	char	**cmd_arr;
 	char	*path;
-	char    temp[ft_strlen(cmd)];
+	// char    temp[ft_strlen(cmd)];
 	
 	// if(!ft_strnstr(cmd, "awk", ft_strlen(cmd)))
 	// {
 		cmd_arr = ft_split(cmd, ' ');
-		ft_strlcpy(temp, cmd, ft_strlen(cmd));
+		// ft_strlcpy(temp, cmd, ft_strlen(cmd));
 		free(cmd);
 		path = find_path(cmd_arr[0], envp);
 	// }
@@ -38,14 +38,15 @@ int	execute_cmd(char *cmd, char *envp[])
 	{
 		free_all(cmd_arr);
 		free(path);
-		throw_error(ft_strjoin(temp, ":bash: command not found"), 127, 0);
+		// char *str = ft_strdup("checking to see if this works");
+		throw_error("bash: command not found", 127, 0);
 	}
 
 	if (execve(path, cmd_arr, envp) == -1)
 	{
 		free_all(cmd_arr);
 		free(path);
-		throw_error("execution went worng", EXIT_FAILURE, 0);
+		throw_error("bash: execution went worng", EXIT_FAILURE, 0);
 	}
 	return (free_all(cmd_arr), free(path), 0);
 }
@@ -75,7 +76,7 @@ int	main(int argc, char *argv[], char *envp[])
 		if (filein == -1)
 		{
 			free_all(cmd_arr);
-			throw_error("could not find input file", EXIT_FAILURE, 0);
+			throw_error("bash: could not find input file", EXIT_FAILURE, 0);
 		}
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
@@ -101,7 +102,7 @@ int	main(int argc, char *argv[], char *envp[])
 		if (fileout == -1)
 		{
 			free_all(cmd_arr);
-			throw_error("output file not found", EXIT_FAILURE, 0);
+			throw_error("bash: output file not found", EXIT_FAILURE, 0);
 		}
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);

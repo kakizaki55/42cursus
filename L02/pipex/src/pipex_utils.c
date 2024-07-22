@@ -32,7 +32,7 @@ void	throw_error(char *message, int exit_status, int error_number)
 	if(error_number)
 		errno = error_number;
 	perror(message);
-	free(message);
+	// free(message);
 	exit(exit_status);
 }
 
