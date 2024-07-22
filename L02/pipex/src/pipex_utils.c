@@ -28,11 +28,10 @@ int	free_all(char **str_arr)
 }
 
 void	throw_error(char *message, int exit_status, int error_number)
-{	
-	if(error_number)
+{
+	if (error_number)
 		errno = error_number;
 	perror(message);
-	// free(message);
 	exit(exit_status);
 }
 
@@ -62,49 +61,44 @@ char	**parse_cmd(int argc, char *argv[])
 	return (res);
 }
 
+char	*get_path(char **path_arr, char *cmd)
+{
+	char	*path;
+	int		i;
+	char	*tmp;
 
-// char *check_path(char *path_str, char **path_arr, char *cmd)
-// {
-// 	char 	*path;
-// 	int 	i;
-// 	char 	*tmp;
-
-// 	i = 0;
-// 	while (path_arr[i])
-// 	{	
-// 		if(cmd[0] == '/')
-// 		{
-// 			if (!access(cmd, X_OK))
-// 				return (free(path_str), free_all(path_arr), cmd);
-// 			else
-// 				return (free(path_str), free_all(path_arr), NULL);
-// 		}
-// 		if (ft_strncmp(&path_arr[i][ft_strlen(path_arr[i]) - 1], "/", 1))
-// 			path = ft_strjoin(path_arr[i], "/");
-
-// 		tmp = ft_strdup(path);
-// 		free(path);
-//  		path = ft_strjoin(tmp, cmd);
-// 		if (!access(path, X_OK))
-// 			return (free(path_str), free_all(path_arr), path);
-// 		free(tmp);
-// 		free(path);
-// 		i++;
-// 	}
-
-// 	return (NULL);
-// }
+	i = -1;
+	while (path_arr[++i])
+	{
+		if (cmd[0] == '/')
+		{
+			if (!access(cmd, X_OK))
+				return (free_all(path_arr), cmd);
+			else
+				return (free_all(path_arr), NULL);
+		}
+		if (ft_strncmp(&path_arr[i][ft_strlen(path_arr[i]) - 1], "/", 1))
+			tmp = ft_strjoin(path_arr[i], "/");
+		else
+			tmp = ft_strdup(path_arr[i]);
+		path = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (!access(path, X_OK))
+			return (free_all(path_arr), path);
+		free(path);
+	}
+	return (NULL);
+}
 
 char	*find_path(char *cmd, char *envp[])
 {
-	char **path_arr;
-	char *path_str;
-	char *path;
-	int i;
+	char	**path_arr;
+	char	*path_str;
+	char	*path;
+	int		i;
 
-	if(!cmd || !cmd[0])
+	if (!cmd || !cmd[0])
 		return (NULL);
-
 	i = 0;
 	while (envp[i])
 	{
@@ -117,32 +111,9 @@ char	*find_path(char *cmd, char *envp[])
 	}
 	path_str = ft_strtrim(path_str, "PATH=");
 	path_arr = ft_split(path_str, ':');
-
-	i = 0;
-	while (path_arr[i])
-	{	
-		if(cmd[0] == '/')
-		{
-			if (!access(cmd, X_OK))
-				return (free(path_str), free_all(path_arr), cmd);
-			else
-				return (free(path_str), free_all(path_arr), NULL);
-		}
-		if (ft_strncmp(&path_arr[i][ft_strlen(path_arr[i]) - 1], "/", 1))
-			path = ft_strjoin(path_arr[i], "/");
-
-		char *tmp = ft_strdup(path);
-		free(path);
- 		path = ft_strjoin(tmp, cmd);
-
-		if (!access(path, X_OK))
-		{
-			return (free(path_str), free_all(path_arr), path);
-		}
-
-		free(tmp);
-		free(path);
-		i++;
-	}
-	return (free(path_str), free_all(path_arr), NULL);
+	free(path_str);
+	path = get_path(path_arr, cmd);
+	if (path)
+		return (path);
+	return (free_all(path_arr), NULL);
 }

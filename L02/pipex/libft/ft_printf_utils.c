@@ -18,7 +18,7 @@ int	ft_print_unsigned_dec(unsigned int n)
 }
 
 int	ft_print_lower_hex(unsigned int nbr)
-{	
+{
 	return (ft_putnbr_base(nbr, "0123456789abcdef"));
 }
 

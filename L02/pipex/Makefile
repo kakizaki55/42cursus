@@ -8,7 +8,6 @@ OBJ_DIR		= obj/
 CC			= cc -I
 CFLAGS		= -Wall -Werror -Wextra -I
 DEBUG_FLAGS	= -g -fsanitize=address -I
-# DEBUG_FLAGS = valgrind
 RM			= rm -f
 AR			= ar rc
 

@@ -12,13 +12,13 @@
 
 #include "libft.h"
 
-static void	recursive_print( int num, int *res)
+static void	recursive_print(int num, int *res)
 {
 	char	print;
 
 	if (num >= 10)
 	{
-		recursive_print (num / 10, res);
+		recursive_print(num / 10, res);
 		print = num % 10 + '0';
 		if (write(1, &print, 1) == 1)
 			*res += 1;
@@ -44,7 +44,7 @@ static void	recursive_print( int num, int *res)
 static void	check_sign(int *n, int *res)
 {
 	if (write(1, "-", 1) == 1)
-	{	
+	{
 		*n = *n * -1;
 		*res += 1;
 		recursive_print(*n, res);
