@@ -41,7 +41,7 @@ int	execute_cmd(char *cmd, char *envp[])
 		free(path);
 		throw_error("bash: execution went worng", EXIT_FAILURE, 0);
 	}
-	return (free_all(cmd_arr), free(path), 0);
+	return (0);
 }
 
 int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
@@ -56,10 +56,10 @@ int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
 	}
 	close(pipefd[0]);
 	dup2(pipefd[1], STDOUT_FILENO);
-	dup2(infile_fd, STDIN_FILENO);
-	execute_cmd(cmd_arr[0], envp);
 	close(pipefd[1]);
+	dup2(infile_fd, STDIN_FILENO);
 	close(infile_fd);
+	execute_cmd(cmd_arr[0], envp);
 	return (0);
 }
 
@@ -76,12 +76,12 @@ int	parent_process(char *output, char **cmd_arr, int *pipefd, char **envp)
 	}
 	close(pipefd[1]);
 	dup2(pipefd[0], STDIN_FILENO);
+	close(pipefd[0]);
 	dup2(outfile_fd, STDOUT_FILENO);
+	close(outfile_fd);
 	cmd = ft_strdup(cmd_arr[1]);
 	free_all(cmd_arr);
 	execute_cmd(cmd, envp);
-	close(pipefd[0]);
-	close(outfile_fd);
 	return (0);
 }
 
@@ -98,17 +98,34 @@ int	main(int argc, char *argv[], char *envp[])
 	cmd_arr = parse_cmd(argc, argv);
 	input = argv[1];
 	output = argv[argc - 1];
+
 	pipe(pipefd);
+
+
 	child_pid = fork();
 	if (child_pid == 0)
 		child_process(input, cmd_arr, pipefd, envp);
-	if (waitpid(child_pid, NULL, 0) == -1)
+
+	child_pid = fork();
+	if (child_pid == 0)
+		parent_process(output, cmd_arr, pipefd, envp);
+	
+	int status;
+
+	if (waitpid(child_pid, &status, 0) == -1)
 	{
 		free_all(cmd_arr);
 		exit(EXIT_FAILURE);
 	}
-	if (child_pid > 0)
-		parent_process(output, cmd_arr, pipefd, envp);
+	
+	waitpid(-1, NULL, 0);
+
+	if(status > 0)
+	{
+		free_all(cmd_arr);
+		exit(WEXITSTATUS(status));
+	}
+
 	close(pipefd[0]);
 	close(pipefd[1]);
 	return (0);
