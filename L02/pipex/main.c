@@ -92,7 +92,7 @@ int	main(int argc, char *argv[], char *envp[])
 	char	*output;
 	int		pipefd[2];
 	pid_t	child_pid;
-
+	int		status;
 	if (argc != 5)
 		throw_error("bash", EXIT_FAILURE, EINVAL);
 	cmd_arr = parse_cmd(argc, argv);
@@ -101,31 +101,24 @@ int	main(int argc, char *argv[], char *envp[])
 
 	pipe(pipefd);
 
-
-	child_pid = fork();
-	if (child_pid == 0)
+	if (fork() == 0)
 		child_process(input, cmd_arr, pipefd, envp);
 
 	child_pid = fork();
 	if (child_pid == 0)
 		parent_process(output, cmd_arr, pipefd, envp);
-	
-	int status;
 
 	if (waitpid(child_pid, &status, 0) == -1)
 	{
 		free_all(cmd_arr);
 		exit(EXIT_FAILURE);
 	}
-	
 	waitpid(-1, NULL, 0);
-
 	if(status > 0)
 	{
 		free_all(cmd_arr);
 		exit(WEXITSTATUS(status));
 	}
-
 	close(pipefd[0]);
 	close(pipefd[1]);
 	return (0);
