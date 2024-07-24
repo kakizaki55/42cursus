@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/16 19:07:12 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:05:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	execute_cmd(char *cmd, char *envp[])
 
 int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
 {
-	int	infile_fd;
+	int		infile_fd;
+	char 	*cmd;
 
 	infile_fd = open(input, O_RDONLY);
 	if (infile_fd == -1)
@@ -59,7 +60,9 @@ int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
 	close(pipefd[1]);
 	dup2(infile_fd, STDIN_FILENO);
 	close(infile_fd);
-	execute_cmd(cmd_arr[0], envp);
+	cmd = ft_strdup(cmd_arr[0]);
+	free_all(cmd_arr);
+	execute_cmd(cmd, envp);
 	return (0);
 }
 
@@ -91,35 +94,46 @@ int	main(int argc, char *argv[], char *envp[])
 	char	*input;
 	char	*output;
 	int		pipefd[2];
-	pid_t	child_pid;
+	pid_t 	first_pid;
+	pid_t	last_pid;
 	int		status;
+
+
 	if (argc != 5)
 		throw_error("bash", EXIT_FAILURE, EINVAL);
 	cmd_arr = parse_cmd(argc, argv);
 	input = argv[1];
 	output = argv[argc - 1];
 
-	pipe(pipefd);
-
-	if (fork() == 0)
+	if(pipe(pipefd) == -1)
+		exit(EXIT_FAILURE);
+	
+	first_pid = fork();
+	
+	if (first_pid == 0)
 		child_process(input, cmd_arr, pipefd, envp);
 
-	child_pid = fork();
-	if (child_pid == 0)
+	last_pid = fork();
+
+	if (last_pid == 0)
 		parent_process(output, cmd_arr, pipefd, envp);
 
-	if (waitpid(child_pid, &status, 0) == -1)
-	{
-		free_all(cmd_arr);
-		exit(EXIT_FAILURE);
-	}
-	waitpid(-1, NULL, 0);
-	if(status > 0)
-	{
-		free_all(cmd_arr);
-		exit(WEXITSTATUS(status));
-	}
 	close(pipefd[0]);
 	close(pipefd[1]);
+
+	free_all(cmd_arr);
+
+
+	if(waitpid(last_pid, &status, 0) == -1)
+		exit(EXIT_FAILURE);
+
+	if(waitpid(first_pid, NULL, 0) == -1)
+		exit(EXIT_FAILURE);
+
+	if(status > 0)
+			exit(WEXITSTATUS(status));
+
+	// close(pipefd[0]);
+	// close(pipefd[1]);
 	return (0);
 }
