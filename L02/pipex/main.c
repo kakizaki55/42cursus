@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/25 16:25:57 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:27:20 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ pid_t	safe_fork(void)
 
 	res = fork();
 	if (res == -1)
-		throw_error("bash: fork failed", EXIT_FAILURE, EINTR);
+		throw_error("bash: creating child process failed", EXIT_FAILURE, EINTR);
 	return (res);
 }
 
