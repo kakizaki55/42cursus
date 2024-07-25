@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/24 18:05:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:54:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	execute_cmd(char *cmd, char *envp[])
 	char	**cmd_arr;
 	char	*path;
 
-	cmd_arr = ft_split(cmd, ' ');
+	cmd_arr = cmd_split(cmd, ' ');
 	free(cmd);
 	path = find_path(cmd_arr[0], envp);
 	if (!path)
@@ -55,9 +55,9 @@ int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
 		free_all(cmd_arr);
 		throw_error("bash: could not find input file", EXIT_FAILURE, 0);
 	}
-	close(pipefd[0]);
-	dup2(pipefd[1], STDOUT_FILENO);
-	close(pipefd[1]);
+	close(pipefd[INPUT]);
+	dup2(pipefd[OUTPUT], STDOUT_FILENO);
+	close(pipefd[OUTPUT]);
 	dup2(infile_fd, STDIN_FILENO);
 	close(infile_fd);
 	cmd = ft_strdup(cmd_arr[0]);
@@ -77,9 +77,9 @@ int	parent_process(char *output, char **cmd_arr, int *pipefd, char **envp)
 		free_all(cmd_arr);
 		throw_error("bash: output file not found", EXIT_FAILURE, 0);
 	}
-	close(pipefd[1]);
-	dup2(pipefd[0], STDIN_FILENO);
-	close(pipefd[0]);
+	close(pipefd[OUTPUT]);
+	dup2(pipefd[INPUT], STDIN_FILENO);
+	close(pipefd[INPUT]);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(outfile_fd);
 	cmd = ft_strdup(cmd_arr[1]);
@@ -88,52 +88,42 @@ int	parent_process(char *output, char **cmd_arr, int *pipefd, char **envp)
 	return (0);
 }
 
+pid_t safe_fork()
+{
+	pid_t res;
+
+	res = fork();
+	if(res == -1)
+		throw_error("bash: fork failed", EXIT_FAILURE, EINTR);
+	return (res);
+}
+
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	**cmd_arr;
-	char	*input;
-	char	*output;
 	int		pipefd[2];
 	pid_t 	first_pid;
 	pid_t	last_pid;
 	int		status;
 
-
-	if (argc != 5)
-		throw_error("bash", EXIT_FAILURE, EINVAL);
 	cmd_arr = parse_cmd(argc, argv);
-	input = argv[1];
-	output = argv[argc - 1];
-
 	if(pipe(pipefd) == -1)
 		exit(EXIT_FAILURE);
-	
-	first_pid = fork();
-	
+	first_pid = safe_fork();
 	if (first_pid == 0)
-		child_process(input, cmd_arr, pipefd, envp);
-
-	last_pid = fork();
-
+		child_process(argv[1], cmd_arr, pipefd, envp);
+	last_pid = safe_fork();
 	if (last_pid == 0)
-		parent_process(output, cmd_arr, pipefd, envp);
-
-	close(pipefd[0]);
-	close(pipefd[1]);
-
+		parent_process(argv[argc - 1], cmd_arr, pipefd, envp);
+	close(pipefd[INPUT]);
+	close(pipefd[OUTPUT]);
 	free_all(cmd_arr);
-
-
 	if(waitpid(last_pid, &status, 0) == -1)
 		exit(EXIT_FAILURE);
-
 	if(waitpid(first_pid, NULL, 0) == -1)
 		exit(EXIT_FAILURE);
-
 	if(status > 0)
 			exit(WEXITSTATUS(status));
-
-	// close(pipefd[0]);
-	// close(pipefd[1]);
 	return (0);
 }

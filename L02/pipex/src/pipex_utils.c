@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:26:28 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/16 19:08:47 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:47:45 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ char	**parse_cmd(int argc, char *argv[])
 	int		len;
 	char	**res;
 
-	if (argc <= 1)
-		return (NULL);
+	if (argc != 5)
+		throw_error("bash", EXIT_FAILURE, EINVAL);
 	i = 0;
 	len = argc - 3;
 	res = ft_calloc(sizeof(char *), len + 1);
@@ -61,7 +61,7 @@ char	**parse_cmd(int argc, char *argv[])
 	return (res);
 }
 
-char	*get_path(char **path_arr, char *cmd)
+char	*validate_path(char **path_arr, char *cmd)
 {
 	char	*path;
 	int		i;
@@ -112,7 +112,7 @@ char	*find_path(char *cmd, char *envp[])
 	path_str = ft_strtrim(path_str, "PATH=");
 	path_arr = ft_split(path_str, ':');
 	free(path_str);
-	path = get_path(path_arr, cmd);
+	path = validate_path(path_arr, cmd);
 	if (path)
 		return (path);
 	return (free_all(path_arr), NULL);
