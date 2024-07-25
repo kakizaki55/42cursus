@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/25 16:27:20 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:35:20 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
 		throw_error("bash: could not find input file", EXIT_FAILURE, 0);
 	}
 	close(pipefd[INPUT]);
-	dup2(pipefd[OUTPUT], STDOUT_FILENO);
+	if (dup2(pipefd[OUTPUT], STDOUT_FILENO) == -1)
+		throw_error("bash: dup2 has failed", EXIT_FAILURE, 0);
 	close(pipefd[OUTPUT]);
-	dup2(infile_fd, STDIN_FILENO);
+	if (dup2(infile_fd, STDIN_FILENO) == -1)
+		throw_error("bash: dup2 has failed", EXIT_FAILURE, 0);
 	close(infile_fd);
 	cmd = ft_strdup(cmd_arr[0]);
 	free_all(cmd_arr);
@@ -70,9 +72,11 @@ int	parent_process(char *output, char **cmd_arr, int *pipefd, char **envp)
 		throw_error("bash: output file not found", EXIT_FAILURE, 0);
 	}
 	close(pipefd[OUTPUT]);
-	dup2(pipefd[INPUT], STDIN_FILENO);
+	if (dup2(pipefd[INPUT], STDIN_FILENO) == -1)
+		throw_error("bash: dup2 has failed", EXIT_FAILURE, 0);
 	close(pipefd[INPUT]);
-	dup2(outfile_fd, STDOUT_FILENO);
+	if (dup2(outfile_fd, STDOUT_FILENO) == -1)
+		throw_error("bash: dup2 has failed", EXIT_FAILURE, 0);
 	close(outfile_fd);
 	cmd = ft_strdup(cmd_arr[1]);
 	free_all(cmd_arr);
