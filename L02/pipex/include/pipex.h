@@ -6,20 +6,20 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:27:14 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/24 19:20:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:57:22 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <fcntl.h>
-# include <sys/wait.h>
 # include <errno.h>
+# include <fcntl.h>
 # include <string.h>
+# include <sys/wait.h>
 
-#define INPUT 0
-#define OUTPUT 1
+# define INPUT 0
+# define OUTPUT 1
 
 int		free_all(char **str_arr);
 void	throw_error(char *message, int exit_status, int error_number);

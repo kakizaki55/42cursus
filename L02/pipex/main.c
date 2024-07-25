@@ -6,27 +6,19 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 17:51:25 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/25 13:54:29 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:25:57 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex.h"
 
-// __attribute__((destructor)) static void destructor(void)
-// {
-// 	// ft_printf("\n------------------------------------------------------\n");
-// 	// system ("valgrind -q pipex");
-// 	// ft_printf("\n------------------------------------------------------\n");
-// }
-// Could put a check in here to see if the command is awk.
-
 int	execute_cmd(char *cmd, char *envp[])
 {
 	char	**cmd_arr;
 	char	*path;
 
-	cmd_arr = cmd_split(cmd, ' ');
+	cmd_arr = ft_split(cmd, ' ');
 	free(cmd);
 	path = find_path(cmd_arr[0], envp);
 	if (!path)
@@ -47,7 +39,7 @@ int	execute_cmd(char *cmd, char *envp[])
 int	child_process(char *input, char **cmd_arr, int *pipefd, char **envp)
 {
 	int		infile_fd;
-	char 	*cmd;
+	char	*cmd;
 
 	infile_fd = open(input, O_RDONLY);
 	if (infile_fd == -1)
@@ -88,27 +80,26 @@ int	parent_process(char *output, char **cmd_arr, int *pipefd, char **envp)
 	return (0);
 }
 
-pid_t safe_fork()
+pid_t	safe_fork(void)
 {
-	pid_t res;
+	pid_t	res;
 
 	res = fork();
-	if(res == -1)
+	if (res == -1)
 		throw_error("bash: fork failed", EXIT_FAILURE, EINTR);
 	return (res);
 }
-
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	**cmd_arr;
 	int		pipefd[2];
-	pid_t 	first_pid;
+	pid_t	first_pid;
 	pid_t	last_pid;
 	int		status;
 
 	cmd_arr = parse_cmd(argc, argv);
-	if(pipe(pipefd) == -1)
+	if (pipe(pipefd) == -1)
 		exit(EXIT_FAILURE);
 	first_pid = safe_fork();
 	if (first_pid == 0)
@@ -119,11 +110,11 @@ int	main(int argc, char *argv[], char *envp[])
 	close(pipefd[INPUT]);
 	close(pipefd[OUTPUT]);
 	free_all(cmd_arr);
-	if(waitpid(last_pid, &status, 0) == -1)
+	if (waitpid(last_pid, &status, 0) == -1)
 		exit(EXIT_FAILURE);
-	if(waitpid(first_pid, NULL, 0) == -1)
+	if (waitpid(first_pid, NULL, 0) == -1)
 		exit(EXIT_FAILURE);
-	if(status > 0)
-			exit(WEXITSTATUS(status));
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
 	return (0);
 }
