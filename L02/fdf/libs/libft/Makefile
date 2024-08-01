@@ -66,7 +66,7 @@ SRC			= 	ft_isalpha \
 
 SRCS		= $(addsuffix .c, $(SRC))
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
-INCLUDES	=	../include
+INCLUDES	=	./includes
 OBJ_DIR		=	obj/
 NAME		=	libft.a
 AR			=	ar rc

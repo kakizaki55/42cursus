@@ -1,79 +1,46 @@
-#Variables
-PROG_NAME	= fdf
-NAME		= fdf.a
-INCLUDE		= -I include
-LIBFT		= libft
-SRC_DIR		= src/
-OBJ_DIR		= obj/
-CC			= cc
-# CFLAGS		= -Wall -Werror -Wextra
-DEBUG_FLAGS	= -g -fsanitize=address
-RM			= rm -f
-AR			= ar rc
+NAME		=	fdf
 
-# Colors
+LIBFT_PATH	=	./libs/libft
+MLX_PATH	=	./libs/mlx-linux
 
-DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
+INCLUDES	=	-I includes -I $(LIBFT_PATH)/includes -I $(MLX_PATH)
 
-#Sources
+# CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
+CFLAGS		= 	$(INCLUDES)
 
-SRC_FILES	=
+LIBS_PATH	=	-L$(LIBFT_PATH) -L$(MLX_PATH)
 
-SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+LIBS		=	-lft -lmlx -lmlx_Linux -lX11 -lXext -Imlx -lXext
 
-###
+MLX			=	libmlx.a libmlx_Linux.a 
 
-OBJF		=	.cache_exists
+FILES 		=	main.c 
 
-all:		$(NAME)
+SRCS		=	$(addprefix src/,$(FILES))
 
-$(NAME):	$(OBJ) main.c
-			make -C $(LIBFT)
-			cp libft/libft.a .
-			mv libft.a $(NAME)
-			$(AR) $(NAME) $(OBJ)
-			$(CC) $(CFLAGS) $(INCLUDE) main.c $(NAME) -o $(PROG_NAME)
-			@echo "$(GREEN)<-----------------$(NAME) compiled!------------------>$(DEF_COLOR)"
-			@echo "$(GREEN)<-----------------$(PROG_NAME) compiled!-------------------->$(DEF_COLOR)"
+OBJS		=	$(SRCS:.c=.o)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			@echo "$(YELLOW)<------Compiling: $<------>$(DEF_COLOR)"
-			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+CC		=	clang
 
-$(OBJF):
-			mkdir -p $(OBJ_DIR)
+CP		=	@cp -r
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(MAKE) -C $(LIBFT_PATH) --no-print-directory
+	$(MAKE) -C $(MLX_PATH) --no-print-directory
+	$(CC) $(OBJS) -o $(NAME) $(LIBS_PATH) $(LIBS)
 
 clean:
-			$(RM) -rf $(OBJ_DIR)
-			make clean -C $(LIBFT)
-			@echo "$(CYAN)<--------$(NAME) object files cleaned!-------->$(DEF_COLOR)"
+	$(RM) $(OBJS) $(MLX)
+	$(MAKE) clean -C $(LIBFT_PATH) --no-print-directory
+	$(MAKE) clean -C $(MLX_PATH) --no-print-directory
 
-fclean:		clean
-			$(RM) $(NAME)
-			$(RM) $(LIBFT)/libft.a
-			$(RM) a.out
-			$(RM) $(PROG_NAME)
-			$(RM) -rf fdf.dSYM
-			@echo "$(CYAN)<------$(NAME) executable files cleaned!------>$(DEF_COLOR)"
-			@echo "$(CYAN)<------libft executable files cleaned!------------>$(DEF_COLOR)"
+fclean:
+	$(RM) $(OBJS) $(NAME) $(MLX)
+	$(MAKE) fclean -C $(LIBFT_PATH) --no-print-directory
+	$(MAKE) fclean -C $(MLX_PATH) --no-print-directory
 
-re:			fclean all
-			@echo "$(GREEN)<----Cleaned and rebuilt everything for  $(NAME)!---->$(DEF_COLOR)"
+re: fclean all 
 
-norm:
-			norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
-
-debug:		fclean all
-			$(CC) $(CFLAGS) $(INCLUDE) $(DEBUG_FLAGS) main.c $(NAME) -o $(PROG_NAME)
-			@echo "<------$(GREEN)Cleaned and rebuilt everything for  $(NAME) in debug mode!$(DEF_COLOR)------>"
-
-.PHONY:		all clean fclean re norm debug
+.PHONY: all clean fclean re

@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:52:10 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/08/01 19:36:11 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FDF_H
+# define FDF_H
 
-int	main(int argc, char *argv[])
-{
-	int fd;
-	char *file_path;
-	if(argc != 2)
-		return (1);
+# include "libft.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <math.h>
+# include <mlx.h>
 
-	file_path = ft_strjoin("test_maps/", argv[1]);
-
-	fd = open(file_path, O_RDONLY);
-
-	int bool = TRUE;
-	for (int i = 0; bool; i++)
-	{
-		char *str = get_next_line(fd);
-		if(str)
-			ft_printf("%s\n", str);
-		else
-			bool = FALSE;
-	}
-	ft_printf("hello there just checking\n");
-	return (0);
-}
+#endif
