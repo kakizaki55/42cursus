@@ -60,7 +60,9 @@ SRC			= 	ft_isalpha \
 				short_sort_utils \
 				sort \
 				sort_utils \
-				sort_utils_extra
+				sort_utils_extra \
+				get_next_line \
+				get_next_line_utils
 
 SRCS		= $(addsuffix .c, $(SRC))
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))

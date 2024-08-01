@@ -14,7 +14,24 @@
 
 int	main(int argc, char *argv[])
 {
+	int fd;
+	char *file_path;
+	if(argc != 2)
+		return (1);
 
-	ft_printf("hello there just checking");
+	file_path = ft_strjoin("test_maps/", argv[1]);
+
+	fd = open(file_path, O_RDONLY);
+
+	int bool = TRUE;
+	for (int i = 0; bool; i++)
+	{
+		char *str = get_next_line(fd);
+		if(str)
+			ft_printf("%s\n", str);
+		else
+			bool = FALSE;
+	}
+	ft_printf("hello there just checking\n");
 	return (0);
 }

@@ -36,7 +36,7 @@ OBJF		=	.cache_exists
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) main.c
 			make -C $(LIBFT)
 			cp libft/libft.a .
 			mv libft.a $(NAME)

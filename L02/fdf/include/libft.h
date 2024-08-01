@@ -18,7 +18,13 @@
 # include <stdio.h>
 # include <limits.h>
 # include <stdarg.h>
-#include <stdint.h>
+# include <stdint.h>
+# include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
 
 typedef struct s_list
 {
@@ -147,5 +153,17 @@ int			sort_short(t_c_list **stack_a, t_c_list **stack_b, int len);
 //sort
 void		sort(t_c_list **head, int len);
 int			find_sortest_path(t_c_list **src, int target_nbr);
+
+//get_next_line
+char				*get_next_line(int fd);
+size_t				gnl_strlen(const char *str);
+int					check_for_new_line(char *str);
+char				*gnl_strjoin(char *s1, char *s2);
+int					init(char *sttc_str, char **buffer, char **result);
+int					clean_up(char **sttc_str, char **buffer, char **result,
+						int *bytes);
+char				*get_new_string(int fd, char *sttc_str);
+char				*get_one_line(char *str);
+char				*gnl_strdup(const char *str);
 
 #endif
