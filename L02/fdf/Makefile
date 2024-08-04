@@ -7,40 +7,53 @@ INCLUDES	=	-I includes -I $(LIBFT_PATH)/includes -I $(MLX_PATH)
 
 # CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
 CFLAGS		= 	$(INCLUDES)
-
 LIBS_PATH	=	-L$(LIBFT_PATH) -L$(MLX_PATH)
-
+DEBUG_FLAGS	=	-g -fsanitize=address
 LIBS		=	-lft -lmlx -lmlx_Linux -lX11 -lXext -Imlx -lXext
-
-MLX			=	libmlx.a libmlx_Linux.a 
-
-FILES 		=	main.c 
-
+MLX			=	libmlx.a libmlx_Linux.a
+FILES 		=	main.c
 SRCS		=	$(addprefix src/,$(FILES))
-
 OBJS		=	$(SRCS:.c=.o)
-
 CC		=	clang
-
 CP		=	@cp -r
+
+# Colors
+
+DEF_COLOR = \033[0;39m
+GRAY = \033[0;90m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+MAGENTA = \033[0;95m
+CYAN = \033[0;96m
+WHITE = \033[0;97m
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(MAKE) -C $(LIBFT_PATH) --no-print-directory
-	$(MAKE) -C $(MLX_PATH) --no-print-directory
+	$(MAKE) -C $(LIBFT_PATH)
+	$(MAKE) -C $(MLX_PATH)
 	$(CC) $(OBJS) -o $(NAME) $(LIBS_PATH) $(LIBS)
+	@echo "$(GREEN)<-----------------$(NAME) compiled!------------------>$(DEF_COLOR)"
 
 clean:
 	$(RM) $(OBJS) $(MLX)
-	$(MAKE) clean -C $(LIBFT_PATH) --no-print-directory
-	$(MAKE) clean -C $(MLX_PATH) --no-print-directory
+	$(MAKE) clean -C $(LIBFT_PATH)
+	$(MAKE) clean -C $(MLX_PATH)
+	@echo "$(CYAN)<--------$(NAME) object files cleaned!-------->$(DEF_COLOR)"
 
 fclean:
 	$(RM) $(OBJS) $(NAME) $(MLX)
-	$(MAKE) fclean -C $(LIBFT_PATH) --no-print-directory
-	$(MAKE) fclean -C $(MLX_PATH) --no-print-directory
+	$(MAKE) clean -C $(LIBFT_PATH)
+	$(MAKE) clean -C $(MLX_PATH)
+	@echo "$(CYAN)<------$(NAME) executable files cleaned!------>$(DEF_COLOR)"
 
-re: fclean all 
+re: fclean all
+
+debug: fclean
+	$(CC) $(DEBUG_FLAGS) $(OBJS) -o $(NAME) $(LIBS_PATH) $(LIBS)
+
+	@echo "$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"
 
 .PHONY: all clean fclean re
