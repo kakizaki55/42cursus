@@ -8,7 +8,6 @@ SRC			= 	ft_isalpha \
 				ft_memset \
 				ft_bzero \
 				ft_memcpy \
-				ft_memmove \
 				ft_memchr \
 				ft_memcmp \
 				ft_strlcpy \
@@ -77,13 +76,13 @@ $(OBJ_DIR)%.o:  %.c | $(OBJF)
 $(OBJF):
 			mkdir -p $(OBJ_DIR)
 
-re:			
+re:
 			fclean all
 clean:
-			$(RM) $(OBJS) 
+			$(RM) $(OBJS)
 			$(RM) -r $(OBJ_DIR)
 
-fclean:		clean 
+fclean:		clean
 			$(RM) $(NAME)
 
 .PHONY: all re clean fclean
