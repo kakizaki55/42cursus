@@ -18,6 +18,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+
+
+
+
+	// fflush(stdout);
+	// printf("test");
 }
 
 // typedef struct	s_data {
@@ -25,7 +31,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 // 	char	*addr;
 // 	int		bits_per_pixel;
 // 	int		line_length;
-// 	int		endian;
+// 	int		endian
 // }				t_data;
 
 int	main(int argc, char *argv[])
@@ -37,25 +43,28 @@ int	main(int argc, char *argv[])
 	char	*file_path;
 
 	// parsing map
-	if (argc != 2)
-		return (1);
+
 	file_path = ft_strjoin("test_maps/", argv[1]);
 	fd = open(file_path, O_RDONLY);
 	parse_map(fd);
 
 	// this is where im prting things out.
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); fflush(stdout);
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
+
 	for (int i = 0; i < 100; i++)
 	{
 		for (int j = 0; j < 100; j++)
 			my_mlx_pixel_put(&img, i, j, 0x00FF0000);
 	}
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	sleep(1);
+	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
+	// puts("test");
 	return (0);
 }

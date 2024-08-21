@@ -35,7 +35,7 @@ int **parse_map(int fd)
 	char	*str;
 
     int     **res;
-	char	**array; 
+	char	**array;
 	// this 11 needs to be lenght of the file. right now its set to 42.fdf
 	res = ft_calloc(sizeof(int*), 11);
 
@@ -46,9 +46,9 @@ int **parse_map(int fd)
 		if (str)
 		{
 			ft_printf("%s\n", str);
-			// array = ft_split(str, ' ');
-			// if(array == NULL)
-			// 	return (NULL);
+			array = ft_split(str, ' ');
+			if(array == NULL)
+				return (NULL);
 			// // same with this 11
 			// res[i] = convert_to_int(array, 11);
 		}
