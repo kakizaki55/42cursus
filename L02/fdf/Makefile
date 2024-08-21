@@ -11,11 +11,11 @@ LIBS_PATH	=	-L$(LIBFT_PATH) -L$(MLX_PATH)
 DEBUG_FLAGS	=	-g -fsanitize=address
 LIBS		=	-lft -lmlx -lmlx_Linux -lX11 -lXext -Imlx -lXext
 MLX			=	libmlx.a libmlx_Linux.a
-FILES 		=	main.c
 SRCS		=	$(addprefix src/,$(FILES))
 OBJS		=	$(SRCS:.c=.o)
-CC		=	clang
-CP		=	@cp -r
+CC			=	clang
+CP			=	@cp -r
+FILES 		=	main.c utils.c
 
 # Colors
 

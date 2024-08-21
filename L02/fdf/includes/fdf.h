@@ -28,4 +28,8 @@ typedef struct	s_data {
 }				t_data;
 
 
+//utils.c
+void print_img(t_data img);
+
+
 #endif
