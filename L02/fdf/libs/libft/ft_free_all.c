@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/08/21 16:42:07 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/08/21 16:46:48 by mkakizak          #+#    #+#             */
+/*   Updated: 2024/08/21 17:34:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+// #include "libft.h"
 
-# include "libft.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <math.h>
-# include <mlx.h>
+// void	ft_free_all(char **str)
+// {
+// 	int	i;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-#define TRUE 1
-#define FALSE 0
-
-//utils.c
-void 	print_img(t_data img);
-void 	print_matrix(int **matix);
-
-//parse_map.c
-int **parse_map(int fd);
-
-
-
-#endif
+// 	i = 0;
+// 	while (str[i] != NULL)
+// 	{
+// 		free(str[i]);
+// 		i++;
+// 	}
+// 	free(str);
+// }

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:36:52 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/08/01 19:09:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:34:08 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,5 +167,7 @@ int					clean_up(char **sttc_str, char **buffer, char **result,
 char				*get_new_string(int fd, char *sttc_str);
 char				*get_one_line(char *str);
 char				*gnl_strdup(const char *str);
+
+// void				ft_free_all(char **str);
 
 #endif

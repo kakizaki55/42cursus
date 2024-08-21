@@ -8,3 +8,21 @@ void print_img(t_data img)
 	ft_printf("img: %p\n", img.img);
 	ft_printf("addr: %p\n", img.addr);
 }
+
+void print_matrix(int **matix)
+{
+
+}
+
+void	free_all(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}

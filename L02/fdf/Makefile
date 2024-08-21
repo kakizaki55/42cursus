@@ -15,7 +15,7 @@ SRCS		=	$(addprefix src/,$(FILES))
 OBJS		=	$(SRCS:.c=.o)
 CC			=	clang
 CP			=	@cp -r
-FILES 		=	main.c utils.c
+FILES 		=	main.c utils.c parse_map.c
 
 # Colors
 
