@@ -34,8 +34,17 @@ typedef struct point_data {
 	int color;
 }				p_data;
 
+typedef struct xy_data {
+	int x;
+	int y;
+} 				xy_data;
+
 #define TRUE 1
 #define FALSE 0
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 1080
+#define BLOCK_SIZE 30;
+
 
 //utils.c
 void 	print_img(t_data img);

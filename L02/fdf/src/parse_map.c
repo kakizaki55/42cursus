@@ -19,7 +19,7 @@ int *convert_to_int(char **array, int len)
 	int *res;
 
 	i = 0;
-	res = ft_calloc(sizeof(int*), len);
+	res = ft_calloc(sizeof(int), len);
 	if( res == NULL)
 		return (NULL);
 	while(array[i])
@@ -54,9 +54,11 @@ int **parse_map(int fd)
 			res[i] = convert_to_int(array, 19);
 		}
 		else
+		{
 			res[i] = NULL;
 			bool = FALSE;
+		}
 	}
-	// print_matrix(res, 11, 19);
+	print_matrix(res, 11, 19);
     return (res);
 }

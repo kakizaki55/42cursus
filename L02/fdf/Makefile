@@ -9,7 +9,7 @@ INCLUDES	=	-I includes -I $(LIBFT_PATH)/includes -I $(MLX_PATH)
 CFLAGS		= 	$(INCLUDES)
 LIBS_PATH	=	-L$(LIBFT_PATH) -L$(MLX_PATH)
 DEBUG_FLAGS	=	-g -fsanitize=address
-LIBS		=	-lft -lmlx -lmlx_Linux -lX11 -lXext -Imlx -lXext
+LIBS		=	-lft -lmlx -lmlx_Linux -lX11 -lXext -Imlx -lXext -lm
 MLX			=	libmlx.a libmlx_Linux.a
 SRCS		=	$(addprefix src/,$(FILES))
 OBJS		=	$(SRCS:.c=.o)
@@ -50,7 +50,9 @@ fclean:
 
 re: fclean all
 
-debug: fclean
+debug: $(OBJS)
+	$(MAKE) -C $(LIBFT_PATH)
+	$(MAKE) -C $(MLX_PATH)
 	$(CC) $(DEBUG_FLAGS) $(OBJS) -o $(NAME) $(LIBS_PATH) $(LIBS)
 
 	@echo "$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"

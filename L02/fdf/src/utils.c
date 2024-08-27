@@ -13,15 +13,15 @@ void print_img(t_data img)
 
 void print_matrix(int **matrix, int rows, int cols)
 {
-    int i, j;
 
-    for (i = 0; i < rows; i++) {
-        printf("[%d] ", i);
+    for (int i = 0; i < rows; i++) {
+        ft_printf("[%d] ", i);
 
-        for (j = 0; j < cols; j++) {
-				printf("[%d]", matrix[i][j]);
+        for (int j = 0; j < cols; j++) {
+				ft_printf("[%d]", matrix[i][j]);
+				// ft_printf("[%d][%d]",i, j);
         }
-        printf("\n");
+        ft_printf("\n");
     }
 }
 

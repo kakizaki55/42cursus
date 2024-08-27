@@ -20,9 +20,41 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 
 }
-void draw_points(int **matrix, t_data *img)
+void draw_points(int **matrix, t_data *img, int row, int col)
 {
-	my_mlx_pixel_put(img, 5, 5, 0x00FF0000);
+	xy_data offset;
+	xy_data dest;
+	int i;
+	int j;
+	float a;
+
+	offset.x = WINDOW_WIDTH / 2;
+	offset.y = WINDOW_HEIGHT / 2;
+
+	a = 10;
+	i = 0;
+	print_matrix(matrix, 11, 19);
+
+	while(i < row)
+	{
+		j = 0;
+		while(j < col)
+		{
+			ft_printf("i [%d]\n", i);
+			ft_printf("j [%d]\n", j);
+
+			dest.x = i * cos(a) + j *cos(a + 2) + matrix[i][j] * cos(a - 2);
+			dest.y = i * sin(a) + j *sin(a + 2) + matrix[i][j] * sin(a - 2);
+			dest.x *= BLOCK_SIZE;
+			dest.y *= BLOCK_SIZE;
+			ft_printf("dest x: %d\n", dest.x);
+			ft_printf("dest y: %d\n", dest.y);
+			my_mlx_pixel_put(img, offset.x + dest.x, offset.y + dest.y, 0x00FF0000);
+			j++;
+		}
+		i++;
+	}
+	return ;
 }
 
 int	main(int argc, char *argv[])
@@ -42,12 +74,13 @@ int	main(int argc, char *argv[])
 
 	// this is where im prting things out.
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); fflush(stdout);
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
+	img.img = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 
-	draw_points(matrix, &img);
+	//this also needs to be number of rows in the matrix right ow its setto 42.fdf
+	draw_points(matrix, &img, 11 , 19);
 
 	// for (int i = 0; i < 100; i++)
 	// {
@@ -56,9 +89,9 @@ int	main(int argc, char *argv[])
 	// }
 
 	my_mlx_pixel_put(&img, 900, 500, 0x00FF0000);
-	sleep(1);
+	sleep(3);
 
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 
 	mlx_loop(mlx);
