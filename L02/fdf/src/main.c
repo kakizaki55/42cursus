@@ -18,7 +18,15 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
 
+int get_color(int z_value)
+{
+	if(z_value > 0)
+	{
+		return (0x00FFCC66);
+	}
+	return (0x00FF0000);
 }
 void draw_points(int **matrix, t_data *img, int row, int col)
 {
@@ -31,27 +39,43 @@ void draw_points(int **matrix, t_data *img, int row, int col)
 	offset.x = WINDOW_WIDTH / 2;
 	offset.y = WINDOW_HEIGHT / 2;
 
-	a = 10;
+	a = atan(1 / sqrt(2));
 	i = 0;
 	print_matrix(matrix, 11, 19);
+
 
 	while(i < row)
 	{
 		j = 0;
-		while(j < col)
-		{
-			ft_printf("i [%d]\n", i);
-			ft_printf("j [%d]\n", j);
+		// while(j < col)
+		// {
+		// 	ft_printf("i [%d]\n", i);
+		// 	ft_printf("j [%d]\n", j);
 
-			dest.x = i * cos(a) + j *cos(a + 2) + matrix[i][j] * cos(a - 2);
-			dest.y = i * sin(a) + j *sin(a + 2) + matrix[i][j] * sin(a - 2);
-			dest.x *= BLOCK_SIZE;
-			dest.y *= BLOCK_SIZE;
-			ft_printf("dest x: %d\n", dest.x);
-			ft_printf("dest y: %d\n", dest.y);
-			my_mlx_pixel_put(img, offset.x + dest.x, offset.y + dest.y, 0x00FF0000);
-			j++;
-		}
+		// 	dest.x = i * cos(a) + j *cos(a + 2) + matrix[i][j] * cos(a - 2);
+		// 	dest.y = i * sin(a) + j *sin(a + 2) + matrix[i][j] * sin(a - 2);
+		// 	dest.x *= BLOCK_SIZE;
+		// 	dest.y *= BLOCK_SIZE;
+		// 	ft_printf("dest x: %d\n", dest.x);
+		// 	ft_printf("dest y: %d\n", dest.y);
+		// 	my_mlx_pixel_put(img, offset.x + dest.x, offset.y + dest.y, get_color(matrix[i][j]));
+		// 	j++;
+		// }
+		 while (j < col)
+        {
+            dest.x = (j - i) * cos(a) * BLOCK_SIZE;
+            dest.y = ((i + j) * sin(a) - matrix[i][j]) * BLOCK_SIZE;
+
+            int screen_x = offset.x + dest.x;
+            int screen_y = offset.y + dest.y;
+
+            if (screen_x >= 0 && screen_x < WINDOW_WIDTH && screen_y >= 0 && screen_y < WINDOW_HEIGHT)
+            {
+                my_mlx_pixel_put(img, screen_x, screen_y, get_color(matrix[i][j]));
+            }
+
+            j++;
+        }
 		i++;
 	}
 	return ;
