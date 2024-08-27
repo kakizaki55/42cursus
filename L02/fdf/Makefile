@@ -14,7 +14,6 @@ MLX			=	libmlx.a libmlx_Linux.a
 SRCS		=	$(addprefix src/,$(FILES))
 OBJS		=	$(SRCS:.c=.o)
 CC			=	clang
-CP			=	@cp -r
 FILES 		=	main.c utils.c parse_map.c
 
 # Colors

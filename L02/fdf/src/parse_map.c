@@ -12,7 +12,7 @@
 
 #include <fdf.h>
 
-int **convert_to_int(char **array, int len)
+int *convert_to_int(char **array, int len)
 {
 	int i;
 	int *res;

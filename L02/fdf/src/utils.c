@@ -9,6 +9,8 @@ void print_img(t_data img)
 	ft_printf("addr: %p\n", img.addr);
 }
 
+//make sure i need to delet change this in to a while loop
+
 void print_matrix(int **matrix, int rows, int cols)
 {
     int i, j;
@@ -17,9 +19,8 @@ void print_matrix(int **matrix, int rows, int cols)
         printf("[%d] ", i);
 
         for (j = 0; j < cols; j++) {
-            printf(", %d ", matrix[i][j]);
+				printf("[%d]", matrix[i][j]);
         }
-
         printf("\n");
     }
 }

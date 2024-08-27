@@ -32,7 +32,7 @@ typedef struct	s_data {
 
 //utils.c
 void 	print_img(t_data img);
-void print_matrix(int **matrix, int rows, int cols);
+void 	print_matrix(int **matrix, int rows, int cols);
 
 //parse_map.c
 int **parse_map(int fd);
