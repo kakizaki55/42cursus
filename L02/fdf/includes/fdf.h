@@ -27,15 +27,24 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct point_data {
+	int	x;
+	int y;
+	int z;
+	int color;
+}				p_data;
+
 #define TRUE 1
 #define FALSE 0
 
 //utils.c
 void 	print_img(t_data img);
 void 	print_matrix(int **matrix, int rows, int cols);
+void	free_all(char **str);
 
 //parse_map.c
 int **parse_map(int fd);
+
 
 
 
