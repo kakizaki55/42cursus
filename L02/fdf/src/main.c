@@ -47,31 +47,20 @@ void draw_points(int **matrix, t_data *img, int row, int col)
 	while(i < row)
 	{
 		j = 0;
-		// while(j < col)
-		// {
-		// 	ft_printf("i [%d]\n", i);
-		// 	ft_printf("j [%d]\n", j);
-
-		// 	dest.x = i * cos(a) + j *cos(a + 2) + matrix[i][j] * cos(a - 2);
-		// 	dest.y = i * sin(a) + j *sin(a + 2) + matrix[i][j] * sin(a - 2);
-		// 	dest.x *= BLOCK_SIZE;
-		// 	dest.y *= BLOCK_SIZE;
-		// 	ft_printf("dest x: %d\n", dest.x);
-		// 	ft_printf("dest y: %d\n", dest.y);
-		// 	my_mlx_pixel_put(img, offset.x + dest.x, offset.y + dest.y, get_color(matrix[i][j]));
-		// 	j++;
-		// }
 		 while (j < col)
         {
             dest.x = (j - i) * cos(a) * BLOCK_SIZE;
             dest.y = ((i + j) * sin(a) - matrix[i][j]) * BLOCK_SIZE;
 
-            int screen_x = offset.x + dest.x;
-            int screen_y = offset.y + dest.y;
+            dest.x = (offset.x + dest.x);
+            dest.y = offset.y + dest.y;
 
-            if (screen_x >= 0 && screen_x < WINDOW_WIDTH && screen_y >= 0 && screen_y < WINDOW_HEIGHT)
+			ft_printf("dest x: %d\n", (int)dest.x);
+			ft_printf("dest y: %d\n", (int)dest.y);
+
+            if (dest.x >= 0 && dest.x < WINDOW_WIDTH && dest.y >= 0 && dest.y < WINDOW_HEIGHT)
             {
-                my_mlx_pixel_put(img, screen_x, screen_y, get_color(matrix[i][j]));
+                my_mlx_pixel_put(img, dest.x, dest.y, get_color(matrix[i][j]));
             }
 
             j++;
@@ -112,8 +101,8 @@ int	main(int argc, char *argv[])
 	// 		my_mlx_pixel_put(&img, i, j, 0x00FF0000);
 	// }
 
-	my_mlx_pixel_put(&img, 900, 500, 0x00FF0000);
-	sleep(3);
+	// my_mlx_pixel_put(&img, 900, 500, 0x00FF0000);
+	sleep(1);
 
 	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
