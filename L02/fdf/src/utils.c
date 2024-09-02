@@ -19,7 +19,6 @@ void print_matrix(int **matrix, int rows, int cols)
 
         for (int j = 0; j < cols; j++) {
 				ft_printf("[%d]", matrix[i][j]);
-				// ft_printf("[%d][%d]",i, j);
         }
         ft_printf("\n");
     }
@@ -36,4 +35,28 @@ void	free_all(char **str)
 		i++;
 	}
 	free(str);
+}
+
+int get_color(int z_value)
+{
+	if(z_value > 0)
+	{
+		return (0x00FFCC66);
+	}
+	return (0x00FF0000);
+}
+
+int str_arr_length(char **array)
+{
+	int i;
+
+	if(array == NULL || array[0] == NULL)
+		return (NULL);
+
+	i = 0;
+	while(array[i])
+	{
+		i++;
+	}
+	return (i);
 }

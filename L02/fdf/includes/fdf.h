@@ -50,6 +50,8 @@ typedef struct xy_data {
 void 	print_img(t_data img);
 void 	print_matrix(int **matrix, int rows, int cols);
 void	free_all(char **str);
+int 	get_color(int z_value);
+int 	str_arr_length(char **array);
 
 //parse_map.c
 int **parse_map(int fd);

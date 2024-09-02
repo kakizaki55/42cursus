@@ -19,15 +19,39 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-
-int get_color(int z_value)
+void draw_lines(xy_data point1, xy_data point2, int height, t_data *img)
 {
-	if(z_value > 0)
-	{
-		return (0x00FFCC66);
-	}
-	return (0x00FF0000);
+
 }
+
+
+
+// need to figure out how this function works.....
+void draw_line(xy_data point1, xy_data point2, int height, t_data *img) {
+    int x0 = point1.x, y0 = point1.y;
+    int x1 = point2.x, y1 = point2.y;
+
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    int sx = (x0 < x1) ? 1 : -1;
+    int sy = (y0 < y1) ? 1 : -1;
+    int err = dx - dy;
+
+    while (1) {
+        my_mlx_pixel_put(img, x0, y0, get_color(height));
+        if (x0 == x1 && y0 == y1) break;
+        int e2 = err * 2;
+        if (e2 > -dy) {
+            err -= dy;
+            x0 += sx;
+        }
+        if (e2 < dx) {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
 void draw_points(int **matrix, t_data *img, int row, int col)
 {
 	xy_data offset;
@@ -35,40 +59,58 @@ void draw_points(int **matrix, t_data *img, int row, int col)
 	int i;
 	int j;
 	float a;
+	xy_data vert = {NULL, NULL};
+	xy_data hor = {NULL, NULL};
 
 	offset.x = WINDOW_WIDTH / 2;
-	offset.y = WINDOW_HEIGHT / 2;
+	offset.y = WINDOW_HEIGHT / 3;
 
 	a = atan(1 / sqrt(2));
 	i = 0;
 	print_matrix(matrix, 11, 19);
 
-
 	while(i < row)
 	{
 		j = 0;
+		vert.x = NULL;
+		vert.y = NULL;
 		 while (j < col)
         {
+			//what the hell is this?
             dest.x = (j - i) * cos(a) * BLOCK_SIZE;
-            dest.y = ((i + j) * sin(a) - matrix[i][j]) * BLOCK_SIZE;
+            dest.y = ((i + j) * sin(a) - (matrix[i][j]) / 10) * BLOCK_SIZE;
 
-            dest.x = (offset.x + dest.x);
+            dest.x = offset.x + dest.x;
             dest.y = offset.y + dest.y;
 
 			ft_printf("dest x: %d\n", (int)dest.x);
 			ft_printf("dest y: %d\n", (int)dest.y);
+			if(i > 0)
+			{
+				hor.x = (j - i + 1) * cos(a) * BLOCK_SIZE;
+            	hor.y = ((i + j - 1) * sin(a) - (matrix[i -1][j]) / 10) * BLOCK_SIZE;
+				hor.x = offset.x + hor.x;
+				hor.y = offset.y + hor.y;
+				draw_line(hor, dest, 0, img);
+			}
+
+			if(vert.x || vert.y)
+				draw_line(vert, dest, 0, img);
+
+			vert.x = dest.x;
+			vert.y = dest.y;
 
             if (dest.x >= 0 && dest.x < WINDOW_WIDTH && dest.y >= 0 && dest.y < WINDOW_HEIGHT)
             {
                 my_mlx_pixel_put(img, dest.x, dest.y, get_color(matrix[i][j]));
             }
-
             j++;
         }
 		i++;
 	}
 	return ;
 }
+
 
 int	main(int argc, char *argv[])
 {
@@ -94,12 +136,6 @@ int	main(int argc, char *argv[])
 
 	//this also needs to be number of rows in the matrix right ow its setto 42.fdf
 	draw_points(matrix, &img, 11 , 19);
-
-	// for (int i = 0; i < 100; i++)
-	// {
-	// 	for (int j = 0; j < 100; j++)
-	// 		my_mlx_pixel_put(&img, i, j, 0x00FF0000);
-	// }
 
 	// my_mlx_pixel_put(&img, 900, 500, 0x00FF0000);
 	sleep(1);
