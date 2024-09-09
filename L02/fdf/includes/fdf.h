@@ -39,11 +39,18 @@ typedef struct xy_data {
 	int y;
 } 				xy_data;
 
+typedef struct m_data {
+	int **matrix;
+	int row;
+	int col;
+}				m_data;
+
 #define TRUE 1
 #define FALSE 0
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
-#define BLOCK_SIZE 30;
+#define BLOCK_SIZE 20
+#define HEIGHT_OFFSET 0
 
 
 //utils.c
@@ -52,9 +59,11 @@ void 	print_matrix(int **matrix, int rows, int cols);
 void	free_all(char **str);
 int 	get_color(int z_value);
 int 	str_arr_length(char **array);
+int 	int_arr_length(int **array);
 
 //parse_map.c
-int **parse_map(int fd);
+void parse_map(char *file_path, m_data *data);
+int get_file_length(char *file_path);
 
 
 

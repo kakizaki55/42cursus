@@ -60,3 +60,18 @@ int str_arr_length(char **array)
 	}
 	return (i);
 }
+
+int int_arr_length(int **array)
+{
+	int i;
+
+	if(array == NULL || array[0] == NULL)
+		return (NULL);
+
+	i = 0;
+	while(array[i])
+	{
+		i++;
+	}
+	return (i);
+}
