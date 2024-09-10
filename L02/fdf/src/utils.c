@@ -11,13 +11,13 @@ void print_img(t_data img)
 
 //make sure i need to delet change this in to a while loop
 
-void print_matrix(int **matrix, int rows, int cols)
+void print_matrix(int **matrix, int col, int row)
 {
 
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0; i < col; i++) {
         ft_printf("[%d] ", i);
 
-        for (int j = 0; j < cols; j++) {
+        for (int j = 0; j < row; j++) {
 				ft_printf("[%d]", matrix[i][j]);
         }
         ft_printf("\n");
@@ -42,8 +42,11 @@ int get_color(int z_value)
 	if(z_value > 0)
 	{
 		return (0x00FFCC66);
+	} else if (z_value < 0)
+	{
+		return (0x00FFFF00);
 	}
-	return (0x00FF0000);
+	return (0x00FF00DD);
 }
 
 int str_arr_length(char **array)
@@ -61,7 +64,7 @@ int str_arr_length(char **array)
 	return (i);
 }
 
-int int_arr_length(int **array)
+int int_arr_length(int *array)
 {
 	int i;
 

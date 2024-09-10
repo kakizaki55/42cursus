@@ -3,7 +3,7 @@ NAME		=	fdf
 LIBFT_PATH	=	./libs/libft
 MLX_PATH	=	./libs/mlx-linux
 
-INCLUDES	=	-I includes -I $(LIBFT_PATH)/includes -I $(MLX_PATH)
+INCLUDES	= 	-I includes -I $(LIBFT_PATH)/includes -I $(MLX_PATH)
 
 # CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
 CFLAGS		= 	$(INCLUDES)
@@ -14,7 +14,7 @@ MLX			=	libmlx.a libmlx_Linux.a
 SRCS		=	$(addprefix src/,$(FILES))
 OBJS		=	$(SRCS:.c=.o)
 CC			=	clang
-FILES 		=	main.c utils.c parse_map.c
+FILES 		=	main.c utils.c parse_map.c draw.c
 
 # Colors
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/08/21 16:42:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:24:04 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct m_data {
 #define FALSE 0
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
-#define BLOCK_SIZE 20
-#define HEIGHT_OFFSET 0
+#define BLOCK_SIZE 30
+#define HEIGHT_OFFSET 1
 
 
 //utils.c
@@ -59,11 +59,16 @@ void 	print_matrix(int **matrix, int rows, int cols);
 void	free_all(char **str);
 int 	get_color(int z_value);
 int 	str_arr_length(char **array);
-int 	int_arr_length(int **array);
+int 	int_arr_length(int *array);
 
 //parse_map.c
 void parse_map(char *file_path, m_data *data);
 int get_file_length(char *file_path);
+
+//draw.c
+void draw_points(int **matrix, t_data *img, int row_len, int col_len);
+void draw_line(xy_data point1, xy_data point2, int z_value, t_data *img);
+
 
 
 

@@ -17,6 +17,7 @@ int *convert_to_int(char **array, int len)
 {
 	int i;
 	int *res;
+	int temp;
 
 	i = 0;
 	res = ft_calloc(sizeof(int), len);
@@ -24,6 +25,12 @@ int *convert_to_int(char **array, int len)
 		return (NULL);
 	while(array[i])
 	{
+		temp =ft_atoi(array[i]);
+		// if(temp > 10 || temp < -10)
+		// {
+		// 	#undef HEIGHT_OFFSET;
+		// 	#define HEIGHT_OFFSET = 10;
+		// }
 		res[i] = ft_atoi(array[i]);
 		i++;
 	}
@@ -75,7 +82,8 @@ void parse_map(char *file_path, m_data *data)
 	file_length = get_file_length(file_path);
 	data->col = file_length;
 	res = ft_calloc(sizeof(int*), file_length + 1);
-
+	if(res == NULL)
+		return ;
 	file_path = ft_strjoin("test_maps/", file_path);
 	fd = open(file_path, O_RDONLY);
 
@@ -101,7 +109,7 @@ void parse_map(char *file_path, m_data *data)
 		}
 		i++;
 	}
-	print_matrix(res, file_length, arr_length);
+	// print_matrix(res, file_length, arr_length);
 	data->matrix = res;
 	close(fd);
     return ;
