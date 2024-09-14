@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/10 14:05:53 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/13 19:27:09 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void draw_points(int **matrix, t_data *img, int row_len, int col_len)
 	offset.y = WINDOW_HEIGHT / 3;
 
 	a = atan(1 / sqrt(2));
+	// a = 1.0;
+
 	// printf("a:%f\n", a);
 	i = 0;
 	// print_matrix(matrix, 11, 19)
@@ -96,10 +98,7 @@ void draw_points(int **matrix, t_data *img, int row_len, int col_len)
 			vert.x = dest.x;
 			vert.y = dest.y;
 
-            if (dest.x >= 0 && dest.x < WINDOW_WIDTH && dest.y >= 0 && dest.y < WINDOW_HEIGHT)
-            {
-                my_mlx_pixel_put(img, dest.x, dest.y, get_color(matrix[i][j]));
-            }
+            my_mlx_pixel_put(img, dest.x, dest.y, get_color(matrix[i][j]));
             j++;
         }
 		i++;
