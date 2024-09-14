@@ -6,56 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/14 20:04:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:28:24 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
-
-
-int close_window(t_vars *vars)
-{	
-
-	// if(key == NULL)
-	
-	if (vars == NULL || vars->mlx == NULL || vars->win == NULL ||vars->img == NULL) 
-	{
-		printf("checking to see if close works");
-	}
-
-		mlx_destroy_image(vars->mlx, vars->img);
-		mlx_destroy_window(vars->mlx, vars->win);
-		// this free() shoulld probaly take care of all the pointerins
-		free(vars);
-		exit(EXIT_SUCCESS);
-	return(0);
-}
-
-int close_window_with_key(int key, t_vars *vars)
-{	
-	//# define ESC 65307
-	// if (vars == NULL || vars->mlx == NULL || vars->win == NULL ||vars->img == NULL) 
-	// {
-	// 	printf("checking to see if close works");
-	// }
-	if(key == 65307)
-	{
-		mlx_destroy_image(vars->mlx, vars->img);
-		mlx_destroy_window(vars->mlx, vars->win);
-		free(vars);
-		exit(EXIT_SUCCESS);
-	
-	}
-		// this free() shoulld probaly take care of all the pointerins
-	return(0);
-}
-
-void init_hooks(t_vars *vars)
-{
-	mlx_hook(vars->win, ON_KEYDOWN, 1L << 0, close_window_with_key, vars);
-	mlx_hook(vars->win, ON_DESTROY, 1L << 17, close_window, vars);
-}
-# include <stdlib.h>
 //reminder to uncomment CFLAGS in Makefile
 
 	void init_mlx(t_vars *vars)
@@ -84,9 +39,9 @@ int	main(int argc, char *argv[])
 	
 	parse_map(argv[1], data);
 
-	print_matrix(data->matrix, data->col, data->row);
-	ft_printf("row:%d\n", data->row);
-	ft_printf("col:%d\n", data->col);
+	// print_matrix(data->matrix, data->col, data->row);
+	// ft_printf("row:%d\n", data->row);
+	// ft_printf("col:%d\n", data->col);
 
 
 	vars = (t_vars *)malloc(sizeof(t_vars));
@@ -100,11 +55,12 @@ int	main(int argc, char *argv[])
 	// ft_printf("row:%d\n", data.row);
 	// ft_printf("col:%d\n", data.col);
 
-	dprintf(STDERR_FILENO, "begin check segv\n");
 	// draw_points(data.matrix, &vars->img, data.row , data.col);
 
 	draw_points(data, vars);
-	dprintf(STDERR_FILENO, "end check segv\n");
+	
+	// dprintf(STDERR_FILENO, "begin check segv\n");
+	// dprintf(STDERR_FILENO, "end check segv\n");
 
 	// my_mlx_pixel_put(&img, 900, 500, 0x00FF0000);
 	// sleep(1);

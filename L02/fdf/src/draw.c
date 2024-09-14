@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/14 18:57:49 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:07:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void draw_points(m_data *data, t_vars *vars)
 
 	// printf("a:%f\n", a);
 	i = 0;
-	print_matrix(data->matrix, data->col, data->row);
-	ft_printf("row:%d\n", data->row);
-	ft_printf("col:%d\n", data->col);
+	// print_matrix(data->matrix, data->col, data->row);
+	// ft_printf("row:%d\n", data->row);
+	// ft_printf("col:%d\n", data->col);
 
 	while(i < data->col)
 	{
@@ -112,7 +112,7 @@ void draw_points(m_data *data, t_vars *vars)
             	hor.y = ((i + j - 1) * sin(a) - (data->matrix[i -1][j]) / HEIGHT_OFFSET) * BLOCK_SIZE;
 				hor.x = offset.x + hor.x;
 				hor.y = offset.y + hor.y;
-				ft_printf("z_value :%d\n", data->matrix[i][j]);
+				// ft_printf("z_value :%d\n", data->matrix[i][j]);
 				draw_line(hor, dest, 0, vars);
 			}
 

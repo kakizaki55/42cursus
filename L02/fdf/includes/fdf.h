@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/14 18:44:05 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:29:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,14 @@ int 	get_col_length(char *file_path);
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void 	draw_points(m_data *data, t_vars *vars);
 void 	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars);
+
+//cleanup.c
+void 	clean_up_vars(t_vars *vars);
+
+//hooks.c
+int		close_window(t_vars *vars);
+int 	close_window_with_key(int key, t_vars *vars);
+void 	init_hooks(t_vars *vars);
 
 
 #endif
