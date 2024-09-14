@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/13 17:21:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:44:05 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,24 @@
 # include <math.h>
 # include <mlx.h>
 
-typedef struct	s_data {
-	void	*img;
+// typedef struct	s_data {
+// 	void	*img;
+// 	char	*addr;
+// 	int		bits_per_pixel;
+// 	int		line_length;
+// 	int		endian;
+// }				t_data;
+
+typedef struct s_vars
+{
+	void 	*mlx;
+	void 	*win;
+	void 	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}				t_vars;
 
 typedef struct point_data {
 	int	x;
@@ -65,7 +76,7 @@ typedef enum s_hooks
 
 
 //utils.c
-void 	print_img(t_data img);
+void 	print_img(t_vars vars);
 void 	print_matrix(int **matrix, int rows, int cols);
 void	free_all(char **str);
 int 	get_color(int z_value);
@@ -73,15 +84,13 @@ int 	str_arr_length(char **array);
 int 	int_arr_length(int *array);
 
 //parse_map.c
-void parse_map(char *file_path, m_data *data);
-int get_file_length(char *file_path);
+void 	parse_map(char *file_path, m_data *data);
+int 	get_col_length(char *file_path);
 
 //draw.c
-void draw_points(int **matrix, t_data *img, int row_len, int col_len);
-void draw_line(xy_data point1, xy_data point2, int z_value, t_data *img);
-
-
-
+void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
+void 	draw_points(m_data *data, t_vars *vars);
+void 	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars);
 
 
 #endif

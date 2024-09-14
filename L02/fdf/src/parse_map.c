@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/08/21 17:35:07 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:34:52 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int *convert_to_int(char **array, int len)
 		return (NULL);
 	while(array[i])
 	{
-		temp =ft_atoi(array[i]);
+		// temp = ft_atoi(array[i]);
 		// if(temp > 10 || temp < -10)
 		// {
 		// 	#undef HEIGHT_OFFSET;
@@ -38,7 +38,7 @@ int *convert_to_int(char **array, int len)
 }
 
 
-int get_file_length(char *file_path)
+int get_col_length(char *file_path)
 {
 	int res;
 	int fd;
@@ -65,7 +65,6 @@ int get_file_length(char *file_path)
 
 void parse_map(char *file_path, m_data *data)
 {
-	int		bool;
 	char	*str;
 	int 	fd;
 
@@ -76,20 +75,23 @@ void parse_map(char *file_path, m_data *data)
 	// this 11 needs to be lenght of the file. right now its set to 42.fdf
 	//this isnt workig becouse get nextline will keep how many are being used so when it goes to the second loop it breaks
 
-	int file_length;
-	int arr_length;
+	// int file_length;
+	// int arr_length;
 
-	file_length = get_file_length(file_path);
-	data->col = file_length;
-	res = ft_calloc(sizeof(int*), file_length + 1);
+	// file_length = get_file_length(file_path);
+	data->col = get_col_length(file_path);
+
+	res = ft_calloc(sizeof(int*), data->col + 1);
 	if(res == NULL)
 		return ;
+
 	file_path = ft_strjoin("test_maps/", file_path);
 	fd = open(file_path, O_RDONLY);
+	if(fd == NULL)
+		return ;
 
-    bool = TRUE;
 	i = 0;
-	while (bool)
+	while (1)
 	{
 		str = get_next_line(fd);
 		if (str)
@@ -98,19 +100,19 @@ void parse_map(char *file_path, m_data *data)
 			if(array == NULL)
 				return ;
 			// ft_printf("length:%d\n" , str_arr_length(array));
-			arr_length = str_arr_length(array);
-			data->row =arr_length;
-			res[i] = convert_to_int(array, arr_length);
+			// arr_length = str_arr_length(array);
+			data->row = str_arr_length(array);
+			res[i] = convert_to_int(array, data->row);
 		}
 		else
 		{
 			res[i] = NULL;
-			bool = FALSE;
+			break;
 		}
 		i++;
 	}
-	// print_matrix(res, file_length, arr_length);
 	data->matrix = res;
+	print_matrix(data->matrix, data->col, data->row);
 	close(fd);
     return ;
 }
