@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/17 17:52:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:22:32 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	main(int argc, char *argv[])
 	data = (m_data *)ft_calloc(sizeof(m_data *), 1);
 	if(data == NULL)
 		return (NULL);
-
+		
 	parse_map(argv[1], data);
-	print_matrix(data->matrix, data->col, data->row);
-	ft_printf("row:%d\n", data->row);
-	ft_printf("col:%d\n", data->col);
+	// print_matrix(data->matrix, data->col, data->row);
+	// ft_printf("row:%d\n", data->row);
+	// ft_printf("col:%d\n", data->col);
 
 
 	vars = (t_vars *)ft_calloc(sizeof(t_vars *), 1);

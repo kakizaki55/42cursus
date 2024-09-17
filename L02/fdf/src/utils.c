@@ -21,7 +21,7 @@ void print_matrix(int **matrix, int col, int row)
 
         while(j < row) 
 		{
-			ft_printf("%d[%d]", j, matrix[i][j]);
+			ft_printf("%d\n[%d]", j, matrix[i][j]);
 			j++;
         }
         ft_printf("\n");

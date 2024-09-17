@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/16 15:54:44 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/17 18:10:14 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int close_window(t_vars *vars)
 		// exit(EXIT_SUCCESS);
 
 
-	free(vars->mlx);
-	free(vars->win);
+	// free(vars->mlx);
+	// free(vars->win);
 	// free(vars->img);
 	// free(vars->addr);
 	free(vars);
