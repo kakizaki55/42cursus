@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/14 18:34:52 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:28:22 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,27 @@ int *convert_to_int(char **array, int len)
 
 int get_col_length(char *file_path)
 {
-	int res;
-	int fd;
+	int 	res;
+	int 	fd;
+	char 	*str;
 
 	// TODO: will add donditinal for different kinds of paths here
 
 	file_path = ft_strjoin("test_maps/", file_path);
+	if(file_path == NULL)
+		return (NULL);
 	fd = open(file_path, O_RDONLY);
-
+	if(fd == NULL)
+		return (free(file_path), NULL);
+	free(file_path);
 	res = 0;
 	while(1)
 	{
-		char *str = get_next_line(fd);
+		str = get_next_line(fd);
 		// ft_printf("%s\n", str);
 		if(str == NULL)
 			break;
+		free(str);
 		res ++;
 	}
 	close(fd);
@@ -81,14 +87,17 @@ void parse_map(char *file_path, m_data *data)
 	// file_length = get_file_length(file_path);
 	data->col = get_col_length(file_path);
 
-	res = ft_calloc(sizeof(int*), data->col + 1);
+	res = (int **)ft_calloc(sizeof(int*), data->col + 1);
 	if(res == NULL)
 		return ;
 
 	file_path = ft_strjoin("test_maps/", file_path);
+	if(file_path == NULL)
+		return ;
 	fd = open(file_path, O_RDONLY);
 	if(fd == NULL)
-		return ;
+		return (free(file_path));
+	free(file_path);
 
 	i = 0;
 	while (1)
@@ -103,6 +112,7 @@ void parse_map(char *file_path, m_data *data)
 			// arr_length = str_arr_length(array);
 			data->row = str_arr_length(array);
 			res[i] = convert_to_int(array, data->row);
+			free(str);
 		}
 		else
 		{
@@ -112,7 +122,7 @@ void parse_map(char *file_path, m_data *data)
 		i++;
 	}
 	data->matrix = res;
-	print_matrix(data->matrix, data->col, data->row);
+	// print_matrix(data->matrix, data->col, data->row);
 	close(fd);
     return ;
 }

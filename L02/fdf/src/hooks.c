@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/14 20:37:48 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:16:11 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int close_window(t_vars *vars)
 
 		mlx_destroy_image(vars->mlx, vars->img);
 		mlx_destroy_window(vars->mlx, vars->win);
-		clean_up_vars(vars);
+		// clean_up_vars(vars);
+		free(vars);
 		exit(EXIT_SUCCESS);
 	return(0);
 }
@@ -40,7 +41,8 @@ int close_window_with_key(int key, t_vars *vars)
 	{
 		mlx_destroy_image(vars->mlx, vars->img);
 		mlx_destroy_window(vars->mlx, vars->win);
-		clean_up_vars(vars);
+		// clean_up_vars(vars);
+		free(vars);
 		exit(EXIT_SUCCESS);
 	
 	}
