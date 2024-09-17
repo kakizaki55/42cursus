@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/14 20:30:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:58:37 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
     int err = dx - dy;
 
     while (1) {
-		
+
         my_mlx_pixel_put(vars, x0, y0, get_color(z_value));
         if (x0 == x1 && y0 == y1) break;
         int e2 = err * 2;

@@ -17,11 +17,11 @@ void print_matrix(int **matrix, int col, int row)
 	i = 0;
 	j = 0;
     while (i < col) {
-        ft_printf("[%d] ", i);
+        ft_printf("i[%d] ", i);
 
         while(j < row) 
 		{
-			ft_printf("[%d]", matrix[i][j]);
+			ft_printf("%d\n[%d]", j, matrix[i][j]);
 			j++;
         }
         ft_printf("\n");

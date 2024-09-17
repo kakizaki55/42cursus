@@ -28,6 +28,9 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
+# %.o:%.c
+# 	$(CC) -g3 $(INCLUDES) -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(OBJS)

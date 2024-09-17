@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:09:18 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/14 20:32:25 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:52:05 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 #include<fdf.h>
 
-void clean_up_vars(t_vars *vars)
+void free_vars(t_vars *vars)
 {
     if(vars && vars->mlx)
         free(vars->mlx);
@@ -35,5 +35,14 @@ void clean_up_vars(t_vars *vars)
         free(vars->addr);
     if(vars)
         free(vars);
+    return ;
+}
+
+void free_data(m_data *data)
+{
+    if(data && data->matrix)
+        free(data->matrix);
+
+    free(data);
     return ;
 }
