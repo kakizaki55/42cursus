@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/14 20:37:46 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:52:48 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void 	draw_points(m_data *data, t_vars *vars);
 void 	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars);
 
 //cleanup.c
-void 	clean_up_vars(t_vars *vars);
+void 	free_vars(t_vars *vars);
+void	free_data(m_data *data);
 
 //hooks.c
 int		close_window(t_vars *vars);
