@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/17 18:22:32 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:57:48 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	main(int argc, char *argv[])
 
 	data = (m_data *)ft_calloc(sizeof(m_data *), 1);
 	if(data == NULL)
-		return (NULL);
-		
+		return (EXIT_FAILURE);
+	
 	parse_map(argv[1], data);
 	// print_matrix(data->matrix, data->col, data->row);
 	// ft_printf("row:%d\n", data->row);
@@ -53,7 +53,7 @@ int	main(int argc, char *argv[])
 
 	vars = (t_vars *)ft_calloc(sizeof(t_vars *), 1);
 	if(vars == NULL)
-		return NULL;
+		return(EXIT_FAILURE);
 	init_mlx(vars);
 	//this also needs to be number of rows in the matrix right ow its set to 42.fdf
 

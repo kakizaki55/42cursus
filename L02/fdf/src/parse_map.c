@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/17 18:56:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:57:48 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int get_file_length(char *file_path)
 {
 	int 	res;
 	int 	fd;
-	char	*str;
+	char 	*str;
 
 	// TODO: will add donditinal for different kinds of paths here
 
@@ -57,14 +57,12 @@ int get_file_length(char *file_path)
 	res = 0;
 	while(1)
 	{
-	// puts("check start 2:\n");
 		str = get_next_line(fd);
 		// ft_printf("%s\n", str);
 		if(str == NULL)
 			break;
 		free(str);
-		res++;
-	// puts("check end 2:\n");
+		res ++;
 	}
 	// puts("does it leave the loop?");
 	close(fd);
@@ -92,7 +90,7 @@ void parse_map(char *file_path, m_data *data)
 	// ft_printf("file_len 2:%d\n", data->col);
 
 
-	res = ft_calloc(sizeof(int*), data->col + 1);
+	res = (int **)ft_calloc(sizeof(int*), data->col + 1);
 	if(res == NULL)
 		return ;
 
@@ -128,7 +126,6 @@ void parse_map(char *file_path, m_data *data)
 
 			res[i] = convert_to_int(array, data->row);
 			free(str);
-			// ft_printf("check end:\n");
 		}
 		else
 		{
@@ -139,8 +136,6 @@ void parse_map(char *file_path, m_data *data)
 	}
 	data->matrix = res;
 	// print_matrix(data->matrix, data->col, data->row);
-	
-	// puts("does it get here?\n");
 	close(fd);
     return	;
 }
