@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/17 12:27:11 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/17 17:52:37 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 	void init_mlx(t_vars *vars)
 	{
-		vars = (t_vars *)malloc(sizeof(t_vars));
-		if (vars == NULL)
-			return ;
+		// vars = (t_vars *)malloc(sizeof(t_vars));
+		// if (vars == NULL)
+		// 	return ;
 		vars->mlx = mlx_init();
 		if(vars->mlx == NULL)
 			exit(EXIT_FAILURE);
@@ -64,7 +64,7 @@ int	main(int argc, char *argv[])
 
 	// draw_points(data.matrix, &vars->img, data.row , data.col);
 
-	// draw_points(data, vars);
+	draw_points(data, vars);
 
 	// dprintf(STDERR_FILENO, "begin check segv\n");
 	// dprintf(STDERR_FILENO, "end check segv\n");

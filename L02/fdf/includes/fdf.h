@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/16 15:52:48 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/17 15:33:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int 	int_arr_length(int *array);
 
 //parse_map.c
 void 	parse_map(char *file_path, m_data *data);
-int 	get_col_length(char *file_path);
+int 	get_file_length(char *file_path);
 
 //draw.c
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
