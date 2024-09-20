@@ -19,7 +19,7 @@ void print_matrix(int **matrix, int col, int row)
     while (i < col) {
         ft_printf("i[%d] ", i);
 
-        while(j < row) 
+        while(j < row)
 		{
 			ft_printf("%d\n[%d]", j, matrix[i][j]);
 			j++;
@@ -58,8 +58,8 @@ int str_arr_length(char **array)
 {
 	int i;
 
-	if(array == NULL || array[0] == NULL)
-		return (NULL);
+	if(array == NULL || *array == NULL)
+		return (0);
 
 	i = 0;
 	while(array[i])
@@ -73,8 +73,8 @@ int int_arr_length(int *array)
 {
 	int i;
 
-	if(array == NULL || array[0] == NULL)
-		return (NULL);
+	if(array == NULL)
+		return (0);
 
 	i = 0;
 	while(array[i])

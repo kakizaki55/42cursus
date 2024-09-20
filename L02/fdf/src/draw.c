@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/16 11:58:37 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 15:18:49 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
 {
 
-	if(point1.x == NULL || point2.x == NULL)
-		return ;
-    int x0 = point1.x, y0 = point1.y;
-    int x1 = point2.x, y1 = point2.y;
+	// if(point1.x == NULL || point2.x == NULL)
+	// 	return ;
+    int x0 = point1.x;
+	int y0 = point1.y;
+    int x1 = point2.x;
+	int y1 = point2.y;
 
     int dx = abs(x1 - x0);
     int dy = abs(y1 - y0);
@@ -47,7 +49,6 @@ void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
     int err = dx - dy;
 
     while (1) {
-
         my_mlx_pixel_put(vars, x0, y0, get_color(z_value));
         if (x0 == x1 && y0 == y1) break;
         int e2 = err * 2;
@@ -71,11 +72,11 @@ void draw_points(m_data *data, t_vars *vars)
 	int i;
 	int j;
 	float a;
-	xy_data vert = { NULL, NULL };
-	xy_data hor = { NULL, NULL };
+	xy_data vert; //= { NULL, NULL };
+	xy_data hor;// = { NULL, NULL };
 
-	offset.x = WINDOW_WIDTH / 2;
-	offset.y = WINDOW_HEIGHT / 3;
+	offset.x  = WINDOW_WIDTH / 2;
+	offset.y  = WINDOW_HEIGHT / 3;
 
 	a = atan(1 / sqrt(2));
 	// a = 1.0;
@@ -89,8 +90,8 @@ void draw_points(m_data *data, t_vars *vars)
 	while(i < data->col)
 	{
 		j = 0;
-		vert.x = NULL;
-		vert.y = NULL;
+		vert.x = 0;
+		vert.y = 0;
 		// col = str_arr_length(matrix[i]);
 		// ft_printf("col:%d\n",col);
 

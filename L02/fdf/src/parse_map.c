@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/17 19:57:48 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:17:05 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,10 @@ int *convert_to_int(char **array, int len)
 		return (NULL);
 	while(array[i])
 	{
-		// temp = ft_atoi(array[i]);
-		// if(temp > 10 || temp < -10)
-		// {
-		// 	#undef HEIGHT_OFFSET;
-		// 	#define HEIGHT_OFFSET = 10;
-		// }
 		res[i] = ft_atoi(array[i]);
 		i++;
 	}
-	res[i] = NULL;
+	// res[i] = (int)NULL;
 	return (free_all(array), res);
 }
 
@@ -49,10 +43,10 @@ int get_file_length(char *file_path)
 
 	file_path = ft_strjoin("test_maps/", file_path);
 	if(file_path == NULL)
-		return (NULL);
+		return (0);
 	fd = open(file_path, O_RDONLY);
-	if(fd == NULL)
-		return (free(file_path), NULL);
+	if(fd == -1)
+		return (free(file_path), 0);
 	free(file_path);
 	res = 0;
 	while(1)
@@ -104,7 +98,7 @@ void parse_map(char *file_path, m_data *data)
 	if(file_path == NULL)
 		return ;
 	fd = open(file_path, O_RDONLY);
-	if(fd == NULL)
+	if(fd == -1)
 		return (free(file_path));
 	free(file_path);
 
@@ -129,7 +123,7 @@ void parse_map(char *file_path, m_data *data)
 		}
 		else
 		{
-			res[i] = NULL;
+			// res[i] = (int)NULL;
 			break;
 		}
 		i++;
@@ -137,5 +131,5 @@ void parse_map(char *file_path, m_data *data)
 	data->matrix = res;
 	// print_matrix(data->matrix, data->col, data->row);
 	close(fd);
-    return	;
+    return;
 }
