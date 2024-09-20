@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 19:30:47 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 23:23:43 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void init_mlx(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if(vars->img == NULL)
 		exit(EXIT_FAILURE);
-	// vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel, &vars->line_length,
-	// 	&vars->endian);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
 	if(vars->addr == NULL)
@@ -49,6 +47,6 @@ int	main(int argc, char *argv[])
 	init_hooks(vars);
 	mlx_loop(vars->mlx);
 
-	puts("does it actually make it here?");
+	// puts("does it actually make it here?");
 	return (0);
 }

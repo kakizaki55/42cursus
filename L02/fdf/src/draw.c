@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/20 21:33:10 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/21 00:23:15 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,92 +29,90 @@ void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
 
 	// if(point1.x == NULL || point2.x == NULL)
 	// 	return ;
-    int x0 = point1.x;
-	int y0 = point1.y;
-    int x1 = point2.x;
-	int y1 = point2.y;
 
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx = (x0 < x1) ? 1 : -1;
-    int sy = (y0 < y1) ? 1 : -1;
+    int dx = abs(point2.x - point1.x);
+    int dy = abs(point2.y - point1.y);
+    int sx = (point1.x < point2.x) ? 1 : -1;
+    int sy = (point1.y < point2.y) ? 1 : -1;
     int err = dx - dy;
+	int e2;
 
-    while (1) {
-        my_mlx_pixel_put(vars, x0, y0, get_color(z_value));
-        if (x0 == x1 && y0 == y1) break;
-        int e2 = err * 2;
+    while (1)
+	{
+        my_mlx_pixel_put(vars, point1.x, point1.y, get_color(z_value));
+
+        if (point1.x == point2.x && point1.y == point2.y)
+			break;
+
+        e2 = err * 2;
+
         if (e2 > -dy) {
             err -= dy;
-            x0 += sx;
+            point1.x += sx;
         }
         if (e2 < dx) {
             err += dx;
-            y0 += sy;
+            point1.y += sy;
         }
     }
 	return ;
 }
 
+void calculate_dest(t_vars *vars, xy_data *dest, int i, int j, float a)
+{
+	dest->x = (j - i) * cos(a) * BLOCK_SIZE;
+    dest->y = ((i + j) * sin(a) - (vars->matrix[i][j]) / HEIGHT_OFFSET ) * BLOCK_SIZE ;
+    dest->x = vars->offset.x + dest->x;
+    dest->y = vars->offset.y + dest->y;
+}
+
+void calculate_above(t_vars *vars, xy_data *above, int i, int j, float a)
+{
+	above->x = (j - i + 1) * cos(a) * BLOCK_SIZE;
+    above->y = ((i + j - 1) * sin(a) - (vars->matrix[i -1][j]) / HEIGHT_OFFSET) * BLOCK_SIZE;
+	above->x = vars->offset.x + above->x;
+	above->y = vars->offset.y + above->y;
+}
+
 
 void draw_points(t_vars *vars)
 {
-	xy_data offset;
+	// xy_data offset;
 	xy_data dest;
 	int i;
 	int j;
 	float a;
-	xy_data vert; //= { NULL, NULL };
-	xy_data hor;// = { NULL, NULL };
+	xy_data prev; //= { NULL, NULL };
+	xy_data above;  // = { NULL, NULL };
 
-	offset.x  = WINDOW_WIDTH / 2;
-	offset.y  = WINDOW_HEIGHT / 3;
+	vars->offset.x  = WINDOW_WIDTH / 2;
+	vars->offset.y  = WINDOW_HEIGHT / 3;
 
+	// a = 0.615480
+	// this determains the angle
 	a = atan(1 / sqrt(2));
-	// a = 1.0;
-
-	// printf("a:%f\n", a);
+	// printf("a:%f", a);
 	i = 0;
-	// print_matrix(data->matrix, data->col, data->row);
-	// ft_printf("row:%d\n", data->row);
-	// ft_printf("col:%d\n", data->col);
-
 	while(i < vars->col)
 	{
 		j = 0;
-		vert.x = 0;
-		vert.y = 0;
-		// col = str_arr_length(matrix[i]);
-		// ft_printf("col:%d\n",col);
-
+		prev.x = 0;
+		prev.y = 0;
 		while(j < vars->row)
         {
-			//what the hell is this?
-            dest.x = (j - i) * cos(a) * BLOCK_SIZE;
-            dest.y = ((i + j) * sin(a) - (vars->matrix[i][j]) / HEIGHT_OFFSET ) * BLOCK_SIZE;
-
-            dest.x = offset.x + dest.x;
-            dest.y = offset.y + dest.y;
-			// ft_printf("dest x: %d\n", (int)dest.x);
-			// ft_printf("dest y: %d\n", (int)dest.y);
+			calculate_dest(vars, &dest, i, j, a);
 			if(i > 0)
 			{
-				//and this?
-				hor.x = (j - i + 1) * cos(a) * BLOCK_SIZE;
-            	hor.y = ((i + j - 1) * sin(a) - (vars->matrix[i -1][j]) / HEIGHT_OFFSET) * BLOCK_SIZE;
-				hor.x = offset.x + hor.x;
-				hor.y = offset.y + hor.y;
-				// ft_printf("z_value :%d\n", vars->matrix[i][j]);
-				draw_line(hor, dest, 0, vars);
+				calculate_above(vars, &above, i, j, a);
+				draw_line(above, dest, vars->matrix[i][j], vars);
 			}
+			if(prev.x && prev.y)
+				draw_line(prev, dest, vars->matrix[i][j], vars);
 
-			if(vert.x && vert.y)
-				draw_line(vert, dest, 0, vars);
-
-			vert.x = dest.x;
-			vert.y = dest.y;
-
-            my_mlx_pixel_put(vars, dest.x, dest.y, get_color(vars->matrix[i][j]));
+			prev.x = dest.x;
+			prev.y = dest.y;
+			// i dont really need this as the line also dras the points
+            // my_mlx_pixel_put(vars, dest.x, dest.y, get_color(vars->matrix[i][j]));
             j++;
         }
 		i++;

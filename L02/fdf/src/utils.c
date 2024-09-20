@@ -44,14 +44,17 @@ void	free_all(char **str)
 
 int get_color(int z_value)
 {
-	if(z_value > 0)
-	{
-		return (0x00FFCC66);
-	} else if (z_value < 0)
-	{
-		return (0x00FFFF00);
-	}
-	return (0x00FF00DD);
+	int color;
+
+	color = 0x0000FF + ( z_value * 1000);
+	// if(z_value > 0)
+	// {
+	// 	return (0x00FFCC66);
+	// } else if (z_value < 0)
+	// {
+	// 	return (0x00FFFF00);
+	// }
+	return (color);
 }
 
 int str_arr_length(char **array)

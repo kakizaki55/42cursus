@@ -6,18 +6,29 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 21:07:34 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/21 00:03:47 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "libft.h"
+# include <libft.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
 # include <mlx.h>
+typedef struct xy_data {
+	int x;
+	int y;
+} 				xy_data;
+
+typedef struct point_data {
+	int	x;
+	int y;
+	int z;
+	int color;
+}				p_data;
 
 typedef struct s_vars
 {
@@ -31,24 +42,10 @@ typedef struct s_vars
 	int 	**matrix;
 	int 	row;
 	int 	col;
+	xy_data offset;
 }				t_vars;
 
-typedef struct point_data {
-	int	x;
-	int y;
-	int z;
-	int color;
-}				p_data;
 
-typedef struct xy_data {
-	int x;
-	int y;
-} 				xy_data;
-
-
-
-#define TRUE 1
-#define FALSE 0
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
 #define BLOCK_SIZE 30
@@ -65,7 +62,6 @@ typedef enum s_hooks
 	ON_DESTROY = 17,
 	ESC = 65307
 }				t_hooks;
-
 
 //utils.c
 void 	print_img(t_vars vars);
