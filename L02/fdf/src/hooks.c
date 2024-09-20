@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 17:19:54 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 19:33:43 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 int close_window(t_vars *vars)
 {
 
-	// if(key == NULL)
-
-	if (vars == NULL || vars->mlx == NULL || vars->win == NULL ||vars->img == NULL)
-	{
-		printf("checking to see if close works");
-	}
+	// if (vars == NULL || vars->mlx == NULL || vars->win == NULL ||vars->img == NULL)
+	// {
+	// 	printf("checking to see if close works");
+	// }
 
 	mlx_destroy_image(vars->mlx, vars->img);
 	mlx_destroy_window(vars->mlx, vars->win);
-	// free(vars); // i dont need this??
+	mlx_destroy_display(vars->mlx);
 	free_matrix(vars->matrix);
+	free(vars->mlx);
 	free(vars);
 	exit(EXIT_SUCCESS);
 	return(0);
@@ -33,23 +32,20 @@ int close_window(t_vars *vars)
 
 int close_window_with_key(int key, t_vars *vars)
 {
-	//# define ESC 65307
-
-	if (vars == NULL || vars->mlx == NULL || vars->win == NULL ||vars->img == NULL)
-	{
-		printf("checking to see if close works");
-	}
+	// if (vars == NULL || vars->mlx == NULL || vars->win == NULL ||vars->img == NULL)
+	// {
+	// 	printf("checking to see if close works");
+	// }
 
 	if(key == ESC)
 	{
 		mlx_destroy_image(vars->mlx, vars->img);
 		mlx_destroy_window(vars->mlx, vars->win);
-		// clean_up_vars(vars);
-		// free(vars);
+		mlx_destroy_display(vars->mlx);
 		free_matrix(vars->matrix);
+		free(vars->mlx);
 		free(vars);
 		exit(EXIT_SUCCESS);
-
 	}
 	// free_vars(vars);
 	// exit(EXIT_SUCCESS);
