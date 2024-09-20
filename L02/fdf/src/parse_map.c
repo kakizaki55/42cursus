@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 17:19:00 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 21:31:03 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int *convert_to_int(char **array, int len)
 		res[i] = ft_atoi(array[i]);
 		i++;
 	}
-	// res[i] = (int)NULL;
 	return (free_all(array), res);
 }
 
@@ -40,7 +39,6 @@ int get_file_length(char *file_path)
 	char 	*str;
 
 	// TODO: will add donditinal for different kinds of paths here
-
 	file_path = ft_strjoin("test_maps/", file_path);
 	if(file_path == NULL)
 		return (0);
@@ -52,55 +50,61 @@ int get_file_length(char *file_path)
 	while(1)
 	{
 		str = get_next_line(fd);
-		// ft_printf("%s\n", str);
 		if(str == NULL)
 			break;
 		free(str);
 		res ++;
 	}
-	// puts("does it leave the loop?");
 	close(fd);
-	// ft_printf("file_len 1: %d\n", res);
 	return (res);
 }
+
+// void init_parse(char *file_path, t_vars *vars, int *fd)
+// {
+// 	vars->col = get_file_length(*file_path);
+// 	if(vars->col == 0)
+// 		distroy_and_exit(vars, EXIT_FAILURE);
+
+// 	vars->matrix = (int **)ft_calloc(sizeof(int*), vars->col + 1);
+// 	if(vars->matrix == NULL)
+// 		distroy_and_exit(vars, EXIT_FAILURE);
+
+// 	*file_path = ft_strjoin("test_maps/", file_path);
+// 	if(*file_path == NULL)
+// 		distroy_and_exit(vars, EXIT_FAILURE);
+
+// 	*fd = open(file_path, O_RDONLY);
+// 	free(file_path);
+// 	if(*fd == -1)
+// 		distroy_and_exit(vars, EXIT_FAILURE);
+// }
 
 
 void parse_map(char *file_path, t_vars *vars)
 {
-	char	*str;
-	int 	fd;
-
-    int     **res;
-	char	**array;
 	int 	i;
-
-
-	int file_length;
-	// int arr_length;
-
-	// file_length = get_file_length(file_path);
+	int 	fd;
+	char	*str;
+	char	**array;
 
 	vars->col = get_file_length(file_path);
-	// ft_printf("file_len 2:%d\n", vars->col);
+	if(vars->col == 0)
+		distroy_and_exit(vars, EXIT_FAILURE);
 
-
-	res = (int **)ft_calloc(sizeof(int*), vars->col + 1);
-	if(res == NULL)
-		return ;
-
-	// file_path = ft_strjoin("test_maps/", file_path);
-
-	// fd = open(file_path, O_RDONLY);
-	// if(fd == NULL)
-	// 	return ;
+	vars->matrix = (int **)ft_calloc(sizeof(int*), vars->col + 1);
+	if(vars->matrix == NULL)
+		distroy_and_exit(vars, EXIT_FAILURE);
 
 	file_path = ft_strjoin("test_maps/", file_path);
 	if(file_path == NULL)
-		return ;
+		distroy_and_exit(vars, EXIT_FAILURE);
+
 	fd = open(file_path, O_RDONLY);
-	if(fd == -1)
-		return (free(file_path));
 	free(file_path);
+	if(fd == -1)
+		distroy_and_exit(vars, EXIT_FAILURE);
+
+	// init_parse(file_path, vars, &fd);
 
 	i = 0;
 	while (1)
@@ -108,28 +112,20 @@ void parse_map(char *file_path, t_vars *vars)
 		str = get_next_line(fd);
 		if (str)
 		{
-			// puts("check start 3");
 			array = ft_split(str, ' ');
 			if(array == NULL)
-				return ;
-			// ft_printf("length:%d\n" , str_arr_length(array));
-			// arr_length = str_arr_length(array);
-			// print_arr(array, str_arr_length(array));
+				distroy_and_exit(vars, EXIT_FAILURE);
 			vars->row = str_arr_length(array);
-
-
-			res[i] = convert_to_int(array, vars->row);
+			vars->matrix[i] = convert_to_int(array, vars->row);
 			free(str);
 		}
 		else
 		{
-			// res[i] = (int)NULL;
 			break;
 		}
+
 		i++;
 	}
-	vars->matrix = res;
-	// print_matrix(data->matrix, data->col, data->row);
 	close(fd);
-    return;
+    return ;
 }

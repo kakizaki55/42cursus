@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 19:33:43 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 21:08:16 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,8 @@ int close_window(t_vars *vars)
 	// {
 	// 	printf("checking to see if close works");
 	// }
-
-	mlx_destroy_image(vars->mlx, vars->img);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
-	free_matrix(vars->matrix);
-	free(vars->mlx);
-	free(vars);
-	exit(EXIT_SUCCESS);
+	distroy_and_exit(vars, EXIT_SUCCESS);
+	// exit(EXIT_SUCCESS);
 	return(0);
 }
 
@@ -36,19 +30,10 @@ int close_window_with_key(int key, t_vars *vars)
 	// {
 	// 	printf("checking to see if close works");
 	// }
-
 	if(key == ESC)
 	{
-		mlx_destroy_image(vars->mlx, vars->img);
-		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		free_matrix(vars->matrix);
-		free(vars->mlx);
-		free(vars);
-		exit(EXIT_SUCCESS);
+		distroy_and_exit(vars, EXIT_SUCCESS);
 	}
-	// free_vars(vars);
-	// exit(EXIT_SUCCESS);
 	return(0);
 }
 

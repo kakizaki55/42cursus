@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/20 17:14:31 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 21:33:10 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,13 @@
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
-	// if(data->img == NULL);
-	// 	return ;
-	// printf("x:%d\n", x);
-	// printf("y:%d\n", y);
-	// printf("color:%x\n", color);
-	// print_img(*data);
 
 	dst = NULL;
 	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
 	{
 		dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
-
 	}
-
 }
 
 void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)

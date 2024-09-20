@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 19:19:17 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 21:07:34 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void 	draw_points(t_vars *vars);
 void 	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars);
 
 //cleanup.c
-void 	free_vars(t_vars *vars);
+void 	distroy_vars(t_vars *vars);
+void 	distroy_and_exit(t_vars *vars, int error_code);
 void 	free_matrix(int **matrix);
 
 //hooks.c
