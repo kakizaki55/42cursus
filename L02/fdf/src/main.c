@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 16:33:14 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:15:19 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 	void init_mlx(t_vars *vars)
 	{
-		// vars = (t_vars *)malloc(sizeof(t_vars));
-		// if (vars == NULL)
-		// 	return ;
 		vars->mlx = mlx_init();
 		if(vars->mlx == NULL)
 			exit(EXIT_FAILURE);
@@ -35,17 +32,16 @@
 	}
 int	main(int argc, char *argv[])
 {
-	m_data 	*data;
+	// m_data 	*data;
 	t_vars 	*vars;
 
 
 	// parsing map
 
-	data = ft_calloc(sizeof(m_data), 1);
-	if(data == NULL)
-		return (EXIT_FAILURE);
+	// data = ft_calloc(sizeof(m_data), 1);
+	// if(data == NULL)
+	// 	return (EXIT_FAILURE);
 
-	parse_map(argv[1], data);
 	// print_matrix(data->matrix, data->col, data->row);
 	// ft_printf("row:%d\n", data->row);
 	// ft_printf("col:%d\n", data->col);
@@ -54,6 +50,7 @@ int	main(int argc, char *argv[])
 	vars = ft_calloc(sizeof(t_vars), 1);
 	if(vars == NULL)
 		return(EXIT_FAILURE);
+	parse_map(argv[1], vars);
 	init_mlx(vars);
 	//this also needs to be number of rows in the matrix right ow its set to 42.fdf
 
@@ -64,7 +61,8 @@ int	main(int argc, char *argv[])
 
 	// draw_points(data.matrix, &vars->img, data.row , data.col);
 
-	draw_points(data, vars);
+	draw_points(vars);
+	// free_m_data(data);
 
 	// dprintf(STDERR_FILENO, "begin check segv\n");
 	// dprintf(STDERR_FILENO, "end check segv\n");

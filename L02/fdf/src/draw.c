@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/20 15:18:49 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:14:31 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
 }
 
 
-void draw_points(m_data *data, t_vars *vars)
+void draw_points(t_vars *vars)
 {
 	xy_data offset;
 	xy_data dest;
@@ -87,7 +87,7 @@ void draw_points(m_data *data, t_vars *vars)
 	// ft_printf("row:%d\n", data->row);
 	// ft_printf("col:%d\n", data->col);
 
-	while(i < data->col)
+	while(i < vars->col)
 	{
 		j = 0;
 		vert.x = 0;
@@ -95,11 +95,11 @@ void draw_points(m_data *data, t_vars *vars)
 		// col = str_arr_length(matrix[i]);
 		// ft_printf("col:%d\n",col);
 
-		while(j < data->row)
+		while(j < vars->row)
         {
 			//what the hell is this?
             dest.x = (j - i) * cos(a) * BLOCK_SIZE;
-            dest.y = ((i + j) * sin(a) - (data->matrix[i][j]) / HEIGHT_OFFSET ) * BLOCK_SIZE;
+            dest.y = ((i + j) * sin(a) - (vars->matrix[i][j]) / HEIGHT_OFFSET ) * BLOCK_SIZE;
 
             dest.x = offset.x + dest.x;
             dest.y = offset.y + dest.y;
@@ -109,10 +109,10 @@ void draw_points(m_data *data, t_vars *vars)
 			{
 				//and this?
 				hor.x = (j - i + 1) * cos(a) * BLOCK_SIZE;
-            	hor.y = ((i + j - 1) * sin(a) - (data->matrix[i -1][j]) / HEIGHT_OFFSET) * BLOCK_SIZE;
+            	hor.y = ((i + j - 1) * sin(a) - (vars->matrix[i -1][j]) / HEIGHT_OFFSET) * BLOCK_SIZE;
 				hor.x = offset.x + hor.x;
 				hor.y = offset.y + hor.y;
-				// ft_printf("z_value :%d\n", data->matrix[i][j]);
+				// ft_printf("z_value :%d\n", vars->matrix[i][j]);
 				draw_line(hor, dest, 0, vars);
 			}
 
@@ -122,7 +122,7 @@ void draw_points(m_data *data, t_vars *vars)
 			vert.x = dest.x;
 			vert.y = dest.y;
 
-            my_mlx_pixel_put(vars, dest.x, dest.y, get_color(data->matrix[i][j]));
+            my_mlx_pixel_put(vars, dest.x, dest.y, get_color(vars->matrix[i][j]));
             j++;
         }
 		i++;

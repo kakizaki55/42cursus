@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 15:03:31 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:19:54 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int close_window(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	// free(vars); // i dont need this??
+	free_matrix(vars->matrix);
+	free(vars);
 	exit(EXIT_SUCCESS);
 	return(0);
 }
@@ -44,6 +46,8 @@ int close_window_with_key(int key, t_vars *vars)
 		mlx_destroy_window(vars->mlx, vars->win);
 		// clean_up_vars(vars);
 		// free(vars);
+		free_matrix(vars->matrix);
+		free(vars);
 		exit(EXIT_SUCCESS);
 
 	}

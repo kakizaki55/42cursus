@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 15:17:05 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:19:00 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int get_file_length(char *file_path)
 }
 
 
-void parse_map(char *file_path, m_data *data)
+void parse_map(char *file_path, t_vars *vars)
 {
 	char	*str;
 	int 	fd;
@@ -80,11 +80,11 @@ void parse_map(char *file_path, m_data *data)
 
 	// file_length = get_file_length(file_path);
 
-	data->col = get_file_length(file_path);
-	// ft_printf("file_len 2:%d\n", data->col);
+	vars->col = get_file_length(file_path);
+	// ft_printf("file_len 2:%d\n", vars->col);
 
 
-	res = (int **)ft_calloc(sizeof(int*), data->col + 1);
+	res = (int **)ft_calloc(sizeof(int*), vars->col + 1);
 	if(res == NULL)
 		return ;
 
@@ -115,10 +115,10 @@ void parse_map(char *file_path, m_data *data)
 			// ft_printf("length:%d\n" , str_arr_length(array));
 			// arr_length = str_arr_length(array);
 			// print_arr(array, str_arr_length(array));
-			data->row = str_arr_length(array);
+			vars->row = str_arr_length(array);
 
 
-			res[i] = convert_to_int(array, data->row);
+			res[i] = convert_to_int(array, vars->row);
 			free(str);
 		}
 		else
@@ -128,7 +128,7 @@ void parse_map(char *file_path, m_data *data)
 		}
 		i++;
 	}
-	data->matrix = res;
+	vars->matrix = res;
 	// print_matrix(data->matrix, data->col, data->row);
 	close(fd);
     return;

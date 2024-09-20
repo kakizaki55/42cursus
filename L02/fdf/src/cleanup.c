@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:09:18 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/16 15:52:05 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:16:47 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,53 @@ void free_vars(t_vars *vars)
     return ;
 }
 
-void free_data(m_data *data)
-{
-    if(data && data->matrix)
-        free(data->matrix);
+// void free_matrix(int **matrix, int row, int col)
+// {
+//     int i;
+//     int j;
 
-    free(data);
-    return ;
+//     // if (!matrix || row == 0 || col == 0)
+//     //     return;
+
+//     i = 0;
+//     j = 0;
+//     while(i < col)
+//     {
+//         free(matrix[i]);
+//         i++;
+//     }
+// }
+
+// void free_m_data( *data) {
+//     if (data == NULL) {
+//         return;
+//     }
+
+//     if (data->matrix != NULL) {
+//         for (int i = 0; i < data->row; i++) {
+//             if (data->matrix[i] != NULL) {
+//                 free(data->matrix[i]);
+//                 data->matrix[i] = NULL;
+//             }
+//         }
+//         free(data->matrix);
+//         data->matrix = NULL;
+//     }
+
+//     // Note: We're not freeing 'data' itself here
+//     data->row = 0;
+//     data->col = 0;
+// }
+
+void	free_matrix(int **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
