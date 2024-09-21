@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 18:18:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:33:26 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,27 @@ int key_hooks(int key, t_vars *vars)
 	if(key == S)
 		vars->offset.y -= 10;
 	if(key == UP && vars->block_size < INT_MAX)
+	{
 		vars->block_size += 1;
+		vars->offset.x -= 3;
+		vars->offset.y -= 3;
+	}
 	if(key == DOWN && vars->block_size > 1)
+	{
 		vars->block_size -= 1;
+		vars->offset.x += 3;
+		vars->offset.y += 3;
+	}
+	if(key == LEFT && vars->a < .8)
+	{
+		vars->a += .01;
+	}
+	if(key == RIGHT && vars->a > 0)
+	{
+		vars->a -= .01;
+	}
 	
-	printf("keys is: %d", key); fflush(stdout);
+	printf("a is: %f", vars->a); fflush(stdout);
 	return(0);
 }
 
@@ -60,7 +76,7 @@ int	render_next_frame(t_vars *vars)
 	if(vars->img == NULL)
 		exit(EXIT_FAILURE);
 	// ft_printf("offset X/Y: %d\n", vars->offset); fflush(stdout);
-	ft_printf("BLOCK_SIZE: %d\n", vars->block_size); fflush(stdout);
+	// ft_printf("BLOCK_SIZE: %d\n", vars->block_size); fflush(stdout);
 	draw_points(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }

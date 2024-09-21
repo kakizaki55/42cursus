@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 18:09:00 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:09:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_vars
 	int 	col;
 	xy_data offset;
 	int 	block_size;
+	float	a;
 }				t_vars;
 
 

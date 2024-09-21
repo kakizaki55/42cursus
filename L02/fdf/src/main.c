@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 18:11:18 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:09:15 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char *argv[])
 	vars->offset.x  = WINDOW_WIDTH / 2;
 	vars->offset.y  = WINDOW_HEIGHT / 3;
 	vars->block_size = 30;
+	vars->a = atan(1 / sqrt(2));
 
 	parse_map(argv[1], vars);
 	init_mlx(vars);

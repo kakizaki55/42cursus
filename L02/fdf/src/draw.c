@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/21 18:13:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/21 20:19:26 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,41 +74,36 @@ void calculate_above(t_vars *vars, xy_data *above, int i, int j, float a)
 	above->y = vars->offset.y + above->y;
 }
 
+void reset_rows(int *j, xy_data *prev)
+{
+	*j = 0;
+	prev->x = 0;
+	prev->y = 0;
+	return;
+}
 
 void draw_points(t_vars *vars)
 {
-	// xy_data offset;
-	xy_data dest;
 	int i;
 	int j;
-	float a;
-	xy_data prev; //= { NULL, NULL };
-	xy_data above;  // = { NULL, NULL };
+	xy_data dest;
+	xy_data prev;
+	xy_data above;
 
-	// if(!vars->block_size)
-	// 	vars->block_size = 30;
-
-	// a = 0.615480
-	// this determains the angle
-	a = atan(1 / sqrt(2));
-	// printf("a:%f", a);
 	i = 0;
 	while(i < vars->col)
 	{
-		j = 0;
-		prev.x = 0;
-		prev.y = 0;
+		reset_rows(&j, &prev);
 		while(j < vars->row)
         {
-			calculate_dest(vars, &dest, i, j, a);
+			calculate_dest(vars, &dest, i, j, vars->a);
 			if(i > 0)
 			{
-				calculate_above(vars, &above, i, j, a);
+				calculate_above(vars, &above, i, j, vars->a);
 				draw_line(above, dest, vars->matrix[i][j], vars);
 			}
 			if(prev.x && prev.y)
 				draw_line(prev, dest, vars->matrix[i][j], vars);
-
 			prev.x = dest.x;
 			prev.y = dest.y;
 			// i dont really need this as the line also dras the points
