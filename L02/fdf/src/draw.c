@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/21 00:23:15 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:53:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void draw_points(t_vars *vars)
 	xy_data prev; //= { NULL, NULL };
 	xy_data above;  // = { NULL, NULL };
 
-	vars->offset.x  = WINDOW_WIDTH / 2;
-	vars->offset.y  = WINDOW_HEIGHT / 3;
+	if(!vars->block_size)
+		vars->block_size = 30;
 
 	// a = 0.615480
 	// this determains the angle

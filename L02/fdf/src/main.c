@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 23:23:43 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/21 17:14:31 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ int	main(int argc, char *argv[])
 	vars = ft_calloc(sizeof(t_vars), 1);
 	if(vars == NULL)
 		return(EXIT_FAILURE);
-
+	vars->offset.x  = WINDOW_WIDTH / 2;
+	vars->offset.y  = WINDOW_HEIGHT / 3;
 	parse_map(argv[1], vars);
 	init_mlx(vars);
+	print_menu(vars);
 	draw_points(vars);
-
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	init_hooks(vars);
 	mlx_loop(vars->mlx);

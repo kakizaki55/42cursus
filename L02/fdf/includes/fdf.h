@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 00:03:47 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/21 16:11:49 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_vars
 	int 	row;
 	int 	col;
 	xy_data offset;
+	int 	block_size;
 }				t_vars;
 
 
@@ -60,7 +61,11 @@ typedef enum s_hooks
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17,
-	ESC = 65307
+	ESC = 65307,
+	A = 97, 
+	W = 119, 
+	S = 115, 
+	D = 100
 }				t_hooks;
 
 //utils.c
@@ -89,6 +94,9 @@ void 	free_matrix(int **matrix);
 int		close_window(t_vars *vars);
 int 	close_window_with_key(int key, t_vars *vars);
 void 	init_hooks(t_vars *vars);
+
+//introduction.c
+void	print_menu(t_vars *vars);
 
 
 #endif
