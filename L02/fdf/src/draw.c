@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/21 15:53:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:13:37 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
 
 void calculate_dest(t_vars *vars, xy_data *dest, int i, int j, float a)
 {
-	dest->x = (j - i) * cos(a) * BLOCK_SIZE;
-    dest->y = ((i + j) * sin(a) - (vars->matrix[i][j]) / HEIGHT_OFFSET ) * BLOCK_SIZE ;
+	dest->x = (j - i) * cos(a) * vars->block_size;
+    dest->y = ((i + j) * sin(a) - (vars->matrix[i][j]) / HEIGHT_OFFSET ) * vars->block_size;
     dest->x = vars->offset.x + dest->x;
     dest->y = vars->offset.y + dest->y;
 }
 
 void calculate_above(t_vars *vars, xy_data *above, int i, int j, float a)
 {
-	above->x = (j - i + 1) * cos(a) * BLOCK_SIZE;
-    above->y = ((i + j - 1) * sin(a) - (vars->matrix[i -1][j]) / HEIGHT_OFFSET) * BLOCK_SIZE;
+	above->x = (j - i + 1) * cos(a) * vars->block_size;
+    above->y = ((i + j - 1) * sin(a) - (vars->matrix[i -1][j]) / HEIGHT_OFFSET) * vars->block_size;
 	above->x = vars->offset.x + above->x;
 	above->y = vars->offset.y + above->y;
 }
@@ -85,8 +85,8 @@ void draw_points(t_vars *vars)
 	xy_data prev; //= { NULL, NULL };
 	xy_data above;  // = { NULL, NULL };
 
-	if(!vars->block_size)
-		vars->block_size = 30;
+	// if(!vars->block_size)
+	// 	vars->block_size = 30;
 
 	// a = 0.615480
 	// this determains the angle

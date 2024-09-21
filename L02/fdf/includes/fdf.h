@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 16:11:49 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:09:00 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ typedef enum s_hooks
 	A = 97, 
 	W = 119, 
 	S = 115, 
-	D = 100
+	D = 100,
+	UP = 65362,
+	DOWN = 65364,
+	LEFT = 65361,
+	RIGHT = 65363,
 }				t_hooks;
 
 //utils.c
