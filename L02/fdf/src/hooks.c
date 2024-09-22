@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 20:33:26 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:04:28 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int key_hooks(int key, t_vars *vars)
 	{
 		distroy_and_exit(vars, EXIT_SUCCESS);
 	}
+	//Camera movemnt
 	if(key == A)
 		vars->offset.x += 10;
 	if(key == W)
@@ -42,6 +43,7 @@ int key_hooks(int key, t_vars *vars)
 		vars->offset.x -= 10;
 	if(key == S)
 		vars->offset.y -= 10;
+	// ZOOM controls
 	if(key == UP && vars->block_size < INT_MAX)
 	{
 		vars->block_size += 1;
@@ -54,7 +56,8 @@ int key_hooks(int key, t_vars *vars)
 		vars->offset.x += 3;
 		vars->offset.y += 3;
 	}
-	if(key == LEFT && vars->a < .8)
+	//Angle controls
+	if(key == LEFT && vars->a < .5)
 	{
 		vars->a += .01;
 	}
@@ -62,14 +65,13 @@ int key_hooks(int key, t_vars *vars)
 	{
 		vars->a -= .01;
 	}
-	
-	printf("a is: %f", vars->a); fflush(stdout);
+
+	// printf("a is: %f", vars->a); fflush(stdout);
 	return(0);
 }
 
 int	render_next_frame(t_vars *vars)
 {
-	// puts("this should come out in the console");
 	if(vars && vars->img)
         mlx_destroy_image(vars->mlx, vars->img);
 	vars->img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -97,9 +99,9 @@ void init_hooks(t_vars *vars)
 }
 
 
-int	mouse_press(int button, int x, int y, void *param);
+// int	mouse_press(int button, int x, int y, void *param);
 
-// 
+//
 // int			mouse_press(int button, int x, int y, void *param)
 // {move_hook
 // 	t_fdf	*fdf;

@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 21:31:03 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/22 17:29:08 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int *convert_to_int(char **array, int len)
 	int temp;
 
 	i = 0;
-	res = ft_calloc(sizeof(int), len + 1);
+	res = ft_calloc(sizeof(int), len);
 	if( res == NULL)
 		return (NULL);
 	while(array[i])
@@ -59,34 +59,8 @@ int get_file_length(char *file_path)
 	return (res);
 }
 
-// void init_parse(char *file_path, t_vars *vars, int *fd)
-// {
-// 	vars->col = get_file_length(*file_path);
-// 	if(vars->col == 0)
-// 		distroy_and_exit(vars, EXIT_FAILURE);
-
-// 	vars->matrix = (int **)ft_calloc(sizeof(int*), vars->col + 1);
-// 	if(vars->matrix == NULL)
-// 		distroy_and_exit(vars, EXIT_FAILURE);
-
-// 	*file_path = ft_strjoin("test_maps/", file_path);
-// 	if(*file_path == NULL)
-// 		distroy_and_exit(vars, EXIT_FAILURE);
-
-// 	*fd = open(file_path, O_RDONLY);
-// 	free(file_path);
-// 	if(*fd == -1)
-// 		distroy_and_exit(vars, EXIT_FAILURE);
-// }
-
-
-void parse_map(char *file_path, t_vars *vars)
+void init_parse(char *file_path, t_vars *vars, int *fd)
 {
-	int 	i;
-	int 	fd;
-	char	*str;
-	char	**array;
-
 	vars->col = get_file_length(file_path);
 	if(vars->col == 0)
 		distroy_and_exit(vars, EXIT_FAILURE);
@@ -99,13 +73,21 @@ void parse_map(char *file_path, t_vars *vars)
 	if(file_path == NULL)
 		distroy_and_exit(vars, EXIT_FAILURE);
 
-	fd = open(file_path, O_RDONLY);
+	*fd = open(file_path, O_RDONLY);
 	free(file_path);
-	if(fd == -1)
+	if(*fd == -1)
 		distroy_and_exit(vars, EXIT_FAILURE);
+}
 
-	// init_parse(file_path, vars, &fd);
 
+void parse_map(char *file_path, t_vars *vars)
+{
+	int 	i;
+	int 	fd;
+	char	*str;
+	char	**array;
+
+	init_parse(file_path, vars, &fd);
 	i = 0;
 	while (1)
 	{
@@ -120,10 +102,7 @@ void parse_map(char *file_path, t_vars *vars)
 			free(str);
 		}
 		else
-		{
 			break;
-		}
-
 		i++;
 	}
 	close(fd);
