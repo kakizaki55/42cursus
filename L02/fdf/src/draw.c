@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/21 20:19:26 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:50:31 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,39 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	}
 }
 
+void init_steps(xy_data *dest, xy_data *step, xy_data *point1, xy_data *point2)
+{
+	dest->x = abs(point2->x - point1->x);
+    dest->y = abs(point2->y - point1->y);
+    step->x = (point1->x < point2->x) ? 1 : -1;
+    step->y = (point1->y < point2->y) ? 1 : -1;
+}
+
 void draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
 {
-
-	// if(point1.x == NULL || point2.x == NULL)
-	// 	return ;
-
-    int dx = abs(point2.x - point1.x);
-    int dy = abs(point2.y - point1.y);
-    int sx = (point1.x < point2.x) ? 1 : -1;
-    int sy = (point1.y < point2.y) ? 1 : -1;
-    int err = dx - dy;
+	xy_data dest;
+	xy_data step;
+	int err;
 	int e2;
 
+	init_steps(&dest, &step, &point1, &point2);
+    err = dest.x - dest.y;
+	e2;
     while (1)
 	{
         my_mlx_pixel_put(vars, point1.x, point1.y, get_color(z_value));
-
         if (point1.x == point2.x && point1.y == point2.y)
 			break;
-
         e2 = err * 2;
-
-        if (e2 > -dy) {
-            err -= dy;
-            point1.x += sx;
+        if (e2 > -dest.y)
+		{
+            err -= dest.y;
+            point1.x += step.x;
         }
-        if (e2 < dx) {
-            err += dx;
-            point1.y += sy;
+        if (e2 < dest.x)
+		{
+            err += dest.x;
+            point1.y += step.y;
         }
     }
 	return ;
@@ -69,7 +73,7 @@ void calculate_dest(t_vars *vars, xy_data *dest, int i, int j, float a)
 void calculate_above(t_vars *vars, xy_data *above, int i, int j, float a)
 {
 	above->x = (j - i + 1) * cos(a) * vars->block_size;
-    above->y = ((i + j - 1) * sin(a) - (vars->matrix[i -1][j]) / HEIGHT_OFFSET) * vars->block_size;
+    above->y = ((i + j - 1) * sin(a) - (vars->matrix[i - 1][j]) / HEIGHT_OFFSET) * vars->block_size;
 	above->x = vars->offset.x + above->x;
 	above->y = vars->offset.y + above->y;
 }
