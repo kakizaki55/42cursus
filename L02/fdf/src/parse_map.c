@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/22 17:29:08 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/22 20:32:14 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,44 @@ int get_file_length(char *file_path)
 	return (res);
 }
 
+int check_file_fdf(char *filename)
+{
+	int res;
+	int len;
+	if(filename == NULL)
+		return (-1);
+    len = ft_strlen(filename);
+
+    if (len < 4)
+        return (-1);
+
+	res = ft_strncmp(filename + len - 4, ".fdf", 4);
+	// ft_printf("res%d\n", res);
+    return (res);
+}
+
 void init_parse(char *file_path, t_vars *vars, int *fd)
 {
+	if(check_file_fdf(file_path) != 0)
+		distroy_and_exit(vars, EXIT_FAILURE, "Not .fdf file");
+
 	vars->col = get_file_length(file_path);
 	if(vars->col == 0)
-		distroy_and_exit(vars, EXIT_FAILURE);
+		distroy_and_exit(vars, EXIT_FAILURE, "Failed to get file length");
 
 	vars->matrix = (int **)ft_calloc(sizeof(int*), vars->col + 1);
 	if(vars->matrix == NULL)
-		distroy_and_exit(vars, EXIT_FAILURE);
+		distroy_and_exit(vars, EXIT_FAILURE, "Failed to allocate matrix block");
 
 	file_path = ft_strjoin("test_maps/", file_path);
 	if(file_path == NULL)
-		distroy_and_exit(vars, EXIT_FAILURE);
+		distroy_and_exit(vars, EXIT_FAILURE, "Failed to create file path");
 
 	*fd = open(file_path, O_RDONLY);
 	free(file_path);
 	if(*fd == -1)
-		distroy_and_exit(vars, EXIT_FAILURE);
+		distroy_and_exit(vars, EXIT_FAILURE, "Failed to open file");
 }
-
 
 void parse_map(char *file_path, t_vars *vars)
 {
@@ -96,7 +114,7 @@ void parse_map(char *file_path, t_vars *vars)
 		{
 			array = ft_split(str, ' ');
 			if(array == NULL)
-				distroy_and_exit(vars, EXIT_FAILURE);
+				distroy_and_exit(vars, EXIT_FAILURE, "Failed to parse map");
 			vars->row = str_arr_length(array);
 			vars->matrix[i] = convert_to_int(array, vars->row);
 			free(str);

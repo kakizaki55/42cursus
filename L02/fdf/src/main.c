@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:55:32 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 20:09:15 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/22 19:50:24 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void init_mlx(t_vars *vars)
 	vars->mlx = mlx_init();
 	if(vars->mlx == NULL)
 		exit(EXIT_FAILURE);
-	vars->win = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF!");
+	vars->win = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	if(vars->win == NULL)
 		exit(EXIT_FAILURE);
 	vars->img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -48,7 +48,6 @@ int	main(int argc, char *argv[])
 	init_mlx(vars);
 	print_menu(vars);
 	draw_points(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	init_hooks(vars);
 	mlx_loop(vars->mlx);
 

@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:27:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/22 17:04:28 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/22 20:00:53 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int close_window(t_vars *vars)
 	// {
 	// 	printf("checking to see if close works");
 	// }
-	distroy_and_exit(vars, EXIT_SUCCESS);
+	distroy_and_exit(vars, EXIT_SUCCESS, NULL);
 	// exit(EXIT_SUCCESS);
 	return(0);
 }
@@ -32,7 +32,7 @@ int key_hooks(int key, t_vars *vars)
 	// }
 	if(key == ESC)
 	{
-		distroy_and_exit(vars, EXIT_SUCCESS);
+		distroy_and_exit(vars, EXIT_SUCCESS, NULL);
 	}
 	//Camera movemnt
 	if(key == A)
@@ -78,11 +78,12 @@ int	render_next_frame(t_vars *vars)
 	if(vars->img == NULL)
 		exit(EXIT_FAILURE);
 	// ft_printf("offset X/Y: %d\n", vars->offset); fflush(stdout);
-	// ft_printf("BLOCK_SIZE: %d\n", vars->block_size); fflush(stdout);
 	draw_points(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
+
+//mouse movemne tis a work in progres
 int mouse_hook(int button, int x, int y, t_vars *vars)
 {
 	int mouse_event;
@@ -93,7 +94,7 @@ void init_hooks(t_vars *vars)
 {
 	mlx_hook(vars->win, ON_KEYDOWN, 1L << 0, key_hooks, vars);
 	mlx_hook(vars->win, ON_DESTROY, 1L << 17, close_window, vars);
-	mlx_hook(vars->win, ON_MOUSEMOVE, 0, mouse_hook, vars);
+	// mlx_hook(vars->win, ON_MOUSEMOVE, 0, mouse_hook, vars);
 	// mlx_hook(vars->win, ON_MOUSEDOWN, 0, mouse_move, vars);
 	mlx_loop_hook(vars->mlx, render_next_frame, vars);
 }

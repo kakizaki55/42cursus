@@ -68,7 +68,7 @@ int get_color(int z_value)
     z_value = z_value % 1530;  // Ensure z_value wraps around
     if (z_value < 255) {
         r = z_value;
-        g = 255;
+        g = 200;
         b = 0;
     } else if (z_value < 510) {
         r = 255;

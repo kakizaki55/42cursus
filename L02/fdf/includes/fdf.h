@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/21 20:09:10 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/22 20:31:27 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_vars
 
 #define WINDOW_WIDTH 1920
 #define WINDOW_HEIGHT 1080
-#define BLOCK_SIZE 30
 #define HEIGHT_OFFSET 1
 
 typedef enum s_hooks
@@ -63,9 +62,9 @@ typedef enum s_hooks
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17,
 	ESC = 65307,
-	A = 97, 
-	W = 119, 
-	S = 115, 
+	A = 97,
+	W = 119,
+	S = 115,
 	D = 100,
 	UP = 65362,
 	DOWN = 65364,
@@ -92,12 +91,12 @@ void 	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars);
 
 //cleanup.c
 void 	distroy_vars(t_vars *vars);
-void 	distroy_and_exit(t_vars *vars, int error_code);
+void 	distroy_and_exit(t_vars *vars, int error_code, char * message);
 void 	free_matrix(int **matrix);
 
 //hooks.c
 int		close_window(t_vars *vars);
-int 	close_window_with_key(int key, t_vars *vars);
+// int 	close_window_with_key(int key, t_vars *vars);
 void 	init_hooks(t_vars *vars);
 
 //introduction.c

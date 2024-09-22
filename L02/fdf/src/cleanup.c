@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 20:09:18 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/20 21:06:46 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/22 20:43:17 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void distroy_vars(t_vars *vars)
     return ;
 }
 
-void distroy_and_exit(t_vars *vars, int error_code)
+void distroy_and_exit(t_vars *vars, int error_code, char *message)
 {
     distroy_vars(vars);
+	if(message)
+		perror(message);
     exit(error_code);
 }
 
