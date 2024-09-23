@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:09:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/23 18:16:23 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:41:41 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,62 @@ int	color_hex(int t, unsigned int r, unsigned int g, unsigned int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+void	set_seg_1(t_c_data *color, int seg, int offset)
+{
+	color->r = 200;
+	if (seg == 0)
+		color->g = offset;
+	else
+		color->g = 255 - offset;
+}
+
+void	set_seg_2(t_c_data *color, int seg, int offset)
+{
+	if (seg == 3)
+		color->b = 200;
+	else
+		color->b = offset;
+	if (seg == 2)
+		color->r = 200;
+	else
+		color->r = 255 - offset;
+}
+
+void	set_seg_3(t_c_data *color, int seg, int offset)
+{
+	if (seg == 4)
+		color->b = 200;
+	else
+		color->b = 255 - offset;
+	if (seg == 5)
+		color->g = offset;
+	else
+		color->g = 255;
+}
+
 int	get_color(int z_value)
 {
-	int	seg;
-	int	offset;
-	int	r;
-	int	g;
-	int	b;
+	int			seg;
+	int			offset;
+	t_c_data	color;
 
-	r = 0;
-	g = 0;
-	b = 0;
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
 	z_value = abs(z_value) * 10 % 1530;
 	seg = z_value / 255;
 	offset = z_value % 255;
 	if (seg < 2)
 	{
-		r = 200;
-		g = seg == 0 ? offset : 255 - offset;
+		set_seg_1(&color, seg, offset);
 	}
 	else if (seg < 4)
 	{
-		b = seg == 3 ? 200 : offset;
-		r = seg == 2 ? 200 : 255 - offset;
+		set_seg_2(&color, seg, offset);
 	}
 	else
 	{
-		b = seg == 4 ? 200 : 255 - offset;
-		g = seg == 4 ? offset : 200;
+		set_seg_3(&color, seg, offset);
 	}
-	return (color_hex(100, r, g, b));
+	return (color_hex(100, color.r, color.g, color.b));
 }

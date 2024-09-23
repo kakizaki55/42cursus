@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/23 18:22:15 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:39:27 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	}
 }
 
-void	init_steps(xy_data *dest, xy_data *step, xy_data *point1,
-		xy_data *point2)
+void	init_steps(t_xy_data *dest, t_xy_data *step, t_xy_data *point1,
+		t_xy_data *point2)
 {
 	dest->x = abs(point2->x - point1->x);
 	dest->y = abs(point2->y - point1->y);
@@ -40,12 +40,12 @@ void	init_steps(xy_data *dest, xy_data *step, xy_data *point1,
 		step->y = -1;
 }
 
-void	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
+void	draw_line(t_xy_data point1, t_xy_data point2, int z_value, t_vars *vars)
 {
-	xy_data	dest;
-	xy_data	step;
-	int		err;
-	int		e2;
+	t_xy_data	dest;
+	t_xy_data	step;
+	int			err;
+	int			e2;
 
 	init_steps(&dest, &step, &point1, &point2);
 	err = dest.x - dest.y;
@@ -71,11 +71,11 @@ void	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
 
 void	draw_points(t_vars *vars)
 {
-	int		i;
-	int		j;
-	xy_data	dest;
-	xy_data	prev;
-	xy_data	above;
+	int			i;
+	int			j;
+	t_xy_data	dest;
+	t_xy_data	prev;
+	t_xy_data	above;
 
 	i = 0;
 	while (i < vars->col)
