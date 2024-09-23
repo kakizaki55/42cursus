@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/23 18:40:43 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:49:18 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int				get_file_length(char *file_path);
 void			calculate_dest(t_vars *vars, t_xy_data *dest, int i, int j);
 void			calculate_above(t_vars *vars, t_xy_data *above, int i, int j);
 void			reset_rows(int *j, t_xy_data *prev);
+void			reset_prev(t_xy_data *prev, t_xy_data *dest);
+
 // draw.c
 void			my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void			draw_points(t_vars *vars);
