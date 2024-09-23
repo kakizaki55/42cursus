@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   introduction.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 16:06:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/22 19:51:12 by minoka           ###   ########.fr       */
+/*   Updated: 2024/09/23 17:42:56 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <fdf.h>
 

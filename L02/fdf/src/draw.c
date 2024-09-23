@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/23 17:28:21 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:39:00 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ void	init_steps(xy_data *dest, xy_data *step, xy_data *point1,
 {
 	dest->x = abs(point2->x - point1->x);
 	dest->y = abs(point2->y - point1->y);
-	step->x = (point1->x < point2->x) ? 1 : -1;
-	step->y = (point1->y < point2->y) ? 1 : -1;
+	if (point1->x < point2->x)
+		step->x = 1;
+	else
+		step->x = -1;
+	if (point1->y < point2->y)
+		step->y = 1;
+	else
+		step->y = -1;
 }
 
 void	draw_line(xy_data point1, xy_data point2, int z_value, t_vars *vars)
