@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 13:22:17 by minoka            #+#    #+#             */
-/*   Updated: 2024/09/23 17:39:00 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:22:15 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,9 @@ void	draw_points(t_vars *vars)
 			}
 			if (prev.x && prev.y)
 				draw_line(prev, dest, vars->matrix[i][j], vars);
-			prev.x = dest.x;
-			prev.y = dest.y;
+			reset_prev(&prev, &dest);
 			j++;
 		}
 		i++;
 	}
-	return ;
 }

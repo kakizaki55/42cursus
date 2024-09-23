@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:09:06 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/23 17:41:44 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:16:23 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int	get_color(int z_value)
 	int	g;
 	int	b;
 
+	r = 0;
+	g = 0;
+	b = 0;
 	z_value = abs(z_value) * 10 % 1530;
 	seg = z_value / 255;
 	offset = z_value % 255;
@@ -38,10 +41,15 @@ int	get_color(int z_value)
 		r = 200;
 		g = seg == 0 ? offset : 255 - offset;
 	}
-	else if (seg < 6)
+	else if (seg < 4)
 	{
 		b = seg == 3 ? 200 : offset;
 		r = seg == 2 ? 200 : 255 - offset;
+	}
+	else
+	{
+		b = seg == 4 ? 200 : 255 - offset;
+		g = seg == 4 ? offset : 200;
 	}
 	return (color_hex(100, r, g, b));
 }

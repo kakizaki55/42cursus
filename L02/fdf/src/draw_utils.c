@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:23:59 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/23 17:31:32 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:17:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ void	reset_rows(int *j, xy_data *prev)
 	prev->x = 0;
 	prev->y = 0;
 	return ;
+}
+
+void	reset_prev(xy_data *prev, xy_data *dest)
+{
+	prev->x = dest->x;
+	prev->y = dest->y;
 }
