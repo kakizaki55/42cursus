@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:16:09 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/23 19:06:08 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:07:19 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	init_parse(char *file_path, t_vars *vars, int *fd)
 		distroy_and_exit(vars, EXIT_FAILURE, "Please put in a file name\n");
 	if (check_file_fdf(file_path) != 0)
 		distroy_and_exit(vars, EXIT_FAILURE, "Not .fdf file\n");
+	vars->col = get_file_length(file_path);
 	if (!ft_strncmp(file_path, "42.fdf", 6))
 		vars->height_offest = 10;
-	vars->col = get_file_length(file_path);
 	if (vars->col == 0)
 		distroy_and_exit(vars, EXIT_FAILURE, "Failed to get file length");
 	vars->matrix = (int **)ft_calloc(sizeof(int *), vars->col + 1);
