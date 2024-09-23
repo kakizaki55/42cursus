@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/05 13:40:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:44:46 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 void	split_lsts_ch(t_c_list **src, t_c_list **dest, int dlmt, int chunk_size)
 {

@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:19:44 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:22:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:44:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 int	check_any_r_sort(t_c_list *head)
 {

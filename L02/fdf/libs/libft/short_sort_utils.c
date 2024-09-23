@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:30:24 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/05 14:02:11 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:44:33 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 void	split_lsts_tw_thr(t_c_list **stack_a, t_c_list **stack_b)
 {
@@ -72,7 +71,7 @@ void	ft_c_print_lst(t_c_list *head, char stack)
 		{
 			ft_printf("[%d]:%d\n", i, current->content);
 		}
-			current = current->next;
+		current = current->next;
 		i++;
 		if (current == head)
 			break ;

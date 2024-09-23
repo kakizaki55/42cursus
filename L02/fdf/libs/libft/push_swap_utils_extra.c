@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:00:59 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 19:04:37 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:44:30 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 void	ft_rotate(t_c_list **head, char stack)
 {

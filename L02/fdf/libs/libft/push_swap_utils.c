@@ -6,18 +6,17 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:23:36 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/05 13:36:33 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:44:26 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
 t_c_list	*ft_c_lstnew(int content)
 {
 	t_c_list	*node;
 
-	node = (t_c_list *) ft_calloc(sizeof(t_c_list), 1);
+	node = (t_c_list *)ft_calloc(sizeof(t_c_list), 1);
 	if (node == NULL)
 	{
 		error();

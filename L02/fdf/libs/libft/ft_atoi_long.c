@@ -6,12 +6,11 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 13:19:41 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/02 18:59:30 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:44:10 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 static int	skip_whitespaces(const char *str)
 {
