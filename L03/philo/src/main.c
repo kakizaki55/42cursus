@@ -6,27 +6,35 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/25 18:46:33 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/09/28 15:38:50 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <philo.h>
 
-void create_new_philo(t_rules *rules)
-{
-    pthread_t thread;
+void *print_somthing(void *args)
+{   
+    t_rules *rules = (t_rules *)args;
+    // rules = (t_rules *)&rules; 
+    printf("does this print%d\n", rules->philo_count);
 
-    pthreaf_create();
-
+    return (NULL);
 }
+
+// void create_new_philo(void *args)
+// {
+//     pthread_t thread;
+
+// }
 
 void run_philos(t_rules *rules)
 {
     int i;
+    pthread_t thread;
     i = 0;
     while(i < rules->philo_count)
     {
-        create_new_philo(rules);
+        pthread_create(&thread, NULL, print_somthing, (void *)rules);
         i++;
     }
 }
@@ -45,6 +53,6 @@ int main(int argc, char*argv[])
 
     run_philos(rules);
 
-    char *string = "awe";
-    printf("%d", SLEEPING);
+    // char *string = "awe";
+    // printf("%d", SLEEPING);
 }
