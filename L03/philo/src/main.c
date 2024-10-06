@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/28 15:38:50 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/10/06 13:14:43 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <philo.h>
 
 void *print_somthing(void *args)
-{   
+{
     t_rules *rules = (t_rules *)args;
-    // rules = (t_rules *)&rules; 
+    // rules = (t_rules *)&rules;
     printf("does this print%d\n", rules->philo_count);
-
     return (NULL);
 }
 
 // void create_new_philo(void *args)
 // {
 //     pthread_t thread;
-
 // }
 
 void run_philos(t_rules *rules)
@@ -41,7 +39,7 @@ void run_philos(t_rules *rules)
 
 int main(int argc, char*argv[])
 {
-    // need to make a file parser 
+    // need to make a file parser
     t_rules *rules;
 
     rules = ft_calloc(sizeof(t_rules), 1);

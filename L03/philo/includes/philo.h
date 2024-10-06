@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/28 15:05:22 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/10/06 13:20:59 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ void				print_action(int action);
 void				*ft_calloc(size_t nmemb, size_t size);
 
 
-//ft_atoi.c
-int	                ft_atoi(const char *str);
+//libft
+int	    ft_atoi(const char *str);
+int     ft_isdigit(int c);
+int     ft_strncmp(const char *s1, const char *s2, size_t n);
+
+
 
 #endif
