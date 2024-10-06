@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 18:22:53 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/10/06 14:50:57 by minoka           ###   ########.fr       */
+/*   Created: 2024/10/06 14:49:38 by minoka            #+#    #+#             */
+/*   Updated: 2024/10/06 14:49:58 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void print_action(int action)
+	void	ft_bzero(void *s, size_t n)
 {
-    if(action == 1)
-        printf("Eatings");
-    if(action == 2)
-        printf("Sleeping");
-    if(action == 3)
-        printf("Thinking");
-}
+	unsigned char	*p;
+	size_t			i;
 
+	if (n <= 0)
+		return ;
+	p = s;
+	i = 0;
+	while (i < n)
+	{
+		((char *)p)[i] = 0;
+		i++;
+	}
+	return ;
+}

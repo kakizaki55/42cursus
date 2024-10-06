@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/10/06 13:20:59 by minoka           ###   ########.fr       */
+/*   Updated: 2024/10/06 15:14:57 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_philos
 typedef struct s_waiter
 {
 	bool			    is_dead;
-    pthread_mutex_t     *forks;
+    pthread_t			*threads;
     pthread_mutex_t     *printing_action;
 }					t_waiter;
 
@@ -54,15 +54,16 @@ enum				e_actions
 };
 
 // utils.c
-
 void				print_action(int action);
-void				*ft_calloc(size_t nmemb, size_t size);
 
+//philos.c
+void	*philo(void *args);
 
 //libft
-int	    ft_atoi(const char *str);
-int     ft_isdigit(int c);
-int     ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 
 

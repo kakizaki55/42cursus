@@ -6,51 +6,67 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/10/06 13:14:43 by minoka           ###   ########.fr       */
+/*   Updated: 2024/10/06 15:14:57 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <philo.h>
 
-void *print_somthing(void *args)
-{
-    t_rules *rules = (t_rules *)args;
-    // rules = (t_rules *)&rules;
-    printf("does this print%d\n", rules->philo_count);
-    return (NULL);
-}
-
-// void create_new_philo(void *args)
-// {
-//     pthread_t thread;
-// }
-
-void run_philos(t_rules *rules)
+void make_philos(t_rules *rules, t_waiter *waiter)
 {
     int i;
-    pthread_t thread;
+    pthread_t threads;
+
+
+    waiter->threads = ft_calloc(sizeof(pthread_t), rules->philo_count);
+    if(waiter->threads == NULL)
+    {
+        //ERROR HANDLING
+        return ;
+    }
+
     i = 0;
     while(i < rules->philo_count)
     {
-        pthread_create(&thread, NULL, print_somthing, (void *)rules);
+        pthread_create(&threads, NULL, philo, (void *)rules);
+        waiter->threads[i] = threads;
+        printf("threads:%lu",waiter->threads[i]);
         i++;
     }
+}
+
+int init(t_rules **rules, t_waiter **waiter)
+{
+    //probally should exit instead of return later
+    *rules = ft_calloc(sizeof(t_rules), 1);
+    if(rules == NULL)
+        return (1);
+
+    *waiter =  ft_calloc(sizeof(t_waiter), 1);
+    if(waiter == NULL)
+        return(1);
+
+    return (0);
 }
 
 int main(int argc, char*argv[])
 {
     // need to make a file parser
-    t_rules *rules;
+    t_rules     *rules;
+    t_waiter    *waiter;
 
-    rules = ft_calloc(sizeof(t_rules), 1);
+    init(&rules, &waiter);
 
     rules->philo_count = 3;
     rules->time_to_die = 600;
     rules->time_to_eat = 200;
     rules->time_to_sleep = 200;
 
-    run_philos(rules);
+    waiter->threads = ft_calloc(sizeof(int), rules->philo_count);
+    if(waiter->threads == NULL)
+        return (1);
 
-    // char *string = "awe";
-    // printf("%d", SLEEPING);
+     make_philos(rules, waiter);
+
+    return (0);
 }

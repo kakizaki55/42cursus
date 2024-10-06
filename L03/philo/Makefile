@@ -8,13 +8,9 @@ OBJ_DIR		=	obj
 SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.c')
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-# SRCS		=	$(addprefix src/,$(FILES))
-# OBJS		=	$(SRCS:.c=.o)
 RM			=	rm -rf
 CC			=	clang
 
-
-# FILES 		=	main.c utils.c
 
 # Colors
 
