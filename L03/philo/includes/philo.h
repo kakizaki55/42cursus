@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/10/06 15:14:57 by minoka           ###   ########.fr       */
+/*   Updated: 2024/10/06 16:37:43 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,27 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdarg.h>
 
-typedef struct s_rules
+// typedef struct s_rules
+// {
+// 	unsigned int	philo_count;
+// 	unsigned int	time_to_die;
+// 	unsigned int	time_to_eat;
+// 	unsigned int	time_to_sleep;
+// }					t_rules;
+
+typedef struct s_waiter
 {
 	unsigned int	philo_count;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
-}					t_rules;
+	bool			is_dead;
+    pthread_t		*threads;
+    pthread_mutex_t	*print_mutex;
+}					t_waiter;
+
 
 typedef struct s_philos
 {
@@ -36,15 +49,10 @@ typedef struct s_philos
 	int				left_fork;
 	int				right_fork;
 	int				times_ate;
-	struct t_rules	*rules;
+	// t_rules			*rules;
+	t_waiter		*waiter;
 }					t_philos;
 
-typedef struct s_waiter
-{
-	bool			    is_dead;
-    pthread_t			*threads;
-    pthread_mutex_t     *printing_action;
-}					t_waiter;
 
 enum				e_actions
 {
@@ -59,12 +67,14 @@ void				print_action(int action);
 //philos.c
 void	*philo(void *args);
 
+//print
+int		safe_print(t_waiter *waiter, const char *format, ...);
+
 //libft
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
-
-
+void	ft_bzero(void *s, size_t n);
 
 #endif
