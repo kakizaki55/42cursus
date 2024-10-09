@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/10/06 16:37:43 by minoka           ###   ########.fr       */
+/*   Updated: 2024/10/09 13:35:25 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_philos
 	int				left_fork;
 	int				right_fork;
 	int				times_ate;
-	// t_rules			*rules;
 	t_waiter		*waiter;
 }					t_philos;
 
@@ -68,7 +67,7 @@ void				print_action(int action);
 void	*philo(void *args);
 
 //print
-int		safe_print(t_waiter *waiter, const char *format, ...);
+int safe_print(t_waiter *waiter, const char *string);
 
 //libft
 int		ft_atoi(const char *str);

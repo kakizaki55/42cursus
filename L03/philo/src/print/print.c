@@ -6,14 +6,13 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 15:31:07 by minoka            #+#    #+#             */
-/*   Updated: 2024/10/06 17:03:40 by minoka           ###   ########.fr       */
+/*   Updated: 2024/10/09 13:31:12 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-
-int safe_print(t_waiter *waiter, const char *format, ...)
+int safe_print(t_waiter *waiter, const char *string)
 {
     va_list args;
     int result;
@@ -23,11 +22,12 @@ int safe_print(t_waiter *waiter, const char *format, ...)
 
     pthread_mutex_lock(waiter->print_mutex);
 
-    va_start(args, format);
-    result = printf(format, args);
-    va_end(args);
+    // va_start(args, string);
+    result = printf("%s", string);
+    // va_end(args);
 
+    // usleep(1000);
     pthread_mutex_unlock(waiter->print_mutex);
-
     return result;
 }
+
