@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/10/09 13:35:25 by minoka           ###   ########.fr       */
+/*   Updated: 2024/10/10 16:27:50 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <sys/time.h>
 
 // typedef struct s_rules
 // {
@@ -30,44 +31,53 @@
 // 	unsigned int	time_to_sleep;
 // }					t_rules;
 
+typedef struct s_philo	t_philo;
+// typedef struct s_waiter t_waiter;
+
 typedef struct s_waiter
 {
-	unsigned int	philo_count;
-	unsigned int	time_to_die;
-	unsigned int	time_to_eat;
-	unsigned int	time_to_sleep;
-	bool			is_dead;
-    pthread_t		*threads;
-    pthread_mutex_t	*print_mutex;
+	unsigned int		philo_count;
+	time_t				time_to_die;
+	time_t				time_to_eat;
+	time_t				time_to_sleep;
+	time_t				start_time;
+
+	bool				is_dead;
+    pthread_mutex_t		*print_mutex;
+	t_philo				**philos;
 }					t_waiter;
 
 
-typedef struct s_philos
+typedef struct s_philo
 {
+	pthread_t		thread;
 	int				id;
 	int				last_ate;
 	int				left_fork;
 	int				right_fork;
 	int				times_ate;
 	t_waiter		*waiter;
-}					t_philos;
+}					t_philo;
 
 
-enum				e_actions
-{
-	EATING = 1,
-	SLEEPING = 2,
-	THINKING = 3
-};
+//cleanup.c
+void	join_threads(t_waiter *waiter);
+
+//init.c
+int 	init_mutexes(t_waiter *waiter);
+t_philo **init_philosophers(t_waiter *waiter);
+int 	init(t_waiter *waiter);
 
 // utils.c
-void				print_action(int action);
+time_t	get_time_in_ms(void);
+// void	print_action(int action);
+// void	free_waiter(t_waiter *waiter);
 
 //philos.c
 void	*philo(void *args);
 
 //print
-int safe_print(t_waiter *waiter, const char *string);
+void 	safe_print(t_waiter *waiter, t_philo *philom, char *str);
 
 //libft
 int		ft_atoi(const char *str);

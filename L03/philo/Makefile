@@ -44,7 +44,7 @@ fclean:
 
 re: fclean all
 
-debug: $(OBJS)
+debug: fclean $(OBJS)
 	$(CC) $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
 	@echo "$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"
 
