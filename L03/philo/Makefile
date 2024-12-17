@@ -15,7 +15,7 @@ SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.c')
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 RM			=	rm -rf
-CC			=	clang
+CC			=	cc
 
 
 # Colors
@@ -43,10 +43,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@printf "\r$(GREEN)[%2d/%2d]$(DEF_COLOR) Compiling $(NAME): $(CYAN)%s$(DEF_COLOR)\033[K" \
 		"$$(find $(OBJ_DIR) -type f | wc -l)" "$$(find $(SRCS) -type f | wc -l)" "$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-		@mkdir -p $(@D)
-		$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ_DIR)
