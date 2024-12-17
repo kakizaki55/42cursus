@@ -6,11 +6,37 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:02:31 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/28 15:34:13 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:16:03 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
+	{
+		if (s1[i] != s2[i])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
+		i++;
+	}
+	return (0);
+}
+
 
 static int	skip_whitespaces(const char *str)
 {

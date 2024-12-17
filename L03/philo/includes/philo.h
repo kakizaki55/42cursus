@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/09/28 15:05:22 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:54:24 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ typedef struct s_rules
 typedef struct s_philos
 {
 	int				id;
+    pthread_t       thread_id;
 	int				last_ate;
-	int				left_fork;
-	int				right_fork;
+	int			    left_fork;
+	int			    right_fork;
 	int				times_ate;
-	struct t_rules	*rules;
+    bool            is_dead;
+	t_rules	        *rules;
 }					t_philos;
 
 typedef struct s_waiter
@@ -60,6 +62,6 @@ void				*ft_calloc(size_t nmemb, size_t size);
 
 
 //ft_atoi.c
-int	                ft_atoi(const char *str);
+int					ft_atoi(const char *str);
 
 #endif
