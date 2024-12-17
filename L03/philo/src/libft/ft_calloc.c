@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 18:22:53 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/17 14:54:18 by mkakizak         ###   ########.fr       */
+/*   Created: 2024/10/06 14:50:17 by minoka            #+#    #+#             */
+/*   Updated: 2024/10/06 14:50:44 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
-
-void print_action(int action)
-{
-    if(action == 1)
-        printf("Eatings");
-    if(action == 2)
-        printf("Sleeping");
-    if(action == 3)
-        printf("Thinking");
-}
-
-static  void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*p;
-	size_t			i;
-
-	if (n <= 0)
-		return ;
-	p = s;
-	i = 0;
-	while (i < n)
-	{
-		((char *)p)[i] = 0;
-		i++;
-	}
-	return ;
-}
-
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

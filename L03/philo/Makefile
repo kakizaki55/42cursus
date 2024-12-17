@@ -4,21 +4,19 @@ NAME		=	philo
 # LIBFT		=	$(LIBFT_PATH)/libft.a
 INCLUDES	= 	-I includes
 
-# CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
-CFLAGS		=	$(INCLUDES)
-
-LIBS_PATH	=	
-LIBS_FLAGS	=	
-DEBUG_FLAGS	=	-fsanitize=address -g
-SRC_DIR		=	src
-OBJ_DIR		=	obj
-RM			=	rm -rf
-CC			=	cc
-
 # This will find all the .c files in the src directory and make a obj
 # directory to put all the .o files
+# CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
+
+CFLAGS		= 	$(INCLUDES)
+DEBUG_FLAGS	=	-fsanitize=address
+OBJ_DIR		=	obj
+SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.c')
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+RM			=	rm -rf
+CC			=	clang
+
 
 # Colors
 
@@ -46,6 +44,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		"$$(find $(OBJ_DIR) -type f | wc -l)" "$$(find $(SRCS) -type f | wc -l)" "$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+		@mkdir -p $(@D)
+		$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	@$(RM) $(OBJ_DIR)
 	@echo "$(CYAN)<-----------$(NAME) object files cleaned!----------->$(DEF_COLOR)\n"
@@ -64,4 +66,4 @@ norm:
 	norminette -R CheckForbiddenSourceHeader ${SRCS}
 	norminette -R CheckDefine includes/*.h
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug
