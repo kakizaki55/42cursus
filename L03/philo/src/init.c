@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2024/12/27 15:35:37 by minoka           ###   ########.fr       */
+/*   Updated: 2024/12/27 22:36:12 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 
 int init_mutexes(t_waiter *waiter)
 {
-    waiter->print_mutex = malloc(sizeof(pthread_mutex_t));
-    if (waiter->print_mutex == NULL)
-        return (1);
+	waiter->print_mutex = malloc(sizeof(pthread_mutex_t));
+	if (waiter->print_mutex == NULL)
+		return (1);
+	waiter->death_mutex = malloc(sizeof(pthread_mutex_t));
+	if (waiter->death_mutex == NULL)
+	{
+		free(waiter->print_mutex);
+		return (1);
+	}
+	if (pthread_mutex_init(waiter->print_mutex, NULL) != 0)
+	{
+		free(waiter->print_mutex);
+		return (1);
+	}
+	if (pthread_mutex_init(waiter->death_mutex, NULL) != 0)
+	{
+		free(waiter->death_mutex);
+		free(waiter->print_mutex);
+		return (1);
+	}
 
-    if (pthread_mutex_init(waiter->print_mutex, NULL) != 0)
-    {
-        free(waiter->print_mutex);
-        return (1);
-    }
-
-    return 0;
+	return(0);
 }
 
 t_philo **init_philosophers(t_waiter *waiter)
@@ -104,18 +115,24 @@ t_forks *init_forks(int philo_count)
 
 int init(t_waiter *waiter, int argc, char *argv[])
 {
-    waiter->philo_count = 9;
-    waiter->time_to_die = 600;
-    waiter->time_to_eat = 200;
-    waiter->time_to_sleep = 200;
-    waiter->forks = init_forks(9);
-    waiter->is_dead = false;
-    // need to parse out the argments and init them into all the proper spots
-    waiter->philos = init_philosophers(waiter);
-    if (waiter->philos == NULL)
-        return (1);
-    if (init_mutexes(waiter) != 0)
-        return (1);
+	int count;
 
-    return 0;
+	count  = ft_atoi(argv[1]);
+	waiter->philo_count = count;
+	waiter->time_to_die = ft_atoi(argv[2]);
+	waiter->time_to_eat = ft_atoi(argv[3]);
+	waiter->time_to_sleep = ft_atoi(argv[4]);
+	waiter->forks = init_forks(count);
+	if(argv[5])
+		waiter->times_must_eat = ft_atoi(argv[5]);
+	else
+		waiter->times_must_eat = -1;
+	waiter->is_dead = false;
+	waiter->philos = init_philosophers(waiter);
+	if (waiter->philos == NULL)
+		return (1);
+	if (init_mutexes(waiter) != 0)
+		return (1);
+
+	return(0);
 }

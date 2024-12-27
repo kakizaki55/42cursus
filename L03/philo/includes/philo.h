@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/27 15:11:45 by minoka           ###   ########.fr       */
+/*   Updated: 2024/12/27 22:34:24 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_waiter
 	time_t				start_time;
 	t_forks				*forks;
 	bool				is_dead;
+	unsigned int		times_must_eat;
+	pthread_mutex_t		*death_mutex;
     pthread_mutex_t		*print_mutex;
 	t_philo				**philos;
 }					t_waiter;
@@ -59,10 +61,10 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-    pthread_t       thread_id;
+	pthread_t		thread_id;
 	int				last_ate;
-	int			    left_fork;
-	int			    right_fork;
+	int				left_fork;
+	int				right_fork;
 	int				times_ate;
 	t_waiter		*waiter;
 }					t_philo;
@@ -86,6 +88,7 @@ t_forks 	*get_fork_by_index(t_forks *head, int index);
 
 //philos.c
 void		*philo(void *args);
+int			check_death(t_philo *philo);
 
 //print
 void 		safe_print(t_waiter *waiter, t_philo *philom, char *str);

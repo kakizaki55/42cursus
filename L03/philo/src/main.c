@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/27 15:11:48 by minoka           ###   ########.fr       */
+/*   Updated: 2024/12/27 22:31:07 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,78 @@ void make_threads(t_waiter *waiter)
 	}
 }
 
+int check_death(t_philo *philo)
+{
+	unsigned long long current_time;
+
+	current_time = get_time_in_ms() - philo->waiter->start_time;
+
+	// printf("is dead: %d\n", philo->waiter->is_dead);
+	if (philo->waiter->is_dead)
+		return (1);
+	// safe_print(philo->waiter, philo, "%d is checking for death\n");
+	// printf("current time: %lld last ate: %d time_ to die:%ld\n", current_time, philo->last_ate, philo->waiter->time_to_die);
+	if (current_time - philo->last_ate > philo->waiter->time_to_die)
+	{
+		pthread_mutex_lock(philo->waiter->death_mutex);
+		philo->waiter->is_dead = true;
+		safe_print(philo->waiter, philo, "%d died\n");
+		pthread_mutex_unlock(philo->waiter->death_mutex);
+		return (1);
+	}
+	return (0);
+}
+
+void check_philosophers(t_waiter *waiter)
+{
+	int i;
+
+
+	while (!waiter->is_dead)
+	{
+		i = 0;
+		while (i < waiter->philo_count)
+		{
+			if (check_death(waiter->philos[i]))
+			{
+				waiter->is_dead = true;
+				return;
+			}
+			i++;
+		}
+		usleep(1000); // Small delay to prevent CPU overload
+	}
+}
+
+void clean_up(t_waiter *waiter)
+{
+	int i;
+
+	// Cleanup this can go into another file
+	free_forks(waiter->forks);
+	pthread_mutex_destroy(waiter->print_mutex);
+	free(waiter->print_mutex);
+	for (i = 0; i < waiter->philo_count; i++) {
+		free(waiter->philos[i]);
+	}
+	free(waiter->philos);
+	free(waiter);
+}
+
 int main(int argc, char *argv[])
 {
     t_waiter *waiter;
     int i;
+
+	if (argc < 5 || argc > 6)
+	{
+		//NEED TO DO ERROR HANDLING
+		printf("Invalid number of arguments\n");
+		// printf("Usage: ./philo number_of_philosophers time_to_die \
+		// time_to_eat time_to_sleep \
+		// [number_of_times_each_philosopher_must_eat]\n");
+		return (1);
+	}
 
 	waiter = ft_calloc(1, sizeof(t_waiter));
 	if (waiter == NULL)
@@ -53,17 +121,8 @@ int main(int argc, char *argv[])
 	}
 
 	make_threads(waiter);
-	join_threads(waiter);
-
-	// Cleanup this can go into another file
-	free_forks(waiter->forks);
-	pthread_mutex_destroy(waiter->print_mutex);
-	free(waiter->print_mutex);
-	for (i = 0; i < waiter->philo_count; i++) {
-		free(waiter->philos[i]);
-	}
-	free(waiter->philos);
-	free(waiter);
-
+	check_philosophers(waiter);
+	// join_threads(waiter);
+	clean_up(waiter);
 	return (EXIT_SUCCESS);
 }
