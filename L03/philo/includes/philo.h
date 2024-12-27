@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/17 15:24:01 by mkakizak         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:11:45 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 // }					t_rules;
 
 typedef struct s_philo	t_philo;
+typedef struct s_forks	t_forks;
 // typedef struct s_waiter t_waiter;
 
 typedef struct s_waiter
@@ -41,12 +42,18 @@ typedef struct s_waiter
 	time_t				time_to_eat;
 	time_t				time_to_sleep;
 	time_t				start_time;
-
+	t_forks				*forks;
 	bool				is_dead;
     pthread_mutex_t		*print_mutex;
 	t_philo				**philos;
 }					t_waiter;
 
+typedef struct s_forks
+{
+	int 			fork;
+	pthread_mutex_t *fork_mutext;
+	t_forks 		*next;
+}					t_forks;
 
 typedef struct s_philo
 {
@@ -62,29 +69,32 @@ typedef struct s_philo
 
 
 //cleanup.c
-void	join_threads(t_waiter *waiter);
+void		join_threads(t_waiter *waiter);
 
 //init.c
-int 	init_mutexes(t_waiter *waiter);
-t_philo **init_philosophers(t_waiter *waiter);
-int 	init(t_waiter *waiter);
+int 		init_mutexes(t_waiter *waiter);
+t_philo		**init_philosophers(t_waiter *waiter);
+int 		init(t_waiter *waiter, int argc, char *argv[]);
 
 // utils.c
-time_t	get_time_in_ms(void);
-// void	print_action(int action);
-// void	free_waiter(t_waiter *waiter);
+time_t		get_time_in_ms(void);
+int			free_forks(t_forks *forks);
+// void		print_action(int action);
+// void		free_waiter(t_waiter *waiter);
+t_forks 	*get_fork_by_index(t_forks *head, int index);
+
 
 //philos.c
-void	*philo(void *args);
+void		*philo(void *args);
 
 //print
-void 	safe_print(t_waiter *waiter, t_philo *philom, char *str);
+void 		safe_print(t_waiter *waiter, t_philo *philom, char *str);
 
 //libft
-int		ft_atoi(const char *str);
-int		ft_isdigit(int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	ft_bzero(void *s, size_t n);
+int			ft_atoi(const char *str);
+int			ft_isdigit(int c);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+void		*ft_calloc(size_t nmemb, size_t size);
+void		ft_bzero(void *s, size_t n);
 
 #endif

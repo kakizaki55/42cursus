@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2024/10/14 15:12:20 by minoka           ###   ########.fr       */
+/*   Updated: 2024/12/27 15:35:37 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,65 @@ t_philo **init_philosophers(t_waiter *waiter)
     return philos;
 }
 
-int init(t_waiter *waiter)
+t_forks *init_forks(int philo_count)
 {
-    waiter->philo_count = 3;
-    waiter->time_to_die = 600;
-    waiter->time_to_eat = 100;
-    waiter->time_to_sleep = 100;
-    waiter->is_dead = false;
+    t_forks *head;
+    t_forks *current;
+	t_forks *new_node;
+    int i;
 
+    head = ft_calloc(sizeof(t_forks), 1);
+    if(head == NULL)
+    {
+        // error handling done here;
+        return(NULL);
+    }
+    current = head;
+	i = 0;
+	while(i <= philo_count)
+	{
+		current->fork = i;
+		current->fork_mutext = ft_calloc(sizeof(pthread_mutex_t), 1);
+		if(current->fork_mutext == NULL)
+		{
+			// error handling done here;
+			free(head);
+			return(NULL);
+		}
+		if (pthread_mutex_init(current->fork_mutext, NULL) != 0)
+			free(current);
+
+		if(i < philo_count - 1)
+		{
+			new_node = ft_calloc(sizeof(t_forks), 1);
+			if(new_node == NULL)
+			{
+				// error handling done here;
+				free(head);
+				return(NULL);
+			}
+			current->next = new_node;
+			current = current->next;
+		}
+		i++;
+	}
+	return(head);
+}
+
+int init(t_waiter *waiter, int argc, char *argv[])
+{
+    waiter->philo_count = 9;
+    waiter->time_to_die = 600;
+    waiter->time_to_eat = 200;
+    waiter->time_to_sleep = 200;
+    waiter->forks = init_forks(9);
+    waiter->is_dead = false;
+    // need to parse out the argments and init them into all the proper spots
     waiter->philos = init_philosophers(waiter);
     if (waiter->philos == NULL)
-        return 1;
-
+        return (1);
     if (init_mutexes(waiter) != 0)
-        return 1;
+        return (1);
 
     return 0;
 }

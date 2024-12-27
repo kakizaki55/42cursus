@@ -9,7 +9,7 @@ INCLUDES	= 	-I includes
 # CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
 
 CFLAGS		= 	$(INCLUDES)
-DEBUG_FLAGS	=	-fsanitize=address
+DEBUG_FLAGS	=	-fsanitize=address -g
 OBJ_DIR		=	obj
 SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.c')
@@ -54,8 +54,8 @@ fclean:
 
 re: fclean all
 
-debug: $(LIBFT) $(OBJS)
-	$(CC) $(DEBUG_FLAGS) $(OBJS) -o $(NAME) $(LIBS_FLAGS)
+debug: $(OBJS)
+	$(CC) $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
 	@echo "\n$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"
 
 norm:
