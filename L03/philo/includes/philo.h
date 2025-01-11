@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 15:33:48 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:46:02 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_philo
 
 
 //cleanup.c
-void		join_threads(t_waiter *waiter);
+void		detach_threads(t_waiter *waiter);
 
 //init.c
 int 		init_mutexes(t_waiter *waiter);

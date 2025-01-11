@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:58:33 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/11 16:24:56 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:44:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 void safe_print(t_waiter *waiter, t_philo *philo, char *str)
 {
     pthread_mutex_lock(waiter->print_mutex);
-	// printf("p_id: %d ", philo->process_id);
+	printf("p_id: %d ", philo->process_id);
 	printf("%ld ", get_time_in_ms() - waiter->start_time);
     printf(str, philo->id);
     pthread_mutex_unlock(waiter->print_mutex);
@@ -74,6 +74,7 @@ void *philo(void *arg)
 
 		safe_print(philo->waiter, philo, "%d is eating\n");
 		philo->last_ate = get_time_in_ms() - start_time;
+		philo->times_ate++;
 		usleep(philo->waiter->time_to_eat * 1000 * 1);
 
 		// Release forks

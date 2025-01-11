@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 16:20:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:45:52 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void make_threads(t_waiter *waiter)
 }
 
 void clean_up(t_waiter *waiter)
-{
+{	
 	int i;
 	if(waiter == NULL)
 		return;
@@ -66,9 +66,10 @@ int check_death(t_philo *philo)
 	{
 		pthread_mutex_lock(philo->waiter->death_mutex);
 		philo->waiter->is_dead = true;
-		usleep(1000);
+		// usleep(1000);
 		safe_print(philo->waiter, philo, "%d died\n");
 		pthread_mutex_unlock(philo->waiter->death_mutex);
+		// detach_threads(philo->waiter);
 		return (1);
 	}
 	return (0);
@@ -77,22 +78,32 @@ int check_death(t_philo *philo)
 void check_philosophers(t_waiter *waiter)
 {
 	int i;
+	bool all_ate;
 
-
-	while (!waiter->is_dead)
+	while (waiter->is_dead == false)
 	{
 		i = 0;
+		all_ate = true;
 		while (i < waiter->philo_count)
 		{
 			if (check_death(waiter->philos[i]))
 			{
+				pthread_mutex_lock(waiter->death_mutex);
 				waiter->is_dead = true;
+				pthread_mutex_unlock(waiter->death_mutex);
 				clean_up(waiter);
 				return;
 			}
+			if(waiter->philos[i]->times_ate < waiter->times_must_eat)
+				all_ate = false;
 			i++;
 		}
-		// usleep(100); // Small delay to prevent CPU overload
+		if(all_ate)
+		{
+			clean_up(waiter);
+			return;
+		}
+		// usleep(1000); // Small delay to prevent CPU overload
 	}
 }
 
