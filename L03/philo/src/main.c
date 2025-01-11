@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 16:45:52 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:25:58 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,31 @@ void check_philosophers(t_waiter *waiter)
 	}
 }
 
+bool check_invalid_args(int argc, char *argv[])
+{
+	int i;
+	int j;
+	
+	i = 1;
+	while(i < argc)
+	{
+		j = 0;
+		while(argv[i][j] != '\0')
+		{
+			if (!ft_isdigit(argv[i][j]))
+			{
+				return (true);
+			}
+			j++;
+		}
+		if (ft_atoi(argv[i]) <= 0)
+		{
+			return (true);
+		}
+		i++;
+	}
+	return (false);
+}
 
 int main(int argc, char *argv[])
 {
@@ -115,13 +140,17 @@ int main(int argc, char *argv[])
 
 	if (argc < 5 || argc > 6)
 	{
-		//NEED TO DO ERROR HANDLING
-		printf("Invalid number of arguments\n");
-		// printf("Usage: ./philo number_of_philosophers time_to_die \
-		// time_to_eat time_to_sleep \
-		// [number_of_times_each_philosopher_must_eat]\n");
+		printf("Invalid number of arguments:");
+		// printf("number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
 		return (1);
 	}
+
+	if (check_invalid_args(argc, argv))
+	{
+		printf("Invalid arguments: All argmunets must be positive numbers\n");
+		return(EXIT_FAILURE);
+	}
+	
 
 	waiter = ft_calloc(1, sizeof(t_waiter));
 	if (waiter == NULL)
