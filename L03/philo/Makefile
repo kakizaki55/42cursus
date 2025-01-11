@@ -8,7 +8,7 @@ INCLUDES	= 	-I includes
 # directory to put all the .o files
 # CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
 
-CFLAGS		= 	$(INCLUDES)
+CFLAGS		= 	$(INCLUDES) -ls -libc
 DEBUG_FLAGS	=	-fsanitize=address -g
 OBJ_DIR		=	obj
 SRC_DIR		=	src

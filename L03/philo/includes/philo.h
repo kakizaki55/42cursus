@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/27 22:34:24 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/11 15:33:48 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_waiter
 	bool				is_dead;
 	unsigned int		times_must_eat;
 	pthread_mutex_t		*death_mutex;
-    pthread_mutex_t		*print_mutex;
+	pthread_mutex_t		*print_mutex;
 	t_philo				**philos;
 }					t_waiter;
 
@@ -67,6 +67,7 @@ typedef struct s_philo
 	int				right_fork;
 	int				times_ate;
 	t_waiter		*waiter;
+	pid_t			process_id;
 }					t_philo;
 
 

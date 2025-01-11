@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/27 22:31:07 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/11 16:20:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,27 @@ void make_threads(t_waiter *waiter)
 	}
 }
 
+void clean_up(t_waiter *waiter)
+{
+	int i;
+	if(waiter == NULL)
+		return;
+
+	free_forks(waiter->forks);
+	pthread_mutex_destroy(waiter->print_mutex);
+	free(waiter->print_mutex);
+	i = 0;
+	while(i < waiter->philo_count)
+	{
+		free(waiter->philos[i]);
+		i++;
+	}
+	free(waiter->philos);
+	free(waiter);
+}
+
 int check_death(t_philo *philo)
+
 {
 	unsigned long long current_time;
 
@@ -46,6 +66,7 @@ int check_death(t_philo *philo)
 	{
 		pthread_mutex_lock(philo->waiter->death_mutex);
 		philo->waiter->is_dead = true;
+		usleep(1000);
 		safe_print(philo->waiter, philo, "%d died\n");
 		pthread_mutex_unlock(philo->waiter->death_mutex);
 		return (1);
@@ -66,28 +87,15 @@ void check_philosophers(t_waiter *waiter)
 			if (check_death(waiter->philos[i]))
 			{
 				waiter->is_dead = true;
+				clean_up(waiter);
 				return;
 			}
 			i++;
 		}
-		usleep(1000); // Small delay to prevent CPU overload
+		// usleep(100); // Small delay to prevent CPU overload
 	}
 }
 
-void clean_up(t_waiter *waiter)
-{
-	int i;
-
-	// Cleanup this can go into another file
-	free_forks(waiter->forks);
-	pthread_mutex_destroy(waiter->print_mutex);
-	free(waiter->print_mutex);
-	for (i = 0; i < waiter->philo_count; i++) {
-		free(waiter->philos[i]);
-	}
-	free(waiter->philos);
-	free(waiter);
-}
 
 int main(int argc, char *argv[])
 {
@@ -107,9 +115,8 @@ int main(int argc, char *argv[])
 	waiter = ft_calloc(1, sizeof(t_waiter));
 	if (waiter == NULL)
 	{
-	    // NEED TO DO ERROR HANDELING
-	    // printf(stderr, "Failed to allocate waiter\n");
-		return 1;
+		printf("Failed to allocate waiter\n");
+		return (1);
 	}
 
 	if (init(waiter, argc, argv) != 0)
@@ -117,12 +124,10 @@ int main(int argc, char *argv[])
 	    //NEED TO DO ERROR HANDLING
 	    // printf(stderr, "Failed to initialize waiter\n");
 		free(waiter);
-		return 1;
+		return (1);
 	}
-
 	make_threads(waiter);
 	check_philosophers(waiter);
-	// join_threads(waiter);
-	clean_up(waiter);
+	// clean_up(waiter);
 	return (EXIT_SUCCESS);
 }
