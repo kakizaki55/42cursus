@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 17:25:58 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:39:01 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,6 @@ void make_threads(t_waiter *waiter)
 		}
 		i++;
 	}
-}
-
-void clean_up(t_waiter *waiter)
-{	
-	int i;
-	if(waiter == NULL)
-		return;
-
-	free_forks(waiter->forks);
-	pthread_mutex_destroy(waiter->print_mutex);
-	free(waiter->print_mutex);
-	i = 0;
-	while(i < waiter->philo_count)
-	{
-		free(waiter->philos[i]);
-		i++;
-	}
-	free(waiter->philos);
-	free(waiter);
 }
 
 int check_death(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:58:33 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/11 16:44:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:35:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <sys/types.h>
-
-// pid_t tid = gettid();
-
-
-void safe_print(t_waiter *waiter, t_philo *philo, char *str)
-{
-    pthread_mutex_lock(waiter->print_mutex);
-	printf("p_id: %d ", philo->process_id);
-	printf("%ld ", get_time_in_ms() - waiter->start_time);
-    printf(str, philo->id);
-    pthread_mutex_unlock(waiter->print_mutex);
-}
 
 void *philo(void *arg)
 {
