@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 17:39:01 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:44:00 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,15 @@ int check_death(t_philo *philo)
 	unsigned long long current_time;
 
 	current_time = get_time_in_ms() - philo->waiter->start_time;
-
-	// printf("is dead: %d\n", philo->waiter->is_dead);
 	if (philo->waiter->is_dead)
 		return (1);
-	// safe_print(philo->waiter, philo, "%d is checking for death\n");
-	// printf("current time: %lld last ate: %d time_ to die:%ld\n", current_time, philo->last_ate, philo->waiter->time_to_die);
 	if (current_time - philo->last_ate > philo->waiter->time_to_die)
 	{
 		pthread_mutex_lock(philo->waiter->death_mutex);
 		philo->waiter->is_dead = true;
-		// usleep(1000);
 		safe_print(philo->waiter, philo, "%d died\n");
 		pthread_mutex_unlock(philo->waiter->death_mutex);
-		// detach_threads(philo->waiter);
+		detach_threads(philo->waiter);
 		return (1);
 	}
 	return (0);
@@ -142,13 +137,11 @@ int main(int argc, char *argv[])
 
 	if (init(waiter, argc, argv) != 0)
 	{
-	    //NEED TO DO ERROR HANDLING
-	    // printf(stderr, "Failed to initialize waiter\n");
+	    printf(stderr, "Failed to initialize waiter\n");
 		free(waiter);
 		return (1);
 	}
 	make_threads(waiter);
 	check_philosophers(waiter);
-	// clean_up(waiter);
 	return (EXIT_SUCCESS);
 }

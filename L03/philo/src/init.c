@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/11 16:29:35 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:47:29 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,54 +34,52 @@ int init_mutexes(t_waiter *waiter)
 		free(waiter->print_mutex);
 		return (1);
 	}
-
 	return(0);
 }
 
 t_philo **init_philosophers(t_waiter *waiter)
 {
-    t_philo **philos;
-    int i;
+	t_philo **philos;
+	int i;
 
-    philos = calloc(waiter->philo_count, sizeof(t_philo *));
-    if(philos == NULL)
-        return NULL;
+	philos = calloc(waiter->philo_count, sizeof(t_philo *));
+	if(philos == NULL)
+		return NULL;
 
-    for(i = 0; i < waiter->philo_count; i++)
-    {
-        philos[i] = calloc(1, sizeof(t_philo));
-        if(philos[i] == NULL)
-        {
-            // Free previously allocated memory
-            while (--i >= 0)
-                free(philos[i]);
-            free(philos);
-            return NULL;
-        }
-        philos[i]->waiter = waiter;
-        philos[i]->id = i + 1;
-        philos[i]->last_ate = 0;
-        philos[i]->times_ate = 0;
-        philos[i]->left_fork = i;
-        philos[i]->right_fork = (i + 1) % waiter->philo_count;
-    }
-    return philos;
+	for(i = 0; i < waiter->philo_count; i++)
+	{
+		philos[i] = calloc(1, sizeof(t_philo));
+		if(philos[i] == NULL)
+		{
+			while (--i >= 0)
+				free(philos[i]);
+			free(philos);
+			return NULL;
+		}
+		philos[i]->waiter = waiter;
+		philos[i]->id = i + 1;
+		philos[i]->last_ate = 0;
+		philos[i]->times_ate = 0;
+		philos[i]->left_fork = i;
+		philos[i]->right_fork = (i + 1) % waiter->philo_count;
+	}
+	return philos;
 }
 
 t_forks *init_forks(int philo_count)
 {
-    t_forks *head;
-    t_forks *current;
+	t_forks *head;
+	t_forks *current;
 	t_forks *new_node;
-    int i;
 
-    head = ft_calloc(sizeof(t_forks), 1);
-    if(head == NULL)
-    {
-        // error handling done here;
-        return(NULL);
-    }
-    current = head;
+	int i;
+	head = ft_calloc(sizeof(t_forks), 1);
+	if(head == NULL)
+	{
+		printf("Failed to allocate forks\n");
+		return(NULL);
+	}
+	current = head;
 	i = 0;
 	while(i <= philo_count)
 	{
