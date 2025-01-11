@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 17:38:29 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:54:53 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void 		safe_print(t_waiter *waiter, t_philo *philom, char *str);
 void		detach_threads(t_waiter *waiter);
 int			free_forks(t_forks *forks);
 void		clean_up(t_waiter *waiter);
+
+//error.c
+bool	check_arg_count(int argc);
+bool	check_invalid_args(int argc, char *argv[]);
 
 //init.c
 int 		init_mutexes(t_waiter *waiter);

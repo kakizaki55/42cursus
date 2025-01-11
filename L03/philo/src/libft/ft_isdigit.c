@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 13:18:51 by minoka            #+#    #+#             */
-/*   Updated: 2024/10/06 13:20:01 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/11 17:56:51 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
-        if (c >= '0' && c <= '9')
-        {
-                return (1);
-        }
-        return (0);
+	if (c >= '0' && c <= '9')
+	{
+		return (1);
+	}
+	return (0);
 }
