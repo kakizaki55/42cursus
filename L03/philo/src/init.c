@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/11 17:55:20 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:06:31 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ t_forks *init_forks(int philo_count)
 	}
 	current = head;
 	i = 0;
-	while(i <= philo_count)
+	while(i < philo_count)
 	{
 		current->fork = i;
 		current->fork_mutext = ft_calloc(sizeof(pthread_mutex_t), 1);
 		if(current->fork_mutext == NULL)
 		{
 			// error handling done here;
-			free(head);
+			free_forks(head);
 			return(NULL);
 		}
 		if (pthread_mutex_init(current->fork_mutext, NULL) != 0)
@@ -108,6 +108,7 @@ t_forks *init_forks(int philo_count)
 		}
 		i++;
 	}
+	current->next = NULL;
 	return(head);
 }
 

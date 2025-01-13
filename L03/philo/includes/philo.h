@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 17:54:53 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:36:54 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_forks 	*get_fork_by_index(t_forks *head, int index);
 void 		safe_print(t_waiter *waiter, t_philo *philom, char *str);
 
 //cleanup.c
-void		detach_threads(t_waiter *waiter);
+void		join_threads(t_waiter *waiter);
 int			free_forks(t_forks *forks);
 void		clean_up(t_waiter *waiter);
 

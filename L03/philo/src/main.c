@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/11 17:59:32 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:39:54 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void make_threads(t_waiter *waiter)
 	int i;
 
 	waiter->start_time = get_time_in_ms();
-	printf("start time: %lu\n", waiter->start_time);
-
 	i = 0;
 	while(i < waiter->philo_count)
 	{
@@ -32,7 +30,6 @@ void make_threads(t_waiter *waiter)
 }
 
 int check_death(t_philo *philo)
-
 {
 	unsigned long long current_time;
 
@@ -43,9 +40,9 @@ int check_death(t_philo *philo)
 	{
 		pthread_mutex_lock(philo->waiter->death_mutex);
 		philo->waiter->is_dead = true;
+		join_threads(philo->waiter);
 		safe_print(philo->waiter, philo, "%d died\n");
 		pthread_mutex_unlock(philo->waiter->death_mutex);
-		detach_threads(philo->waiter);
 		return (1);
 	}
 	return (0);
