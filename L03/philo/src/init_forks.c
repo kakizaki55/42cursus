@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 17:39:23 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 17:47:53 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:54:25 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,18 @@ static t_forks	*link_fork_node(t_forks *current, int fork_number)
 
 t_forks	*init_forks(int philo_count)
 {
-	t_forks *head;
+	t_forks	*head;	
+	t_forks	*current;
+	int		i;
+
 	head = create_fork_node(0);
 	if (head == NULL)
 	{
 		printf("Failed to allocate forks\n");
 		return (NULL);
 	}
-
-	t_forks *current = head;
-	int i = 1;
+	current = head;
+	i = 1;
 	while (i < philo_count)
 	{
 		current = link_fork_node(current, i);
@@ -69,6 +71,5 @@ t_forks	*init_forks(int philo_count)
 		}
 		i++;
 	}
-
 	return (head);
 }
