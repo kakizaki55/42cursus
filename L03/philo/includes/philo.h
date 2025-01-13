@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 16:36:54 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:39:59 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_philo
 	int				right_fork;
 	int				times_ate;
 	t_waiter		*waiter;
-	pid_t			process_id;
 }					t_philo;
 
 //libft
@@ -86,8 +85,10 @@ bool	check_invalid_args(int argc, char *argv[]);
 //init.c
 int 		init_mutexes(t_waiter *waiter);
 t_philo		**init_philosophers(t_waiter *waiter);
-t_forks		*init_forks(int philo_count);
 int 		init(t_waiter *waiter, int argc, char *argv[]);
+
+//init_forks.c
+t_forks		*init_forks(int philo_count);
 
 //philos.c
 void		*philo(void *args);

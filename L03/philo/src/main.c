@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 16:39:54 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:35:16 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,7 @@ void check_philosophers(t_waiter *waiter)
 			i++;
 		}
 		if(all_ate)
-		{
-			clean_up(waiter);
-			return;
-		}
-		// usleep(1000); // Small delay to prevent CPU overload
+			return(clean_up(waiter));
 	}
 }
 
@@ -86,9 +82,7 @@ int main(int argc, char *argv[])
 	int i;
 
 	if (check_invalid_args(argc, argv) || check_arg_count(argc))
-	{
 		return(EXIT_FAILURE);
-	}
 	
 	waiter = ft_calloc(1, sizeof(t_waiter));
 	if (waiter == NULL)

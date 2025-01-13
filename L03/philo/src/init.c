@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/13 17:06:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:40:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,52 +64,6 @@ t_philo **init_philosophers(t_waiter *waiter)
 		philos[i]->right_fork = (i + 1) % waiter->philo_count;
 	}
 	return philos;
-}
-
-t_forks *init_forks(int philo_count)
-{
-	t_forks *head;
-	t_forks *current;
-	t_forks *new_node;
-
-	int i;
-	head = ft_calloc(sizeof(t_forks), 1);
-	if(head == NULL)
-	{
-		printf("Failed to allocate forks\n");
-		return(NULL);
-	}
-	current = head;
-	i = 0;
-	while(i < philo_count)
-	{
-		current->fork = i;
-		current->fork_mutext = ft_calloc(sizeof(pthread_mutex_t), 1);
-		if(current->fork_mutext == NULL)
-		{
-			// error handling done here;
-			free_forks(head);
-			return(NULL);
-		}
-		if (pthread_mutex_init(current->fork_mutext, NULL) != 0)
-			free(current);
-
-		if(i < philo_count - 1)
-		{
-			new_node = ft_calloc(sizeof(t_forks), 1);
-			if(new_node == NULL)
-			{
-				// error handling done here;
-				free(head);
-				return(NULL);
-			}
-			current->next = new_node;
-			current = current->next;
-		}
-		i++;
-	}
-	current->next = NULL;
-	return(head);
 }
 
 int init(t_waiter *waiter, int argc, char *argv[])
