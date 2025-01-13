@@ -6,13 +6,13 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 17:54:03 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 17:43:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:45:33 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-bool check_arg_count(int argc)
+bool	check_arg_count(int argc)
 {
 	if (argc < 5 || argc > 6)
 	{
@@ -21,16 +21,16 @@ bool check_arg_count(int argc)
 		[number_of_times_each_philosopher_must_eat]\n");
 		return (true);
 	}
-	return false;
+	return (false);
 }
 
-bool check_invalid_args(int argc, char *argv[])
+bool	check_invalid_args(int argc, char *argv[])
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		j = 0;
 		if (ft_atoi(argv[i]) <= 0)
@@ -38,7 +38,7 @@ bool check_invalid_args(int argc, char *argv[])
 			printf("Invalid arguments: All args must be positive numbers\n");
 			return (true);
 		}
-		while(argv[i][j] != '\0')
+		while (argv[i][j] != '\0')
 		{
 			if (!ft_isdigit(argv[i][j]))
 			{

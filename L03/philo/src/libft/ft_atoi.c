@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:02:31 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/12/17 15:23:23 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:45:16 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ static long long	convert_to_int(const char *str, int i, int sign)
 
 int	ft_atoi(const char *str)
 {
-	int			i;
-	int			sign;
-	long long	res;
+	int i;
+	int sign;
+	long long res;
 
 	i = skip_whitespaces(str);
 	i = get_sign(str, i, &sign);

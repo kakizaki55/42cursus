@@ -6,32 +6,33 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 17:35:16 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:45:40 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <philo.h>
+#include <philo.h>
 
-void make_threads(t_waiter *waiter)
+void	make_threads(t_waiter *waiter)
 {
-	int i;
+	int	i;
 
 	waiter->start_time = get_time_in_ms();
 	i = 0;
-	while(i < waiter->philo_count)
+	while (i < waiter->philo_count)
 	{
-		if (pthread_create(&waiter->philos[i]->thread, NULL, philo, waiter->philos[i]) != 0)
+		if (pthread_create(&waiter->philos[i]->thread, NULL, philo,
+				waiter->philos[i]) != 0)
 		{
 			printf("Failed to create thread\n");
-			return;
+			return ;
 		}
 		i++;
 	}
 }
 
-int check_death(t_philo *philo)
+int	check_death(t_philo *philo)
 {
-	unsigned long long current_time;
+	unsigned long long	current_time;
 
 	current_time = get_time_in_ms() - philo->waiter->start_time;
 	if (philo->waiter->is_dead)
@@ -48,10 +49,10 @@ int check_death(t_philo *philo)
 	return (0);
 }
 
-void check_philosophers(t_waiter *waiter)
+void	check_philosophers(t_waiter *waiter)
 {
-	int i;
-	bool all_ate;
+	int		i;
+	bool	all_ate;
 
 	while (waiter->is_dead == false)
 	{
@@ -65,25 +66,24 @@ void check_philosophers(t_waiter *waiter)
 				waiter->is_dead = true;
 				pthread_mutex_unlock(waiter->death_mutex);
 				clean_up(waiter);
-				return;
+				return ;
 			}
-			if(waiter->philos[i]->times_ate < waiter->times_must_eat)
+			if (waiter->philos[i]->times_ate < waiter->times_must_eat)
 				all_ate = false;
 			i++;
 		}
-		if(all_ate)
-			return(clean_up(waiter));
+		if (all_ate)
+			return (clean_up(waiter));
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_waiter *waiter;
-	int i;
+	t_waiter	*waiter;
+	int			i;
 
 	if (check_invalid_args(argc, argv) || check_arg_count(argc))
-		return(EXIT_FAILURE);
-	
+		return (EXIT_FAILURE);
 	waiter = ft_calloc(1, sizeof(t_waiter));
 	if (waiter == NULL)
 	{
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	}
 	if (init(waiter, argc, argv) != 0)
 	{
-	    printf("Failed to initialize waiter\n");
+		printf("Failed to initialize waiter\n");
 		free(waiter);
 		return (1);
 	}
