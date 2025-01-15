@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/13 17:51:51 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:53:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	set_philo(t_waiter *waiter, t_philo **philos, int i)
 
 t_philo	**init_philosophers(t_waiter *waiter)
 {
-	t_philo	**philos;
-	int		i;
+	t_philo			**philos;
+	unsigned int	i;
 
 	philos = calloc(waiter->philo_count, sizeof(t_philo *));
 	if (philos == NULL)
@@ -72,7 +72,7 @@ t_philo	**init_philosophers(t_waiter *waiter)
 	return (philos);
 }
 
-int	init(t_waiter *waiter, int argc, char *argv[])
+int	init(t_waiter *waiter, char *argv[])
 {
 	int	count;
 

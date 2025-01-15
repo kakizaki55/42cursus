@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 17:45:40 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:36:16 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,20 @@ int	check_death(t_philo *philo)
 {
 	unsigned long long	current_time;
 
-	current_time = get_time_in_ms() - philo->waiter->start_time;
-	if (philo->waiter->is_dead)
+	if (get_death(philo->waiter))
 		return (1);
+	pthread_mutex_lock(philo->waiter->death_mutex);
+	current_time = get_time_in_ms() - philo->waiter->start_time;
+	
 	if (current_time - philo->last_ate > philo->waiter->time_to_die)
 	{
-		pthread_mutex_lock(philo->waiter->death_mutex);
 		philo->waiter->is_dead = true;
-		join_threads(philo->waiter);
-		safe_print(philo->waiter, philo, "%d died\n");
 		pthread_mutex_unlock(philo->waiter->death_mutex);
+		safe_print(philo->waiter, philo, "%d died\n");
+		join_threads(philo->waiter);
 		return (1);
 	}
+	pthread_mutex_unlock(philo->waiter->death_mutex);
 	return (0);
 }
 
@@ -54,19 +56,17 @@ void	check_philosophers(t_waiter *waiter)
 	int		i;
 	bool	all_ate;
 
-	while (waiter->is_dead == false)
+	while (1)
 	{
+		if(get_death(waiter))
+			break;
 		i = 0;
 		all_ate = true;
 		while (i < waiter->philo_count)
 		{
 			if (check_death(waiter->philos[i]))
 			{
-				pthread_mutex_lock(waiter->death_mutex);
-				waiter->is_dead = true;
-				pthread_mutex_unlock(waiter->death_mutex);
-				clean_up(waiter);
-				return ;
+				return(clean_up(waiter));
 			}
 			if (waiter->philos[i]->times_ate < waiter->times_must_eat)
 				all_ate = false;
@@ -90,7 +90,7 @@ int	main(int argc, char *argv[])
 		printf("Failed to allocate waiter\n");
 		return (1);
 	}
-	if (init(waiter, argc, argv) != 0)
+	if (init(waiter, argv) != 0)
 	{
 		printf("Failed to initialize waiter\n");
 		free(waiter);

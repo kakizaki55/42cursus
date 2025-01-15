@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/13 17:46:25 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:27:55 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ typedef struct s_philo
 {
 	pthread_t			thread;
 	int					id;
-	pthread_t			thread_id;
 	int					last_ate;
 	int					left_fork;
 	int					right_fork;
 	int					times_ate;
+	pid_t				thread_id;
 	t_waiter			*waiter;
 }						t_philo;
 
@@ -85,7 +85,7 @@ bool					check_invalid_args(int argc, char *argv[]);
 // init.c
 int						init_mutexes(t_waiter *waiter);
 t_philo					**init_philosophers(t_waiter *waiter);
-int						init(t_waiter *waiter, int argc, char *argv[]);
+int						init(t_waiter *waiter, char *argv[]);
 
 // init_forks.c
 t_forks					*init_forks(int philo_count);
@@ -93,5 +93,6 @@ t_forks					*init_forks(int philo_count);
 // philos.c
 void					*philo(void *args);
 int						check_death(t_philo *philo);
+bool					get_death(t_waiter *waiter);
 
 #endif

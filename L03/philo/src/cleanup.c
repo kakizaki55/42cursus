@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:14:24 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/13 17:45:31 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:10:16 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	join_threads(t_waiter *waiter)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < waiter->philo_count)
@@ -41,7 +41,7 @@ int	free_forks(t_forks *forks)
 
 void	clean_up(t_waiter *waiter)
 {
-	int	i;
+	unsigned int	i;
 
 	if (waiter == NULL)
 		return ;

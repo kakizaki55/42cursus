@@ -1,14 +1,12 @@
 
 NAME		=	philo
-# LIBFT_PATH	=	./libs/libft
-# LIBFT		=	$(LIBFT_PATH)/libft.a
 INCLUDES	= 	-I includes
 
 # This will find all the .c files in the src directory and make a obj
 # directory to put all the .o files
 # CFLAGS		=	-Wall -Werror -Wextra $(INCLUDES)
 
-CFLAGS		= 	$(INCLUDES) -ls -libc
+CFLAGS		= 	$(INCLUDES)
 DEBUG_FLAGS	=	-fsanitize=address -g
 OBJ_DIR		=	obj
 SRC_DIR		=	src
@@ -18,7 +16,7 @@ RM			=	rm -rf
 CC			=	cc
 
 
-# Colors
+# ColorsS
 
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
