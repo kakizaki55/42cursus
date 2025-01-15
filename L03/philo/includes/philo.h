@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/15 15:27:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:28:39 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_philo
 	int					left_fork;
 	int					right_fork;
 	int					times_ate;
-	pid_t				thread_id;
 	t_waiter			*waiter;
 }						t_philo;
 
@@ -72,6 +71,7 @@ time_t					get_time_in_ms(void);
 t_forks					*get_fork_by_index(t_forks *head, int index);
 void					safe_print(t_waiter *waiter, t_philo *philom,
 							char *str);
+						bool get_death(t_waiter *waiter);
 
 // cleanup.c
 void					join_threads(t_waiter *waiter);

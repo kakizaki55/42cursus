@@ -6,7 +6,7 @@
 /*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/15 15:36:16 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:55:06 by mkakizak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ void	check_philosophers(t_waiter *waiter)
 		if (all_ate)
 			return (clean_up(waiter));
 	}
+	usleep(1000);
 }
 
+// just need to fiugre out the situation where there a re odd number of philosophers
 int	main(int argc, char *argv[])
 {
 	t_waiter	*waiter;
