@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/17 15:47:55 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:20:51 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_mutexes(t_waiter *waiter)
 
 void	set_philo(t_waiter *waiter, t_philo **philos, int i)
 {
-	int philo_id;
+	int	philo_id;
 
 	philo_id = i + 1;
 	philos[i]->waiter = waiter;

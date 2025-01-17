@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:13:14 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/17 16:13:21 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:21:08 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,52 +23,51 @@ void	handle_sleep_think(t_philo *philo)
 		safe_print(philo->waiter, philo, "%d is thinking\n");
 }
 
-bool get_left_fork_first(t_philo *philo, t_forks **left_fork, t_forks **right_fork)
+bool	get_left_fork_first(t_philo *philo, t_forks **left_fork,
+		t_forks **right_fork)
 {
-		pthread_mutex_lock((*left_fork)->fork_mutext);
-		if (get_death(philo->waiter))
-		{
-			pthread_mutex_unlock((*left_fork)->fork_mutext);
-			return (false);
-		}
-		safe_print(philo->waiter, philo, "%d has taken a fork\n");
-
-		pthread_mutex_lock((*right_fork)->fork_mutext);
-		if (get_death(philo->waiter))
-		{
-			pthread_mutex_unlock((*left_fork)->fork_mutext);
-			pthread_mutex_unlock((*right_fork)->fork_mutext);
-			return (false);
-		}
-		return (true);
+	pthread_mutex_lock((*left_fork)->fork_mutext);
+	if (get_death(philo->waiter))
+	{
+		pthread_mutex_unlock((*left_fork)->fork_mutext);
+		return (false);
+	}
+	safe_print(philo->waiter, philo, "%d has taken a fork\n");
+	pthread_mutex_lock((*right_fork)->fork_mutext);
+	if (get_death(philo->waiter))
+	{
+		pthread_mutex_unlock((*left_fork)->fork_mutext);
+		pthread_mutex_unlock((*right_fork)->fork_mutext);
+		return (false);
+	}
+	return (true);
 }
 
-bool get_right_fork_first(t_philo *philo, t_forks **left_fork, t_forks **right_fork)
+bool	get_right_fork_first(t_philo *philo, t_forks **left_fork,
+		t_forks **right_fork)
 {
-		pthread_mutex_lock((*right_fork)->fork_mutext);
-		if (get_death(philo->waiter))
-		{
-			pthread_mutex_unlock((*right_fork)->fork_mutext);
-			return (false);
-		}
-		safe_print(philo->waiter, philo, "%d has taken a fork\n");
-
-		pthread_mutex_lock((*left_fork)->fork_mutext);
-		if (get_death(philo->waiter))
-		{
-			pthread_mutex_unlock((*right_fork)->fork_mutext);
-			pthread_mutex_unlock((*left_fork)->fork_mutext);
-			return (false);
-		}
-		return (true);
+	pthread_mutex_lock((*right_fork)->fork_mutext);
+	if (get_death(philo->waiter))
+	{
+		pthread_mutex_unlock((*right_fork)->fork_mutext);
+		return (false);
+	}
+	safe_print(philo->waiter, philo, "%d has taken a fork\n");
+	pthread_mutex_lock((*left_fork)->fork_mutext);
+	if (get_death(philo->waiter))
+	{
+		pthread_mutex_unlock((*right_fork)->fork_mutext);
+		pthread_mutex_unlock((*left_fork)->fork_mutext);
+		return (false);
+	}
+	return (true);
 }
 
 bool	acquire_forks(t_philo *philo, t_forks **left_fork, t_forks **right_fork)
 {
 	*left_fork = get_fork_by_index(philo->waiter->forks, philo->left_fork);
 	*right_fork = get_fork_by_index(philo->waiter->forks, philo->right_fork);
-
-	if(philo->waiter->philo_count == 1)
+	if (philo->waiter->philo_count == 1)
 	{
 		pthread_mutex_lock((*left_fork)->fork_mutext);
 		safe_print(philo->waiter, philo, "%d has taken a fork\n");
@@ -77,13 +76,14 @@ bool	acquire_forks(t_philo *philo, t_forks **left_fork, t_forks **right_fork)
 	}
 	if (philo->id % 2 == 0)
 	{
-		if(get_left_fork_first(philo, left_fork, right_fork) == false)
-			return (false);
-	} else {
-		if(get_right_fork_first(philo, left_fork, right_fork) == false)
+		if (get_left_fork_first(philo, left_fork, right_fork) == false)
 			return (false);
 	}
-
+	else
+	{
+		if (get_right_fork_first(philo, left_fork, right_fork) == false)
+			return (false);
+	}
 	safe_print(philo->waiter, philo, "%d has taken a fork\n");
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/17 16:18:29 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:20:45 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	check_death(t_philo *philo)
 		return (1);
 	pthread_mutex_lock(philo->waiter->death_mutex);
 	current_time = get_time_in_ms() - philo->waiter->start_time;
-
 	if (current_time - philo->last_ate > philo->waiter->time_to_die)
 	{
 		philo->waiter->is_dead = true;
@@ -58,17 +57,16 @@ void	check_philosophers(t_waiter *waiter)
 
 	while (1)
 	{
-		if(get_death(waiter))
-			break;
+		if (get_death(waiter))
+			break ;
 		i = 0;
 		all_ate = true;
 		while (i < waiter->philo_count)
 		{
 			if (check_death(waiter->philos[i]))
 			{
-				// usleep(1000);
 				join_threads(waiter);
-				return(clean_up(waiter));
+				return (clean_up(waiter));
 			}
 			if (waiter->philos[i]->times_ate < waiter->times_must_eat)
 				all_ate = false;
@@ -80,7 +78,6 @@ void	check_philosophers(t_waiter *waiter)
 	usleep(500);
 }
 
-// just need to fiugre out the situation where there a re odd number of philosophers
 int	main(int argc, char *argv[])
 {
 	t_waiter	*waiter;

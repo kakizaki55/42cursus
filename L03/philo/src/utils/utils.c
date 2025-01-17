@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 15:10:57 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/17 16:12:06 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:21:23 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ void	safe_print(t_waiter *waiter, t_philo *philo, char *str)
 	pthread_mutex_unlock(waiter->print_mutex);
 }
 
-bool get_death(t_waiter *waiter)
+bool	get_death(t_waiter *waiter)
 {
-	bool res;
+	bool	res;
 
 	pthread_mutex_lock(waiter->death_mutex);
 	res = waiter->is_dead;
 	pthread_mutex_unlock(waiter->death_mutex);
 	return (res);
 }
-
-

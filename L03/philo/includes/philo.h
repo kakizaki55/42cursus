@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/17 16:16:22 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:21:32 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,15 @@ t_forks					*init_forks(int philo_count);
 void					*philo(void *args);
 
 // philos_utils.c
-void	handle_sleep_think(t_philo *philo);
-bool	get_left_fork_first(t_philo *philo, t_forks **left_fork, t_forks **right_fork);
-bool	get_right_fork_first(t_philo *philo, t_forks **left_fork, t_forks **right_fork);
-bool	acquire_forks(t_philo *philo, t_forks **left_fork, t_forks **right_fork);
-void	handle_eating(t_philo *philo, unsigned long long start_time,
-		t_forks *left_fork, t_forks *right_fork);
+void					handle_sleep_think(t_philo *philo);
+bool					get_left_fork_first(t_philo *philo, t_forks **left_fork,
+							t_forks **right_fork);
+bool					get_right_fork_first(t_philo *philo,
+							t_forks **left_fork, t_forks **right_fork);
+bool					acquire_forks(t_philo *philo, t_forks **left_fork,
+							t_forks **right_fork);
+void					handle_eating(t_philo *philo,
+							unsigned long long start_time, t_forks *left_fork,
+							t_forks *right_fork);
 
 #endif

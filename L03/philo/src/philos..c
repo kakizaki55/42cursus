@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:58:33 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/17 16:13:30 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:21:04 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	*philo(void *arg)
 	start_time = philo->waiter->start_time;
 	if (philo->id % 2 == 0)
 		usleep(1000);
-
 	while (philo->waiter->is_dead == false)
 	{
 		handle_sleep_think(philo);
