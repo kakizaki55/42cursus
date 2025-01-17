@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:54 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/15 16:28:39 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:16:22 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ time_t					get_time_in_ms(void);
 t_forks					*get_fork_by_index(t_forks *head, int index);
 void					safe_print(t_waiter *waiter, t_philo *philom,
 							char *str);
-						bool get_death(t_waiter *waiter);
+bool					get_death(t_waiter *waiter);
 
 // cleanup.c
 void					join_threads(t_waiter *waiter);
@@ -92,7 +92,13 @@ t_forks					*init_forks(int philo_count);
 
 // philos.c
 void					*philo(void *args);
-int						check_death(t_philo *philo);
-bool					get_death(t_waiter *waiter);
+
+// philos_utils.c
+void	handle_sleep_think(t_philo *philo);
+bool	get_left_fork_first(t_philo *philo, t_forks **left_fork, t_forks **right_fork);
+bool	get_right_fork_first(t_philo *philo, t_forks **left_fork, t_forks **right_fork);
+bool	acquire_forks(t_philo *philo, t_forks **left_fork, t_forks **right_fork);
+void	handle_eating(t_philo *philo, unsigned long long start_time,
+		t_forks *left_fork, t_forks *right_fork);
 
 #endif

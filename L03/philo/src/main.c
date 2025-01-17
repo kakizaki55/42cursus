@@ -6,7 +6,7 @@
 /*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/17 15:56:46 by minoka           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:18:29 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	check_death(t_philo *philo)
 	{
 		philo->waiter->is_dead = true;
 		pthread_mutex_unlock(philo->waiter->death_mutex);
+		usleep(500);
 		safe_print(philo->waiter, philo, "%d died\n");
-		// join_threads(philo->waiter);
 		return (1);
 	}
 	pthread_mutex_unlock(philo->waiter->death_mutex);
