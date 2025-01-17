@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 14:10:01 by minoka            #+#    #+#             */
-/*   Updated: 2025/01/15 16:29:17 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:47:55 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,23 @@ int	init_mutexes(t_waiter *waiter)
 
 void	set_philo(t_waiter *waiter, t_philo **philos, int i)
 {
+	int philo_id;
+
+	philo_id = i + 1;
 	philos[i]->waiter = waiter;
-	philos[i]->id = i + 1;
+	philos[i]->id = philo_id;
 	philos[i]->last_ate = 0;
 	philos[i]->times_ate = 0;
-	philos[i]->left_fork = i;
-	philos[i]->right_fork = (i + 1) % waiter->philo_count;
+	if ((philo_id) % 2 != 0)
+	{
+		philos[i]->left_fork = i;
+		philos[i]->right_fork = (i + 1) % waiter->philo_count;
+	}
+	else
+	{
+		philos[i]->left_fork = (i + 1) % waiter->philo_count;
+		philos[i]->right_fork = i;
+	}
 }
 
 t_philo	**init_philosophers(t_waiter *waiter)

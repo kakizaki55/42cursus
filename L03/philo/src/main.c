@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:19:48 by mkakizak          #+#    #+#             */
-/*   Updated: 2025/01/15 18:55:06 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:56:46 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int	check_death(t_philo *philo)
 		return (1);
 	pthread_mutex_lock(philo->waiter->death_mutex);
 	current_time = get_time_in_ms() - philo->waiter->start_time;
-	
+
 	if (current_time - philo->last_ate > philo->waiter->time_to_die)
 	{
 		philo->waiter->is_dead = true;
 		pthread_mutex_unlock(philo->waiter->death_mutex);
 		safe_print(philo->waiter, philo, "%d died\n");
-		join_threads(philo->waiter);
+		// join_threads(philo->waiter);
 		return (1);
 	}
 	pthread_mutex_unlock(philo->waiter->death_mutex);
@@ -66,6 +66,8 @@ void	check_philosophers(t_waiter *waiter)
 		{
 			if (check_death(waiter->philos[i]))
 			{
+				// usleep(1000);
+				join_threads(waiter);
 				return(clean_up(waiter));
 			}
 			if (waiter->philos[i]->times_ate < waiter->times_must_eat)
@@ -75,7 +77,7 @@ void	check_philosophers(t_waiter *waiter)
 		if (all_ate)
 			return (clean_up(waiter));
 	}
-	usleep(1000);
+	usleep(500);
 }
 
 // just need to fiugre out the situation where there a re odd number of philosophers
