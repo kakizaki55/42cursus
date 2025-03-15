@@ -6,7 +6,7 @@ INCLUDES	= 	-I includes
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
 
 CFLAGS		= 	$(INCLUDES)
-DEBUG_FLAGS	=	-fsanitize=address -g
+DEBUG_FLAGS	=	-g
 OBJ_DIR		=	obj
 SRC_DIR		=	./
 SRCS		=	$(shell find $(SRC_DIR) -name '*.cpp')
