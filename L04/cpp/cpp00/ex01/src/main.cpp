@@ -3,6 +3,10 @@
 
 int main(void)
 {
-	std::cout << "hello workd\n";
+
+	PhoneBook phonebook;
+	Contact contact;
+	contact.create_contact();
+	contact.print_contact();
 	return (0);
 }

@@ -3,8 +3,18 @@
 #include "PhoneBook.hpp"
 
 
-int print_contactsize()
+int add_contact(Contact contact)
 {
-	std::cout << CONTACTS_SIZE << "\n" <<std::endl;
+	return (0);
+}
+
+int search_contact(int index)
+{
+	return (0);
+}
+
+int print_usages(void)
+{
+	std::cout << "Usage: ./phonebook [add|search|exit]" << std::endl;
 	return (0);
 }
