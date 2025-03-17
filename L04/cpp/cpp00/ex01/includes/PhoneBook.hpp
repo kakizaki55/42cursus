@@ -35,14 +35,9 @@ class PhoneBook
 	public:
 		Contact contacts[CONTACTS_SIZE];
 		int contacts_size;
-
 		int add_contact(Contact contact);
+		void print_usages(void);
 };
-
-
-// int add_contact(Contact contact);
-// int print_contacts(void);
-// int search_contact(int index);
 
 
 #endif
