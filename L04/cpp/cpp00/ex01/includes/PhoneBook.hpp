@@ -35,9 +35,25 @@ class PhoneBook
 	public:
 		Contact contacts[CONTACTS_SIZE];
 		int contacts_size;
-		int add_contact(Contact contact);
 		void print_usages(void);
 };
 
+enum Command {
+	ADD,
+	SEARCH,
+	EXIT,
+	INVALID
+};
+
+enum ContactFields {
+	FIRST_NAME,
+	LAST_NAME,
+	NICKNAME,
+	PHONE_NUMBER,
+	DARKEST_SECRET
+};
+
+
+Command get_command(const std::string& command);
 
 #endif
