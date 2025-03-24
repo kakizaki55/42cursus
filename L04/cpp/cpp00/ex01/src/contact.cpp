@@ -1,6 +1,5 @@
 #include <PhoneBook.hpp>
 
-
 bool validate_input(std::string input) {
 	if (input.empty())
 	{
@@ -9,6 +8,7 @@ bool validate_input(std::string input) {
 	}
 	return (true);
 }
+
 
 bool Contact::create_contact(int index)
 {
@@ -39,8 +39,20 @@ bool Contact::create_contact(int index)
 }
 
 
-void Contact::display_contact()
+void Contact::index_self()
 {
 	std::cout << "[" << this->index << "]" << " | " << this->first_name  <<  std::endl;
+}
+
+
+bool Contact::display_self()
+{
+	std:: cout << "Nickname: " << this->nickname << std::endl;
+	std:: cout << "First name: " << this->first_name << std::endl;
+	std:: cout << "Last name: " << this->last_name << std::endl;
+	std:: cout << "Phone number:" << this->phone_number << std::endl;
+	std:: cout << "Darkest secret:" << std::endl;
+
+	return(true);
 }
 

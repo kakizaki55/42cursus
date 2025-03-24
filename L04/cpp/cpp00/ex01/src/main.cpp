@@ -6,6 +6,8 @@ int main(void)
 	PhoneBook phonebook;
 	std::string input;
 
+	phonebook.print_usages();
+
 	while(true)
 	{
 
@@ -20,7 +22,8 @@ int main(void)
 			break;
 		case SEARCH:
 			std::cout << "Searching..." << std::endl;
-			phonebook.display_all_contacts();
+			phonebook.index_all_contacts();
+			phonebook.search();
 			break;
 		case EXIT:
 			std::cout << "Exiting..." << std::endl;

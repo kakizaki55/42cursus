@@ -4,8 +4,9 @@
 
 #include <string.h>
 #include <iostream>
+#include <stdlib.h>
 
-#define	CONTACTS_SIZE 8
+#define	CONTACTS_SIZE 2
 
 class Contact
 {
@@ -31,7 +32,8 @@ class Contact
 		}
 
 		bool	create_contact(int index);
-		void	display_contact(void);
+		void	index_self(void);
+		bool	display_self(void);
 };
 
 class PhoneBook
@@ -53,10 +55,10 @@ class PhoneBook
 		}
 
 		void	print_usages(void);
-		// void	display_contact();
-		void	display_all_contacts();
+		void	index_all_contacts(void);
+
 		bool	add(void);
-		int		search_contact(int index);
+		bool	search(void);
 };
 
 enum Command
