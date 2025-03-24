@@ -8,6 +8,7 @@ void PhoneBook:: print_usages(void)
 
 void PhoneBook::index_all_contacts()
 {
+	this->display_header();
 	for (size_t i = 0; i < this->contacts_size; i++)
 	{
 		if (this->contacts[i].first_name.empty())
@@ -21,9 +22,6 @@ void PhoneBook::index_all_contacts()
 
 bool PhoneBook::add()
 {
-	std::cout << "index:" << this->current_index << std::endl;
-	std::cout << "contact size:" << this->contacts_size << std::endl;
-
 	this->contacts[this->current_index].create_contact(this->current_index);
 
 	if(this->current_index + 1 == this->contacts_size)
@@ -40,7 +38,8 @@ bool PhoneBook::search()
 	std::getline(std::cin, input);
 
 	int index = atoi(input.c_str());
-	if(input.empty() || index < 0 || index > this->contacts_size)
+
+	if(input.empty() || index < 0 || index > this->contacts_size - 1 || is_number(input) == false)
 	{
 		std::cout << "Invalid index" << std::endl;
 		return false;
@@ -54,6 +53,18 @@ bool PhoneBook::search()
 
 	this->contacts[index].display_self();
 	return (true);
+}
+
+
+void PhoneBook::display_header()
+{
+	const int width = PHONE_BOOK_WIDTH;
+	std::cout << std::setw(width) << std::right << "Index" << "|";
+	std::cout << std::setw(width) << std::right << "First Name" << "|";
+	std::cout << std::setw(width) << std::right << "Last Name" << "|";
+	std::cout << std::setw(width) << std::right << "Nickname" << "|" << std::endl;
+	return;
+
 }
 
 

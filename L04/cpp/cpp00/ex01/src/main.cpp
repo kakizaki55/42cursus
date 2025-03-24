@@ -11,8 +11,9 @@ int main(void)
 	while(true)
 	{
 
-		std::cout << "Enter a command-> ";
+		std::cout << "[Phone book]-> ";
 		std::getline(std::cin, input);
+		// std::cout << "max is:" << input.max_size()<< std::endl;
 
 		switch (get_command(input))
 		{

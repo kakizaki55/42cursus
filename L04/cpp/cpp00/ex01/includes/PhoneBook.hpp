@@ -5,8 +5,11 @@
 #include <string.h>
 #include <iostream>
 #include <stdlib.h>
+#include <string>
+#include <iomanip>
 
-#define	CONTACTS_SIZE 2
+#define	CONTACTS_SIZE 8
+#define PHONE_BOOK_WIDTH 10
 
 class Contact
 {
@@ -14,13 +17,13 @@ class Contact
 
 		std::string phone_number;
 		std::string darkest_secret;
+		std::string last_name;
+		std::string nickname;
 
 	public:
 
 		int index;
 		std::string first_name;
-		std::string last_name;
-		std::string nickname;
 		Contact()
 		{
 			this->index = 0;
@@ -34,6 +37,7 @@ class Contact
 		bool	create_contact(int index);
 		void	index_self(void);
 		bool	display_self(void);
+		int		get_logest(void);
 };
 
 class PhoneBook
@@ -56,6 +60,7 @@ class PhoneBook
 
 		void	print_usages(void);
 		void	index_all_contacts(void);
+		void	display_header();
 
 		bool	add(void);
 		bool	search(void);
@@ -80,5 +85,7 @@ enum ContactFields
 
 
 Command get_command(const std::string& command);
+bool is_number(const std::string& string);
+void truncate_and_print(const std::string& str, int width);
 
 #endif
