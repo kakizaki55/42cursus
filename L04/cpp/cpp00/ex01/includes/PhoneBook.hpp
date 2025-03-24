@@ -10,13 +10,16 @@
 class Contact
 {
 	private:
+
+		std::string phone_number;
+		std::string darkest_secret;
+
+	public:
+
 		int index;
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
-		std::string phone_number;
-		std::string darkest_secret;
-	public:
 		Contact()
 		{
 			this->index = 0;
@@ -26,26 +29,46 @@ class Contact
 			this->phone_number = "";
 			this->darkest_secret ="";
 		}
-	bool create_contact(void);
-	bool print_contact(void);
+
+		bool	create_contact(int index);
+		void	display_contact(void);
 };
 
 class PhoneBook
 {
-	public:
-		Contact contacts[CONTACTS_SIZE];
+	private:
+
+		int current_index;
+		int previous_index;
 		int contacts_size;
-		void print_usages(void);
+
+	public:
+
+		Contact contacts[CONTACTS_SIZE];
+		PhoneBook()
+		{
+			this->current_index = 0;
+			this->previous_index = 0;
+			this->contacts_size = CONTACTS_SIZE;
+		}
+
+		void	print_usages(void);
+		// void	display_contact();
+		void	display_all_contacts();
+		bool	add(void);
+		int		search_contact(int index);
 };
 
-enum Command {
+enum Command
+{
 	ADD,
 	SEARCH,
 	EXIT,
 	INVALID
 };
 
-enum ContactFields {
+enum ContactFields
+{
 	FIRST_NAME,
 	LAST_NAME,
 	NICKNAME,

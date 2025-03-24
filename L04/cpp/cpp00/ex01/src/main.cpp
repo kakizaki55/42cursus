@@ -1,26 +1,26 @@
 #include <PhoneBook.hpp>
+#include <stdio.h>
 
 int main(void)
 {
 	PhoneBook phonebook;
-	Contact contact;
 	std::string input;
 
 	while(true)
 	{
-		phonebook.print_usages();
 
-		std::cout << "Enter a command: ";
+		std::cout << "Enter a command-> ";
 		std::getline(std::cin, input);
 
 		switch (get_command(input))
 		{
 		case ADD:
-			contact.create_contact();
-			contact.print_contact();
+			std::cout << "Adding..." << std::endl;
+			phonebook.add();
 			break;
 		case SEARCH:
 			std::cout << "Searching..." << std::endl;
+			phonebook.display_all_contacts();
 			break;
 		case EXIT:
 			std::cout << "Exiting..." << std::endl;
