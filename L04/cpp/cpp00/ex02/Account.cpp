@@ -7,7 +7,6 @@ int Account ::	_totalAmount = 0;			// total amount of money in account
 int Account ::	_totalNbDeposits = 0;		// total number of deposts done on account
 int Account ::	_totalNbWithdrawals = 0;	// total number of withdraws done in account
 
-// [19920104_091532] index:0;amount:42;created
 //constuctor
 Account :: Account(int initail_deposit)
 {
@@ -25,8 +24,7 @@ Account :: Account(int initail_deposit)
 	std:: cout << ";created" << std :: endl;
 	_nbAccounts++;
 }
-// [19920104_091532] index:7;amount:8942;closed
-//destructer
+
 Account :: ~Account()
 {
 	_displayTimestamp();
@@ -65,42 +63,48 @@ void Account :: displayAccountsInfos( void )
 }
 
 // PUBLIC FUNCTIONS
-// [19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
-// [19920104_091532] index:1;p_amount:54;deposit:765;amount:819;nb_deposits:1
 void Account ::	makeDeposit( int deposit )
 {
 	_displayTimestamp();
 	if(deposit < 0)
 	{
-		std :: cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";deposit:refused" << std :: endl;
+		std :: cout << "index:" << _accountIndex;
+		std :: cout << ";p_amount:" << _amount;
+		std :: cout << ";deposit:refused" << std :: endl;
 		return ;
 	} else {
 		_amount += deposit;
 		_totalAmount += deposit;
 		_nbDeposits++;
 		_totalNbDeposits++;
-		std :: cout << "index:" << _accountIndex << ";p_amount:" << _amount - deposit << ";deposit:" << deposit << ";amount:" << _amount << ";nb_deposits:" << _nbDeposits;
-		std :: cout << std:: endl;
+		std :: cout << "index:" << _accountIndex;
+		std :: cout << ";p_amount:" << _amount - deposit;
+		std :: cout << ";deposit:" << deposit;
+		std :: cout << ";amount:" << _amount;
+		std :: cout << ";nb_deposits:" << _nbDeposits << std :: endl;
 	}
 }
 
-// [19920104_091532] index:0;p_amount:47;withdrawal:refused
-// [19920104_091532] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
 bool Account ::	makeWithdrawal( int withdrawal )
 {
 	_displayTimestamp();
 
 	if(withdrawal > _amount)
 	{
-		std :: cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:refused" << std :: endl;
+		std :: cout << "index:" << _accountIndex;
+		std :: cout << ";p_amount:" << _amount;
+		std :: cout << ";withdrawal:refused" << std :: endl;
 		return false;
 	} else {
 		_amount -= withdrawal;
 		_totalAmount -= withdrawal;
 		_nbWithdrawals++;
 		_totalNbWithdrawals++;
-		std :: cout << "index:" << _accountIndex << ";p_amount:" << _amount + withdrawal << ";withdrawal:" << withdrawal << ";amount:" << _amount << ";nb_withdrawals:" << _nbWithdrawals;
-		std :: cout << std:: endl;
+		std :: cout << "index:" << _accountIndex;
+		std :: cout	<< ";p_amount:" << _amount + withdrawal;
+		std :: cout << ";withdrawal:" << withdrawal;
+		std :: cout << ";amount:" << _amount;
+		std :: cout << ";nb_withdrawals:" << _nbWithdrawals << std :: endl;
 	}
 	return true;
 }
