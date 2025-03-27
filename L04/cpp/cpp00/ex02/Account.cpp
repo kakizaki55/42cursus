@@ -10,6 +10,7 @@ int Account ::	_totalNbWithdrawals = 0;	// total number of withdraws done in acc
 //constuctor
 Account :: Account(int initail_deposit)
 {
+	_amount = 0;
 	// this adds to all the accounts
 	_totalAmount += initail_deposit;
 	_amount += initail_deposit;
