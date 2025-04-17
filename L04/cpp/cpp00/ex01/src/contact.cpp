@@ -53,7 +53,6 @@ bool Contact::create_contact(int index)
 	return(true);
 }
 
-
 void Contact::index_self()
 {
 	const unsigned long width = PHONE_BOOK_WIDTH;

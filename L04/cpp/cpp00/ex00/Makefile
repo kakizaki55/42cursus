@@ -1,5 +1,3 @@
-
-
 NAME		=	megaphone
 INCLUDES	= 	-I includes
 
@@ -13,8 +11,6 @@ SRCS		=	$(shell find $(SRC_DIR) -name '*.cpp')
 OBJS		=	$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 RM			=	rm -rf
 CXX			=	c++
-
-
 
 
 # Colors

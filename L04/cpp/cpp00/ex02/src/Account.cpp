@@ -1,25 +1,19 @@
 #include "Account.hpp"
 #include <iostream>
 
-// this is for all accounts
 int Account ::	_nbAccounts = 0; 			// total number of accounts
 int Account ::	_totalAmount = 0;			// total amount of money in account
 int Account ::	_totalNbDeposits = 0;		// total number of deposts done on account
 int Account ::	_totalNbWithdrawals = 0;	// total number of withdraws done in account
 
-//constuctor
 Account :: Account(int initail_deposit)
 {
 	_amount = 0;
-	// this adds to all the accounts
 	_totalAmount += initail_deposit;
 	_amount += initail_deposit;
-
-	// this initializes the account
 	_accountIndex = _nbAccounts;
 	_nbDeposits = 0;
 	_nbWithdrawals = 0;
-	//this displayes the account
 	_displayTimestamp();
 	checkAmount();
 	std:: cout << ";created" << std :: endl;
@@ -34,7 +28,6 @@ Account :: ~Account()
 }
 
 //PRIVATE FUNCTIONS
-
 int	Account :: getNbAccounts( void )
 {
 	return _nbAccounts;
@@ -55,7 +48,7 @@ int	Account :: getNbWithdrawals( void )
 void Account :: displayAccountsInfos( void )
 {
 	_displayTimestamp();
-	std :: cout << "accounts:"<< getNbAccounts();			// totalnumber of accounts?
+	std :: cout << "accounts:"<< getNbAccounts();			// total number of accounts
 	std :: cout << ";total:" << getTotalAmount();			// total amount of money in account
 	std :: cout << ";deposits:" << getNbDeposits();			// total number of deposts done on account
 	std :: cout << ";withdrawals:" << getNbWithdrawals();	// total number of withdraws done in account
