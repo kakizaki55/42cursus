@@ -20,7 +20,7 @@ bool is_number(const std::string& string)
 	return true;
 }
 
-void truncate_and_print(const std::string& str, int width)
+void truncate_and_print(const std::string& str, unsigned long width)
 {
 	if (str.length() > width) {
 		std::cout << std::setw(width - 1) << std::right << str.substr(0, width - 1) + "." << "|";

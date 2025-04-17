@@ -34,10 +34,10 @@ class Contact
 			this->darkest_secret ="";
 		}
 
-		bool	create_contact(int index);
-		void	index_self(void);
-		bool	display_self(void);
-		int		get_logest(void);
+		bool			create_contact(int index);
+		void			index_self(void);
+		bool			display_self(void);
+		unsigned long 	get_logest(void);
 };
 
 class PhoneBook
@@ -86,6 +86,6 @@ enum ContactFields
 
 Command get_command(const std::string& command);
 bool is_number(const std::string& string);
-void truncate_and_print(const std::string& str, int width);
+void truncate_and_print(const std::string& str, unsigned long width);
 
 #endif

@@ -1,12 +1,11 @@
 NAME		=	phonebook_test
 INCLUDES	= 	-I includes
 
-# CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
+CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
 
-CFLAGS		=	-std=c++98 $(INCLUDES)
 DEBUG_FLAGS	=	-g
-OBJ_DIR		=	.
-SRC_DIR		=	.
+OBJ_DIR		=	obj
+SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.cpp')
 OBJS		=	$(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 RM			=	rm -rf

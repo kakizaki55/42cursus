@@ -9,7 +9,7 @@ void PhoneBook:: print_usages(void)
 void PhoneBook::index_all_contacts()
 {
 	this->display_header();
-	for (size_t i = 0; i < this->contacts_size; i++)
+	for (int i = 0; i < this->contacts_size; i++)
 	{
 		if (this->contacts[i].first_name.empty())
 			continue;

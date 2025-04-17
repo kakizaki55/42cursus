@@ -1,9 +1,8 @@
 NAME		=	phonebook
 INCLUDES	= 	-I includes
 
-# CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
+CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
 
-CFLAGS		=	-std=c++98 $(INCLUDES)
 DEBUG_FLAGS	=	-g
 OBJ_DIR		=	obj
 SRC_DIR		=	src

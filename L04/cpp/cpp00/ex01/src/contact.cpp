@@ -56,7 +56,7 @@ bool Contact::create_contact(int index)
 
 void Contact::index_self()
 {
-	const int width = PHONE_BOOK_WIDTH;
+	const unsigned long width = PHONE_BOOK_WIDTH;
 	std::cout << std::setw(width) << std::right << this->index << "|";
 	truncate_and_print(this->first_name, width);
 	truncate_and_print(this->last_name, width);
@@ -76,9 +76,9 @@ bool Contact::display_self()
 	return(true);
 }
 
-int Contact::get_logest()
+unsigned long Contact::get_logest()
 {
-	int max_length = this->first_name.length();
+	unsigned long max_length = this->first_name.length();
 
 	if (this->last_name.length() > max_length)
 		max_length = this->last_name.length();
