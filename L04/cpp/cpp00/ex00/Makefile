@@ -1,5 +1,3 @@
-
-
 NAME		=	megaphone
 INCLUDES	= 	-I includes
 

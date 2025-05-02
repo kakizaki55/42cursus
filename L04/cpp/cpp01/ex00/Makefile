@@ -1,4 +1,4 @@
-NAME		=	zombie_program
+NAME		=	zombie_class
 INCLUDES	= 	-I includes
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)

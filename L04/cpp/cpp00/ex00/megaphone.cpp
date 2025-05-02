@@ -2,7 +2,6 @@
 #include <cstring>
 #include <string>
 
-
 int main(int argc, char **argv)
 {
 	std::string res = "";
@@ -18,6 +17,7 @@ int main(int argc, char **argv)
 			res += temp;
 		}
 		std::cout << res;
+		std::cout << "\n";
 	}
 	std::cout << std::endl;
 	return 0;

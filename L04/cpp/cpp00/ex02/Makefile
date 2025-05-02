@@ -1,4 +1,4 @@
-NAME		=	phonebook_test
+NAME		=	account
 INCLUDES	= 	-I includes
 
 # CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
