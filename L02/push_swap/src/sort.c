@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkakizak <mkakizak@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: minoka <minoka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:04:38 by mkakizak          #+#    #+#             */
-/*   Updated: 2024/07/05 13:40:55 by mkakizak         ###   ########.fr       */
+/*   Updated: 2025/03/29 17:46:41 by minoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	long_sort(t_c_list **stack_a, t_c_list **stack_b, int len)
 	dlmt = ft_c_lstsize(*stack_a) / 2;
 	splt_lst_hlf(stack_a, stack_b, 'b', dlmt);
 	while (1)
-	{	
+	{
 		dlmt /= 2;
 		splt_lst_hlf(stack_b, stack_a, 'a', dlmt);
 		if (dlmt <= 3)
@@ -108,6 +108,7 @@ void	sort(t_c_list **head, int len)
 
 	stack_a = *head;
 	stack_b = NULL;
+	puts("dose it sort?");
 	if (check_any_sort(stack_a))
 	{
 		index = find_sortest_path(&stack_a, 1);
