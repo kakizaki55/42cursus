@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/ex05/includes"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/c++",

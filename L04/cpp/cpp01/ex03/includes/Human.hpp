@@ -37,6 +37,4 @@ class HumanB
 };
 
 
-
-
 #endif

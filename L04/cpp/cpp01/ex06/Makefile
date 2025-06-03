@@ -1,4 +1,4 @@
-NAME		=	 harl2.0
+NAME		=	 harl_filter
 INCLUDES	= 	-I includes
 
 #NEED TO ADD A FLAGS

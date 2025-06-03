@@ -1,8 +1,5 @@
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <stdlib.h>
+#include <cstdio>
 
 #include "Harl.hpp"
 
@@ -10,7 +7,7 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
     {
-        std::cerr << "Usage: " << argv[0] << " <level>" << std::endl;
+        std::cerr << "Error: need to add a <level>." << std::endl;
         return 1;
     }
 
@@ -22,7 +19,6 @@ int main(int argc, char **argv)
     }
 
     Harl harl;
-
     harl.complain(level);
 
     return 0;
