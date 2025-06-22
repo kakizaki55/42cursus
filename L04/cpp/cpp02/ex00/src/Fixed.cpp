@@ -24,6 +24,8 @@ Fixed &Fixed::operator=(const Fixed &other)
 	std::cout << "Copy assignment operator called \n";
 	if(this != &other)
 	{
+		//[NOTE] it look like the copy assiment operator could be called here instead? does it dosent work cause one is const and the other is not??
+		//[NOTE]  this does not work *this = *other;
 		this->_value = other.getRawBits();
 	}
 	return *this;
