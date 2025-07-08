@@ -2,54 +2,25 @@
 #include "Human.hpp"
 #include <iostream>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+int main()
+{
 
-    {
-        // std::cout << "club type: " << club.getType() << std::endl;
-        // club.setType("some other type of club");
-        // std::cout << "club type: " << club.getType() << std::endl;
-
-        Weapon club = Weapon("crude spiked club");
-        Weapon sword = Weapon("long sword");
-
-        HumanA bob("Bob", club);
-
-        // bob.setWeapon(club);
-        bob.attack();
-
-
-        club.setType("ball and chain");
-        // std::cout << "club type: " << club.getType() << std::endl;
-        bob.attack();
-        // club.setType("some other type of club");
-        // bob.setWeapon(sword);
-        // bob.attack();
-    }
-
-
-
-    {
-        Weapon sword = Weapon("long sword");
-
-        HumanB jim("Jim");
-
-        // jim.setWeapon(&club);
-        jim.attack();
-        jim.setWeapon(sword);
-        jim.attack();
-
-        sword.setType("short sword");
-        // std::cout << "club type: " << club.getType() << std::endl;
-        jim.attack();
-        // club.setType("some other type of club");
-        // jim.setWeapon(&sword);
-        // jim.attack();
-    }
-
-    return 0;
-
-
-
+{
+Weapon club = Weapon("crude spiked club");
+HumanA bob("Bob", club);
+bob.attack();
+club.setType("some other type of club");
+bob.attack();
 }
 
+{
+Weapon club = Weapon("crude spiked club");
+HumanB jim("Jim");
+jim.setWeapon(club);
+jim.attack();
+club.setType("some other type of club");
+jim.attack();
+}
+
+return 0;
+}

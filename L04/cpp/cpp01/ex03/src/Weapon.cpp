@@ -1,6 +1,5 @@
 #include "Weapon.hpp"
 
-
 const std::string& Weapon::getType()
 {
 	std:: string& typeREF = this->type;
