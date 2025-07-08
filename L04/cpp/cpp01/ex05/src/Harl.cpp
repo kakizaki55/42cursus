@@ -46,6 +46,7 @@ void Harl::complain(std::string level)
 		{"WARNING", &Harl::warning},
 		{"ERROR", &Harl::error}
 	};
+
 	int i = 0;
 	for (; i < 4; ++i)
 	{
@@ -56,7 +57,4 @@ void Harl::complain(std::string level)
 			return;
 		}
 	}
-	std:: cout << "Harl::complain called with level: " << level << std::endl;
-	// this->debug();
-	// (this->*funcPtr)();
 }
