@@ -7,7 +7,7 @@ DEBUG_FLAGS	=	-g
 OBJ_DIR		=	obj
 SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.cpp')
-OBJS		=	$(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJS		=	$(SRCSW:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 RM			=	rm -rf
 CXX			=	c++
 

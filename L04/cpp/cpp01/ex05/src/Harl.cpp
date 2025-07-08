@@ -1,6 +1,5 @@
 #include "Harl.hpp"
 
-
 Harl::Harl() {
 	// Constructor implementation (if needed)
 }

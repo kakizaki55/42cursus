@@ -1,9 +1,7 @@
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <stdlib.h>
-
 #include "Harl.hpp"
 
 int main(int argc, char **argv)
