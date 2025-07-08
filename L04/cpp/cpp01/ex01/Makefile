@@ -1,10 +1,8 @@
 NAME		=	zombie_horde
 INCLUDES	= 	-I includes
 
-#NEED TO ADD A FLAGS
-# CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
+CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
 
-CFLAGS		=	-std=c++98 $(INCLUDES)
 DEBUG_FLAGS	=	-g
 OBJ_DIR		=	obj
 SRC_DIR		=	src

@@ -1,15 +1,16 @@
 
-#include "Zombie.hpp"
+#include "../includes/Zombie.hpp"
 
 int main() {
 
-    std::cout << "Hello, World!" << std::endl;
-    Zombie *zombie = zombieHorde(5, "zombie");
+    int nbr = 20;
+    Zombie *zombie = zombieHorde(nbr, "bobby");
 
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < nbr; i++)
     {
         zombie[i].announce();
     }
+
     delete [] zombie;
     return EXIT_SUCCESS;
 }

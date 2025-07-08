@@ -10,8 +10,13 @@
 class Zombie
 {
 	typedef Zombie t;
-	public:
+	
+	private:
+	
+		std::string name;
 
+	public:
+		
 		Zombie();
 
 		Zombie(std::string name);
@@ -19,11 +24,7 @@ class Zombie
 		~Zombie();
 
 		void announce();
-		std::string get_name(void);
-
-	private:
-
-		std::string name;
+		void set_name(std::string);
 
 };
 

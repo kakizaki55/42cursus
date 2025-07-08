@@ -1,8 +1,14 @@
 #include "Zombie.hpp"
 
 Zombie *zombieHorde(int N, std::string name)
-{
+{	
 	int number_or_zombies = N;
-	Zombie *first_zombie = new Zombie[number_or_zombies];
-	return (first_zombie);
+	int i = 0;
+	Zombie *zombie = new Zombie[number_or_zombies];
+	while(i < number_or_zombies)
+	{
+		zombie[i].set_name(name);
+		i++;
+	}
+	return (zombie);
 }
