@@ -4,9 +4,6 @@
 
 #pragma once
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
 class Zombie
 {
 	typedef Zombie t;
@@ -29,5 +26,3 @@ class Zombie
 };
 
 Zombie *zombieHorde(int N, std::string name);
-
-#endif

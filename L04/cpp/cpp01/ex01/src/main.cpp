@@ -1,5 +1,5 @@
 
-#include "../includes/Zombie.hpp"
+#include "../include/Zombie.hpp"
 
 int main() {
 
@@ -14,3 +14,4 @@ int main() {
     delete [] zombie;
     return EXIT_SUCCESS;
 }
+

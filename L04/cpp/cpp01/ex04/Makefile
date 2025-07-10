@@ -1,7 +1,7 @@
 NAME		=	 replace
-INCLUDES	= 	-I includes
+INCLUDE	= 	-I include
 
-CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
+CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDE)
 
 DEBUG_FLAGS	=	-g
 OBJ_DIR		=	obj

@@ -1,5 +1,6 @@
-#include "../includes/Zombie.hpp"
+#include "../include/Zombie.hpp"
 #include <stdlib.h>
+
 int main(void)
 {
 	Zombie *zombie_a = new Zombie("ken");
@@ -11,5 +12,5 @@ int main(void)
 
 	randomChump("chucky");
 
-	return (EXIT_SUCCESS);
+	return EXIT_SUCCESS;
 }

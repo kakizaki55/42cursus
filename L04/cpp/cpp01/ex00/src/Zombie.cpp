@@ -1,4 +1,3 @@
-//this is a fucntion that will set the name of the zombie
 #include "Zombie.hpp"
 
 Zombie:: Zombie(std::string name)
