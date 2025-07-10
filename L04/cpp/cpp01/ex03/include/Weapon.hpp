@@ -2,9 +2,6 @@
 
 #pragma once
 
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
-
 class Weapon
 {
 	private:
@@ -17,6 +14,3 @@ class Weapon
 		const std::string& getType();
 		void setType(std:: string);
 };
-
-
-#endif

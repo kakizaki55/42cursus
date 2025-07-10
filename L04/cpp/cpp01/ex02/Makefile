@@ -1,5 +1,5 @@
 NAME		=	hi_this_is_brain
-INCLUDE	= 	-I include
+INCLUDE		= 	-I include
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDE)
 
