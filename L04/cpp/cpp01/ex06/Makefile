@@ -1,5 +1,5 @@
 NAME		=	 harl_filter
-INCLUDE	= 	-I include
+INCLUDE		= 	-I include
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDE)
 
