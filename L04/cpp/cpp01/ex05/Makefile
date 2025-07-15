@@ -1,5 +1,5 @@
 NAME		=	 harl2.0
-INCLUDE	= 	-I include
+INCLUDE		= 	-I include
 
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDE)
 
@@ -7,7 +7,7 @@ DEBUG_FLAGS	=	-g
 OBJ_DIR		=	obj
 SRC_DIR		=	src
 SRCS		=	$(shell find $(SRC_DIR) -name '*.cpp')
-OBJS		=	$(SRCSW:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJS		=	$(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 RM			=	rm -rf
 CXX			=	c++
 
@@ -17,7 +17,7 @@ DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m
 GREEN = \033[0;92m
-YELLOW = \033[0;93m
+YELLOW = \033[0;
 BLUE = \033[0;94m
 MAGENTA = \033[0;95m
 CYAN = \033[0;96m
