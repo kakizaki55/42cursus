@@ -3,12 +3,25 @@
 #include <stdlib.h>
 
 #pragma once
-#ifndef HARL_HPP
-# define HARL_HPP
 
+// struct HarlLevels 
+// {
+// 		std::string name;
+// 		void (Harl::*func)();
+// };
+
+enum Level 
+{
+	DEBUG,
+	INFO,
+	WARNING,
+	ERROR,
+	NOT_FOUND
+};
 class Harl
 {
 	private:
+
 		void debug(void);
 		void info(void);
 		void warning(void);
@@ -20,5 +33,3 @@ class Harl
 		~Harl();
 		void complain(std::string level);
 };
-
-#endif
