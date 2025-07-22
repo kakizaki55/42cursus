@@ -1,5 +1,6 @@
 #include "../include/Fixed.hpp"
 #include <iostream>
+#include <stdio.h>
 
 
 Fixed:: Fixed()
@@ -33,7 +34,7 @@ Fixed:: ~Fixed()
 	std:: cout << "Destructor called \n";
 }
 
-Fixed &Fixed::operator= (const Fixed &other)
+Fixed &Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignment operator called \n";
 	if(this != &other)
@@ -43,43 +44,110 @@ Fixed &Fixed::operator= (const Fixed &other)
 	return *this;
 }
 
-
 //Comparassion operators
 bool Fixed::operator>(const Fixed &other) const
 {
-	bool res = this->toFloat() > other.toFloat();
+	bool res = this->getRawBits() > other.getRawBits();
 	return res;
 }
 
 bool Fixed::operator<(const Fixed &other) const
 {
-	bool res = this->toFloat() < other.toFloat();
+	bool res = this->getRawBits() < other.getRawBits();
 	return res;
 }
 
 bool Fixed::operator>=(const Fixed &other) const
 {
-	bool res = this->toFloat() >= other.toFloat();
+	bool res = this->getRawBits() >= other.getRawBits();
 	return res;
 }
 
 bool Fixed::operator<=(const Fixed &other) const
 {
-	bool res = this->toFloat() <= other.toFloat();
+	bool res = this->getRawBits() <= other.getRawBits();
 	return res;
 }
 
 bool Fixed::operator==(const Fixed &other) const
 {
-	bool res = this->toFloat() == other.toFloat();
+	bool res = this->getRawBits() == other.getRawBits();
 	return res;
 }
 
 bool Fixed::operator!=(const Fixed &other) const
 {
-	bool res = this->toFloat() != other.toFloat();
+	bool res = this->getRawBits() != other.getRawBits();
 	return res;
 }
+
+//+/-/*// operator
+Fixed Fixed::operator+(const Fixed &other) const
+{
+	Fixed res;
+	res.setRawBits(this->getRawBits() + other.getRawBits());
+	return res;
+}
+
+Fixed Fixed::operator-(const Fixed &other) const
+{
+	Fixed res;
+	res.setRawBits(this->getRawBits() - other.getRawBits());
+	return res;
+}
+
+Fixed Fixed::operator*(const Fixed &other) const
+{
+	Fixed res;
+	res.setRawBits(this->getRawBits() * other.getRawBits());
+	return res;
+}
+
+Fixed Fixed::operator/(const Fixed &other) const
+{
+	Fixed res;
+	res.setRawBits(this->getRawBits() * other.getRawBits());
+	return res;
+}
+
+
+
+//post increment operator
+Fixed Fixed::operator++(int)
+{
+	Fixed temp = *this;
+	// puts("post increment operator called");
+	this->setRawBits(this->getRawBits() + 1);
+	return temp;
+}
+
+//pre increment operator
+Fixed& Fixed::operator++(void)
+{
+	// puts("pre increment operator called");
+	this->setRawBits(this->getRawBits() + 1);
+	return *this;
+}
+
+//post decrement operator
+Fixed Fixed::operator--(int)
+{
+	Fixed temp = *this;
+	// puts("post decrement operator called");
+	this->setRawBits(this->getRawBits() - 1);
+	return temp;
+}
+
+//pre decrement operator
+Fixed& Fixed::operator--(void)
+{
+	// puts("pre decrement operator called");
+	this->setRawBits(this->getRawBits() - 1);
+	return *this;
+}
+
+
+
 
 
 
@@ -119,9 +187,7 @@ float Fixed:: toFloat(void) const
 }
 
 
-
-
-// this is just utility function
+// this is just utility function for printing bits
 void printBits(std::ostream& output, unsigned frac, int bits) {
 	if (bits == 0)
 		return;
@@ -132,18 +198,18 @@ void printBits(std::ostream& output, unsigned frac, int bits) {
 std::ostream& operator<< (std::ostream &output, const Fixed &fixed)
 {
 
-	if(PRINT_BITS)
-	{
-		int raw = fixed.getRawBits();
-		int integer = raw >> 8;
-		unsigned frac = raw & 0xFF;
+	// if(PRINT_BITS)
+	// {
+	// 	int raw = fixed.getRawBits();
+	// 	int integer = raw >> 8;
+	// 	unsigned frac = raw & 0xFF;
 
-		printBits(output, integer, 8);
-		output << '.';
-		printBits(output, frac, 8);
-	}
+	// 	printBits(output, integer, 8);
+	// 	output << '.';
+	// 	printBits(output, frac, 8);
+	// }
 
-	output << " flaot is: " << fixed.toFloat() << std::endl;
+	output << fixed.toFloat();
 
 
 	return output;

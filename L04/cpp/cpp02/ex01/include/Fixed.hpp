@@ -35,7 +35,6 @@ class Fixed
 		float toFloat(void) const;
 };
 
-
 std::ostream& operator<< (std::ostream& output, const Fixed& fixed);
 
 #endif

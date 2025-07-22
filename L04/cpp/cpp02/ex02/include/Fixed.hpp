@@ -18,7 +18,7 @@ class Fixed
 	//fixed point number value
 	int _value;
 	//fractinal bits
-	static const int _fractionalBits = 16;
+	static const int _fractionalBits = 8;
 	//ppblic fucntion go here
 	public:
 		// constructor
@@ -31,6 +31,7 @@ class Fixed
 		~Fixed();
 		// assignment operator
 		Fixed &operator=(const Fixed &other);
+
 		//Math operators
 		bool operator>(const Fixed &other) const;
 		bool operator<(const Fixed &other) const;
@@ -38,7 +39,19 @@ class Fixed
 		bool operator<=(const Fixed &other) const;
 		bool operator==(const Fixed &other) const;
 		bool operator!=(const Fixed &other) const;
-		// Fixed &operator<<(void);
+
+		// Arithmetic operators
+		Fixed operator+(const Fixed &other) const;
+		Fixed operator-(const Fixed &other) const;
+		Fixed operator*(const Fixed &other) const;
+		Fixed operator/(const Fixed &other) const;
+
+		// increment/decrement operators
+		Fixed operator++(int);
+		Fixed& operator++(void);
+		Fixed operator--(int);
+		Fixed& operator--(void);		
+
 
 		// member functions
 		int getRawBits(void) const;

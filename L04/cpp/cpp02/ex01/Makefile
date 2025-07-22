@@ -29,7 +29,7 @@ all:$(NAME)
 $(NAME): $(OBJS)
 	@printf "\r$(GREEN)[%2d/%2d]$(DEF_COLOR) All files compiled! Linking $(CYAN)$(NAME)$(DEF_COLOR)...\\n\033[K" \
 		"$$(find $(SRCS) -type f | wc -l)" "$$(find $(SRCS) -type f | wc -l)"
-	@$(CXX) main.cpp $(OBJS) -o $(NAME)
+	@$(CXX) $(OBJS) -o $(NAME)
 	@echo "\n$(GREEN)<-----------------$(NAME) compiled!----------------->$(DEF_COLOR)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
@@ -49,7 +49,7 @@ fclean:
 re: fclean all
 
 debug: $(OBJS)
-	$(CXX) main.cpp $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
 	@echo "\n$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"
 
 .PHONY: all clean fclean re debug
