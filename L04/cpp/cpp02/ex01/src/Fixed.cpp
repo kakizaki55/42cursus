@@ -44,7 +44,7 @@ Fixed &Fixed::operator= (const Fixed &other)
 
 int Fixed::getRawBits(void) const
 {
-	// std::cout << "getRawBits member function called \n";
+	std::cout << "getRawBits member function called \n";
 	return this->_value;
 }
 
@@ -83,17 +83,6 @@ void printBits(std::ostream& output, unsigned frac, int bits) {
 
 std::ostream& operator<< (std::ostream& output, const Fixed& fixed)
 {
-	// int raw = fixed.getRawBits();
-	// int integer = raw >> 8;
-	// unsigned frac = raw & 0xFF;
-
-	// printBits(output, integer, 8);
-	// output << '.';
-	// printBits(output, frac, 8);
-
 	output << fixed.toFloat();
-
 	return output;
 }
-
-

@@ -1,7 +1,7 @@
 NAME		= fixed_point_nbr
 INCLUDES	= -I include
 
-# CFLAGS 		= -Wall -Werror -Wextra -std=c++98 $(INCLUDES)
+CFLAGS 		= -Wall -Werror -Wextra -std=c++98 $(INCLUDES)
 
 CFLAGS		= -std=c++98 $(INCLUDES)
 DEBUG_FLAGS = -g

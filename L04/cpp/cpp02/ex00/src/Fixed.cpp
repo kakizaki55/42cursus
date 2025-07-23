@@ -1,7 +1,6 @@
 #include <Fixed.hpp>
 #include <iostream>
 
-
 Fixed:: Fixed()
 {
 	this->_value = 0;

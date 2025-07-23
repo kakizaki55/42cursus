@@ -1,7 +1,7 @@
 NAME		= fixed_point_nbr
 INCLUDES	= -I include
 
-CFLAGS 		= -Wall -Werror -Wextra -std=c++98 $(INCLUDES)
+# CFLAGS 		= -Wall -Werror -Wextra -std=c++98 $(INCLUDES)
 
 CFLAGS		= -std=c++98 $(INCLUDES)
 DEBUG_FLAGS = -g
@@ -49,7 +49,7 @@ fclean:
 re: fclean all
 
 debug: $(OBJS)
-	$(CXX) $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
+	$(CXX) main.cpp $(DEBUG_FLAGS) $(OBJS) -o $(NAME)
 	@echo "\n$(MAGENTA)<------$(GREEN)Cleaned and rebuilt everything for $(NAME) in debug mode!$(MAGENTA)------>$(DEF_COLOR)"
 
 .PHONY: all clean fclean re debug
