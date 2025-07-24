@@ -1,4 +1,4 @@
-NAME		= fixed_point_nbr
+NAME		= bsp
 INCLUDES	= -I include
 
 # CFLAGS 		= -Wall -Werror -Wextra -std=c++98 $(INCLUDES)

@@ -1,70 +1,22 @@
 #include <iostream>
 #include"../include/Fixed.hpp"
+#include "../include/Point.hpp"
+#include "../include/bsp.hpp"
 #include<stdio.h>
-#include <climits>
-
 
 
 int main( void )
 {
-	Fixed a = 123671928312.5001f;
-	Fixed b = 10.5001f;
+	Point a(Fixed(0), Fixed(0));
+	Point b(Fixed(10), Fixed(0));
+	Point c(Fixed(0), Fixed(10));
 
-	Fixed c(0.5f);
-	Fixed d(0.0000001f);
-
-	std::cout << "a :"<<  a << std::endl;
-	// why does this turn in to 0.00390625
-
-
-	std::cout << "b :" << b << std::endl;
-	std::cout << "c :"<< c << std::endl;
-	std::cout << "d :"<< d << std::endl;
-
-	if(a > b)
+	if(bsp(a, b, c, Point(0.2f, 0.1f)))
 	{
-		puts("a is biggger then b");
+		printf("Point is inside the triangle\n");
 	}
-	if(b > a)
+	else
 	{
-		puts("b is bigger then a");
+		printf("Point is outside the triangle\n");
 	}
-
-	if(a == b && a >= b && a <=b)
-		puts("a and b are the same\n");
-	if(a != b)
-		puts("a and b are not the same\n");
-
-	// Fixed a;
-	// Fixed const b( INT_MAX );
-	// Fixed const c( 42.42f );
-	// Fixed const d( b ); 
-	// a = Fixed( 1234.3f );
-	// std::cout << "a is " << a << std::endl;
-	// std::cout << "b is " << b << std::endl;
-	// std::cout << "c is " << c << std::endl;
-	// std::cout << "d is " << d << std::endl;
-	// std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	// std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	// std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	// std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-
-
-	// puts("==================================\n");
-	
-	{
-		Fixed a;
-		Fixed const b( Fixed( 5.05f ) / Fixed( 2 ) );
-		std::cout << a << std::endl;
-		std::cout << ++a << std::endl;
-		std::cout << a << std::endl;
-		std::cout << a++ << std::endl;
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		std::cout << Fixed::max( a, b ) << std::endl;
-		std::cout << Fixed::min( a, b ) << std::endl;
-	}
-	
-	// puts("==================================\n");
-
 }

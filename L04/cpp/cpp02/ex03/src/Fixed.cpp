@@ -2,7 +2,6 @@
 #include <iostream>
 #include <stdio.h>
 
-
 Fixed:: Fixed()
 {
 	this->_value = 0;
@@ -25,11 +24,8 @@ Fixed:: Fixed(const float &number_as_float)
 	this->_value = fixed;
 }
 
-Fixed:: ~Fixed()
-{
-	
-}
-//Assignment operator
+Fixed:: ~Fixed() { }
+
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	if(this != &other)
@@ -39,7 +35,6 @@ Fixed &Fixed::operator=(const Fixed &other)
 	return *this;
 }
 
-//Comparassion operators
 bool Fixed::operator>(const Fixed &other) const
 {
 	bool res = this->getRawBits() > other.getRawBits();
@@ -177,31 +172,9 @@ Fixed Fixed:: min(const Fixed &a, const Fixed &b)
 		return b;
 }
 
-// this is just utility function for printing bits
-void printBits(std::ostream& output, unsigned frac, int bits) {
-	if (bits == 0)
-		return;
-	output << ((frac & (1 << (bits - 1))) ? '1' : '0');
-	printBits(output, frac, bits - 1);
-}
-
 std::ostream& operator<< (std::ostream &output, const Fixed &fixed)
 {
-
-	// if(PRINT_BITS)
-	// {
-	// 	int raw = fixed.getRawBits();
-	// 	int integer = raw >> 8;
-	// 	unsigned frac = raw & 0xFF;
-
-	// 	printBits(output, integer, 8);
-	// 	output << '.';
-	// 	printBits(output, frac, 8);
-	// }
-
 	output << fixed.toFloat();
-
-
 	return output;
 }
 
