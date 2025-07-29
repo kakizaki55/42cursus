@@ -1,9 +1,7 @@
 #include <iostream>
 #include"../include/Fixed.hpp"
-#include<stdio.h>
+#include <stdio.h>
 #include <climits>
-
-
 
 int main( void )
 {

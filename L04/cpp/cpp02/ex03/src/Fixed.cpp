@@ -177,5 +177,3 @@ std::ostream& operator<< (std::ostream &output, const Fixed &fixed)
 	output << fixed.toFloat();
 	return output;
 }
-
-

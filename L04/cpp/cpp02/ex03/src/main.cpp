@@ -4,7 +4,6 @@
 #include "../include/bsp.hpp"
 #include<stdio.h>
 
-
 int main( void )
 {
 	Point a(Fixed(0), Fixed(0));
