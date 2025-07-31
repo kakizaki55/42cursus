@@ -40,15 +40,23 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 
 void ScavTrap::guardGate()
 {
-	if (this->_hit_points > 0 && this->_engery_points > 0)
+	bool guard_mode = this->_guard_mode;
+	bool eligibal = (this->_hit_points > 0 && this->_engery_points > 0);
+	if (!guard_mode && eligibal)
 	{
 		this->_guard_mode = true;
 		std::cout << _name << " is now in guard mode!" << std::endl;
 	}
+	else if (guard_mode && eligibal)
+	{
+		this->_guard_mode = false;
+		std::cout << _name << " has exited guard mode!" << std::endl;
+	}
 	else
 	{
-		std::cout << _name << " cannot enter guard mode!" << std::endl;
+		std::cout << _name << " can not switch guard mode..." << std::endl;
 	}
+
 }
 
 void ScavTrap:: get_status()
