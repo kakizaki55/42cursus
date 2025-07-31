@@ -69,7 +69,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (_engery_points > 0 && _hit_points > 0)
 	{
 		_hit_points += amount;
-		if (_hit_points > _max_hit_points)
+		if(_hit_points > _max_hit_points)
 			_hit_points = _max_hit_points;
 		_engery_points--;
 		std::cout << _name << " repairs itself for " << amount << " points!" << std::endl;

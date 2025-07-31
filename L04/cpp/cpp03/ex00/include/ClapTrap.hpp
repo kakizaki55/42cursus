@@ -7,6 +7,7 @@ class ClapTrap
 	private:
 		std::string  _name;
 		unsigned int _hit_points;
+		unsigned int _max_hit_points;
 		unsigned int _engery_points;
 		unsigned int _attack_damage;
 
