@@ -4,13 +4,10 @@
 #pragma once
 
 
-class DimondTrap : virtual public FragTrap, virtual public ScavTrap
+class DimondTrap : public FragTrap, public ScavTrap
 {
 	private:
-		// unsigned int _diamond_hit_points;
-		// unsigned int _diamond_max_hit_points;
-		// unsigned int _diamond_engery_points;
-		// unsigned int _diamond_attack_damage;
+		std::string _name;
 
 	public:
 		DimondTrap();
@@ -18,8 +15,9 @@ class DimondTrap : virtual public FragTrap, virtual public ScavTrap
 		DimondTrap(const DimondTrap &other);
 		~DimondTrap();
 
-		DimondTrap &operator=(const DimondTrap &other);
+		DimondTrap &operator=(const DimondTrap &other);\
 
-		// void attack(const std::string& target);
+		using ScavTrap::attack; 
+		void whoAmI();
 		void get_status();
 };

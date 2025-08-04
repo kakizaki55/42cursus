@@ -2,7 +2,7 @@
 #include <iostream>
 #pragma once
 
-class ScavTrap : virtual public ClapTrap
+class ScavTrap : public virtual ClapTrap
 {
 	protected:
 		bool _guard_mode;

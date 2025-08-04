@@ -2,7 +2,7 @@
 #pragma once
 
 
-class FragTrap : public ClapTrap
+class FragTrap : public virtual ClapTrap
 {
 	protected:
 		unsigned int _high_five_count;
