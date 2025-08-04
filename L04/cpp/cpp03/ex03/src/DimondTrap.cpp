@@ -3,7 +3,7 @@
 #include "../include/ScavTrap.hpp"
 
 
-DimondTrap::DimondTrap() : ClapTrap("default ClapTrap")
+DimondTrap::DimondTrap() : ClapTrap("default ClapTrap"), FragTrap(), ScavTrap()
 {
 	this->_name = "Default DimondTrap";
 	this->_hit_points = FragTrap::_hit_points;
@@ -13,6 +13,17 @@ DimondTrap::DimondTrap() : ClapTrap("default ClapTrap")
 	// this needs to have the attack from Scavtrap??
 	std::cout << "Default DimondTrap constructor called." << std::endl;
 }
+DimondTrap::DimondTrap(std::string name) : ClapTrap(name), FragTrap(name)
+{
+	this->_name = "Default DimondTrap";
+	this->_hit_points = FragTrap::_hit_points;
+	this->_max_hit_points = FragTrap::_max_hit_points;
+	this->_engery_points = ScavTrap::_engery_points;
+	this->_attack_damage = FragTrap::_attack_damage;
+	// this needs to have the attack from Scavtrap??
+	std::cout << "Default DimondTrap constructor called." << std::endl;
+}
+
 {
 	this->_name = "Default DimondTrap";
 	ClapTrap::_name = "Default ClapTrap";
