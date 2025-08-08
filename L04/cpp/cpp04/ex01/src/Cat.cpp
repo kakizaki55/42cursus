@@ -20,8 +20,7 @@ Cat::~Cat()
 
 Cat &Cat::operator=(const Cat &other)
 {
-	if (this != &other)
-	{
+	if (this != &other) {
 		Animal::operator=(other);
 	}
 	return *this;
