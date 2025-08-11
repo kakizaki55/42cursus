@@ -1,11 +1,12 @@
-#include "../include/AMateria.hpp"
 #pragma once
+#include "../include/AMateria.hpp"
 #include <string>
 
+class ICharacter;
 class Cure : public AMateria
 {
     private:
-        // std::string _type = "Cure";
+
     public:
         Cure();
         Cure(std::string const &type);
@@ -14,5 +15,5 @@ class Cure : public AMateria
 
         Cure &operator=(const Cure &other);
         AMateria* clone() const;
-        void use(std::string char_name);// Implement the use function for Cure
+        void use(ICharacter &target);
 };

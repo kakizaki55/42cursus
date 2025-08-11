@@ -1,5 +1,8 @@
-#include <iostream>
 #pragma once
+#include <iostream>
+#include "../include/ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {
@@ -14,9 +17,8 @@ class AMateria
 
         AMateria &operator=(const AMateria &other);
 
-        std::string const& getType() const; // return materia type
+        std::string const& getType() const;
         virtual AMateria* clone() const = 0;
-        // virtual void use(ICharactor &target); 
-        virtual void use(std::string char_name); //mock function to be implemented in derived classes 
+        virtual void use(ICharacter &target); 
 };
 

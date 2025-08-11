@@ -28,8 +28,8 @@ std::string const& AMateria::getType() const
     return _type;
 }
 
-// Mock function to be implemented in derived classes
-void AMateria::use(std::string char_name) 
+void AMateria::use(ICharacter &target)
 {
-    std::cout << "AMateria used by " << char_name << std::endl;
+    (void)target; // Avoid unused parameter warning
+    std::cout << "* THIS SHOULD NOT BE CALLED *" << std::endl;
 }

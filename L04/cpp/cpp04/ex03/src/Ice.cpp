@@ -1,12 +1,13 @@
 #include "../include/Ice.hpp"
-#include "../include/AMateria.hpp"
 #include <iostream>
+
+const std::string _type = "ice";
 
 Ice::Ice() : AMateria("ice") {}
 
 Ice::Ice(std::string const &type) : AMateria("ice") 
 {
-    (void)type; // type is not used in this implementation
+    _type = type;
 }
 
 Ice::Ice(const Ice &other) : AMateria(other._type) {}
@@ -29,7 +30,8 @@ AMateria* Ice::clone() const
     return new Ice(*this);
 }
 
-void Ice::use(std::string char_name) 
+
+void Ice::use(ICharacter &target) 
 {
-    std::cout << "* shoots an ice bolt at " << char_name << " *"<< std::endl;
+    std::cout << "* shoots an ice bolt at " << target.getName() << " *"<< std::endl;
 }

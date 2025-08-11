@@ -1,11 +1,13 @@
 #include "../include/Cure.hpp"
 #include <iostream> 
 
+const std::string _type = "cure";
+
 Cure::Cure() : AMateria("cure") {}
 
 Cure::Cure(std::string const &type) : AMateria("cure") 
 {
-    (void)type; // type is not used in this implementation
+    _type = type;
 }
 
 Cure::Cure(const Cure &other) : AMateria(other._type) {}
@@ -28,7 +30,7 @@ AMateria* Cure::clone() const
     return new Cure(*this);
 }
 
-void Cure::use(std::string char_name) 
+void Cure::use(ICharacter &target) 
 {
-    std::cout << "* heals " << char_name << "'s wounds *"<< std::endl;
+    std::cout << "* heals " << target.getName() << "'s wounds *"<< std::endl;
 }
