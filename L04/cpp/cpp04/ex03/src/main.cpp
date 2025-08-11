@@ -1,5 +1,8 @@
 
-
+#include <iostream>
+#include "../include/AMateria.hpp"
+#include "../include/Ice.hpp"
+#include "../include/Cure.hpp"
 
 int main()
 {
@@ -10,26 +13,43 @@ int main()
 
     // needs a charater interface to make a charter class
     // needs a character class that can use up to 4 matria (not unique)
+    
+    AMateria *ice = new Ice("ice");
+    ice->use("Character1");
+    AMateria *iceClone = ice->clone();
+    iceClone->use("Character2");
 
+    AMateria *cure = new Cure("cure");
+    cure->use("Character1");
+    AMateria *cureClone = cure->clone();
+    cureClone->use("Character2");   
+
+    delete ice;
+    delete iceClone;
+    delete cure;
+    delete cureClone;
+    // ice->use("Character1");
     // IMateriaSource* src = new MateriaSource();
     // src->learnMateria(new Ice());
     // src->learnMateria(new Cure());
 
-    ICharacter* me = new Character("me");
+    
 
-    AMateria* tmp;
+    // ICharacter* me = new Character("me");
 
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
+    // AMateria* tmp;
 
-    ICharacter* bob = new Character("bob");
+    // tmp = src->createMateria("ice");
+    // me->equip(tmp);
+    // tmp = src->createMateria("cure");
+    // me->equip(tmp);
 
-    me->use(0, *bob);
-    me->use(1, *bob);
-    delete bob;
-    delete me;
-    delete src;
+    // ICharacter* bob = new Character("bob");
+
+    // me->use(0, *bob);
+    // me->use(1, *bob);
+    // delete bob;
+    // delete me;
+    // delete src;
     return 0;
 }
