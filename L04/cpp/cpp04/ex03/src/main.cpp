@@ -35,9 +35,6 @@ int main()
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
-
-    
-
     ICharacter* me = new Character("me");
 
     AMateria* tmp;
@@ -45,6 +42,7 @@ int main()
     tmp = src->createMateria("cure");
     me->equip(tmp);
     tmp = src->createMateria("ice");
+    tmp = src->createMateria("fake");   
     me->equip(tmp);
 
     ICharacter* bob = new Character("bob");
