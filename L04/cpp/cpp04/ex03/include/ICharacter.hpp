@@ -11,5 +11,9 @@ class ICharacter
         virtual void equip(AMateria* m) = 0;
         virtual void unequip(int idx) = 0;
         virtual void use(int idx, ICharacter& target) = 0;
+        virtual void printStatus() = 0;
+        virtual unsigned int getHitPoints() const = 0;
+        virtual unsigned int getMaxHitPoints() const = 0;
+        virtual void setHitPoints(unsigned int hp) = 0;
 };
 

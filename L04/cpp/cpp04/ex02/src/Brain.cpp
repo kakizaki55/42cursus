@@ -47,7 +47,6 @@ std::string Brain::getIdea(int index) const
 {
 	if (index >= 0 && index < 100)
 	{
-		// std::cout << "Retrieving idea at index " << index << ": " << ideas[index] << std::endl;
 		return ideas[index];
 	}
 	else

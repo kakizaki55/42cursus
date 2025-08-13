@@ -6,6 +6,7 @@ class ICharacter;
 class Ice : public AMateria
 {
     private:
+        static const unsigned int damage;
 
     public:
         Ice();

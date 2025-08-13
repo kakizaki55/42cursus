@@ -1,7 +1,7 @@
+#pragma once
 #include "../include/Animal.hpp"
 #include "../include/Brain.hpp"
 #include <iostream>
-#pragma once
 
 class Dog : public Animal
 {

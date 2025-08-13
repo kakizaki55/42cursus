@@ -3,7 +3,6 @@
 #include "../include/Brain.hpp"
 #include <iostream>
 
-
 Dog::Dog() : Animal()
 {
 	std::cout << "Default Dog constructor called" << std::endl;

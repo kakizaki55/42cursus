@@ -31,10 +31,7 @@ Character::~Character()
 void Character::clearMateria()
 {
     for (unsigned int i = 0; i < _max_materia_count; i++)
-    {   std::cout << "index is " << i << std::endl;
-
-
-        // std::cout << "materia found with type" <<_materias[i]->getType() << "index " << i << std::endl;
+    {   
         if(_materias[i] != NULL)
         {
             delete _materias[i];
@@ -69,16 +66,25 @@ std::string const& Character::getName() const
 
 void Character:: equip(AMateria* m)
 {
+    if(!m)
+    {
+        std::cout << "Cannot equip NULL materia to " << _name << std::endl;
+        return;
+    }
     for(unsigned int i = 0; i < _max_materia_count; i++)
     {
-        if (_materias[i] == NULL)
+        if (m &&_materias[i] == NULL )
         {
             _materias[i] = m->clone();
             _materiaCount++;
             std::cout << "Equipped " << m->getType() << " to " << _name << std::endl;
+
+            delete m;
             return;
         }
     }
+    if(m)
+        delete m;
     std::cout << "Cannot equip " << m->getType() << " to " << _name << ", materia slots full." << std::endl;
 }
 
@@ -115,3 +121,19 @@ void Character::use(int idx, ICharacter& target)
     }
     _materias[idx]->use(target);
 }
+
+void Character::printStatus()
+{
+    std::cout << "Character: " << this->_name << ", Hit Points: " << this->_hitPoints 
+              << ", Max Hit Points: " << this->_maxHitPoints 
+              << ", Materia Count: " << this->_materiaCount << std::endl;
+    for (unsigned int i = 0; i < this->_max_materia_count; i++)
+    {
+        if (this->_materias[i])
+            std::cout << "Materia[" << i << "]: " << _materias[i]->getType() << std::endl;
+        else
+            std::cout << "Materia[" << i << "]: None" << std::endl;
+    }
+}
+
+

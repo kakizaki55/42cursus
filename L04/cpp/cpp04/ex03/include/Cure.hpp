@@ -6,7 +6,7 @@ class ICharacter;
 class Cure : public AMateria
 {
     private:
-
+        static const unsigned int healingPower;
     public:
         Cure();
         Cure(std::string const &type);

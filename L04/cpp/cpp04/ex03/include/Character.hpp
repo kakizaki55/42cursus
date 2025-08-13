@@ -24,4 +24,9 @@ class Character : public ICharacter
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
+        void printStatus();
+        unsigned int getHitPoints() const { return _hitPoints; }
+        unsigned int getMaxHitPoints() const { return _maxHitPoints; }
+        void setHitPoints(unsigned int hp) { _hitPoints = hp; }
+
 };

@@ -16,6 +16,7 @@ MateriaSource::MateriaSource(const MateriaSource &other) : _materiaCount(other._
 
 MateriaSource::~MateriaSource()
 {
+    
     clearMateria();
     std::cout << "MateriaSource destructor called" << std::endl;
 }
@@ -39,11 +40,14 @@ void MateriaSource::clearMateria()
     for (unsigned int i = 0; i < _max_materia_count; i++)
     {
         if (_materias[i])
+        {
             delete _materias[i];
-        _materias[i] = NULL;
+            _materias[i] = NULL;
+        }
     }
     _materiaCount = 0;
 }
+
 
 void MateriaSource::learnMateria(AMateria* m)
 {
@@ -52,14 +56,16 @@ void MateriaSource::learnMateria(AMateria* m)
         for (unsigned int i = 0; i < _max_materia_count; i++)
         {
             if (!_materias[i])
-            {
-                _materias[i] = m->clone();
+            {   
+                _materias[i] = m;
                 ++_materiaCount;
                 std::cout << "Learned materia: " << m->getType() << std::endl;
                 return;
             }
         }
     }
+    if(m)
+        delete m; 
     std::cout << "MateriaSource is full or invalid materia" << std::endl;
 }
 
@@ -67,7 +73,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 {
     for (unsigned int i = 0; i < _max_materia_count; i++)
     {
-        std::cout << _materias[i]->getType() << " found at index [" << i << "]" << std::endl;
+
         if (_materias[i] && _materias[i]->getType() == type)
         {
             std::cout << "Creating materia: " << type << std::endl;

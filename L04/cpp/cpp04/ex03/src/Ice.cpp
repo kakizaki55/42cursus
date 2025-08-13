@@ -1,6 +1,8 @@
 #include "../include/Ice.hpp"
 #include <iostream>
 
+const unsigned int Ice::damage = 20;
+
 const std::string _type = "ice";
 
 Ice::Ice() : AMateria("ice") {}
@@ -12,10 +14,7 @@ Ice::Ice(std::string const &type) : AMateria("ice")
 
 Ice::Ice(const Ice &other) : AMateria(other._type) {}
 
-Ice::~Ice() 
-{
-    std::cout << "Ice destructor called on Ice type: " << _type << std::endl;
-}
+Ice::~Ice() {}
 
 Ice &Ice::operator=(const Ice &other)
 {
@@ -30,8 +29,8 @@ AMateria* Ice::clone() const
     return new Ice(*this);
 }
 
-
 void Ice::use(ICharacter &target) 
-{
+{   
+    target.setHitPoints(target.getHitPoints() - this->damage);
     std::cout << "* shoots an ice bolt at " << target.getName() << " *"<< std::endl;
 }

@@ -8,52 +8,52 @@
 
 int main()
 {
-    //AMatria pure abstract class/ interface for matiria
-    //nees make a class for Ice and Cure using AMatria 
-
-    // Matreria Source useres another interface thats is called IMatriaSource
-
-    // needs a charater interface to make a charter class
-    // needs a character class that can use up to 4 matria (not unique)
-    
-    // AMateria *ice = new AMateria("ice");
-    // ice->use("Character1");
-    // AMateria *iceClone = ice->clone();
-    // iceClone->use("Character2");
-
-    // AMateria *cure = new Cure("cure");
-    // cure->use("Character1");
-    // AMateria *cureClone = cure->clone();
-    // cureClone->use("Character2");   
-
-    // delete ice;
-    // delete iceClone;
-    // delete cure;
-    // delete cureClone;
-    // ice->use("Character1");
-
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
+    
     ICharacter* me = new Character("me");
-
+    me->getName();
+    std::cout << std::endl;
+    
+    
     AMateria* tmp;
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    tmp = src->createMateria("cure");
+    me->equip(tmp);
+    me->printStatus();
+    std::cout << std::endl;
 
     tmp = src->createMateria("cure");
     me->equip(tmp);
-    tmp = src->createMateria("ice");
-    tmp = src->createMateria("fake");   
+    tmp = src->createMateria("FakeMateria");
     me->equip(tmp);
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    me->printStatus();
+    me->unequip(2);
+    me->unequip(3);
+    me->unequip(3);
+    me->printStatus();
+    std::cout << std::endl;
 
     ICharacter* bob = new Character("bob");
 
+    std::cout << "Using materias on bob: " << std::endl << std::endl;
+    bob->printStatus();
     me->use(0, *bob);
+    bob->printStatus();
     me->use(1, *bob);
+    bob->printStatus();
+    me->use(2, *bob);
+    me->use(3, *bob);
+    me->use(4, *bob);
+    std::cout << std::endl;
 
-    delete tmp;
     delete src;
     delete me;
     delete bob;
 
-    return 0;
+    return EXIT_SUCCESS;
 }
