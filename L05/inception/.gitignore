@@ -1,2 +1,5 @@
 # checking to see if this ignores my env
 .env
+./secrets/credentials.txt
+./secrets/db_password.txt
+./secrets/db_root_password.txt
