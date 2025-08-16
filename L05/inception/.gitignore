@@ -1,3 +1,11 @@
-# checking to see if this ignores my env
+
+#Enviroment variables
 .env
-./secrets/*
+*.env
+.env.#
+
+#Log files
+.log
+
+#Secrets folder
+secrets
