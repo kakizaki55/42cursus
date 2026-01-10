@@ -1,16 +1,26 @@
 
-
 all:
-	docker-compose -f ./srcs/docker-compose.yml up
+	mkdir -p /home/minoka/data/mariadb
+	mkdir -p /home/minoka/data/wordpress
+	echo "127.0.0.1 mkakizak.42.fr" | sudo tee -a /etc/hosts
+	docker-compose -f ./srcs/docker-compose.yml up -d
+
 down:
-	docke-compose -f ./srcs/docker-compose.yml down
+	docker-compose -f ./srcs/docker-compose.yml down
+
 re:
-	docker-compose up -f ./srcs/docker-compose.yml --build
+	mkdir -p /home/minoka/data/mariadb
+	mkdir -p /home/minoka/data/wordpress
+	docker-compose -f ./srcs/docker-compose.yml up -d --build
+
 clean:
-	@docker stop $$(docker ps -qa);\
-	docker rm $$(docker ps -qa);\
-	docker rmi -f $$(docker images -qa);\
-	docker volume rm $$(docker volume ls -q);\
-	docker network rm $$(docker network ls -q);\
-phony:
-	all down re clean
+	@docker stop $$(docker ps -qa) 2>/dev/null || true; \
+	docker rm $$(docker ps -qa) 2>/dev/null || true; \
+	docker rmi -f $$(docker images -qa) 2>/dev/null || true; \
+	docker volume rm $$(docker volume ls -q) 2>/dev/null || true; \
+	docker network rm $$(docker network ls -q) 2>/dev/null || true
+
+fclean: clean
+	rm -rf /home/minoka/data
+
+.PHONY: all down re clean fclean

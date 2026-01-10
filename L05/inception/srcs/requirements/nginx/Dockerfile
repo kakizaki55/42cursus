@@ -16,6 +16,11 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 # copying config file to /etc/...
 COPY ./conf/nginx.conf /etc/nginx/conf.d
 
+COPY ./conf/nginx.conf /etc/nginx/conf.d/site.conf
+
+# Copy your index.html
+COPY ./index.html /var/www/html/index.html
+
 # nginx config
 RUN mkdir -p /run/nginx
 
@@ -24,3 +29,4 @@ EXPOSE	443
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
+
