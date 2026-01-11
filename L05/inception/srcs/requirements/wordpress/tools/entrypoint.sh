@@ -11,23 +11,23 @@ if [ ! -f wp-config.php ]; then
     wp core download --allow-root
 
     wp config create \
-        --dbname="${MYSQL_DATABASE}" \
-        --dbuser="${MYSQL_USER}" \
-        --dbpass="${MYSQL_PASSWORD}" \
-        --dbhost="${MYSQL_HOSTNAME}" \
+        --dbname="${MARINA_DB_DATABASE}" \
+        --dbuser="${MARINA_DB_USER}" \
+        --dbpass="${MARINA_DB_PASSWORD}" \
+        --dbhost="${MARINA_DB_HOSTNAME}" \
         --allow-root
 
     wp core install \
         --url="${DOMAIN_NAME}" \
         --title="Inception" \
-        --admin_user="superuser" \
-        --admin_password="super1234" \
-        --admin_email="superuser@example.com" \
+        --admin_user="${WP_ADMIN}" \
+        --admin_password="${WP_ADMIN_PASSWORD}" \
+        --admin_email="${WP_ADMIN_EMAIL}" \
         --allow-root
 
-    wp user create editor editor@example.com \
+    wp user create "${WP_USER}" "${WP_USER_EMAIL}" \
         --role=editor \
-        --user_pass="editor1234" \
+        --user_pass="${WP_USER_PASSWORD}" \
         --allow-root
 
     chown -R www-data:www-data /var/www/html

@@ -14,7 +14,6 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
        -subj "/C=JP/ST=Tokyo/L=Tokyo/O=school 42/OU=mkakizak/CN=mkakizak/"
 
 # copying config file to /etc/...
-# COPY ./conf/nginx.conf /etc/nginx/conf.d
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d/site.conf
 

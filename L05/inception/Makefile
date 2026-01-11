@@ -21,6 +21,6 @@ clean:
 	docker network rm $$(docker network ls -q) 2>/dev/null || true
 
 fclean: clean
-	rm -rf /home/minoka/data
+	sudo rm -rf /home/minoka/data
 
 .PHONY: all down re clean fclean
