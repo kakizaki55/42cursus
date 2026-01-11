@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     php7.4-zip \
     wget \
     curl \
+    mariadb-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install WP-CLI

@@ -14,3 +14,4 @@ EXPOSE 3306
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["mysqld", "--user=mysql", "--bind-address=0.0.0.0"]
+
