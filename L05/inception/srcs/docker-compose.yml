@@ -16,7 +16,6 @@ services:
 
   wordpress:
     container_name: wordpress
-    user: "${HOST_UID}:${HOST_GID}"
     build: ./requirements/wordpress
     volumes:
       - wordpress_data:/var/www/html
