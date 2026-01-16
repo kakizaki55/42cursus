@@ -1,18 +1,23 @@
 
-all:
-	mkdir -p /home/mkakizak/data/mariadb
-	mkdir -p /home/mkakizak/data/wordpress
-	# echo "127.0.0.1 mkakizak.42.fr" | sudo tee -a /etc/hosts
-	docker-compose -f ./srcs/docker-compose.yml build --no-cache
-	docker-compose -f ./srcs/docker-compose.yml up -d
+include ./srcs/.env
+
+all: build run
+
+build:
+	mkdir -p $(DATA_PATH)/mariadb
+	mkdir -p $(DATA_PATH)/wordpress
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env build --no-cache
+
+run:
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d
 
 down:
-	docker-compose -f ./srcs/docker-compose.yml down
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down
 
 re:
-	mkdir -p /home/mkakizak/data/mariadb
-	mkdir -p /home/mkakizak/data/wordpress
-	docker-compose -f ./srcs/docker-compose.yml up -d --build
+	mkdir -p $(DATA_PATH)/mariadb
+	mkdir -p $(DATA_PATH)/wordpress
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d --build
 
 clean:
 	@docker stop $$(docker ps -qa) 2>/dev/null || true; \
@@ -22,7 +27,8 @@ clean:
 	docker network rm $$(docker network ls -q) 2>/dev/null || true
 
 fclean: clean
-	@sudo chown -R mkakizak:mkakizak /home/mkakizak/data 2>/dev/null || true
-	rm -rf /home/mkakizak/data
+	@sudo chown -R minoka:minoka $(DATA_PATH) 2>/dev/null || true
+	docker system prune -a -f --volumes
+	rm -rf $(DATA_PATH)
 
 .PHONY: all down re clean fclean
