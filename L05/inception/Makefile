@@ -20,15 +20,14 @@ re:
 	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d --build
 
 clean:
-	@docker stop $$(docker ps -qa) 2>/dev/null || true; \
-	docker rm $$(docker ps -qa) 2>/dev/null || true; \
-	docker rmi -f $$(docker images -qa) 2>/dev/null || true; \
-	docker volume rm $$(docker volume ls -q) 2>/dev/null || true; \
-	docker network rm $$(docker network ls -q) 2>/dev/null || true
+    docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down --remove-orphans
 
 fclean: clean
-	@sudo chown -R mkakizak:mkakizak $(DATA_PATH) 2>/dev/null || true
-	docker system prune -a -f --volumes
-	rm -rf $(DATA_PATH)
+    # Remove named volumes belonging to this compose project (wipes WP files + DB)
+    docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down -v --remove-orphans
+    # Remove images built for this project
+    docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down --rmi all --remove-orphans
+    # If you still have bind-mount dirs (old setup), remove them too
+    rm -rf $(DATA_PATH)
 
 .PHONY: all down re clean fclean
