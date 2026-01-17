@@ -27,7 +27,7 @@ clean:
 	docker network rm $$(docker network ls -q) 2>/dev/null || true
 
 fclean: clean
-	@sudo chown -R minoka:minoka $(DATA_PATH) 2>/dev/null || true
+	@sudo chown -R mkakizak:mkakizak $(DATA_PATH) 2>/dev/null || true
 	docker system prune -a -f --volumes
 	rm -rf $(DATA_PATH)
 
