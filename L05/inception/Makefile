@@ -13,9 +13,9 @@ run:
 	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d
 
 re:
-	mkdir -p $(DATA_PATH)/mariadb
-	mkdir -p $(DATA_PATH)/wordpress
-	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d --build
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down --remove-orphans
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env build --no-cache
+	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d
 
 clean:
 	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down --remove-orphans
