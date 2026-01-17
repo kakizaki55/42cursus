@@ -1,8 +1,4 @@
-
-
-# is bullseye the best here?
 FROM debian:bullseye
-
 #installing nginx and open ssl
 RUN apt-get update && apt-get install -y nginx  openssl
 
@@ -14,11 +10,7 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
        -subj "/C=JP/ST=Tokyo/L=Tokyo/O=school 42/OU=mkakizak/CN=mkakizak/"
 
 # copying config file to /etc/...
-
 COPY ./conf/nginx.conf /etc/nginx/conf.d/site.conf
-
-# Copy your index.html
-# COPY ./index.html /var/www/html/index.html
 
 # nginx config
 RUN mkdir -p /run/nginx

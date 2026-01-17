@@ -12,9 +12,6 @@ build:
 run:
 	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d
 
-down:
-	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env down
-
 re:
 	mkdir -p $(DATA_PATH)/mariadb
 	mkdir -p $(DATA_PATH)/wordpress
