@@ -1,8 +1,16 @@
 #!/bin/bash
 set -e
 
-# Wait for MariaDB to be ready
-sleep 5
+#  Wait for MariaDB to be ready (bounded, no infinite loop)
+i=0
+until mysqladmin ping -h"${MARIA_DB_HOSTNAME}" -u"${MARIA_DB_USER}" -p"${MARIA_DB_PASSWORD}" --silent; do
+  i=$((i+1))
+  if [ "$i" -ge 30 ]; then
+    echo "MariaDB not reachable after 30 tries; exiting."
+    exit 1
+  fi
+  sleep 1
+done
 
 cd /var/www/html
 
