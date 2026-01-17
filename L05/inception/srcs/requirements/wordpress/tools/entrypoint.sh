@@ -11,10 +11,10 @@ if [ ! -f wp-config.php ]; then
     wp core download --allow-root
 
     wp config create \
-        --dbname="${MARINA_DB_DATABASE}" \
-        --dbuser="${MARINA_DB_USER}" \
-        --dbpass="${MARINA_DB_PASSWORD}" \
-        --dbhost="${MARINA_DB_HOSTNAME}" \
+        --dbname="${MARIA_DB_DATABASE}" \
+        --dbuser="${MARIA_DB_USER}" \
+        --dbpass="${MARIA_DB_PASSWORD}" \
+        --dbhost="${MARIA_DB_HOSTNAME}" \
         --allow-root
 
     wp core install \
