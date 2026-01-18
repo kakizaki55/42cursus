@@ -5,7 +5,7 @@ all: build run
 
 build:
 	mkdir -p $(DATA_PATH)/mariadb
-	mkdir -p $(DATA_PATH)/wordpress
+	mkdir -p $(DATA_PATH)/wordpress 
 	echo "127.0.0.1 $(DOMAIN_NAME)" | sudo tee -a /etc/hosts
 	docker-compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env build --no-cache
 
