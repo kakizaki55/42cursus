@@ -1,5 +1,11 @@
 FROM debian:bullseye
 
+RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list \
+ && sed -i 's|http://security.debian.org|https://security.debian.org|g' /etc/apt/sources.list \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates debian-archive-keyring \
+ && rm -rf /var/lib/apt/lists/
+
 RUN apt-get update && apt-get install -y \
     mariadb-server \
     mariadb-client \

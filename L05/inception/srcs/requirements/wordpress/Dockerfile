@@ -1,6 +1,13 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y \
+# Harden apt: use HTTPS and ensure certs + archive keys exist
+RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list \
+ && sed -i 's|http://security.debian.org|https://security.debian.org|g' /etc/apt/sources.list \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates debian-archive-keyring \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     php-fpm \
     php-mysql \
     php-curl \
@@ -14,19 +21,15 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and install WP-CLI
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-    && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp
+RUN curl -fsSLo /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x /usr/local/bin/wp
 
-# Create www directory
 RUN mkdir -p /var/www/html /run/php
 
-# Copy entrypoint script
 COPY tools/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www/html
-
 EXPOSE 9000
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
