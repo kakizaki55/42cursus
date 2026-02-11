@@ -1,8 +1,7 @@
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#pragma once
 
-# include "AForm.hpp"
-# include <string>
+#include "../include/AForm.hpp"
+#include <string>
 
 class ShrubberyCreationForm : public AForm
 {
@@ -18,6 +17,16 @@ public:
 	~ShrubberyCreationForm();
 
 	void execute(Bureaucrat const & executor) const;
-};
 
-#endif
+    class FileCreationException : public std::exception
+    {
+    	public:
+        	virtual const char* what() const throw();
+    };
+
+	class FileAlreadyExistsException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
+};

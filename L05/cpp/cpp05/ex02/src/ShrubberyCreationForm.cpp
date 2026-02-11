@@ -22,11 +22,22 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
 	AForm::execute(executor);
+
+	// Check if file already exists
 	std::string filename = _target + "_shrubbery";
+	std::ifstream existCheck(filename.c_str());
+	if (existCheck.is_open()) {
+		existCheck.close();
+		throw FileAlreadyExistsException();
+	}
+	existCheck.close();
+
+	// Now create the file
+	filename = _target + "_shrubbery";
 	std::ofstream file(filename.c_str());
 
 	if (!file.is_open()) {
-		throw std::runtime_error("Could not create file");
+		throw FileCreationException();
 	}
 
 	file << "         ccee88oo\n";
@@ -43,4 +54,15 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 	file << "\n";
 
 	file.close();
+}
+
+
+const char* ShrubberyCreationForm::FileCreationException::what() const throw()
+{
+    return "Could not create file";
+}
+
+const char* ShrubberyCreationForm::FileAlreadyExistsException::what() const throw()
+{
+	return "File already exists";
 }
