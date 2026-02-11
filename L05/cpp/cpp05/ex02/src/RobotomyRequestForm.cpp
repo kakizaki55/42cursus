@@ -24,11 +24,10 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const
 {
 	AForm::execute(executor);
 
-	std::cout << "*BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ*" << std::endl;
-	std::cout << "*WHIRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR*" << std::endl;
-	std::cout << "*CLANKCLANKCLANKCLANKCLANKCLANKCLANKCLANKCLANKCLANKCLANKCLANKCLANKCL*" << std::endl;
+	std::cout << "*.....BLEEEEPBLOOOPBLOOOPBLEEPPPPPBBBBBBBBRUPBLOOP..........bleep*" << std::endl;
 
-	int random = rand() % 2;
+	std::srand(std::time(NULL));
+	int random = std::rand() % 2;
 
 	if (random == 0)
 	{
