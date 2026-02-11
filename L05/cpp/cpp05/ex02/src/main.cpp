@@ -2,6 +2,7 @@
 #include "../include/AForm.hpp"
 #include "../include/ShrubberyCreationForm.hpp"
 #include "../include/RobotomyRequestForm.hpp"
+#include "../include/PresidentialPardonForm.hpp"
 
 int main(void)
 {
@@ -9,31 +10,48 @@ int main(void)
 	Bureaucrat    alice("Alice", 150);
 	AForm*        form;
 
-	// try
-	// {
-	// 	form = new ShrubberyCreationForm("home");
-	// 	bob.signForm(*form);
-	// 	bob.executeForm(*form);
-	// 	alice.executeForm(*form);
-	// 	delete form;
-	// }
-	// catch (std::exception& e)
-	// {
-	// 	std::cerr << e.what() << std::endl;
-	// }
+	try
+	{
+		form = new ShrubberyCreationForm("garden");
+		bob.signForm(*form);
+		bob.executeForm(*form);
+		alice.executeForm(*form);
+		delete form;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
-	// try
-	// {
-	// 	form = new RobotomyRequestForm("person");
-	// 	bob.signForm(*form);
-	// 	bob.executeForm(*form);
-	// 	alice.executeForm(*form);
-	// 	delete form;
-	// }
-	// catch (std::exception& e)
-	// {
-	// 	std::cerr << e.what() << std::endl;
-	// }
+	try
+	{
+		form = new RobotomyRequestForm("person");
+		bob.signForm(*form);
+		bob.executeForm(*form);
+		alice.executeForm(*form);
+		delete form;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	Bureaucrat    president ("President", 1);
+	try
+	{
+
+		form = new PresidentialPardonForm("criminal");
+		bob.signForm(*form);
+		bob.executeForm(*form);
+		alice.executeForm(*form);
+		president.signForm(*form);
+		president.executeForm(*form);
+		delete form;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
 
 

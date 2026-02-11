@@ -59,7 +59,7 @@ void AForm::beSigned(const Bureaucrat& bureaucrat)
 void AForm::execute(Bureaucrat const & executor) const
 {
 	if (!_isSigned)
-		throw GradeTooLowException();
+		throw FormNotSignedException();
 	if (executor.getGrade() > _gradeToExecute)
 		throw GradeTooLowException();
 }
@@ -73,6 +73,11 @@ const char* AForm::GradeTooHighException::what() const throw()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low!";
+}
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+	return "Form is not signed!";
 }
 
 // Insertion operator overload
