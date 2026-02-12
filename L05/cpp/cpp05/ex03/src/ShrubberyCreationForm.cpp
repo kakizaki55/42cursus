@@ -23,7 +23,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
 	AForm::execute(executor);
 
-	// Check if file already exists
 	std::string filename = _target + "_shrubbery";
 	std::ifstream existCheck(filename.c_str());
 	if (existCheck.is_open()) {
@@ -32,7 +31,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 	}
 	existCheck.close();
 
-	// Now create the file
 	filename = _target + "_shrubbery";
 	std::ofstream file(filename.c_str());
 

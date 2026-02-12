@@ -1,4 +1,4 @@
-NAME		=	no,_you_need_form_28B,_not_28C...rm
+NAME		=	no,_you_need_form_28B,_not_28C...
 INCLUDES	=	-I include
 
 CFLAGS 		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)

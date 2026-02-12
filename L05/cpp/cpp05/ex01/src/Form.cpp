@@ -27,7 +27,6 @@ Form& Form::operator=(const Form& other)
 
 Form::~Form() {}
 
-// Getters
 const std::string& Form::getName() const
 {
 	return _name;
@@ -48,7 +47,6 @@ int Form::getGradeToExecute() const
 	return _gradeToExecute;
 }
 
-// Member functions
 void Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeToSign)
@@ -56,7 +54,6 @@ void Form::beSigned(const Bureaucrat& bureaucrat)
 	_isSigned = true;
 }
 
-// Exception classes
 const char* Form::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high!";
@@ -67,7 +64,6 @@ const char* Form::GradeTooLowException::what() const throw()
 	return "Grade is too low!";
 }
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& out, const Form& form)
 {
 	out << "Form: " << form.getName()

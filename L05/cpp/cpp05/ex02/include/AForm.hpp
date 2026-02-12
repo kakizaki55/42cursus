@@ -18,24 +18,20 @@ private:
 	static const int	_lowestGrade = 150;
 
 public:
-	// Orthodox Canonical Form
 	AForm();
 	AForm(const std::string& name, int gradeToSign, int gradeToExecute);
 	AForm(const AForm& other);
 	AForm& operator=(const AForm& other);
 	virtual ~AForm();
 
-	// Getters
 	const std::string&	getName() const;
 	bool				isSigned() const;
 	int					getGradeToSign() const;
 	int					getGradeToExecute() const;
 
-	// Member functions
 	void				beSigned(const Bureaucrat& bureaucrat);
 	virtual void		execute(Bureaucrat const & executor) const;
 
-	// Exception classes
 	class GradeTooHighException : public std::exception
 	{
 	public:
@@ -55,7 +51,6 @@ public:
 	};
 };
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& out, const AForm& form);
 
 

@@ -2,7 +2,6 @@
 #include "Bureaucrat.hpp"
 #include <unistd.h>
 
-// Orthodox Canonical Form
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name)
@@ -29,7 +28,7 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
-// Getters
+
 const std::string& Bureaucrat::getName() const
 {
 	return _name;
@@ -40,7 +39,6 @@ int Bureaucrat::getGrade() const
 	return _grade;
 }
 
-// Member functions
 void Bureaucrat::incrementGrade()
 {
 	if (_grade - 1 < _highestGrade)
@@ -101,7 +99,6 @@ void Bureaucrat::executeForm(AForm const & form)
 	}
 }
 
-// Exception classes
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high!";
@@ -112,7 +109,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return "Grade is too low!";
 }
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
 {
 	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();

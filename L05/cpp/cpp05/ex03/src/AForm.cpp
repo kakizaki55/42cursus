@@ -1,7 +1,6 @@
 #include "../include/AForm.hpp"
 #include "../include/Bureaucrat.hpp"
 
-// Orthodox Canonical Form
 AForm::AForm() : _name("default"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {}
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
@@ -27,7 +26,6 @@ AForm& AForm::operator=(const AForm& other)
 
 AForm::~AForm() {}
 
-// Getters
 const std::string& AForm::getName() const
 {
 	return _name;
@@ -48,7 +46,6 @@ int AForm::getGradeToExecute() const
 	return _gradeToExecute;
 }
 
-// Member functions
 void AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeToSign)
@@ -64,7 +61,6 @@ void AForm::execute(Bureaucrat const & executor) const
 		throw GradeTooLowException();
 }
 
-// Exception classes
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high!";
@@ -80,7 +76,6 @@ const char* AForm::FormNotSignedException::what() const throw()
 	return "Form is not signed!";
 }
 
-// Insertion operator overload
 std::ostream& operator<<(std::ostream& out, const AForm& form)
 {
 	out << "Form: " << form.getName()

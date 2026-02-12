@@ -5,7 +5,6 @@
 #include "../include/PresidentialPardonForm.hpp"
 #include <iostream>
 
-// Static factory methods
 AForm* Intern::createShrubberyCreationForm(const std::string& target)
 {
 	return new ShrubberyCreationForm(target);
@@ -21,7 +20,6 @@ AForm* Intern::createPresidentialPardonForm(const std::string& target)
 	return new PresidentialPardonForm(target);
 }
 
-// Orthodox Canonical Form
 Intern::Intern() {}
 
 Intern::Intern(const Intern& other)
@@ -33,14 +31,13 @@ Intern& Intern::operator=(const Intern& other)
 {
 	if (this != &other)
 	{
-		// Interns have no attributes to copy
+		// Interns have nothing attributes to copy
 	}
 	return *this;
 }
 
 Intern::~Intern() {}
 
-// Member function
 AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 {
 	FormType forms[] = {
@@ -62,7 +59,6 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 	return NULL;
 }
 
-// Exception class
 const char* Intern::UnknownFormException::what() const throw()
 {
 	return "Unknown form type.";
