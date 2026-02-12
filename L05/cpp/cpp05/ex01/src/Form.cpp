@@ -1,7 +1,6 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-// Orthodox Canonical Form
 Form::Form() : _name("default"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150) {}
 
 Form::Form(const std::string& name, int gradeToSign, int gradeToExecute)
