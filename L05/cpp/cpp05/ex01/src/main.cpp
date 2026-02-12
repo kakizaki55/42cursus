@@ -3,8 +3,6 @@
 
 int main(void)
 {
-	std::cout << "=== Form and Bureaucrat Test Cases ===" << std::endl << std::endl;
-
 	// Test 1: Create a valid form
 	std::cout << "Test 1: Creating a valid form" << std::endl;
 	try
@@ -202,6 +200,5 @@ int main(void)
 	}
 	std::cout << std::endl;
 
-	std::cout << "=== All tests completed ===" << std::endl;
 	return 0;
 }
