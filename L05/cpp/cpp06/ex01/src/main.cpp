@@ -22,9 +22,9 @@ int main() {
 	std::cout << "Deserialized Data value: " << deserialized->getValue() << std::endl;
 
 	if (original == deserialized && original->getValue() == deserialized->getValue()) {
-		std::cout << "✓ Test 1 PASSED: Pointers match and values are preserved" << std::endl;
+		std::cout << "Test 1 PASSED: Pointers match and values are preserved" << std::endl;
 	} else {
-		std::cout << "✗ Test 1 FAILED" << std::endl;
+		std::cout << "Test 1 FAILED" << std::endl;
 	}
 	std::cout << std::endl;
 
@@ -43,9 +43,9 @@ int main() {
 
 	if (data1 == result1 && data2 == result2 &&
 		data1->getValue() == 100 && data2->getValue() == 200) {
-		std::cout << "✓ Test 2 PASSED: Multiple objects handled correctly" << std::endl;
+		std::cout << "Test 2 PASSED: Multiple objects handled correctly" << std::endl;
 	} else {
-		std::cout << "✗ Test 2 FAILED" << std::endl;
+		std::cout << "Test 2 FAILED" << std::endl;
 	}
 	std::cout << std::endl;
 
@@ -56,9 +56,9 @@ int main() {
 	Data* resultNull = Serializer::deserialize(rawNull);
 
 	if (resultNull == NULL) {
-		std::cout << "✓ Test 3 PASSED: Null pointer preserved" << std::endl;
+		std::cout << "Test 3 PASSED: Null pointer preserved" << std::endl;
 	} else {
-		std::cout << "✗ Test 3 FAILED" << std::endl;
+		std::cout << "Test 3 FAILED" << std::endl;
 	}
 	std::cout << std::endl;
 
