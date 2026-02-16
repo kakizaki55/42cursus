@@ -22,7 +22,7 @@ fclean: clean
 	docker builder prune -af
 	docker volume prune -f
 	# If you really want to wipe host data too, uncomment the next few lines
-	sudo rm -rf $(DATA_PATH)
-	docker volume rm mariadb_data wordpress_data
+	# sudo rm -rf $(DATA_PATH)
+	# docker volume rm mariadb_data wordpress_data
 
 .PHONY: all down re clean fclean
