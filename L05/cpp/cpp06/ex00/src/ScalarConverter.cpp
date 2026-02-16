@@ -7,7 +7,6 @@
 #include <cerrno>
 #include <climits>
 
-
 ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)

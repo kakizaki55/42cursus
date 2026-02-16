@@ -1,7 +1,6 @@
 #pragma once
+#include "./Data.hpp"
 # include <stdint.h>
-
-struct Data;
 
 class Serializer {
 private:
