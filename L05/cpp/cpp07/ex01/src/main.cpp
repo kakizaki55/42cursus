@@ -2,26 +2,6 @@
 #include <string>
 #include "../include/iter.hpp"
 
-// Simple function to print any element
-template <typename T>
-void print(const T &x)
-{
-    std::cout << x << " ";
-}
-
-// Function to increment (modifies element)
-template <typename T>
-void increment(T &x)
-{
-    x++;
-}
-
-// Function to double a value
-template <typename T>
-void doubleValue(T &x)
-{
-    x *= 2;
-}
 
 int main(void)
 {

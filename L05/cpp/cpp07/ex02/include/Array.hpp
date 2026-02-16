@@ -1,13 +1,12 @@
 #pragma once
-
 #include <exception>
 #include <cstddef>
 
-template <typename Type>
+template <typename T>
 class Array
 {
 private:
-	Type			*_data;
+	T			*_data;
 	unsigned int	_size;
 
 public:
@@ -17,13 +16,8 @@ public:
 	Array &operator=(const Array &other);
 	~Array();
 
-	// Subscript operator (non-const)
-	Type &operator[](unsigned int index);
-
-	// Subscript operator (const)
-	const Type &operator[](unsigned int index) const;
-
-	// Size getter
+	T &operator[](unsigned int index);
+	const T &operator[](unsigned int index) const;
 	unsigned int size() const;
 };
 

@@ -1,16 +1,32 @@
 #pragma once
 
-// For non-const arrays (can modify elements)
-template <typename Type, typename Function>
-void iter(Type *array, const size_t length, Function func)
+template <typename T>
+void print(const T &x)
+{
+    std::cout << x << " ";
+}
+
+template <typename T>
+void increment(T &x)
+{
+    x++;
+}
+
+template <typename T>
+void doubleValue(T &x)
+{
+    x *= 2;
+}
+
+template <typename T, typename Function>
+void iter(T *array, const size_t length, Function func)
 {
 	for (size_t i = 0; i < length; i++)
 		func(array[i]);
 }
 
-// For const arrays (read-only)
-template <typename Type, typename Function>
-void iter(const Type *array, const size_t length, Function func)
+template <typename T, typename Function>
+void iter(const T *array, const size_t length, Function func)
 {
 	for (size_t i = 0; i < length; i++)
 		func(array[i]);

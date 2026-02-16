@@ -1,21 +1,21 @@
 #pragma once
 
-template <typename Type>
-void swap(Type &a, Type &b)
+template <typename T>
+void swap(T &a, T &b)
 {
-    Type tmp = a;
+    T tmp = a;
     a = b;
     b = tmp;
 }
 
-template <typename Type>
-Type const &min(Type const &a, Type const &b)
+template <typename T>
+T const &min(T const &a, T const &b)
 {
     return (a < b) ? a : b;
 }
 
-template <typename Type>
-Type const &max(Type const &a, Type const &b)
+template <typename T>
+T const &max(T const &a, T const &b)
 {
     return (a > b) ? a : b;
 }
