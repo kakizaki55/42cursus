@@ -1,9 +1,10 @@
 #!/bin/bash
+
 set -e
 
-#  Wait for MariaDB to be ready (bounded, no infinite loop)
+#  Wait for MariaDB to be ready. 
 i=0
-until mysqladmin ping -h"${MARIA_DB_HOSTNAME}" -u"${MARIA_DB_USER}" -p"${MARIA_DB_PASSWORD}" --silent; do
+until MYSQL_PWD="${MARIA_DB_PASSWORD}" mysqladmin ping -h"${MARIA_DB_HOSTNAME}" -u"${MARIA_DB_USER}" --silent; do
   i=$((i+1))
   if [ "$i" -ge 30 ]; then
     echo "MariaDB not reachable after 30 tries; exiting."
@@ -41,7 +42,10 @@ if [ ! -f wp-config.php ]; then
     chown -R www-data:www-data /var/www/html
 fi
 
-# Configure php-fpm to listen on port 9000
-sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|g' /etc/php/7.4/fpm/pool.d/www.conf
+# Configure php-fpm to listen on port 9000 by using an override file
+cat > /etc/php/7.4/fpm/pool.d/zz-listen.conf <<'EOF'
+[www]
+listen = 9000
+EOF
 
 exec "$@"
