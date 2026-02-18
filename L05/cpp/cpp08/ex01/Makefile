@@ -1,4 +1,4 @@
-NAME		=
+NAME		=	ex01
 INCLUDES	=	-I include
 
 CFLAGS 		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)

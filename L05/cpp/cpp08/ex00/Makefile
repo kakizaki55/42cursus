@@ -1,4 +1,4 @@
-NAME		=	easyfind
+NAME		=	ex00
 INCLUDES	=	-I include
 
 CFLAGS 		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
