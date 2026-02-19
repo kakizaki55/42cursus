@@ -5,8 +5,9 @@
 #include <deque>
 
 int main() {
+
 	std::cout << "=== Testing with std::vector ===" << std::endl;
-	{
+	{	
 		std::vector<int> vec;
 		vec.push_back(1);
 		vec.push_back(2);
@@ -85,6 +86,22 @@ int main() {
 			std::cout << e.what() << std::endl;
 		}
 	}
+
+	// std::cout << "\n=== Testing with std::string this will not work ===" << std::endl;
+	// {
+	// 	std::vector<std::string> vecStr;
+	// 	vecStr.push_back("apple");
+	// 	vecStr.push_back("banana");
+	// 	vecStr.push_back("cherry");
+	// 	int number = 42; // This is an integer, not a string
+
+	// 	try {
+	// 		std::vector<std::string>::iterator it = easyfind(vecStr, number);
+	// 		std::cout << "Found: " << *it << std::endl;
+	// 	} catch (const std::exception& e) {
+	// 		std::cout << e.what() << std::endl;
+	// 	}
+	// }
 
 	return 0;
 }
