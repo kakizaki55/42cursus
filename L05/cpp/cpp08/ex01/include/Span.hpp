@@ -5,35 +5,28 @@
 #include <exception>
 #include <iterator>
 
+
 class Span {
 private:
 	unsigned int		_maxSize;
 	std::vector<int>	_numbers;
 
 public:
-	// Orthodox Canonical Form
 	Span();
 	Span(unsigned int n);
 	Span(const Span& other);
 	Span& operator=(const Span& other);
 	~Span();
 
-	// Member functions
 	void	addNumber(int number);
 	int		shortestSpan() const;
 	int		longestSpan() const;
 
-	// Template function to add range of iterators
-	template <typename Iterator>
-	void addRange(Iterator begin, Iterator end) {
-		unsigned int distance = std::distance(begin, end);
-		if (_numbers.size() + distance > _maxSize) {
-			throw SpanFullException();
-		}
-		_numbers.insert(_numbers.end(), begin, end);
-	}
 
-	// Exceptions
+	template <typename Iterator>
+	void addRange(Iterator begin, Iterator end);
+
+	
 	class SpanFullException : public std::exception {
 	public:
 		const char* what() const throw() {
@@ -48,3 +41,5 @@ public:
 		}
 	};
 };
+
+#include "Span.tpp"

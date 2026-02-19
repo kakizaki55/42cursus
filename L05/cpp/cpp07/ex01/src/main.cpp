@@ -39,7 +39,7 @@ int main(void)
     ::iter(constArr, constLen, print<int>);
     std::cout << std::endl;
 
-	// ::iter(constArr, constLen, increment<const int>);  // Should not compile (const array)
+	::iter(constArr, constLen, increment<int>);  // Should not compile (const array)S
 
     std::cout << "\n=== Test with double array ===" << std::endl;
     double dblArr[] = {1.52, 2.51, 3.54};

@@ -93,10 +93,9 @@ int main() {
 	// 	vecStr.push_back("apple");
 	// 	vecStr.push_back("banana");
 	// 	vecStr.push_back("cherry");
-	// 	int number = 42; // This is an integer, not a string
-
+	// 	int num = 42;
 	// 	try {
-	// 		std::vector<std::string>::iterator it = easyfind(vecStr, number);
+	// 		std::vector<std::string>::iterator it = easyfind(vecStr, num);
 	// 		std::cout << "Found: " << *it << std::endl;
 	// 	} catch (const std::exception& e) {
 	// 		std::cout << e.what() << std::endl;
