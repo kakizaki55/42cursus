@@ -1,0 +1,36 @@
+#include <iostream>
+#include "PmergeMe.hpp"
+
+int main(int argc, char **argv)
+{
+	if (argc < 2) {
+		std::cerr << "Error" << std::endl;
+		return 1;
+	}
+
+	try {
+		PmergeMe pm;
+		pm.parseArgs(argc, argv);
+
+		std::cout << "Before: ";
+		pm.printBefore();
+
+		pm.sort();
+
+		std::cout << "After:  ";
+		pm.printAfter();
+
+		std::cout << "Time to process a range of " << pm.size()
+		          << " elements with std::vector : "
+		          << pm.timeVec() << " us" << std::endl;
+
+		std::cout << "Time to process a range of " << pm.size()
+		          << " elements with std::deque  : "
+		          << pm.timeDeq() << " us" << std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
+
+	return 0;
+}

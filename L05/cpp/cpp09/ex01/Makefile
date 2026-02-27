@@ -1,4 +1,4 @@
-NAME		=	ex01
+NAME		=	RPN
 INCLUDES	=	-I include
 
 CFLAGS 		=	-Wall -Werror -Wextra -std=c++98 $(INCLUDES)
