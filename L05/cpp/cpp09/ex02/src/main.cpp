@@ -19,9 +19,9 @@ int main(int argc, char **argv)
 		          << " elements with std::vector : "
 		          << pm.timeVec() << " us" << std::endl;
 
-		// std::cout << "Time to process a range of " << pm.size()
-		//           << " elements with std::deque  : "
-		//           << pm.timeDeq() << " us" << std::endl;
+		std::cout << "Time to process a range of " << pm.size()
+		          << " elements with std::deque  : "
+		          << pm.timeDeq() << " us" << std::endl;
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 		return 1;

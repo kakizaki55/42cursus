@@ -18,7 +18,7 @@ private:
 	PmergeMe &operator=(const PmergeMe &other);
 
 	static void fordJohnsonVec(std::vector<int>& arr);
-	// static void fordJohnsonDeq(std::deque<int>& arr);
+	static void fordJohnsonDeq(std::deque<int>& arr);
 
 public:
 	PmergeMe();
