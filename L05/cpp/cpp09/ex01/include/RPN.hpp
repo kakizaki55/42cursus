@@ -1,5 +1,4 @@
-#ifndef RPN_HPP
-#define RPN_HPP
+#pragma once
 
 #include <stack>
 #include <string>
@@ -7,7 +6,6 @@
 class RPN {
 private:
 	std::stack<long> _stack;
-	
 	RPN(const RPN &other);
 	RPN &operator=(const RPN &other);
 	
@@ -17,5 +15,3 @@ public:
 	
 	long evaluate(const std::string &expression);
 };
-
-#endif

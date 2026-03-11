@@ -1,5 +1,4 @@
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#pragma once
 
 #include <string>
 #include <map>
@@ -12,9 +11,10 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 
-		bool	_isValidDate(const std::string &date);
-		bool	_isValidValue(const std::string &value);
-		float	_parseValue(const std::string &value);
+		bool		_isValidDate(const std::string &date);
+		bool		_isValidValue(const std::string &value);
+		float		_parseValue(const std::string &value);
+		std::string	_trimWhitespace(const std::string &str);
 
 	public:
 		BitcoinExchange();
@@ -24,4 +24,3 @@ class BitcoinExchange
 		void	processInput(const std::string &filename);
 };
 
-#endif

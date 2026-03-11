@@ -5,13 +5,9 @@
 #include <cstdlib>
 #include <cctype>
 
-BitcoinExchange::BitcoinExchange()
-{
-}
+BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::~BitcoinExchange()
-{
-}
+BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
@@ -49,11 +45,24 @@ bool	BitcoinExchange::_isValidDate(const std::string &date)
 	if (year < 0 || year > 2027)
 		return (false);
 	if (month < 1 || month > 12)
-        return (false);
+		return (false);
 	if (day < 1 || day > 31)
 		return (false);
 
 	return (true);
+}
+
+std::string	BitcoinExchange::_trimWhitespace(const std::string &str)
+{
+	size_t	start = 0;
+	size_t	end = str.length();
+
+	while (start < end && (str[start] == ' ' || str[start] == '\t'))
+		start++;
+	while (end > start && (str[end - 1] == ' ' || str[end - 1] == '\t'))
+		end--;
+
+	return (str.substr(start, end - start));
 }
 
 float	BitcoinExchange::_parseValue(const std::string &value)
@@ -134,16 +143,8 @@ void	BitcoinExchange::processInput(const std::string &filename)
 			continue;
 		}
 
-		std::string	date = line.substr(0, sep);
-		std::string	value_str = line.substr(sep + 1);
-
-		// Trim whitespace
-		while (!date.empty() && (date[date.length() - 1] == ' ' || date[date.length() - 1] == '\t'))
-			date.erase(date.length() - 1);
-		while (!value_str.empty() && (value_str[0] == ' ' || value_str[0] == '\t'))
-			value_str.erase(0, 1);
-		while (!value_str.empty() && (value_str[value_str.length() - 1] == ' ' || value_str[value_str.length() - 1] == '\t'))
-			value_str.erase(value_str.length() - 1);
+		std::string	date = _trimWhitespace(line.substr(0, sep));
+		std::string	value_str = _trimWhitespace(line.substr(sep + 1));
 
 		if (!_isValidDate(date))
 		{
@@ -172,7 +173,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (it == this->_database.end() || it->first > date)
 		{
-			std::cout << "Error: bad input => " << date << std::endl;
+			std::cout << "Error: bad input dont have data this date => " << date << std::endl;
 			continue;
 		}
 

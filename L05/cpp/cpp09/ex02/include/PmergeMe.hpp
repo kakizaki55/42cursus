@@ -1,5 +1,4 @@
-#ifndef PMERGEME_HPP
-#define PMERGEME_HPP
+#pragma once
 
 #include <vector>
 #include <deque>
@@ -34,4 +33,3 @@ public:
 	std::size_t size() const;
 };
 
-#endif
