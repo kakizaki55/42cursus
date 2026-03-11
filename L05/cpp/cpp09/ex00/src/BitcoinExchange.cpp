@@ -25,6 +25,8 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 
 bool	BitcoinExchange::_isValidDate(const std::string &date)
 {
+
+	//TODO : check if date is valid (e.g. 2023-02-30 should be invalid)
 	if (date.length() != 10)
 		return (false);
 	if (date[4] != '-' || date[7] != '-')

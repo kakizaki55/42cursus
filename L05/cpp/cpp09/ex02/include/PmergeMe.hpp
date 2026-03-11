@@ -9,6 +9,7 @@ private:
 	std::vector<int> _vec;
 	std::deque<int>  _deq;
 	std::vector<int> _original; // unsorted copy for "Before:" line
+	int _displayLimit;
 
 	double _vecTime;
 	double _deqTime;
@@ -17,7 +18,7 @@ private:
 	PmergeMe &operator=(const PmergeMe &other);
 
 	static void fordJohnsonVec(std::vector<int>& arr);
-	static void fordJohnsonDeq(std::deque<int>& arr);
+	// static void fordJohnsonDeq(std::deque<int>& arr);
 
 public:
 	PmergeMe();
