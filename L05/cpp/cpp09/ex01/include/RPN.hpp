@@ -12,6 +12,5 @@ private:
 public:
 	RPN();
 	~RPN();
-	
 	long evaluate(const std::string &expression);
 };

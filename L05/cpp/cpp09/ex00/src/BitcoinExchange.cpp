@@ -26,7 +26,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 bool	BitcoinExchange::_isValidDate(const std::string &date)
 {
 
-	//TODO : check if date is valid (e.g. 2023-02-30 should be invalid)
 	if (date.length() != 10)
 		return (false);
 	if (date[4] != '-' || date[7] != '-')
@@ -96,11 +95,12 @@ bool	BitcoinExchange::loadDatabase(const std::string &filename)
 		return (false);
 
 	std::string	line;
-	std::getline(file, line); // Skip header
 
 	while (std::getline(file, line))
 	{
 		if (line.empty())
+			continue;
+		if (_trimWhitespace(line) == "date,exchange_rate")
 			continue;
 
 		size_t	sep = line.find(',');
@@ -131,17 +131,18 @@ void	BitcoinExchange::processInput(const std::string &filename)
 	}
 
 	std::string	line;
-	std::getline(file, line); // Skip header
 
 	while (std::getline(file, line))
 	{
 		if (line.empty())
 			continue;
+		if (_trimWhitespace(line) == "date | value")
+			continue;
 
 		size_t	sep = line.find('|');
 		if (sep == std::string::npos)
 		{
-			std::cout << "Error: bad input => " << line << std::endl;
+			std::cerr << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 
@@ -150,7 +151,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (!_isValidDate(date))
 		{
-			std::cout << "Error: bad input => " << date << std::endl;
+			std::cerr << "Error: bad input => " << date << std::endl;
 			continue;
 		}
 
@@ -158,13 +159,13 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (value < 0)
 		{
-			std::cout << "Error: not a positive number." << std::endl;
+			std::cerr << "Error: not a positive number." << std::endl;
 			continue;
 		}
 
 		if (value > 1000)
 		{
-			std::cout << "Error: too large a number." << std::endl;
+			std::cerr << "Error: too large a number." << std::endl;
 			continue;
 		}
 
@@ -175,7 +176,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (it == this->_database.end() || it->first > date)
 		{
-			std::cout << "Error: bad input dont have data this date => " << date << std::endl;
+			std::cerr << "Error: bad input dont have data this date => " << date << std::endl;
 			continue;
 		}
 

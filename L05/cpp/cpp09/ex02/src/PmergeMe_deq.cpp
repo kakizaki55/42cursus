@@ -19,7 +19,7 @@ static std::deque<int> makeJacobsthal(int n)
 
 static std::deque<int> buildInitialChain(const std::deque<int>& largerElements, const std::deque<std::pair<int, int> >& pairs, int numPairs)
 {
-	std::deque<int> chain(numPairs + 1);
+	std::deque<int> chain;
 
 	chain.push_back(pairs[0].second);
 	for (int i = 0; i < numPairs; i++)
