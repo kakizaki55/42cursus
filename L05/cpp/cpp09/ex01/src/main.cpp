@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv) {
 	if (argc != 2) {
-		std::cerr << "Error" << std::endl;
+		std::cout << "Error: invalid number of arguments." << std::endl;
 		return 1;
 	}
 	
@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
 		long result = rpn.evaluate(argv[1]);
 		std::cout << result << std::endl;
 	} catch (const std::exception &e) {
-		std::cerr << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 		return 1;
 	}
 	

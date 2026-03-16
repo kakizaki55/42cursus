@@ -4,6 +4,9 @@
 #include <deque>
 #include <string>
 
+extern std::size_t g_comp;
+
+
 class PmergeMe {
 private:
 	std::vector<int> _vec;

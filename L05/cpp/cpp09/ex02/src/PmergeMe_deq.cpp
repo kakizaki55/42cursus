@@ -35,6 +35,7 @@ static std::deque<std::pair<int, int> > pairUpElements(const std::deque<int>& ar
 	{
 		int left  = arr[2 * i];
 		int right = arr[2 * i + 1];
+		++g_comp; // pairing comparison
 		if (left < right)
 			std::swap(left, right);
 		pairs[i] = std::make_pair(left, right);

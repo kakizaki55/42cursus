@@ -53,6 +53,8 @@ bool	BitcoinExchange::_isValidDate(const std::string &date)
 
 	if (year < 0 || year > 9999)
 		return (false);
+	if(month < 1 || month > 12)
+		return (false);
 	if (month == 2 && isLeapYear(year))
 	{
 		if (day > 29) return false;
@@ -154,7 +156,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 		size_t	sep = line.find('|');
 		if (sep == std::string::npos)
 		{
-			std::cerr << "Error: bad input => " << line << std::endl;
+			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 
@@ -164,7 +166,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (!_isValidDate(date))
 		{
-			std::cerr << "Error: bad input => " << date << std::endl;
+			std::cout << "Error: bad input => " << date << std::endl;
 			continue;
 		}
 
@@ -176,7 +178,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (value > 1000)
 		{
-			std::cerr << "Error: too large a number." << std::endl;
+			std::cout << "Error: too large a number." << std::endl;
 			continue;
 		}
 
@@ -187,7 +189,7 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if (it == this->_database.end() || it->first > date)
 		{
-			std::cerr << "Error: bad input dont have data this date => " << date << std::endl;
+			std::cout << "Error: bad input dont have data this date => " << date << std::endl;
 			continue;
 		}
 

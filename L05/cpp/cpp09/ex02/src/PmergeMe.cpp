@@ -6,7 +6,7 @@
 #include <ctime>
 #include <climits>
 
-PmergeMe::PmergeMe() : _displayLimit(10), _vecTime(0.0), _deqTime(0.0) {}
+PmergeMe::PmergeMe() : _displayLimit(21), _vecTime(0.0), _deqTime(0.0) {}
 PmergeMe::~PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -54,9 +54,11 @@ void PmergeMe::sort()
 {
 	// Time vector sort
 	{
+		g_comp = 0; // reset comparison count
 		std::clock_t start = std::clock();
 		fordJohnsonVec(_vec);
 		std::clock_t end = std::clock();
+		std::cout << "Comparisons: " << g_comp << std::endl;
 		_vecTime = (double)(end - start) * 1000000.0 / CLOCKS_PER_SEC;
 	}
 	// // Time deque sort
