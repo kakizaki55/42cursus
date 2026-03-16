@@ -5,7 +5,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cout << "Error: could not open file." << std::endl;
 		return (1);
 	}
 
@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 
 	if (!btc.loadDatabase("data.csv"))
 	{
-		std::cerr << "Error: could not load database." << std::endl;
+		std::cout << "Error: could not load database. please put in root dir" << std::endl;
 		return (1);
 	}
 

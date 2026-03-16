@@ -59,13 +59,13 @@ void PmergeMe::sort()
 		std::clock_t end = std::clock();
 		_vecTime = (double)(end - start) * 1000000.0 / CLOCKS_PER_SEC;
 	}
-	// Time deque sort
-	{
-		std::clock_t start = std::clock();
-		fordJohnsonDeq(_deq);
-		std::clock_t end = std::clock();
-		_deqTime = (double)(end - start) * 1000000.0 / CLOCKS_PER_SEC;
-	}
+	// // Time deque sort
+	// {
+	// 	std::clock_t start = std::clock();
+	// 	fordJohnsonDeq(_deq);
+	// 	std::clock_t end = std::clock();
+	// 	_deqTime = (double)(end - start) * 1000000.0 / CLOCKS_PER_SEC;
+	// }
 }
 
 void PmergeMe::printBefore() const	
