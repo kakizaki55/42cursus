@@ -3,18 +3,17 @@
 
 static std::deque<int> makeJacobsthal(int n)
 {
-	std::deque<int> sequence;
-
-	sequence.push_back(0);
-	sequence.push_back(1);
-
-	while (sequence.back() < n)
+	// Produces: 1, 3, 5, 11, 21, 43, ...
+	std::deque<int> jac;
+	jac.push_back(1);
+	jac.push_back(3);
+	while (jac.back() < n)
 	{
-		int last		= sequence[sequence.size() - 1];
-		int secondLast	= sequence[sequence.size() - 2];
-		sequence.push_back(last + 2 * secondLast);
+		int last		= jac[jac.size() - 1];
+		int secondLast	= jac[jac.size() - 2];
+		jac.push_back(last + 2 * secondLast);
 	}
-	return sequence;
+	return jac;
 }
 
 static std::deque<int> buildInitialChain(const std::deque<int>& largerElements, const std::deque<std::pair<int, int> >& pairs, int numPairs)
@@ -32,16 +31,38 @@ static std::deque<std::pair<int, int> > pairUpElements(const std::deque<int>& ar
 {
 	std::deque<std::pair<int, int> > pairs(numPairs);
 	for (int i = 0; i < numPairs; i++)
-	{
-		int left  = arr[2 * i];
-		int right = arr[2 * i + 1];
-		++g_comp; // pairing comparison
-		if (left < right)
-			std::swap(left, right);
-		pairs[i] = std::make_pair(left, right);
-	}
+		pairs[i] = std::make_pair(arr[2 * i], arr[2 * i + 1]);
 	return pairs;
 }
+
+static void orientPair(std::pair<int,int>& p)
+{
+	if (p.first < p.second)
+		std::swap(p.first, p.second);
+}
+
+static void reorderPairsByLarger(std::deque<std::pair<int,int> >& pairs,
+                                  const std::deque<int>& sortedLargers,
+                                  int numPairs)
+{
+	std::deque<bool>             used(numPairs, false);
+	std::deque<std::pair<int,int> > ordered(numPairs);
+
+	for (int i = 0; i < numPairs; i++)
+	{
+		for (int j = 0; j < numPairs; j++)
+		{
+			if (!used[j] && pairs[j].first == sortedLargers[i])
+			{
+				ordered[i] = pairs[j];
+				used[j] = true;
+				break;
+			}
+		}
+	}
+	pairs = ordered;
+}
+
 
 void PmergeMe::fordJohnsonDeq(std::deque<int>& arr)
 {
@@ -55,26 +76,30 @@ void PmergeMe::fordJohnsonDeq(std::deque<int>& arr)
 
 	std::deque<std::pair<int, int> > pairs = pairUpElements(arr, numPairs);
 
+	for (int i = 0; i < numPairs; i++)
+		orientPair(pairs[i]);
+
 	std::deque<int> largerElements(numPairs);
 	for (int i = 0; i < numPairs; i++)
 		largerElements[i] = pairs[i].first;
 
 	fordJohnsonDeq(largerElements);
 
-	std::stable_sort(pairs.begin(), pairs.end());
+	reorderPairsByLarger(pairs, largerElements, numPairs);
 
 	std::deque<int> chain = buildInitialChain(largerElements, pairs, numPairs);
-
+	
 	std::deque<int> largerElementPositions(numPairs);
 	for (int i = 0; i < numPairs; i++)
 		largerElementPositions[i] = i + 1;
 
+	// smallest is already in the chain, mark it done
 	std::deque<bool> inserted(numPairs, false);
 	inserted[0] = true;
 
 	std::deque<int> jacobsthal = makeJacobsthal(numPairs);
 
-	for (int groupIndex = 1; groupIndex < (int)jacobsthal.size() - 1; groupIndex++)
+	for (int groupIndex = 0; groupIndex + 1 < (int)jacobsthal.size(); groupIndex++)
 	{
 		int groupStart = jacobsthal[groupIndex];
 		int groupEnd   = std::min(jacobsthal[groupIndex + 1] - 1, numPairs - 1);
@@ -85,9 +110,9 @@ void PmergeMe::fordJohnsonDeq(std::deque<int>& arr)
 				continue;
 			inserted[pairIndex] = true;
 
-			int smallerValue   = pairs[pairIndex].second;
-			int searchRangeLow = 0;
-			int searchRangeHigh = largerElementPositions[pairIndex] + 1;
+			int smallerValue    = pairs[pairIndex].second;
+			int searchRangeLow  = 0;
+			int searchRangeHigh = largerElementPositions[pairIndex];
 
 			while (searchRangeLow < searchRangeHigh)
 			{

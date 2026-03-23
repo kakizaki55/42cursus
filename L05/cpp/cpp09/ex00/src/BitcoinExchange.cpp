@@ -85,17 +85,14 @@ float	BitcoinExchange::_parseValue(const std::string &value)
 	char	*endptr;
 	float	result = std::strtof(value.c_str(), &endptr);
 
-	if (*endptr != '\0')
-		return (-1.0f);
-
 	return (result);
 }
 
 bool	BitcoinExchange::_isValidValue(const std::string &value)
 {
-	float	val = _parseValue(value);
-
-	if (val < 0 || val > 1000)
+	char *endptr;
+	std::strtof(value.c_str(), &endptr);
+	if (*endptr != '\0')
 		return (false);
 
 	return (true);
@@ -172,13 +169,18 @@ void	BitcoinExchange::processInput(const std::string &filename)
 
 		if(_isValidValue(value_str) == false)
 		{
-			std::cout << "Error: not a positive number." << std::endl;
+			std::cout << "Error: not a valid number." << std::endl;
 			continue;
 		}
 
-		if (value > 1000)
+		if(value < 0)
 		{
-			std::cout << "Error: too large a number." << std::endl;
+			std::cout << "Error: not a positive number." << std::endl;
+			continue;
+		}
+		else if(value > 1000)
+		{
+			std::cout << "Error: too large a number" << std::endl;
 			continue;
 		}
 

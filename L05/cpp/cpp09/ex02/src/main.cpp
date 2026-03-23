@@ -1,12 +1,10 @@
 #include <iostream>
 #include "PmergeMe.hpp"
 
-std::size_t g_comp = 0;
-
 int main(int argc, char **argv)
 {
 	if (argc < 2) {
-		std::cerr << "Error" << std::endl;
+		std::cout << "Error: not enough args" << std::endl;
 		return 1;
 	}
 
@@ -25,7 +23,7 @@ int main(int argc, char **argv)
 		          << " elements with std::deque  : "
 		          << pm.timeDeq() << " us" << std::endl;
 	} catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 		return 1;
 	}
 

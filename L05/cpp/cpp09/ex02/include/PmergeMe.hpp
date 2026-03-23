@@ -3,15 +3,11 @@
 #include <vector>
 #include <deque>
 #include <string>
-
-extern std::size_t g_comp;
-
-
 class PmergeMe {
 private:
 	std::vector<int> _vec;
 	std::deque<int>  _deq;
-	std::vector<int> _original; // unsorted copy for "Before:" line
+	std::vector<int> _original;
 	int _displayLimit;
 
 	double _vecTime;

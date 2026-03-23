@@ -4,8 +4,6 @@
 static std::vector<int> makeJacobsthal(int n)
 {
 	// Produces: 1, 3, 5, 11, 21, 43, ...
-	// These are the group boundary indices for b-element insertion.
-	// Starting with [1, 3] avoids the duplicate 1 from [0, 1].
 	std::vector<int> jac;
 	jac.push_back(1);
 	jac.push_back(3);
@@ -38,16 +36,12 @@ static std::vector<std::pair<int, int> > pairUpElements(const std::vector<int>& 
 	return pairs;
 }
 
-// Orient a single pair so .first (larger) >= .second (smaller)
 static void orientPair(std::pair<int,int>& p)
 {
-	++g_comp;
 	if (p.first < p.second)
 		std::swap(p.first, p.second);
 }
 
-// Reorder pairs so pairs[i].first == sortedLargers[i].
-// This is pure bookkeeping — no algorithmic comparisons, so no g_comp.
 static void reorderPairsByLarger(std::vector<std::pair<int,int> >& pairs,
                                   const std::vector<int>& sortedLargers,
                                   int numPairs)
@@ -77,32 +71,24 @@ void PmergeMe::fordJohnsonVec(std::vector<int>& arr)
 	if (size <= 1)
 		return;
 
-	// If odd number of elements, save the last one for later
 	bool hasStraggler = (size % 2 != 0);
 	int  straggler    = hasStraggler ? arr[size - 1] : 0;
 	int  numPairs     = size / 2;
 
-
-
-
 	std::vector<std::pair<int, int> > pairs = pairUpElements(arr, numPairs);
 
-	// Step 1: orient each pair so .first >= .second  (n/2 comparisons)
 	for (int i = 0; i < numPairs; i++)
 		orientPair(pairs[i]);
 
-	// Step 2: recursively sort the larger elements using Ford-Johnson
 	std::vector<int> largerElements(numPairs);
 	for (int i = 0; i < numPairs; i++)
 		largerElements[i] = pairs[i].first;
 
 	fordJohnsonVec(largerElements);
 
-	// Step 3: reorder pairs to match the sorted largerElements (no g_comp)
 	reorderPairsByLarger(pairs, largerElements, numPairs);
 
 	std::vector<int> chain = buildInitialChain(largerElements, pairs, numPairs);
-
 	
 	std::vector<int> largerElementPositions(numPairs);
 	for (int i = 0; i < numPairs; i++)
@@ -114,14 +100,11 @@ void PmergeMe::fordJohnsonVec(std::vector<int>& arr)
 
 	std::vector<int> jacobsthal = makeJacobsthal(numPairs);
 
-	// jac = [1, 3, 5, 11, 21, ...]
-	// Group k covers pair indices [jac[k], jac[k+1]-1], inserted high-to-low.
 	for (int groupIndex = 0; groupIndex + 1 < (int)jacobsthal.size(); groupIndex++)
 	{
 		int groupStart = jacobsthal[groupIndex];
 		int groupEnd   = std::min(jacobsthal[groupIndex + 1] - 1, numPairs - 1);
 
-		// Insert from high to low within each group to tighten search bounds
 		for (int pairIndex = groupEnd; pairIndex >= groupStart; pairIndex--)
 		{
 			if (inserted[pairIndex])
@@ -130,13 +113,11 @@ void PmergeMe::fordJohnsonVec(std::vector<int>& arr)
 
 			int smallerValue    = pairs[pairIndex].second;
 			int searchRangeLow  = 0;
-			// b_k < a_k is guaranteed by pairing, so search only up to (not including) pos(a_k)
 			int searchRangeHigh = largerElementPositions[pairIndex];
 
 			while (searchRangeLow < searchRangeHigh)
 			{
 				int mid = searchRangeLow + (searchRangeHigh - searchRangeLow) / 2;
-				++g_comp; // binary search comparison
 				if (chain[mid] < smallerValue)
 					searchRangeLow = mid + 1;
 				else
@@ -159,7 +140,6 @@ void PmergeMe::fordJohnsonVec(std::vector<int>& arr)
 		while (searchRangeLow < searchRangeHigh)
 		{
 			int mid = searchRangeLow + (searchRangeHigh - searchRangeLow) / 2;
-			++g_comp; // stragerler binary search comparison
 			if (chain[mid] < straggler)
 				searchRangeLow = mid + 1;
 			else
@@ -170,3 +150,4 @@ void PmergeMe::fordJohnsonVec(std::vector<int>& arr)
 
 	arr = chain;
 }
+
